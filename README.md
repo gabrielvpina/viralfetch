@@ -31,7 +31,7 @@ The VMR is the local index; everything else is fetched on demand and cached.
 ## Installation
 
 ```bash
-pip install -e .
+pip install viralfetch
 ```
 
 This installs the `viralfetch` command. Python 3.10+ is required.

@@ -11,6 +11,7 @@ import sys
 
 import typer
 
+from . import __version__
 from . import compare
 from . import config as config_mod
 from . import ictv
@@ -89,9 +90,19 @@ app = typer.Typer(
 )
 
 
+def _version_callback(value: bool) -> None:
+    if value:
+        typer.echo(f"viralfetch {__version__}")
+        raise typer.Exit()
+
+
 @app.callback()
 def main(
     ctx: typer.Context,
+    version: bool = typer.Option(
+        None, "--version", callback=_version_callback, is_eager=True,
+        help="Show the version and exit.",
+    ),
     json_out: bool = typer.Option(False, "--json", help="Emit pure JSON on stdout (for jq)."),
     no_cache: bool = typer.Option(False, "--no-cache", help="Force refetch, ignore cache."),
     verbose: bool = typer.Option(False, "--verbose", help="Verbose diagnostics on stderr."),

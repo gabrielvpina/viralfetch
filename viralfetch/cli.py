@@ -76,6 +76,10 @@ _FORMAT = "Output format"
 _SELECT = "Molecule selection"
 _TARGET = "Target & output"
 
+# Command-group panels split the main --help listing into two sections.
+_PANEL_QUERY = "Query & retrieval"
+_PANEL_CONFIG = "Configuration & maintenance"
+
 app = typer.Typer(
     name="viralfetch",
     help=HELP,
@@ -104,7 +108,7 @@ def main(
     )
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_QUERY)
 def tax(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="Taxon name (any rank).", autocompletion=_complete_taxon),
@@ -146,7 +150,7 @@ def tax(
     out.tax(view)
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_QUERY)
 def members(
     ctx: typer.Context,
     taxon: str = typer.Argument(..., help="Parent taxon name.", autocompletion=_complete_taxon),
@@ -179,7 +183,7 @@ def members(
     out.members(view)
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_QUERY)
 def seq(
     ctx: typer.Context,
     species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon.", autocompletion=_complete_taxon),
@@ -253,7 +257,7 @@ def seq(
         raise typer.Exit(4)
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_QUERY)
 def text(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="Family name (ICTV Report chapter).", autocompletion=_complete_taxon),
@@ -319,7 +323,7 @@ def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -
         raise typer.Exit(0)
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_CONFIG)
 def diagnose(ctx: typer.Context) -> None:
     """Report VMR accession-parser quality (rows that yielded zero accessions).
 
@@ -331,7 +335,7 @@ def diagnose(ctx: typer.Context) -> None:
     out.diagnose(queries.diagnostics(load()))
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_CONFIG)
 def update(ctx: typer.Context) -> None:
     """Check whether a newer VMR is published on ictv.global/vmr.
 
@@ -349,7 +353,7 @@ def update(ctx: typer.Context) -> None:
     out.update_status(status)
 
 
-@app.command()
+@app.command(rich_help_panel=_PANEL_CONFIG)
 def config(
     ctx: typer.Context,
     store_ncbi_email: str = typer.Option(None, "--store-ncbi-email", help="Persist an NCBI email to the config file."),
@@ -374,7 +378,7 @@ def config(
 
 
 cache_app = typer.Typer(help="Inspect or clear the on-disk cache.")
-app.add_typer(cache_app, name="cache")
+app.add_typer(cache_app, name="cache", rich_help_panel=_PANEL_CONFIG)
 
 
 @cache_app.command("info")

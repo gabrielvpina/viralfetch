@@ -26,10 +26,6 @@ sequences. It combines three sources:
 
 The VMR is the local index; everything else is fetched on demand and cached.
 
-> **Status:** all commands are implemented — the taxonomy commands
-> (`tax`, `members`), the NCBI sequence command (`seq`), the ICTV Report
-> `text` command, and the `diagnose` / `update` / `config` / `cache` utilities.
-
 ---
 
 ## Installation
@@ -407,15 +403,19 @@ caches chapter HTML for 30 days.
 
 ## Utilities
 
-### `diagnose` — VMR parser quality (local)
-
-The accession field of the VMR is free text. `diagnose` reports how many rows
-yielded zero accessions — the parser's quality indicator — and lists any rows
-it could not parse.
+Small helper commands, all local except `update`.
 
 ```bash
-viralfetch diagnose
+viralfetch diagnose                 # VMR parser quality (zero-accession rows)
+viralfetch update                   # is a newer VMR published on ictv.global?
+viralfetch config                   # show email, masked API key, cache paths
+viralfetch config --store-ncbi-email you@example.com   # persist credentials
+viralfetch cache info               # per-namespace entry counts and size
+viralfetch cache clear --texts      # drop cached ICTV chapters (or --seqs, or all)
 ```
+
+`diagnose` reports the parser's quality indicator — how many VMR rows yielded
+zero accessions:
 
 ```
 ╭─ VMR accession-parser diagnostics ─╮
@@ -426,44 +426,9 @@ viralfetch diagnose
 ╰────────────────────────────────────╯
 ```
 
-### `update` — is there a newer VMR? (remote)
-
-Checks `ictv.global/vmr` for a newer release than the embedded one. It only
-reports; it does not replace the shipped TSV.
-
-```bash
-viralfetch update
-# VMR is up to date (VMR_MSL41.v1.20260320.tsv).
-```
-
-### `config` — show or store credentials
-
-Shows the effective NCBI email, the **masked** API key, and the cache/config
-paths. `--store-ncbi-email` / `--store-ncbi-apikey` persist values to the
-config file.
-
-```bash
-viralfetch config
-viralfetch config --store-ncbi-email you@example.com
-```
-
-### `cache` — inspect or clear the cache
-
-```bash
-viralfetch cache info
-viralfetch cache clear             # everything
-viralfetch cache clear --texts     # only ICTV chapter text
-viralfetch cache clear --seqs      # only sequences/metadata
-```
-
-### Shell completion
-
-Taxon names complete from the VMR (`viralfetch tax Corona<TAB>`). Install the
-completion for your shell once with:
-
-```bash
-viralfetch --install-completion
-```
+**Shell completion:** taxon names complete from the VMR
+(`viralfetch tax Corona<TAB>` → `Coronaviridae`). Install it once with
+`viralfetch --install-completion`.
 
 ---
 
@@ -481,4 +446,5 @@ viralfetch --install-completion
 Immutable data (sequences, accession metadata) is cached permanently; ICTV
 chapter HTML uses a 30-day TTL. The cache lives in the platform cache
 directory. Use `--no-cache` to bypass it for a single run.
+
 

@@ -16,7 +16,9 @@ from viralfetch.ncbi import (
     NCBIError,
     RateLimiter,
     _meta_from_json,
+    _parse_elink,
     _parse_esummary,
+    _parse_taxonomy_xml,
     _split_fasta,
     _split_genbank,
 )
@@ -80,13 +82,23 @@ class FakeResponse:
 
 
 class FakeSession:
-    """Serves esummary JSON and efetch FASTA from a base-accession registry."""
+    """Serves esummary/efetch/elink from an in-memory registry.
 
-    def __init__(self, registry: dict, fail_times: int = 0, fail_status: int = 503):
-        self.registry = registry  # base_acc -> record dict
+    ``registry`` maps base-accession -> record dict (with a ``uid``).
+    ``protein_links`` maps a source UID -> list of protein UIDs (for elink).
+    ``taxonomy`` maps a source UID -> taxid; ``tax_xml`` maps taxid -> xml.
+    """
+
+    def __init__(self, registry: dict, fail_times: int = 0, fail_status: int = 503,
+                 protein_links: dict | None = None, taxonomy: dict | None = None,
+                 tax_xml: dict | None = None):
+        self.registry = registry
         self.calls = []
         self.fail_times = fail_times
         self.fail_status = fail_status
+        self.protein_links = protein_links or {}
+        self.taxonomy = taxonomy or {}
+        self.tax_xml = tax_xml or {}
 
     def post(self, url, data=None, timeout=None):
         self.calls.append(data)
@@ -102,10 +114,23 @@ class FakeSession:
                     result["uids"].append(rec["uid"])
                     result[rec["uid"]] = rec
             return FakeResponse(json.dumps({"result": result}))
+        if url.endswith("elink.fcgi"):
+            links = []
+            for uid in ids:
+                if data["db"] == "protein":
+                    links += self.protein_links.get(uid, [])
+                elif data["db"] == "taxonomy" and uid in self.taxonomy:
+                    links.append(self.taxonomy[uid])
+            return FakeResponse(json.dumps({"linksets": [
+                {"linksetdbs": [{"links": links}]}
+            ]}))
         if url.endswith("efetch.fcgi"):
+            if data.get("db") == "taxonomy":
+                return FakeResponse(self.tax_xml.get(ids[0], "<TaxaSet></TaxaSet>"))
+            by_uid = {r["uid"]: r for r in self.registry.values()}
             chunks = []
-            for acc in ids:
-                rec = self.registry.get(acc.split(".")[0])
+            for ident in ids:
+                rec = self.registry.get(ident.split(".")[0]) or by_uid.get(ident)
                 if rec:
                     chunks.append(f">{rec['accessionversion']} {rec['organism']}\nACGT\n")
             return FakeResponse("".join(chunks))
@@ -195,3 +220,74 @@ def test_efetch_fasta_missing_and_cache(tmp_path):
     assert result.returned == ["MN908947"]
     assert result.missing == ["ZZ000000"]
     assert ">MN908947.3" in result.text
+
+
+# -- elink / taxonomy parsing (frozen fixtures) ---------------------------
+
+def test_parse_elink_fixture():
+    body = (FIXTURES / "elink_protein.json").read_text()
+    assert _parse_elink(body) == ["1798172433", "1798172434", "1798172435"]
+
+
+def test_parse_taxonomy_xml_fixture():
+    lineage = _parse_taxonomy_xml((FIXTURES / "taxonomy.xml").read_text())
+    assert lineage.taxid == "2697049"
+    assert lineage.rank == "no rank"
+    ranks = dict(lineage.lineage)
+    assert ranks["realm"] == "Riboviria"
+    assert ranks["genus"] == "Betacoronavirus"
+    # The taxon itself is appended last.
+    assert lineage.lineage[-1][1] == lineage.name
+
+
+# -- elink-backed client paths (nuccore UID resolution first) -------------
+
+def test_nuccore_uids_resolves_via_esummary(tmp_path):
+    session = FakeSession(REGISTRY)
+    client = make_client(session, tmp_path)
+    assert client.nuccore_uids(["MN908947", "AY274119"]) == ["1", "2"]
+
+
+def test_protein_uids_for_links(tmp_path):
+    session = FakeSession(REGISTRY, protein_links={"1": ["101", "102"]})
+    client = make_client(session, tmp_path)
+    assert client.protein_uids_for(["MN908947"]) == ["101", "102"]
+
+
+def test_protein_uids_empty_not_cached(tmp_path):
+    session = FakeSession(REGISTRY, protein_links={})  # no links
+    client = make_client(session, tmp_path)
+    assert client.protein_uids_for(["MN908947"]) == []
+    # An empty result must not be cached (it would poison later runs).
+    key_calls = len(session.calls)
+    client.protein_uids_for(["MN908947"])
+    assert len(session.calls) > key_calls  # refetched, not served from cache
+
+
+def test_taxid_for_accession(tmp_path):
+    session = FakeSession(REGISTRY, taxonomy={"1": "2697049"})
+    client = make_client(session, tmp_path)
+    assert client.taxid_for_accession("MN908947") == "2697049"
+
+
+def test_efetch_taxonomy_parses(tmp_path):
+    xml = (FIXTURES / "taxonomy.xml").read_text()
+    session = FakeSession(REGISTRY, tax_xml={"2697049": xml})
+    client = make_client(session, tmp_path)
+    lineage = client.efetch_taxonomy("2697049")
+    assert lineage.name.startswith("Severe acute")
+
+
+def test_efetch_all_returns_every_record(tmp_path):
+    # Protein-style: ids are UIDs; efetch_all takes all split records.
+    reg = {"YP_009": {
+        "uid": "9", "caption": "YP_009", "accessionversion": "YP_009.1",
+        "organism": "spike", "slen": "1", "moltype": "aa", "biomol": "peptide",
+        "topology": "linear", "completeness": "complete", "sourcedb": "refseq",
+        "updatedate": "2020",
+    }}
+    session = FakeSession(reg)
+    client = make_client(session, tmp_path)
+    result = client.efetch_all("protein", ["9"], "fasta")
+    assert result.returned == ["YP_009"]
+    assert ">YP_009.1" in result.text

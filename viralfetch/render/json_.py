@@ -10,8 +10,10 @@ import json
 import sys
 from dataclasses import asdict
 
+from ..compare import LineageComparison
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
+from ..sequences import TaxonAggregate
 
 
 def _emit(payload) -> None:
@@ -82,6 +84,33 @@ def seq_records(species: str, result: RecordsResult, output: str | None) -> None
     if output:
         summary["written"] = output
     print(json.dumps(summary, ensure_ascii=False), file=sys.stderr)
+
+
+def seq_aggregate(agg: TaxonAggregate) -> None:
+    _emit({
+        "name": agg.name,
+        "rank": agg.rank,
+        "species": agg.species,
+        "isolates": agg.isolates,
+        "accessions": agg.accessions,
+        "refseq": agg.refseq,
+        "moltype_breakdown": agg.moltype_breakdown,
+    })
+
+
+def compare(cmp: LineageComparison) -> None:
+    ncbi = cmp.ncbi
+    _emit({
+        "taxon": cmp.taxon,
+        "representative_accession": cmp.representative_accession,
+        "ictv": [{"rank": r, "name": n} for r, n in cmp.ictv],
+        "ncbi": {
+            "taxid": ncbi.taxid,
+            "name": ncbi.name,
+            "rank": ncbi.rank,
+            "lineage": [{"rank": r, "name": n} for r, n in ncbi.lineage],
+        } if ncbi else None,
+    })
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

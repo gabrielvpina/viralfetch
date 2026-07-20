@@ -60,3 +60,24 @@ def test_tax_not_found_exit_code_and_stderr():
 def test_members_invalid_rank_exit_code():
     result = runner.invoke(app, ["members", "Coronaviridae", "--rank", "realm"])
     assert result.exit_code == 2
+
+
+def test_seq_taxon_aggregate_is_local_json():
+    # --taxon --meta is a local aggregate: no network, no email needed.
+    result = runner.invoke(app, ["--json", "seq", "--taxon", "Coronaviridae", "--meta"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["rank"] == "family"
+    assert payload["species"] > 0
+    assert payload["accessions"] > 0
+    assert "moltype_breakdown" in payload
+
+
+def test_seq_requires_species_or_taxon():
+    result = runner.invoke(app, ["seq"])
+    assert result.exit_code == 2
+
+
+def test_seq_rejects_both_species_and_taxon():
+    result = runner.invoke(app, ["seq", "Coronaviridae", "--taxon", "Coronaviridae"])
+    assert result.exit_code == 2

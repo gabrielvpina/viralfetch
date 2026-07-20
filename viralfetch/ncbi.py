@@ -64,6 +64,14 @@ class RecordsResult:
     missing: list[str] = field(default_factory=list)
 
 
+@dataclass
+class NcbiLineage:
+    taxid: str
+    name: str
+    rank: str
+    lineage: list[tuple[str, str]] = field(default_factory=list)  # (rank, name), root..self
+
+
 def _base_accession(acc: str) -> str:
     """Accession without a version suffix (``MN908947.3`` -> ``MN908947``)."""
     return acc.split(".", 1)[0]
@@ -148,12 +156,12 @@ class NCBIClient:
 
     # -- esummary (metadata) ----------------------------------------------
 
-    def esummary_nuccore(self, accessions: list[str]) -> MetaResult:
-        """Fetch nuccore metadata for accessions, caching each permanently."""
+    def esummary(self, db: str, accessions: list[str]) -> MetaResult:
+        """Fetch metadata for accessions in ``db``, caching each permanently."""
         result = MetaResult()
         to_fetch: list[str] = []
         for acc in accessions:
-            cached = self.cache.get(SEQS, f"summary:{acc}") if self.cache else None
+            cached = self.cache.get(SEQS, f"summary:{db}:{acc}") if self.cache else None
             if cached is not None:
                 result.records.append(_meta_from_json(json.loads(cached)))
             else:
@@ -162,7 +170,7 @@ class NCBIClient:
         for batch in self._batches(to_fetch):
             body = self._post(
                 "esummary.fcgi",
-                {"db": "nuccore", "id": ",".join(batch), "retmode": "json"},
+                {"db": db, "id": ",".join(batch), "retmode": "json"},
             )
             found = _parse_esummary(body)  # base_accession -> record dict
             for acc in batch:
@@ -171,19 +179,22 @@ class NCBIClient:
                     result.missing.append(acc)
                     continue
                 if self.cache:
-                    self.cache.set(SEQS, f"summary:{acc}", json.dumps(record))
+                    self.cache.set(SEQS, f"summary:{db}:{acc}", json.dumps(record))
                 result.records.append(_meta_from_json(record))
         return result
 
+    def esummary_nuccore(self, accessions: list[str]) -> MetaResult:
+        return self.esummary("nuccore", accessions)
+
     # -- efetch (fasta / gb) ----------------------------------------------
 
-    def efetch_nuccore(self, accessions: list[str], rettype: str) -> RecordsResult:
-        """Fetch fasta/gb records for accessions, caching each permanently."""
+    def efetch(self, db: str, accessions: list[str], rettype: str) -> RecordsResult:
+        """Fetch fasta/gb records for accessions in ``db``, caching each."""
         result = RecordsResult(rettype=rettype)
         parts: list[str] = []
         to_fetch: list[str] = []
         for acc in accessions:
-            cached = self.cache.get(SEQS, f"{rettype}:{acc}") if self.cache else None
+            cached = self.cache.get(SEQS, f"{rettype}:{db}:{acc}") if self.cache else None
             if cached is not None:
                 parts.append(cached)
                 result.returned.append(acc)
@@ -193,7 +204,7 @@ class NCBIClient:
         for batch in self._batches(to_fetch):
             body = self._post(
                 "efetch.fcgi",
-                {"db": "nuccore", "id": ",".join(batch), "rettype": rettype, "retmode": "text"},
+                {"db": db, "id": ",".join(batch), "rettype": rettype, "retmode": "text"},
             )
             records = _split_records(body, rettype)  # base_accession -> record text
             for acc in batch:
@@ -202,19 +213,210 @@ class NCBIClient:
                     result.missing.append(acc)
                     continue
                 if self.cache:
-                    self.cache.set(SEQS, f"{rettype}:{acc}", record)
+                    self.cache.set(SEQS, f"{rettype}:{db}:{acc}", record)
                 parts.append(record)
                 result.returned.append(acc)
 
         result.text = "".join(parts)
         return result
 
+    def efetch_nuccore(self, accessions: list[str], rettype: str) -> RecordsResult:
+        return self.efetch("nuccore", accessions, rettype)
+
+    def efetch_all(self, db: str, ids: list[str], rettype: str) -> RecordsResult:
+        """Fetch every record for ``ids`` without per-id matching.
+
+        Used when ``ids`` are UIDs (e.g. protein UIDs from elink): responses
+        come back keyed by accession, so we cannot map them to the requested
+        UID. Cached as a set keyed by the id list.
+        """
+        import hashlib
+
+        result = RecordsResult(rettype=rettype)
+        if not ids:
+            return result
+        key = f"{rettype}:{db}:set:" + hashlib.sha256(",".join(ids).encode()).hexdigest()
+        if self.cache:
+            cached = self.cache.get(SEQS, key)
+            if cached is not None:
+                result.text = cached
+                result.returned = list(_split_records(cached, rettype).keys())
+                return result
+
+        parts = [
+            self._post(
+                "efetch.fcgi",
+                {"db": db, "id": ",".join(batch), "rettype": rettype, "retmode": "text"},
+            )
+            for batch in self._batches(ids)
+        ]
+        text = "".join(parts)
+        if self.cache:
+            self.cache.set(SEQS, key, text)
+        result.text = text
+        result.returned = list(_split_records(text, rettype).keys())
+        return result
+
+    def esummary_all(self, db: str, ids: list[str]) -> MetaResult:
+        """esummary for ``ids`` (UIDs), returning every record found."""
+        import hashlib
+
+        result = MetaResult()
+        if not ids:
+            return result
+        key = f"summary:{db}:set:" + hashlib.sha256(",".join(ids).encode()).hexdigest()
+        if self.cache:
+            cached = self.cache.get(SEQS, key)
+            if cached is not None:
+                result.records = [_meta_from_json(r) for r in json.loads(cached)]
+                return result
+
+        records: list[dict] = []
+        for batch in self._batches(ids):
+            body = self._post(
+                "esummary.fcgi",
+                {"db": db, "id": ",".join(batch), "retmode": "json"},
+            )
+            records.extend(_parse_esummary(body).values())
+        if self.cache:
+            self.cache.set(SEQS, key, json.dumps(records))
+        result.records = [_meta_from_json(r) for r in records]
+        return result
+
+    # -- accession -> UID (elink needs numeric UIDs, not accessions) -------
+
+    def nuccore_uids(self, accessions: list[str]) -> list[str]:
+        """Resolve nuccore accessions to numeric UIDs via esummary.
+
+        elink requires UIDs, not accession.version strings; esummary records
+        already carry the ``uid``, and are cached, so this is essentially free
+        after a metadata fetch.
+        """
+        uids: list[str] = []
+        to_fetch: list[str] = []
+        for acc in accessions:
+            cached = self.cache.get(SEQS, f"summary:nuccore:{acc}") if self.cache else None
+            if cached is not None:
+                uid = json.loads(cached).get("uid")
+                if uid:
+                    uids.append(uid)
+            else:
+                to_fetch.append(acc)
+
+        for batch in self._batches(to_fetch):
+            body = self._post(
+                "esummary.fcgi",
+                {"db": "nuccore", "id": ",".join(batch), "retmode": "json"},
+            )
+            found = _parse_esummary(body)
+            for acc in batch:
+                record = found.get(_base_accession(acc))
+                if record is None:
+                    continue
+                if self.cache:
+                    self.cache.set(SEQS, f"summary:nuccore:{acc}", json.dumps(record))
+                if record.get("uid"):
+                    uids.append(record["uid"])
+        return uids
+
+    # -- elink (nuccore -> protein / taxonomy) ----------------------------
+
+    def elink(self, dbfrom: str, db: str, uids: list[str]) -> list[str]:
+        """Return the pooled, unique set of linked UIDs in ``db`` for ``uids``.
+
+        ``uids`` must be numeric UIDs (see :meth:`nuccore_uids`).
+        """
+        linked: list[str] = []
+        seen: set[str] = set()
+        for batch in self._batches(uids):
+            body = self._post(
+                "elink.fcgi",
+                {"dbfrom": dbfrom, "db": db, "id": ",".join(batch), "retmode": "json"},
+            )
+            for uid in _parse_elink(body):
+                if uid not in seen:
+                    seen.add(uid)
+                    linked.append(uid)
+        return linked
+
+    def protein_uids_for(self, accessions: list[str]) -> list[str]:
+        """nuccore accessions -> linked protein UIDs (cached by accession set)."""
+        import hashlib
+
+        key = "plink:" + hashlib.sha256("|".join(sorted(accessions)).encode()).hexdigest()
+        if self.cache:
+            cached = self.cache.get(SEQS, key)
+            if cached is not None:
+                return json.loads(cached)
+        uids = self.elink("nuccore", "protein", self.nuccore_uids(accessions))
+        # Only cache a non-empty result: an empty list is more likely a
+        # transient elink failure than a real "no proteins", and caching it
+        # would poison later runs.
+        if self.cache and uids:
+            self.cache.set(SEQS, key, json.dumps(uids))
+        return uids
+
+    def taxid_for_accession(self, accession: str) -> str | None:
+        """The NCBI taxid linked from a single nuccore accession, if any."""
+        nuc_uids = self.nuccore_uids([accession])
+        if not nuc_uids:
+            return None
+        uids = self.elink("nuccore", "taxonomy", nuc_uids)
+        return uids[0] if uids else None
+
+    def efetch_taxonomy(self, taxid: str) -> "NcbiLineage":
+        """Fetch and parse the NCBI taxonomy lineage for a taxid."""
+        cached = self.cache.get(SEQS, f"taxonomy:{taxid}") if self.cache else None
+        if cached is not None:
+            return _parse_taxonomy_xml(cached)
+        body = self._post(
+            "efetch.fcgi", {"db": "taxonomy", "id": taxid, "retmode": "xml"}
+        )
+        if self.cache:
+            self.cache.set(SEQS, f"taxonomy:{taxid}", body)
+        return _parse_taxonomy_xml(body)
+
 
 # -- parsing helpers -------------------------------------------------------
 
+def _parse_elink(body: str) -> list[str]:
+    """All linked UIDs from an elink JSON body (pooled across linksetdbs)."""
+    data = json.loads(body, strict=False)
+    out: list[str] = []
+    for linkset in data.get("linksets", []):
+        for db in linkset.get("linksetdbs", []) or []:
+            out.extend(db.get("links", []) or [])
+    return out
+
+
+def _parse_taxonomy_xml(body: str) -> NcbiLineage:
+    """Parse an efetch db=taxonomy XML body into an :class:`NcbiLineage`."""
+    import xml.etree.ElementTree as ET
+
+    root = ET.fromstring(body)
+    taxon = root.find("Taxon")
+    if taxon is None:
+        raise NCBIError("taxonomy response had no Taxon element")
+
+    def text(node, tag: str) -> str:
+        el = node.find(tag)
+        return el.text.strip() if el is not None and el.text else ""
+
+    lineage: list[tuple[str, str]] = []
+    lineage_ex = taxon.find("LineageEx")
+    if lineage_ex is not None:
+        for anc in lineage_ex.findall("Taxon"):
+            lineage.append((text(anc, "Rank"), text(anc, "ScientificName")))
+
+    name = text(taxon, "ScientificName")
+    rank = text(taxon, "Rank")
+    lineage.append((rank, name))  # include the taxon itself
+    return NcbiLineage(taxid=text(taxon, "TaxId"), name=name, rank=rank, lineage=lineage)
+
+
 def _parse_esummary(body: str) -> dict[str, dict]:
     """Map base-accession -> esummary record from a JSON esummary body."""
-    data = json.loads(body)
+    data = json.loads(body, strict=False)
     result = data.get("result", {})
     out: dict[str, dict] = {}
     for uid in result.get("uids", []):

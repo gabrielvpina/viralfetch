@@ -14,9 +14,11 @@ from rich.tree import Tree
 
 import sys
 
+from ..compare import LineageComparison
 from ..models import RANKS, plural
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
+from ..sequences import TaxonAggregate
 
 _out = Console()
 _err = Console(stderr=True)
@@ -134,6 +136,55 @@ def seq_records(species: str, result: RecordsResult, output: str | None) -> None
         )
     if result.missing:
         warn(f"{len(result.missing)} accession(s) not returned by NCBI: {', '.join(result.missing)}")
+
+
+def seq_aggregate(agg: TaxonAggregate) -> None:
+    table = Table(show_header=False, box=None, pad_edge=False)
+    table.add_column(style="dim")
+    table.add_column(justify="right")
+    table.add_row("species", str(agg.species))
+    table.add_row("isolates", str(agg.isolates))
+    table.add_row("accessions", str(agg.accessions))
+    table.add_row("RefSeq", str(agg.refseq))
+    _out.print(Panel(table, title=f"{agg.name} ({agg.rank}) — download estimate", title_align="left", expand=False))
+
+    if agg.moltype_breakdown:
+        comp = Table(title="by genome composition")
+        comp.add_column("composition", style="cyan")
+        comp.add_column("accessions", justify="right", style="green")
+        for k, v in sorted(agg.moltype_breakdown.items(), key=lambda kv: -kv[1]):
+            comp.add_row(k, str(v))
+        _out.print(comp)
+    _out.print(
+        f"[dim]Fetch with [/][bold]--fasta[/][dim] or [/][bold]--gb[/][dim] "
+        f"(use --moltype/--biomol to narrow, --yes to skip confirmation).[/]"
+    )
+
+
+def compare(cmp: LineageComparison) -> None:
+    ncbi = cmp.ncbi
+    ncbi_lineage = ncbi.lineage if ncbi else []
+    ictv_names = {n.casefold() for _, n in cmp.ictv}
+    ncbi_names = {n.casefold() for _, n in ncbi_lineage}
+
+    def fmt(rank: str, name: str, other: set[str]) -> Text:
+        t = Text()
+        t.append(f"{rank}: ", style="dim")
+        t.append(name, style="white" if name.casefold() in other else "bold yellow")
+        return t
+
+    table = Table(title=f"ICTV vs NCBI lineage — {cmp.taxon}", caption=f"rep. accession {cmp.representative_accession}")
+    table.add_column("ICTV (VMR) 2026", style="cyan")
+    table.add_column("NCBI (taxid " + (ncbi.taxid if ncbi else "?") + ")", style="magenta")
+
+    ictv_lines = [fmt(r, n, ncbi_names) for r, n in cmp.ictv]
+    ncbi_lines = [fmt(r, n, ictv_names) for r, n in ncbi_lineage]
+    for i in range(max(len(ictv_lines), len(ncbi_lines))):
+        left = ictv_lines[i] if i < len(ictv_lines) else Text("")
+        right = ncbi_lines[i] if i < len(ncbi_lines) else Text("")
+        table.add_row(left, right)
+    _out.print(table)
+    _out.print("[yellow]Highlighted[/] = present in one lineage but not the other (NCBI often lags ICTV).")
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

@@ -100,6 +100,12 @@ def _rows_under(vmr: VMR, target: Taxon) -> list[Isolate]:
     ]
 
 
+def descendant_isolates(vmr: VMR, name: str) -> tuple[Taxon, list[Isolate]]:
+    """Resolve a taxon and return every isolate row beneath it (inclusive)."""
+    taxon = _resolve(vmr, name)
+    return taxon, _rows_under(vmr, taxon)
+
+
 def tax(vmr: VMR, name: str) -> TaxonView:
     """Full lineage of a taxon, plus an isolate summary when it is a species."""
     taxon = _resolve(vmr, name)

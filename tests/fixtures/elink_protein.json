@@ -1,0 +1,16 @@
+{
+  "header": { "type": "elink", "version": "0.3" },
+  "linksets": [
+    {
+      "dbfrom": "nuccore",
+      "ids": ["1798172431"],
+      "linksetdbs": [
+        {
+          "dbto": "protein",
+          "linkname": "nuccore_protein",
+          "links": ["1798172433", "1798172434", "1798172435"]
+        }
+      ]
+    }
+  ]
+}

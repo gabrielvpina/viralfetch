@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<TaxaSet>
+  <Taxon>
+    <TaxId>2697049</TaxId>
+    <ScientificName>Severe acute respiratory syndrome coronavirus 2</ScientificName>
+    <Rank>no rank</Rank>
+    <LineageEx>
+      <Taxon>
+        <TaxId>10239</TaxId>
+        <ScientificName>Viruses</ScientificName>
+        <Rank>superkingdom</Rank>
+      </Taxon>
+      <Taxon>
+        <TaxId>2559587</TaxId>
+        <ScientificName>Riboviria</ScientificName>
+        <Rank>realm</Rank>
+      </Taxon>
+      <Taxon>
+        <TaxId>694002</TaxId>
+        <ScientificName>Betacoronavirus</ScientificName>
+        <Rank>genus</Rank>
+      </Taxon>
+    </LineageEx>
+  </Taxon>
+</TaxaSet>

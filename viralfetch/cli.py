@@ -31,11 +31,28 @@ def _make_client(cfg: config_mod.Config, out) -> NCBIClient:
         out.error(str(exc))
         raise typer.Exit(3)
 
+HELP = """Query and download viral taxonomy, metadata and sequences.
+
+Combines the ICTV VMR (local, embedded), NCBI E-utilities (remote) and the
+ICTV Report (remote). The VMR is the local index; everything else is fetched
+on demand and cached.
+
+Global options below apply to every command and go [bold]before[/] it, e.g.
+[cyan]viralfetch --json tax Coronaviridae[/]. Each command has its own arguments
+and options — run [bold]viralfetch COMMAND --help[/] to see them in their own boxes.
+"""
+
+# Help-panel titles group each command's options into their own boxes.
+_FORMAT = "Output format"
+_SELECT = "Molecule selection"
+_TARGET = "Target & output"
+
 app = typer.Typer(
     name="viralfetch",
-    help="Query and download viral taxonomy, metadata and sequences.",
+    help=HELP,
     no_args_is_help=True,
     add_completion=True,
+    rich_markup_mode="rich",
 )
 
 
@@ -137,30 +154,22 @@ def members(
 def seq(
     ctx: typer.Context,
     species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon."),
-    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species."),
-    meta: bool = typer.Option(False, "--meta", help="Sequence metadata via esummary (default)."),
-    fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch."),
-    gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch."),
-    moltype: str = typer.Option(None, "--moltype", help="Filter nuccore results by moltype (e.g. ssRNA); matches ss-RNA etc."),
-    biomol: str = typer.Option(None, "--biomol", help="Filter nuccore results by biomol (e.g. genomic, mRNA, cRNA)."),
-    protein: bool = typer.Option(False, "--protein", help="Fetch PROTEINS via elink (nuccore->protein). Not a nuccore filter."),
-    output: str = typer.Option(None, "-o", "--output", help="Write records to a file instead of stdout."),
-    yes: bool = typer.Option(False, "--yes", help="Skip the confirmation prompt for large downloads."),
+    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET),
+    meta: bool = typer.Option(False, "--meta", help="Metadata via esummary (default).", rich_help_panel=_FORMAT),
+    fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch.", rich_help_panel=_FORMAT),
+    gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch.", rich_help_panel=_FORMAT),
+    moltype: str = typer.Option(None, "--moltype", help="Filter nuccore results by moltype (e.g. ssRNA); matches ss-RNA etc.", rich_help_panel=_SELECT),
+    biomol: str = typer.Option(None, "--biomol", help="Filter nuccore results by biomol (e.g. genomic, mRNA, cRNA).", rich_help_panel=_SELECT),
+    protein: bool = typer.Option(False, "--protein", help="Fetch PROTEINS via elink (nuccore->protein). Not a nuccore filter.", rich_help_panel=_SELECT),
+    output: str = typer.Option(None, "-o", "--output", help="Write records to a file instead of stdout.", rich_help_panel=_TARGET),
+    yes: bool = typer.Option(False, "--yes", help="Skip the confirmation prompt for large downloads.", rich_help_panel=_TARGET),
 ) -> None:
-    """Fetch NCBI sequence data for a species or a whole taxon.
+    """Fetch NCBI sequence data for a species or a whole taxon (accessions come
+    from the VMR). Output formats are mutually exclusive; --meta is the default.
 
-    Accessions are resolved locally from the VMR. Formats are mutually
-    exclusive; --meta is the default.
-
-    Molecule filters: --moltype and --biomol are db=nuccore fields, filtered
-    locally over the esummary result. --protein is NOT a nuccore filter:
-    proteins live in db=protein, reached via elink (nuccore->protein).
-
-    On a whole taxon, --meta shows a local aggregate (species/isolates/
-    accessions, RefSeq count, composition breakdown) so you can decide whether
-    to download. Fetches of more than %d accessions ask for confirmation
-    unless --yes is given.
-    """ % LARGE_DOWNLOAD
+    Note: --moltype/--biomol filter nuccore records locally, while --protein is
+    a separate path (elink nuccore->protein), not a nuccore filter.
+    """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
 

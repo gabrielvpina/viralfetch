@@ -106,6 +106,30 @@ def descendant_isolates(vmr: VMR, name: str) -> tuple[Taxon, list[Isolate]]:
     return taxon, _rows_under(vmr, taxon)
 
 
+@dataclass
+class Diagnostics:
+    """VMR accession-parser quality report (SPEC section 6)."""
+
+    isolates: int
+    accessions: int
+    empty_accession_rows: int
+    unparsed: list[tuple[str, str]]  # (species, raw accession field)
+
+
+def diagnostics(vmr: VMR) -> Diagnostics:
+    """Count isolates/accessions and list rows that yielded zero accessions.
+
+    The empty/unparsed counts are the parser's quality indicator: a spike means
+    the free-text accession field grew a shape the parser does not handle.
+    """
+    return Diagnostics(
+        isolates=len(vmr.isolates),
+        accessions=sum(len(iso.accessions) for iso in vmr.isolates),
+        empty_accession_rows=vmr.empty_accession_rows,
+        unparsed=[(iso.species, iso.raw_accession) for iso in vmr.unparsed_rows],
+    )
+
+
 def report_target(vmr: VMR, name: str) -> tuple[str, str | None]:
     """Resolve which ICTV Report chapter (a family) describes ``name``.
 

@@ -26,9 +26,9 @@ sequences. It combines three sources:
 
 The VMR is the local index; everything else is fetched on demand and cached.
 
-> **Status:** the taxonomy commands (`tax`, `members`), the NCBI sequence
-> command (`seq`), and the ICTV Report `text` command are implemented. The
-> `update` / `cache` / `config` utilities are still in progress.
+> **Status:** all commands are implemented — the taxonomy commands
+> (`tax`, `members`), the NCBI sequence command (`seq`), the ICTV Report
+> `text` command, and the `diagnose` / `update` / `config` / `cache` utilities.
 
 ---
 
@@ -402,6 +402,68 @@ An unknown name gets "did you mean" suggestions and exit code `1`.
 Fetching honours `ictv.global/robots.txt`, sends a descriptive `User-Agent`
 carrying your contact email, waits at least 1 second between requests, and
 caches chapter HTML for 30 days.
+
+---
+
+## Utilities
+
+### `diagnose` — VMR parser quality (local)
+
+The accession field of the VMR is free text. `diagnose` reports how many rows
+yielded zero accessions — the parser's quality indicator — and lists any rows
+it could not parse.
+
+```bash
+viralfetch diagnose
+```
+
+```
+╭─ VMR accession-parser diagnostics ─╮
+│ isolates              19271        │
+│ accessions            23249        │
+│ empty-accession rows  141          │
+│ unparsed rows         0            │
+╰────────────────────────────────────╯
+```
+
+### `update` — is there a newer VMR? (remote)
+
+Checks `ictv.global/vmr` for a newer release than the embedded one. It only
+reports; it does not replace the shipped TSV.
+
+```bash
+viralfetch update
+# VMR is up to date (VMR_MSL41.v1.20260320.tsv).
+```
+
+### `config` — show or store credentials
+
+Shows the effective NCBI email, the **masked** API key, and the cache/config
+paths. `--store-ncbi-email` / `--store-ncbi-apikey` persist values to the
+config file.
+
+```bash
+viralfetch config
+viralfetch config --store-ncbi-email you@example.com
+```
+
+### `cache` — inspect or clear the cache
+
+```bash
+viralfetch cache info
+viralfetch cache clear             # everything
+viralfetch cache clear --texts     # only ICTV chapter text
+viralfetch cache clear --seqs      # only sequences/metadata
+```
+
+### Shell completion
+
+Taxon names complete from the VMR (`viralfetch tax Corona<TAB>`). Install the
+completion for your shell once with:
+
+```bash
+viralfetch --install-completion
+```
 
 ---
 

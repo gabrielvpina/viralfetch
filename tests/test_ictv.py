@@ -18,7 +18,9 @@ from viralfetch.ictv import (
     ICTVClient,
     RobotsDisallowed,
     SectionNotFound,
+    _compare_vmr,
     _slug,
+    _vmr_key,
     parse_chapter,
     section_markdown,
 )
@@ -207,3 +209,44 @@ def test_retry_on_5xx_then_success(tmp_path):
     client = _client(session, tmp_path)
     ch = client.fetch_chapter("Coronaviridae")
     assert ch.title == "Family: Coronaviridae"
+
+
+# -- VMR update check -----------------------------------------------------
+
+def test_vmr_key_orders_releases():
+    assert _vmr_key("VMR_MSL41.v1.20260320.tsv") > _vmr_key("VMR_MSL40.v2.20260223.xlsx")
+    assert _vmr_key("VMR_MSL40.v2.20260223") > _vmr_key("VMR_MSL40.v1.20250307")
+    assert _vmr_key("VMR_MSL38_v1") > _vmr_key("VMR_MSL37")  # missing date -> 0
+
+
+_VMR_PAGE = """
+<html><body>
+  <a href="/sites/default/files/VMR/VMR_MSL40.v2.20260223.xlsx">old</a>
+  <a href="/sites/default/files/VMR/VMR_MSL41.v1.20260320.xlsx">latest</a>
+</body></html>
+"""
+
+
+def test_compare_vmr_up_to_date():
+    result = _compare_vmr(_VMR_PAGE, "VMR_MSL41.v1.20260320.tsv")
+    assert result.up_to_date is True
+    assert result.latest == "VMR_MSL41.v1.20260320.xlsx"
+    assert result.latest_url.startswith("https://ictv.global/")
+
+
+def test_compare_vmr_newer_available():
+    result = _compare_vmr(_VMR_PAGE, "VMR_MSL40.v2.20260223.tsv")
+    assert result.up_to_date is False
+    assert result.latest == "VMR_MSL41.v1.20260320.xlsx"
+
+
+def test_compare_vmr_no_downloads_raises():
+    with pytest.raises(ictv.ICTVError):
+        _compare_vmr("<html><body>nothing</body></html>", "VMR_MSL41.v1.20260320.tsv")
+
+
+def test_check_vmr_update_via_client(tmp_path):
+    session = FakeSession({"https://ictv.global/vmr": _VMR_PAGE})
+    client = _client(session, tmp_path)
+    result = client.check_vmr_update("VMR_MSL41.v1.20260320.tsv")
+    assert result.up_to_date is True

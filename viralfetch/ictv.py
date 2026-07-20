@@ -22,6 +22,7 @@ from __future__ import annotations
 import re
 import time
 import urllib.robotparser
+from dataclasses import dataclass
 
 import requests
 from bs4 import BeautifulSoup
@@ -129,7 +130,12 @@ class ICTVClient:
         if rp is not None and not rp.can_fetch(self.user_agent, BASE_URL + path):
             raise RobotsDisallowed(f"robots.txt disallows {path}")
 
-    def _get(self, path: str, name: str) -> str:
+    def _fetch(self, path: str) -> tuple[int, str]:
+        """Rate-limited, robots-checked GET returning ``(status_code, text)``.
+
+        Retries on 5xx; 404 is returned to the caller (not retried) so it can
+        decide what a missing resource means.
+        """
         url = BASE_URL + path
         self._check_robots(path)
         headers = {"User-Agent": self.user_agent}
@@ -142,16 +148,20 @@ class ICTVClient:
                 last_exc = exc
                 self._backoff(attempt)
                 continue
-            if resp.status_code == 404:
-                raise ChapterNotFound(name, url)
             if resp.status_code in _RETRY_STATUS:
                 last_exc = ICTVError(f"HTTP {resp.status_code} from {url}")
                 self._backoff(attempt)
                 continue
-            if resp.status_code != 200:
-                raise ICTVError(f"HTTP {resp.status_code} from {url}: {resp.text[:200]}")
-            return resp.text
+            return resp.status_code, resp.text
         raise ICTVError(f"{url} failed after {self.max_retries} attempts: {last_exc}")
+
+    def _get(self, path: str, name: str) -> str:
+        status, text = self._fetch(path)
+        if status == 404:
+            raise ChapterNotFound(name, BASE_URL + path)
+        if status != 200:
+            raise ICTVError(f"HTTP {status} from {BASE_URL + path}: {text[:200]}")
+        return text
 
     def _backoff(self, attempt: int) -> None:
         self._sleep(0.5 * (2 ** attempt))
@@ -170,6 +180,64 @@ class ICTVClient:
             if self.cache:
                 self.cache.set(TEXTS, cache_key, html)
         return parse_chapter(html, slug=slug, url=url)
+
+    def check_vmr_update(self, current_filename: str) -> "VMRUpdate":
+        """Compare the embedded VMR against the newest one on ictv.global/vmr."""
+        status, html = self._fetch(VMR_PATH)
+        if status != 200:
+            raise ICTVError(f"HTTP {status} from {BASE_URL + VMR_PATH}")
+        return _compare_vmr(html, current_filename)
+
+
+# -- VMR version check ----------------------------------------------------
+
+VMR_PATH = "/vmr"
+
+
+@dataclass
+class VMRUpdate:
+    current: str
+    latest: str | None
+    latest_url: str | None
+    up_to_date: bool
+
+
+def _vmr_key(name: str) -> tuple[int, int, int]:
+    """Sortable (MSL, version, date) key parsed from a VMR filename.
+
+    Filenames vary over releases — ``VMR_MSL39.v1_20240912``,
+    ``VMR_MSL41.v1.20260320``, older ``VMR_MSL38_v1`` with no date — so each
+    component is extracted independently and defaults to 0 when absent.
+    """
+    msl = re.search(r"MSL(\d+)", name)
+    ver = re.search(r"[._]v(\d+)", name, re.I)
+    date = re.search(r"(\d{8})", name)
+    return (
+        int(msl.group(1)) if msl else 0,
+        int(ver.group(1)) if ver else 0,
+        int(date.group(1)) if date else 0,
+    )
+
+
+def _compare_vmr(html: str, current_filename: str) -> VMRUpdate:
+    soup = BeautifulSoup(html, "lxml")
+    candidates: dict[str, str] = {}
+    for a in soup.find_all("a", href=True):
+        m = re.search(r"VMR_MSL\d[^\"'/]*\.xlsx", a["href"], re.I)
+        if m:
+            fname = m.group(0)
+            href = a["href"]
+            candidates[fname] = href if href.startswith("http") else BASE_URL + href
+    if not candidates:
+        raise ICTVError("no VMR downloads found on the ICTV page — the layout may have changed")
+    latest = max(candidates, key=_vmr_key)
+    up_to_date = _vmr_key(current_filename) >= _vmr_key(latest)
+    return VMRUpdate(
+        current=current_filename,
+        latest=latest,
+        latest_url=candidates[latest],
+        up_to_date=up_to_date,
+    )
 
 
 # -- parsing --------------------------------------------------------------

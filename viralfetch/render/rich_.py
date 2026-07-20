@@ -16,10 +16,12 @@ from rich.tree import Tree
 import os
 import sys
 
+from ..cache import NamespaceInfo
 from ..compare import LineageComparison
+from ..ictv import VMRUpdate
 from ..models import RANKS, Chapter, plural
 from ..ncbi import MetaResult, RecordsResult
-from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
+from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 
 _out = Console()
@@ -229,3 +231,75 @@ def error(message: str) -> None:
 
 def warn(message: str) -> None:
     _err.print(Text(message, style="yellow"))
+
+
+# -- utilities (cache / config / update / diagnose) -----------------------
+
+def _human_bytes(n: int) -> str:
+    size = float(n)
+    for unit in ("B", "KB", "MB", "GB"):
+        if size < 1024 or unit == "GB":
+            return f"{size:.0f} {unit}" if unit == "B" else f"{size:.1f} {unit}"
+        size /= 1024
+    return f"{size:.1f} GB"
+
+
+def cache_info(infos: list[NamespaceInfo]) -> None:
+    table = Table(title="cache", title_style="bold")
+    table.add_column("namespace")
+    table.add_column("entries", justify="right")
+    table.add_column("size", justify="right")
+    for info in infos:
+        table.add_row(info.namespace, str(info.entries), _human_bytes(info.bytes))
+    _out.print(table)
+
+
+def cache_cleared(removed: int, *, texts: bool, seqs: bool) -> None:
+    scope = "texts" if texts and not seqs else "seqs" if seqs and not texts else "all"
+    _out.print(Text(f"Cleared {removed} cached entr{'y' if removed == 1 else 'ies'} ({scope}).",
+                    style="green"))
+
+
+def config_view(view: dict) -> None:
+    lines = Text()
+    lines.append("NCBI email:   ", style="dim")
+    lines.append(f"{view['email'] or '(not set)'}\n")
+    lines.append("NCBI api key: ", style="dim")
+    lines.append(f"{view['api_key']}\n")
+    lines.append("cache dir:    ", style="dim")
+    lines.append(f"{view['cache_dir']}\n")
+    lines.append("config file:  ", style="dim")
+    exists = "" if view["config_file_exists"] else "  (not created yet)"
+    lines.append(f"{view['config_file']}{exists}")
+    _out.print(Panel(lines, title="viralfetch config", expand=False))
+
+
+def update_status(u: VMRUpdate) -> None:
+    if u.up_to_date:
+        _out.print(Text(f"VMR is up to date ({u.current}).", style="green"))
+        return
+    msg = Text()
+    msg.append("A newer VMR is available.\n", style="bold yellow")
+    msg.append("  current: ", style="dim")
+    msg.append(f"{u.current}\n")
+    msg.append("  latest:  ", style="dim")
+    msg.append(f"{u.latest}\n")
+    msg.append("  download: ", style="dim")
+    msg.append(f"{u.latest_url}")
+    _out.print(msg)
+
+
+def diagnose(d: Diagnostics) -> None:
+    summary = Table.grid(padding=(0, 2))
+    summary.add_row("isolates", str(d.isolates))
+    summary.add_row("accessions", str(d.accessions))
+    summary.add_row("empty-accession rows", str(d.empty_accession_rows))
+    summary.add_row("unparsed rows", str(len(d.unparsed)))
+    _out.print(Panel(summary, title="VMR accession-parser diagnostics", expand=False))
+    if d.unparsed:
+        table = Table(title=f"rows that yielded zero accessions ({len(d.unparsed)})")
+        table.add_column("species")
+        table.add_column("raw accession field")
+        for species, raw in d.unparsed:
+            table.add_row(species, raw)
+        _out.print(table)

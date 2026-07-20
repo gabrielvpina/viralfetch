@@ -138,3 +138,13 @@ def test_report_target_species_maps_to_family(vmr):
 def test_report_target_unknown_raises(vmr):
     with pytest.raises(TaxonNotFound):
         queries.report_target(vmr, "Nope")
+
+
+# -- diagnostics ----------------------------------------------------------
+
+def test_diagnostics_counts(vmr):
+    d = queries.diagnostics(vmr)
+    assert d.isolates == len(vmr.isolates)
+    assert d.accessions == sum(len(i.accessions) for i in vmr.isolates)
+    assert d.empty_accession_rows == vmr.empty_accession_rows
+    assert isinstance(d.unparsed, list)

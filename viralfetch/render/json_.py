@@ -10,10 +10,12 @@ import json
 import sys
 from dataclasses import asdict
 
+from ..cache import NamespaceInfo
 from ..compare import LineageComparison
+from ..ictv import VMRUpdate
 from ..models import Chapter
 from ..ncbi import MetaResult, RecordsResult
-from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
+from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 
 
@@ -121,6 +123,37 @@ def text(chapter: Chapter, markdown: str) -> None:
         "url": chapter.url,
         "doi": chapter.doi,
         "markdown": markdown,
+    })
+
+
+def cache_info(infos: list[NamespaceInfo]) -> None:
+    _emit({info.namespace: {"entries": info.entries, "bytes": info.bytes} for info in infos})
+
+
+def cache_cleared(removed: int, *, texts: bool, seqs: bool) -> None:
+    scope = "texts" if texts and not seqs else "seqs" if seqs and not texts else "all"
+    _emit({"cleared": removed, "scope": scope})
+
+
+def config_view(view: dict) -> None:
+    _emit(view)
+
+
+def update_status(u: VMRUpdate) -> None:
+    _emit({
+        "current": u.current,
+        "latest": u.latest,
+        "latest_url": u.latest_url,
+        "up_to_date": u.up_to_date,
+    })
+
+
+def diagnose(d: Diagnostics) -> None:
+    _emit({
+        "isolates": d.isolates,
+        "accessions": d.accessions,
+        "empty_accession_rows": d.empty_accession_rows,
+        "unparsed": [{"species": s, "raw_accession": r} for s, r in d.unparsed],
     })
 
 

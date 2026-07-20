@@ -35,3 +35,14 @@ def test_ictv_chapter_returns_real_text():
     chapter = client.fetch_chapter("Coronaviridae")
     assert chapter.title == "Family: Coronaviridae"
     assert "## Summary" in chapter.markdown
+
+
+@pytest.mark.skipif(not os.environ.get("NCBI_EMAIL"), reason="NCBI_EMAIL not set")
+def test_vmr_update_check_against_live_page():
+    from viralfetch.vmr import VMR_FILENAME
+
+    cfg = Config(email=os.environ["NCBI_EMAIL"])
+    client = ICTVClient(cfg, cache=Cache(CACHE_DIR))
+    result = client.check_vmr_update(VMR_FILENAME)
+    assert result.latest  # the ICTV page still advertises a VMR download
+    assert result.up_to_date is True  # the embedded VMR is the current release

@@ -20,7 +20,7 @@ from . import sequences
 from .cache import Cache
 from .ictv import ICTVClient
 from .ncbi import NCBIClient, NCBIError
-from .vmr import load
+from .vmr import VMR_FILENAME, load
 
 LARGE_DOWNLOAD = 500  # accessions above which a fetch asks for confirmation
 
@@ -41,6 +41,24 @@ def _make_ictv_client(cfg: config_mod.Config, out) -> ICTVClient:
     except config_mod.ConfigError as exc:
         out.error(str(exc))
         raise typer.Exit(3)
+
+
+def _complete_taxon(incomplete: str) -> list[str]:
+    """Shell-completion source: taxon names starting with the typed prefix."""
+    try:
+        vmr = load()
+    except Exception:
+        return []
+    needle = incomplete.casefold()
+    names = sorted({t.name for t in vmr.taxa.values()}, key=str.casefold)
+    return [n for n in names if n.casefold().startswith(needle)][:40]
+
+
+def _mask(key: str | None) -> str:
+    """Mask an API key for display, revealing only the last four characters."""
+    if not key:
+        return "(not set)"
+    return ("…" + key[-4:]) if len(key) > 4 else "****"
 
 HELP = """Query and download viral taxonomy, metadata and sequences.
 
@@ -89,7 +107,7 @@ def main(
 @app.command()
 def tax(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Taxon name (any rank)."),
+    name: str = typer.Argument(..., help="Taxon name (any rank).", autocompletion=_complete_taxon),
     compare_ncbi: bool = typer.Option(
         False, "--compare-ncbi", help="Show the ICTV lineage beside NCBI's, highlighting divergences."
     ),
@@ -131,7 +149,7 @@ def tax(
 @app.command()
 def members(
     ctx: typer.Context,
-    taxon: str = typer.Argument(..., help="Parent taxon name."),
+    taxon: str = typer.Argument(..., help="Parent taxon name.", autocompletion=_complete_taxon),
     rank: str = typer.Option(None, "--rank", help="Restrict to a rank below the parent (e.g. genus)."),
     count: bool = typer.Option(False, "--count", help="Show aggregated counts only."),
     tree: bool = typer.Option(False, "--tree", help="List the full descendant subtree as a hierarchy."),
@@ -164,8 +182,8 @@ def members(
 @app.command()
 def seq(
     ctx: typer.Context,
-    species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon."),
-    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET),
+    species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon.", autocompletion=_complete_taxon),
+    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET, autocompletion=_complete_taxon),
     meta: bool = typer.Option(False, "--meta", help="Metadata via esummary (default).", rich_help_panel=_FORMAT),
     fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch.", rich_help_panel=_FORMAT),
     gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch.", rich_help_panel=_FORMAT),
@@ -238,7 +256,7 @@ def seq(
 @app.command()
 def text(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Family name (ICTV Report chapter)."),
+    name: str = typer.Argument(..., help="Family name (ICTV Report chapter).", autocompletion=_complete_taxon),
     section: str = typer.Option(None, "--section", help="Show only a section by heading (e.g. summary)."),
     raw: bool = typer.Option(False, "--raw", help="Emit raw Markdown to stdout (for redirecting to a file)."),
 ) -> None:
@@ -299,6 +317,85 @@ def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -
         raise typer.Exit(2)
     if not typer.confirm(f"About to download {n} records. Continue?"):
         raise typer.Exit(0)
+
+
+@app.command()
+def diagnose(ctx: typer.Context) -> None:
+    """Report VMR accession-parser quality (rows that yielded zero accessions).
+
+    The empty/unparsed counts are the parser's quality indicator (SPEC section
+    6); a spike means the free-text accession field grew an unhandled shape.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    out.diagnose(queries.diagnostics(load()))
+
+
+@app.command()
+def update(ctx: typer.Context) -> None:
+    """Check whether a newer VMR is published on ictv.global/vmr.
+
+    The VMR ships embedded in the package; this only reports whether a newer
+    release exists (and where to download it), it does not replace the file.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    client = _make_ictv_client(cfg, out)
+    try:
+        status = client.check_vmr_update(VMR_FILENAME)
+    except ictv.ICTVError as exc:
+        out.error(f"ICTV request failed: {exc}")
+        raise typer.Exit(4)
+    out.update_status(status)
+
+
+@app.command()
+def config(
+    ctx: typer.Context,
+    store_ncbi_email: str = typer.Option(None, "--store-ncbi-email", help="Persist an NCBI email to the config file."),
+    store_ncbi_apikey: str = typer.Option(None, "--store-ncbi-apikey", help="Persist an NCBI API key to the config file."),
+) -> None:
+    """Show the effective NCBI email/API key (masked) and cache/config paths.
+
+    With --store-ncbi-email / --store-ncbi-apikey, persist those values first.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    if store_ncbi_email is not None or store_ncbi_apikey is not None:
+        config_mod.store(email=store_ncbi_email, api_key=store_ncbi_apikey)
+        cfg = config_mod.resolve(fmt=cfg.format)  # refresh from env + file
+    out.config_view({
+        "email": cfg.email,
+        "api_key": _mask(cfg.api_key),
+        "cache_dir": str(config_mod.CACHE_DIR),
+        "config_file": str(config_mod.CONFIG_FILE),
+        "config_file_exists": config_mod.CONFIG_FILE.is_file(),
+    })
+
+
+cache_app = typer.Typer(help="Inspect or clear the on-disk cache.")
+app.add_typer(cache_app, name="cache")
+
+
+@cache_app.command("info")
+def cache_info_cmd(ctx: typer.Context) -> None:
+    """Show per-namespace entry counts and total size."""
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    out.cache_info(Cache(config_mod.CACHE_DIR).info())
+
+
+@cache_app.command("clear")
+def cache_clear_cmd(
+    ctx: typer.Context,
+    texts: bool = typer.Option(False, "--texts", help="Clear only ICTV chapter text (30-day TTL namespace)."),
+    seqs: bool = typer.Option(False, "--seqs", help="Clear only sequences/metadata (permanent namespace)."),
+) -> None:
+    """Remove cached entries. With neither flag, clear everything."""
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    removed = Cache(config_mod.CACHE_DIR).clear(texts=texts, seqs=seqs)
+    out.cache_cleared(removed, texts=texts, seqs=seqs)
 
 
 if __name__ == "__main__":  # pragma: no cover

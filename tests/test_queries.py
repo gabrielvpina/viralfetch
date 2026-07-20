@@ -85,3 +85,31 @@ def test_members_invalid_rank(vmr):
 def test_members_not_found(vmr):
     with pytest.raises(TaxonNotFound):
         queries.members(vmr, "Nope")
+
+
+def test_members_tree_structure(vmr):
+    view = queries.members_tree(vmr, "Alphaviridae")
+    assert view.root.name == "Alphaviridae"
+    assert view.root.rank == "family"
+    # Immediate children are the two genera (no subfamily in the fixture).
+    genera = {c.name: c for c in view.root.children}
+    assert set(genera) == {"Alphavirus", "Betavirus"}
+    assert all(c.rank == "genus" for c in view.root.children)
+    # Alphavirus has two species nested beneath it.
+    species = {s.name for s in genera["Alphavirus"].children}
+    assert species == {"Alphavirus one", "Alphavirus two"}
+    assert all(s.rank == "species" for s in genera["Alphavirus"].children)
+    # total counts every descendant taxon: 2 genera + 3 species = 5.
+    assert view.total == 5
+
+
+def test_members_tree_skips_empty_ranks(vmr):
+    # Fixture has no subfamily/subgenus, so species sit directly under genus.
+    view = queries.members_tree(vmr, "Alphaviridae")
+    ranks_present = {c.rank for c in view.root.children}
+    assert "subfamily" not in ranks_present
+
+
+def test_members_tree_not_found(vmr):
+    with pytest.raises(TaxonNotFound):
+        queries.members_tree(vmr, "Nope")

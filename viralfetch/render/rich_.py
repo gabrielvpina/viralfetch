@@ -13,7 +13,7 @@ from rich.text import Text
 from rich.tree import Tree
 
 from ..models import RANKS, plural
-from ..queries import MembersView, TaxonView
+from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 
 _out = Console()
 _err = Console(stderr=True)
@@ -73,6 +73,30 @@ def members(view: MembersView) -> None:
         for rank, n in view.breakdown.items():
             table.add_row(rank, str(n))
         _out.print(table)
+        _out.print(
+            f"[dim]Tip: add [/][bold]--tree[/][dim] to list every member of "
+            f"{parent.name} as a hierarchy.[/]"
+        )
+
+
+def _add_tree_node(parent: Tree, node: TaxonTreeNode) -> None:
+    label = Text()
+    label.append(node.name, style="cyan")
+    label.append(f"  ({node.rank})", style="dim")
+    branch = parent.add(label)
+    for child in node.children:
+        _add_tree_node(branch, child)
+
+
+def members_tree(view: TreeView) -> None:
+    root_label = Text()
+    root_label.append(view.root.name, style="bold")
+    root_label.append(f"  ({view.root.rank})", style="dim")
+    tree = Tree(root_label)
+    for child in view.root.children:
+        _add_tree_node(tree, child)
+    _out.print(tree)
+    _out.print(f"[dim]{view.total} descendant taxa[/]")
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

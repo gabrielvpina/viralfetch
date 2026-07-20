@@ -32,6 +32,23 @@ def test_members_json_genus():
     assert "Betacoronavirus" in names
 
 
+def test_members_tree_json():
+    result = runner.invoke(app, ["--json", "members", "Coronaviridae", "--tree"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["tree"]["name"] == "Coronaviridae"
+    assert payload["total"] > 0
+    child_ranks = {c["rank"] for c in payload["tree"]["children"]}
+    assert child_ranks <= {"subfamily", "genus"}  # next populated rank(s) down
+
+
+def test_members_tree_rich_runs():
+    result = runner.invoke(app, ["members", "Coronaviridae", "--tree"])
+    assert result.exit_code == 0
+    assert "Coronaviridae" in result.stdout
+    assert "descendant taxa" in result.stdout
+
+
 def test_tax_not_found_exit_code_and_stderr():
     result = runner.invoke(app, ["--json", "tax", "CoronaviridaX"])
     assert result.exit_code == 1

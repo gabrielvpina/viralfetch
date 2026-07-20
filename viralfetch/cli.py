@@ -61,12 +61,20 @@ def members(
     taxon: str = typer.Argument(..., help="Parent taxon name."),
     rank: str = typer.Option(None, "--rank", help="Restrict to a rank below the parent (e.g. genus)."),
     count: bool = typer.Option(False, "--count", help="Show aggregated counts only."),
+    tree: bool = typer.Option(False, "--tree", help="List the full descendant subtree as a hierarchy."),
 ) -> None:
-    """List child taxa of a taxon at any rank below it (local, no network)."""
+    """List child taxa of a taxon at any rank below it (local, no network).
+
+    With --tree, render the entire descendant hierarchy (subfamily -> genus ->
+    species) rooted at the taxon. Without flags, show a per-rank breakdown.
+    """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     vmr = load()
     try:
+        if tree:
+            out.members_tree(queries.members_tree(vmr, taxon))
+            return
         view = queries.members(vmr, taxon, rank=rank, count=count)
     except queries.TaxonNotFound as exc:
         out.not_found(exc.name, exc.suggestions)

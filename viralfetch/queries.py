@@ -65,6 +65,19 @@ class MembersView:
     breakdown: dict[str, int] = field(default_factory=dict)  # rank -> distinct count
 
 
+@dataclass
+class TaxonTreeNode:
+    name: str
+    rank: str
+    children: list["TaxonTreeNode"] = field(default_factory=list)
+
+
+@dataclass
+class TreeView:
+    root: TaxonTreeNode
+    total: int  # number of descendant taxa (excludes the root)
+
+
 def _resolve(vmr: VMR, name: str) -> Taxon:
     taxon = vmr.find(name)
     if taxon is None:
@@ -162,6 +175,57 @@ def members(
         if distinct:
             breakdown[r] = len(distinct)
     return MembersView(parent=target, rank=None, count_only=count, breakdown=breakdown)
+
+
+def members_tree(vmr: VMR, name: str) -> TreeView:
+    """Full descendant subtree of ``name``, nested by populated ranks below it.
+
+    Optional ranks that are empty for a given lineage are skipped, so a genus
+    can sit directly under a family when no subfamily is assigned — matching
+    how the VMR actually records taxonomy.
+    """
+    target = _resolve(vmr, name)
+    target_idx = RANKS.index(target.rank)
+    ranks_below = RANKS[target_idx + 1:]
+    rows = _rows_under(vmr, target)
+
+    # Nested mutable tree: {(rank, name): {"rank", "name", "children": {...}}}
+    root_children: dict[tuple[str, str], dict] = {}
+    for iso in rows:
+        lin = _lineage_of(vmr, iso)
+        cursor = root_children
+        for r in ranks_below:
+            value = lin.get(r)
+            if not value:
+                continue
+            key = (r, value)
+            node = cursor.get(key)
+            if node is None:
+                node = cursor[key] = {"rank": r, "name": value, "children": {}}
+            cursor = node["children"]
+
+    count = 0
+
+    def build(children: dict[tuple[str, str], dict]) -> list[TaxonTreeNode]:
+        nonlocal count
+        nodes: list[TaxonTreeNode] = []
+        for data in children.values():
+            count += 1
+            nodes.append(
+                TaxonTreeNode(
+                    name=data["name"],
+                    rank=data["rank"],
+                    children=build(data["children"]),
+                )
+            )
+        # Group by rank order, then alphabetically within a rank.
+        nodes.sort(key=lambda n: (RANKS.index(n.rank), n.name.casefold()))
+        return nodes
+
+    root = TaxonTreeNode(
+        name=target.name, rank=target.rank, children=build(root_children)
+    )
+    return TreeView(root=root, total=count)
 
 
 def _members_at_rank(vmr: VMR, rows: list[Isolate], rank: str) -> list[MemberEntry]:

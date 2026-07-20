@@ -10,7 +10,7 @@ import json
 import sys
 from dataclasses import asdict
 
-from ..queries import MembersView, TaxonView
+from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 
 
 def _emit(payload) -> None:
@@ -41,6 +41,19 @@ def members(view: MembersView) -> None:
         ]
     else:
         payload["breakdown"] = view.breakdown
+    _emit(payload)
+
+
+def _node_to_dict(node: TaxonTreeNode) -> dict:
+    return {
+        "name": node.name,
+        "rank": node.rank,
+        "children": [_node_to_dict(c) for c in node.children],
+    }
+
+
+def members_tree(view: TreeView) -> None:
+    payload = {"total": view.total, "tree": _node_to_dict(view.root)}
     _emit(payload)
 
 

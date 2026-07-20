@@ -216,3 +216,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- OS / editor cruft -------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+
+# --- viralfetch project-specific --------------------------------------------
+# On-disk cache & resolved config live in platformdirs (outside the repo),
+# but never commit a stray local copy if one is created for debugging.
+config.json
+.viralfetch/
+viralfetch-cache/
+
+# Sequence/record dumps produced during local runs (`seq --fasta -o ...` etc.).
+# Remove these lines if you intentionally want to track sample outputs.
+*.fasta
+*.fa
+*.gb
+*.gbk
+!tests/fixtures/**  # ...but always keep frozen test fixtures.

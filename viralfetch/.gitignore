@@ -1,0 +1,9 @@
+# Local build/runtime artifacts inside the package tree.
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# IMPORTANT: the embedded VMR is the local source of truth and MUST be
+# tracked. Keep it explicitly un-ignored in case a broad rule ever matches it.
+!data/
+!data/*.tsv

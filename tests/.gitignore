@@ -1,0 +1,11 @@
+# Local test artifacts.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Frozen fixtures (NCBI JSON, ICTV HTML) are committed intentionally — keep
+# them tracked even if a broad output rule in the root .gitignore matches.
+!fixtures/
+!fixtures/**

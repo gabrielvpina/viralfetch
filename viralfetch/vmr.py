@@ -69,12 +69,33 @@ class VMR:
         return self.taxa.get(name.casefold())
 
     def suggest(self, name: str, limit: int = 5) -> list[str]:
-        """Substring-based suggestions for a near-miss taxon name."""
+        """Suggestions for a near-miss taxon name.
+
+        Substring matches first (best for partial input), then fuzzy matches
+        via ``difflib`` so trailing typos like "CoronaviridaX" still resolve.
+        """
+        import difflib
+
         needle = name.casefold()
-        hits = [t.name for key, t in self.taxa.items() if needle in key]
-        # Prefer prefix matches, then shorter names (closer matches).
-        hits.sort(key=lambda n: (not n.casefold().startswith(needle), len(n)))
-        return hits[:limit]
+        substring = [t.name for key, t in self.taxa.items() if needle in key]
+        substring.sort(key=lambda n: (not n.casefold().startswith(needle), len(n)))
+
+        out: list[str] = []
+        seen: set[str] = set()
+        for candidate in substring:
+            key = candidate.casefold()
+            if key not in seen:
+                seen.add(key)
+                out.append(candidate)
+            if len(out) >= limit:
+                return out
+
+        for key in difflib.get_close_matches(needle, self.taxa.keys(), n=limit, cutoff=0.7):
+            name_ = self.taxa[key].name
+            if key not in seen:
+                seen.add(key)
+                out.append(name_)
+        return out[:limit]
 
 
 def _data_path() -> Path:

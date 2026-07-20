@@ -28,6 +28,30 @@ RANKS: tuple[str, ...] = (
     "species",
 )
 
+# English plurals for rank labels (used only for display text).
+RANK_PLURAL: dict[str, str] = {
+    "realm": "realms",
+    "subrealm": "subrealms",
+    "kingdom": "kingdoms",
+    "subkingdom": "subkingdoms",
+    "phylum": "phyla",
+    "subphylum": "subphyla",
+    "class": "classes",
+    "subclass": "subclasses",
+    "order": "orders",
+    "suborder": "suborders",
+    "family": "families",
+    "subfamily": "subfamilies",
+    "genus": "genera",
+    "subgenus": "subgenera",
+    "species": "species",
+}
+
+
+def plural(rank: str) -> str:
+    """Human-readable plural of a rank label."""
+    return RANK_PLURAL.get(rank, rank + "s")
+
 
 @dataclass(frozen=True)
 class Accession:

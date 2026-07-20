@@ -1,7 +1,22 @@
-# viralfetch
+<div align="center">
 
+<img src="viralfetch/assets/logo.png" alt="viralfetch logo" width="540">
+
+<br>
+
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
+![CLI](https://img.shields.io/badge/CLI-Typer-0b7261)
+![Output](https://img.shields.io/badge/output-Rich-009688)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+
+</div>
+
+<div align="center">
 A command-line tool for querying and downloading viral taxonomy, metadata and
 sequences. It combines three sources:
+</div>
 
 | Source | Content | Access |
 |---|---|---|
@@ -405,13 +420,3 @@ Immutable data (sequences, accession metadata) is cached permanently; ICTV
 chapter HTML uses a 30-day TTL. The cache lives in the platform cache
 directory. Use `--no-cache` to bypass it for a single run.
 
-## Development
-
-```bash
-pip install -e '.[dev]'
-pytest            # offline tests only
-pytest -m network # live NCBI integration tests (needs NCBI_EMAIL)
-```
-
-No test makes a network request by default; NCBI and ICTV responses are frozen
-as fixtures under `tests/fixtures/`.

@@ -12,6 +12,9 @@ import typer
 from . import config as config_mod
 from . import queries
 from . import render
+from . import sequences
+from .cache import Cache
+from .ncbi import NCBIClient, NCBIError
 from .vmr import load
 
 app = typer.Typer(
@@ -86,6 +89,61 @@ def members(
         )
         raise typer.Exit(2)
     out.members(view)
+
+
+@app.command()
+def seq(
+    ctx: typer.Context,
+    species: str = typer.Argument(..., help="Species name (VMR)."),
+    meta: bool = typer.Option(False, "--meta", help="Sequence metadata via esummary (default)."),
+    fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch."),
+    gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch."),
+    output: str = typer.Option(None, "-o", "--output", help="Write records to a file instead of stdout."),
+) -> None:
+    """Fetch NCBI sequence data for a species (accessions resolved from the VMR).
+
+    Formats are mutually exclusive; --meta is the default. Metadata is small
+    (~1 KB/accession); --fasta and --gb download sequence data.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+
+    chosen = [name for name, on in (("meta", meta), ("fasta", fasta), ("gb", gb)) if on]
+    if len(chosen) > 1:
+        out.error("Choose only one of --meta, --fasta, --gb.")
+        raise typer.Exit(2)
+    mode = chosen[0] if chosen else "meta"
+
+    try:
+        client = NCBIClient(
+            cfg,
+            cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache),
+        )
+    except config_mod.ConfigError as exc:
+        out.error(str(exc))
+        raise typer.Exit(3)
+
+    vmr = load()
+    try:
+        if mode == "meta":
+            name, result = sequences.seq_meta(vmr, client, species)
+            out.seq_meta(name, result)
+        else:
+            rettype = "fasta" if mode == "fasta" else "gb"
+            name, result = sequences.seq_records(vmr, client, species, rettype)
+            out.seq_records(name, result, output)
+    except queries.TaxonNotFound as exc:
+        out.not_found(exc.name, exc.suggestions)
+        raise typer.Exit(1)
+    except sequences.NotASpecies as exc:
+        out.error(
+            f"{exc.name!r} is a {exc.rank}, not a species. "
+            f"Per-taxon fetching (`seq --taxon`) arrives in a later phase."
+        )
+        raise typer.Exit(2)
+    except NCBIError as exc:
+        out.error(f"NCBI request failed: {exc}")
+        raise typer.Exit(4)
 
 
 if __name__ == "__main__":  # pragma: no cover

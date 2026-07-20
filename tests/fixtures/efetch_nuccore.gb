@@ -1,0 +1,23 @@
+LOCUS       MN908947               29903 bp ss-RNA     linear   VRL 30-MAR-2020
+DEFINITION  Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1,
+            complete genome.
+ACCESSION   MN908947
+VERSION     MN908947.3
+SOURCE      Severe acute respiratory syndrome coronavirus 2
+  ORGANISM  Severe acute respiratory syndrome coronavirus 2
+FEATURES             Location/Qualifiers
+     source          1..29903
+ORIGIN
+        1 attaaaggtt tataccttcc caggtaacaa accaaccaac tttcgatctc ttgtagatct
+//
+LOCUS       AY274119               29751 bp ss-RNA     linear   VRL 13-AUG-2018
+DEFINITION  SARS coronavirus Tor2, complete genome.
+ACCESSION   AY274119
+VERSION     AY274119.3
+SOURCE      SARS coronavirus Tor2
+  ORGANISM  SARS coronavirus Tor2
+FEATURES             Location/Qualifiers
+     source          1..29751
+ORIGIN
+        1 atattaggtt tttacctacc caggaaaagc caaccaacct cgatctcttg tagatctgtt
+//

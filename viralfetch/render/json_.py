@@ -10,6 +10,7 @@ import json
 import sys
 from dataclasses import asdict
 
+from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 
 
@@ -55,6 +56,32 @@ def _node_to_dict(node: TaxonTreeNode) -> dict:
 def members_tree(view: TreeView) -> None:
     payload = {"total": view.total, "tree": _node_to_dict(view.root)}
     _emit(payload)
+
+
+def seq_meta(species: str, result: MetaResult) -> None:
+    _emit({
+        "species": species,
+        "records": [asdict(r) for r in result.records],
+        "missing": result.missing,
+    })
+
+
+def seq_records(species: str, result: RecordsResult, output: str | None) -> None:
+    if output:
+        with open(output, "w", encoding="utf-8") as fh:
+            fh.write(result.text)
+    else:
+        sys.stdout.write(result.text)
+    # Summary always to stderr so stdout stays pure data (file or records).
+    summary = {
+        "species": species,
+        "rettype": result.rettype,
+        "returned": len(result.returned),
+        "missing": result.missing,
+    }
+    if output:
+        summary["written"] = output
+    print(json.dumps(summary, ensure_ascii=False), file=sys.stderr)
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

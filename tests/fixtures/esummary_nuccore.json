@@ -1,0 +1,32 @@
+{
+  "header": { "type": "esummary", "version": "0.3" },
+  "result": {
+    "uids": ["1798174254", "30271926"],
+    "1798174254": {
+      "uid": "1798174254",
+      "caption": "MN908947",
+      "accessionversion": "MN908947.3",
+      "organism": "Severe acute respiratory syndrome coronavirus 2",
+      "slen": "29903",
+      "moltype": "rna",
+      "biomol": "genomic",
+      "topology": "linear",
+      "completeness": "complete",
+      "sourcedb": "insd",
+      "updatedate": "2020/03/30"
+    },
+    "30271926": {
+      "uid": "30271926",
+      "caption": "AY274119",
+      "accessionversion": "AY274119.3",
+      "organism": "SARS coronavirus Tor2",
+      "slen": "29751",
+      "moltype": "rna",
+      "biomol": "genomic",
+      "topology": "linear",
+      "completeness": "complete",
+      "sourcedb": "refseq",
+      "updatedate": "2018/08/13"
+    }
+  }
+}

@@ -12,7 +12,10 @@ from rich.table import Table
 from rich.text import Text
 from rich.tree import Tree
 
+import sys
+
 from ..models import RANKS, plural
+from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 
 _out = Console()
@@ -97,6 +100,40 @@ def members_tree(view: TreeView) -> None:
         _add_tree_node(tree, child)
     _out.print(tree)
     _out.print(f"[dim]{view.total} descendant taxa[/]")
+
+
+def seq_meta(species: str, result: MetaResult) -> None:
+    table = Table(title=f"nuccore metadata — {species}")
+    for col in ("accession", "organism", "len", "moltype", "biomol", "topology", "completeness", "source", "updated"):
+        justify = "right" if col == "len" else "left"
+        table.add_column(col, justify=justify, style="cyan" if col == "accession" else None)
+    for r in result.records:
+        table.add_row(
+            r.accession, r.organism, str(r.length or "-"), r.moltype, r.biomol,
+            r.topology, r.completeness, r.sourcedb, r.updatedate,
+        )
+    _out.print(table)
+    _out.print(f"[dim]{len(result.records)} record(s)[/]")
+    if result.missing:
+        warn(f"{len(result.missing)} accession(s) not returned by NCBI: {', '.join(result.missing)}")
+
+
+def seq_records(species: str, result: RecordsResult, output: str | None) -> None:
+    if output:
+        with open(output, "w", encoding="utf-8") as fh:
+            fh.write(result.text)
+        _err.print(
+            f"[green]Wrote[/] {len(result.returned)} {result.rettype} record(s) "
+            f"for [bold]{species}[/] to [bold]{output}[/]"
+        )
+    else:
+        # Raw records to stdout (pipeable); no Rich decoration on sequence data.
+        sys.stdout.write(result.text)
+        _err.print(
+            f"[dim]{len(result.returned)} {result.rettype} record(s) for {species}[/]"
+        )
+    if result.missing:
+        warn(f"{len(result.missing)} accession(s) not returned by NCBI: {', '.join(result.missing)}")
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

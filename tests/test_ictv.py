@@ -1,0 +1,209 @@
+"""Tests for the ICTV Report chapter client and HTML->Markdown parser.
+
+No real network: five frozen chapter HTMLs under ``fixtures/chapters/`` drive
+the parser (a regression guard — if the ICTV theme changes, these break
+loudly), and a fake session serves them for the client transport tests.
+"""
+
+from pathlib import Path
+
+import pytest
+
+from viralfetch.config import Config
+from viralfetch.cache import Cache
+from viralfetch import ictv
+from viralfetch.ictv import (
+    ChapterNotFound,
+    ChapterParseError,
+    ICTVClient,
+    RobotsDisallowed,
+    SectionNotFound,
+    _slug,
+    parse_chapter,
+    section_markdown,
+)
+
+CHAPTERS = Path(__file__).parent / "fixtures" / "chapters"
+SLUGS = ["coronaviridae", "geminiviridae", "rhabdoviridae", "filoviridae", "poxviridae"]
+
+
+def _load(slug):
+    html = (CHAPTERS / f"{slug}.html").read_text(encoding="utf-8")
+    return parse_chapter(html, slug=slug, url=f"https://ictv.global/report/chapter/{slug}/{slug}")
+
+
+def noop_sleep(_seconds):
+    pass
+
+
+# -- parser over frozen fixtures ------------------------------------------
+
+@pytest.mark.parametrize("slug", SLUGS)
+def test_parses_landmarks(slug):
+    ch = _load(slug)
+    assert ch.title.lower().startswith("family:")
+    assert slug in ch.title.lower()
+    md = ch.markdown
+    # Original URL + attribution are kept at the very top (before the rule).
+    head = md.split("\n---\n", 1)[0]
+    assert f"*Source: https://ictv.global/report/chapter/{slug}/{slug}*" in head
+    assert "CC BY 4.0" in head
+    # Section headings survive.
+    assert "\n## Summary" in md
+
+
+@pytest.mark.parametrize("slug", SLUGS)
+def test_preserves_italic_scientific_names(slug):
+    # The family name itself appears italicised somewhere in the body.
+    md = _load(slug).markdown
+    assert f"*{slug.capitalize()}*" in md
+
+
+def test_characteristics_table_becomes_markdown():
+    md = _load("coronaviridae").markdown
+    assert "| --- | --- |" in md  # a Markdown table separator row
+    assert "Characteristic" in md and "Description" in md
+    # Italics are preserved inside table cells.
+    assert "*Betacoronavirus muris*" in md
+
+
+def test_doi_extracted_when_present_in_preamble():
+    assert _load("poxviridae").doi == "10.1099/jgv.0.001849"
+
+
+def test_doi_absent_is_none_not_fabricated():
+    # Corona's DOI lives in the reference list, not the top block: stays None.
+    assert _load("coronaviridae").doi is None
+
+
+# -- loud failure on layout change ----------------------------------------
+
+def test_missing_container_raises():
+    with pytest.raises(ChapterParseError):
+        parse_chapter("<html><body><p>hi</p></body></html>", slug="x", url="u")
+
+
+def test_missing_summary_raises():
+    html = (
+        '<div class="field--name-field-mt-srv-body">'
+        "<h2>Family: Nowhere</h2><p>authors</p></div>"
+    )
+    with pytest.raises(ChapterParseError):
+        parse_chapter(html, slug="nowhere", url="u")
+
+
+# -- section selection ----------------------------------------------------
+
+def test_section_markdown_keeps_only_matching_section():
+    ch = _load("coronaviridae")
+    md = section_markdown(ch, "summary")
+    assert "## Summary" in md
+    assert "## Virion" not in md
+    # Header (source + references) is still present.
+    assert "*Source:" in md
+
+
+def test_section_markdown_unknown_raises():
+    ch = _load("coronaviridae")
+    with pytest.raises(SectionNotFound) as exc:
+        section_markdown(ch, "nonexistent-section")
+    assert exc.value.available  # lists the real sections
+
+
+# -- slug -----------------------------------------------------------------
+
+def test_slug():
+    assert _slug("Coronaviridae") == "coronaviridae"
+    assert _slug("  Geminiviridae ") == "geminiviridae"
+
+
+# -- client transport (fake session) --------------------------------------
+
+class FakeResponse:
+    def __init__(self, text, status_code=200):
+        self.text = text
+        self.status_code = status_code
+
+
+class FakeSession:
+    def __init__(self, pages, robots="User-agent: *\nDisallow: /admin/\n", fail_times=0):
+        self.pages = pages          # url -> html
+        self.robots = robots
+        self.fail_times = fail_times
+        self.calls = []
+
+    def get(self, url, headers=None, timeout=None):
+        self.calls.append(url)
+        if url.endswith("/robots.txt"):
+            return FakeResponse(self.robots)
+        if self.fail_times > 0:
+            self.fail_times -= 1
+            return FakeResponse("", 503)
+        if url in self.pages:
+            return FakeResponse(self.pages[url])
+        return FakeResponse("", 404)
+
+
+def _client(session, tmp_path, cache_enabled=True):
+    cfg = Config(email="tester@example.com")
+    cache = Cache(tmp_path, enabled=cache_enabled)
+    return ICTVClient(cfg, cache=cache, session=session, sleep=noop_sleep)
+
+
+def _url(slug):
+    return f"https://ictv.global/report/chapter/{slug}/{slug}"
+
+
+def test_missing_email_raises(tmp_path):
+    with pytest.raises(Exception):
+        ICTVClient(Config(email=None), session=FakeSession({}))
+
+
+def test_user_agent_carries_email_and_repo(tmp_path):
+    client = _client(FakeSession({}), tmp_path)
+    assert client.user_agent.startswith("viralfetch/")
+    assert "tester@example.com" in client.user_agent
+    assert "github.com/gabrielvpina/viralfetch" in client.user_agent
+
+
+def test_fetch_chapter_parses(tmp_path):
+    html = (CHAPTERS / "coronaviridae.html").read_text(encoding="utf-8")
+    session = FakeSession({_url("coronaviridae"): html})
+    client = _client(session, tmp_path)
+    ch = client.fetch_chapter("Coronaviridae")
+    assert ch.title == "Family: Coronaviridae"
+    assert "## Summary" in ch.markdown
+
+
+def test_fetch_chapter_uses_cache(tmp_path):
+    html = (CHAPTERS / "coronaviridae.html").read_text(encoding="utf-8")
+    session = FakeSession({_url("coronaviridae"): html})
+    client = _client(session, tmp_path)
+    client.fetch_chapter("Coronaviridae")
+    n = len(session.calls)
+    client.fetch_chapter("Coronaviridae")  # served from the 30-day TTL cache
+    assert len(session.calls) == n  # no new request
+
+
+def test_fetch_chapter_404_raises(tmp_path):
+    session = FakeSession({})  # nothing registered -> 404
+    client = _client(session, tmp_path)
+    with pytest.raises(ChapterNotFound):
+        client.fetch_chapter("Nosuchviridae")
+
+
+def test_robots_disallow_blocks_fetch(tmp_path):
+    html = (CHAPTERS / "coronaviridae.html").read_text(encoding="utf-8")
+    session = FakeSession({_url("coronaviridae"): html},
+                          robots="User-agent: *\nDisallow: /report/\n")
+    client = _client(session, tmp_path)
+    with pytest.raises(RobotsDisallowed):
+        client.fetch_chapter("Coronaviridae")
+
+
+def test_retry_on_5xx_then_success(tmp_path):
+    html = (CHAPTERS / "coronaviridae.html").read_text(encoding="utf-8")
+    session = FakeSession({_url("coronaviridae"): html}, fail_times=2)
+    client = _client(session, tmp_path)
+    ch = client.fetch_chapter("Coronaviridae")
+    assert ch.title == "Family: Coronaviridae"

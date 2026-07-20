@@ -7,12 +7,12 @@ sequences. It combines three sources:
 |---|---|---|
 | **VMR** (ICTV Virus Metadata Resource) | taxonomic hierarchy + exemplar isolates + GenBank/RefSeq accessions | **local**, embedded TSV |
 | **NCBI E-utilities** | sequence metadata, sequences (nt/aa), NCBI taxonomy | **remote**, on demand |
-| **ICTV Report** | descriptive chapter text per family/order | **remote**, on demand *(planned)* |
+| **ICTV Report** | descriptive chapter text per family | **remote**, on demand |
 
 The VMR is the local index; everything else is fetched on demand and cached.
 
-> **Status:** the taxonomy commands (`tax`, `members`) and the NCBI sequence
-> command (`seq`) are implemented. The ICTV Report text command and the
+> **Status:** the taxonomy commands (`tax`, `members`), the NCBI sequence
+> command (`seq`), and the ICTV Report `text` command are implemented. The
 > `update` / `cache` / `config` utilities are still in progress.
 
 ---
@@ -308,6 +308,88 @@ viralfetch seq "Betacoronavirus pandemicum" --protein --fasta
 
 ---
 
+## `text` — ICTV Report chapter (remote)
+
+Fetch the ICTV Report chapter for a family, convert its main content to
+Markdown, and render it with headings, subsection titles, characteristic
+tables, and the **italics of scientific names** preserved. The original page
+URL and the chapter's references/attribution are shown at the top, and the
+content is **CC BY 4.0**. Images are omitted.
+
+```bash
+viralfetch text Coronaviridae
+```
+
+```
+                          Family: Coronaviridae
+
+Source: https://ictv.global/report/chapter/coronaviridae/coronaviridae
+
+Patrick C.Y. Woo, Raoul J. de Groot, Bart Haagmans, Susanna K.P. Lau, …
+
+The citation for this ICTV Report chapter is the summary published as:
+Woo et al., (2023), ICTV Virus Taxonomy Profile: Coronaviridae 2023,
+Journal of General Virology (2023) 104, 001843
+
+Content is licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+────────────────────────────────────────────────────────────────────────
+Summary
+
+Members of the family Coronaviridae, a monophyletic group of viruses in
+the order Nidovirales, are enveloped, positive-sense RNA viruses …
+```
+
+### A single section
+
+`--section` restricts the output to one section, matched by heading
+(case-insensitive substring). The top attribution block is always kept.
+
+```bash
+viralfetch text Coronaviridae --section summary
+```
+
+### Raw Markdown to a file
+
+`--raw` emits the pure Markdown (no Rich decoration), ready to redirect:
+
+```bash
+viralfetch text Geminiviridae --raw > geminiviridae.md
+```
+
+```markdown
+# Family: Geminiviridae
+
+*Source: https://ictv.global/report/chapter/geminiviridae/geminiviridae*
+
+**Elvira Fiallo-Olivé, Jean-Michel Lett, Darren P. Martin, …**
+
+The citation for this ICTV Report chapter is the summary published as
+Fiallo-Olivé et al., ICTV Virus Taxonomy Profile: *Geminiviridae* 2021, …
+```
+
+With `--json`, the command emits `{slug, title, url, doi, markdown}` instead.
+
+### Genera and species resolve to their family chapter
+
+The ICTV Report is organised **by family** — genera and species have no chapter
+of their own. Given one, `text` looks it up in the VMR and shows its family's
+chapter, with a note on stderr (so `--raw`/`--json` stdout stays clean):
+
+```bash
+viralfetch text Betacoronavirus
+# stderr: 'Betacoronavirus' is a genus; the ICTV Report has no genus chapter
+#         — showing its family, Coronaviridae.
+# stdout: the Coronaviridae chapter
+```
+
+An unknown name gets "did you mean" suggestions and exit code `1`.
+
+Fetching honours `ictv.global/robots.txt`, sends a descriptive `User-Agent`
+carrying your contact email, waits at least 1 second between requests, and
+caches chapter HTML for 30 days.
+
+---
+
 ## Output & exit codes
 
 - **Rich** tables/panels/trees by default; **`--json`** for clean, `jq`-ready
@@ -319,9 +401,9 @@ viralfetch seq "Betacoronavirus pandemicum" --protein --fasta
 
 ## Caching
 
-Immutable data (sequences, accession metadata) is cached permanently; chapter
-text will use a 30-day TTL. The cache lives in the platform cache directory.
-Use `--no-cache` to bypass it for a single run.
+Immutable data (sequences, accession metadata) is cached permanently; ICTV
+chapter HTML uses a 30-day TTL. The cache lives in the platform cache
+directory. Use `--no-cache` to bypass it for a single run.
 
 ## Development
 

@@ -113,3 +113,28 @@ def test_members_tree_skips_empty_ranks(vmr):
 def test_members_tree_not_found(vmr):
     with pytest.raises(TaxonNotFound):
         queries.members_tree(vmr, "Nope")
+
+
+# -- report_target: genus/species -> family chapter -----------------------
+
+def test_report_target_family_maps_to_itself(vmr):
+    target, note = queries.report_target(vmr, "Alphaviridae")
+    assert target == "Alphaviridae"
+    assert note is None
+
+
+def test_report_target_genus_maps_to_family(vmr):
+    target, note = queries.report_target(vmr, "Alphavirus")
+    assert target == "Alphaviridae"
+    assert note and "genus" in note and "Alphaviridae" in note
+
+
+def test_report_target_species_maps_to_family(vmr):
+    target, note = queries.report_target(vmr, "Alphavirus one")
+    assert target == "Alphaviridae"
+    assert note and "species" in note
+
+
+def test_report_target_unknown_raises(vmr):
+    with pytest.raises(TaxonNotFound):
+        queries.report_target(vmr, "Nope")

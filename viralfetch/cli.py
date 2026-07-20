@@ -13,10 +13,12 @@ import typer
 
 from . import compare
 from . import config as config_mod
+from . import ictv
 from . import queries
 from . import render
 from . import sequences
 from .cache import Cache
+from .ictv import ICTVClient
 from .ncbi import NCBIClient, NCBIError
 from .vmr import load
 
@@ -27,6 +29,15 @@ def _make_client(cfg: config_mod.Config, out) -> NCBIClient:
     """Build an NCBI client or exit(3) with a helpful message if no email."""
     try:
         return NCBIClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
+    except config_mod.ConfigError as exc:
+        out.error(str(exc))
+        raise typer.Exit(3)
+
+
+def _make_ictv_client(cfg: config_mod.Config, out) -> ICTVClient:
+    """Build an ICTV client or exit(3) if no email (needed for the User-Agent)."""
+    try:
+        return ICTVClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
     except config_mod.ConfigError as exc:
         out.error(str(exc))
         raise typer.Exit(3)
@@ -222,6 +233,59 @@ def seq(
     except NCBIError as exc:
         out.error(f"NCBI request failed: {exc}")
         raise typer.Exit(4)
+
+
+@app.command()
+def text(
+    ctx: typer.Context,
+    name: str = typer.Argument(..., help="Family name (ICTV Report chapter)."),
+    section: str = typer.Option(None, "--section", help="Show only a section by heading (e.g. summary)."),
+    raw: bool = typer.Option(False, "--raw", help="Emit raw Markdown to stdout (for redirecting to a file)."),
+) -> None:
+    """Fetch an ICTV Report chapter and render it (headings, tables, italics).
+
+    The original page URL and the chapter's references/attribution are shown at
+    the top, and the content is CC BY 4.0. Images are omitted.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    client = _make_ictv_client(cfg, out)
+
+    # The ICTV Report is organised by family: map a genus/species/etc. to its
+    # family chapter. A name unknown to the VMR is tried verbatim, and its
+    # suggestions are kept in case that fetch 404s.
+    vmr = load()
+    suggestions: list[str] = []
+    try:
+        target, note = queries.report_target(vmr, name)
+    except queries.TaxonNotFound as exc:
+        target, note, suggestions = name, None, exc.suggestions
+    if note:
+        out.warn(note)  # to stderr, so --raw/--json stdout stays clean
+
+    try:
+        chapter = client.fetch_chapter(target)
+        markdown = ictv.section_markdown(chapter, section) if section else chapter.markdown
+    except ictv.ChapterNotFound as exc:
+        if suggestions:
+            out.not_found(name, suggestions)
+        else:
+            out.error(f"No ICTV Report chapter found for {name!r} (tried {exc.url}).")
+        raise typer.Exit(1)
+    except ictv.SectionNotFound as exc:
+        out.error(f"Section {exc.section!r} not found. Available: {', '.join(exc.available)}.")
+        raise typer.Exit(2)
+    except ictv.ChapterParseError as exc:
+        out.error(f"Could not parse the ICTV chapter: {exc}")
+        raise typer.Exit(4)
+    except ictv.ICTVError as exc:
+        out.error(f"ICTV request failed: {exc}")
+        raise typer.Exit(4)
+
+    if raw and cfg.format != "json":
+        out.text_raw(markdown)
+    else:
+        out.text(chapter, markdown)
 
 
 def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -> None:

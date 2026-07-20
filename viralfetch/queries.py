@@ -106,6 +106,30 @@ def descendant_isolates(vmr: VMR, name: str) -> tuple[Taxon, list[Isolate]]:
     return taxon, _rows_under(vmr, taxon)
 
 
+def report_target(vmr: VMR, name: str) -> tuple[str, str | None]:
+    """Resolve which ICTV Report chapter (a family) describes ``name``.
+
+    The ICTV Report is organised by family: a subfamily/genus/subgenus/species
+    maps to its family's chapter, and a family maps to itself. Returns
+    ``(family_name, note)`` where ``note`` explains a redirect (``None`` when
+    the name was already a family, or a rank at/above family with no family in
+    its lineage — in which case the name is returned unchanged to try as-is).
+
+    Raises :class:`TaxonNotFound` (with suggestions) if the name is unknown.
+    """
+    taxon = _resolve(vmr, name)
+    if taxon.rank == "family":
+        return taxon.name, None
+    family = taxon.lineage.get("family")
+    if family:
+        note = (
+            f"{taxon.name!r} is a {taxon.rank}; the ICTV Report has no "
+            f"{taxon.rank} chapter — showing its family, {family}."
+        )
+        return family, note
+    return taxon.name, None
+
+
 def tax(vmr: VMR, name: str) -> TaxonView:
     """Full lineage of a taxon, plus an isolate summary when it is a species."""
     taxon = _resolve(vmr, name)

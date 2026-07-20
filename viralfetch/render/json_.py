@@ -11,6 +11,7 @@ import sys
 from dataclasses import asdict
 
 from ..compare import LineageComparison
+from ..models import Chapter
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
@@ -110,6 +111,16 @@ def compare(cmp: LineageComparison) -> None:
             "rank": ncbi.rank,
             "lineage": [{"rank": r, "name": n} for r, n in ncbi.lineage],
         } if ncbi else None,
+    })
+
+
+def text(chapter: Chapter, markdown: str) -> None:
+    _emit({
+        "slug": chapter.slug,
+        "title": chapter.title,
+        "url": chapter.url,
+        "doi": chapter.doi,
+        "markdown": markdown,
     })
 
 

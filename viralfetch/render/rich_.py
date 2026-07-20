@@ -7,15 +7,17 @@ Rich auto-detects TTYs and disables colour when stdout is piped, satisfying the
 from __future__ import annotations
 
 from rich.console import Console
+from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.tree import Tree
 
+import os
 import sys
 
 from ..compare import LineageComparison
-from ..models import RANKS, plural
+from ..models import RANKS, Chapter, plural
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
@@ -185,6 +187,29 @@ def compare(cmp: LineageComparison) -> None:
         table.add_row(left, right)
     _out.print(table)
     _out.print("[yellow]Highlighted[/] = present in one lineage but not the other (NCBI often lags ICTV).")
+
+
+def text(chapter: Chapter, markdown: str) -> None:
+    """Render a chapter's Markdown with headings, tables and italics.
+
+    In an interactive terminal the output is paged (like ``man``/``git``):
+    ``less -F`` prints short chapters inline and opens a scrollable view for
+    long ones, starting at the top. In a pipe or redirect it prints directly.
+    """
+    md = Markdown(markdown)
+    if _out.is_terminal:
+        # -F: quit if it fits one screen; -R: keep colours/italics; -X: don't
+        # wipe the screen on exit. Respect a user's own $LESS if they set one.
+        os.environ.setdefault("LESS", "FRX")
+        with _out.pager(styles=True):
+            _out.print(md)
+    else:
+        _out.print(md)
+
+
+def text_raw(markdown: str) -> None:
+    """Emit the raw Markdown to stdout (for redirection to a file)."""
+    sys.stdout.write(markdown if markdown.endswith("\n") else markdown + "\n")
 
 
 def not_found(name: str, suggestions: list[str]) -> None:

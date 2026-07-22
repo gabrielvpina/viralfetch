@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_4A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/Filo_Fig4.v3.CG_alignment.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/Filo_Fig4.v3.CG_treefile.txt",
+    "molecule": "AA",
+    "n_members": 18,
+    "n_tips": 18,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_4B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/Filo_Fig4.v3.L_alignment.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/Filo_Fig4.v3.L_treefile.txt",
+    "molecule": "AA",
+    "n_members": 20,
+    "n_tips": 20,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

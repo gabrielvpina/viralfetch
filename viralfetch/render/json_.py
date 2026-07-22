@@ -116,12 +116,20 @@ def compare(cmp: LineageComparison) -> None:
     })
 
 
-def text(chapter: Chapter, markdown: str) -> None:
+def figures_supported() -> bool:
+    """JSON output never draws figures (the image URLs are in the payload)."""
+    return False
+
+
+def text(chapter: Chapter, markdown: str, figures=None, fig_width=None) -> None:
+    # ``figures`` (terminal graphics) are meaningless in JSON; the image URLs
+    # are already carried in the ``images`` field below.
     _emit({
         "slug": chapter.slug,
         "title": chapter.title,
         "url": chapter.url,
         "doi": chapter.doi,
+        "images": [{"url": img.url, "alt": img.alt} for img in chapter.images],
         "markdown": markdown,
     })
 
@@ -130,8 +138,9 @@ def cache_info(infos: list[NamespaceInfo]) -> None:
     _emit({info.namespace: {"entries": info.entries, "bytes": info.bytes} for info in infos})
 
 
-def cache_cleared(removed: int, *, texts: bool, seqs: bool) -> None:
-    scope = "texts" if texts and not seqs else "seqs" if seqs and not texts else "all"
+def cache_cleared(removed: int, *, texts: bool, seqs: bool, images: bool) -> None:
+    picked = [n for n, f in (("texts", texts), ("seqs", seqs), ("images", images)) if f]
+    scope = picked[0] if len(picked) == 1 else "all"
     _emit({"cleared": removed, "scope": scope})
 
 

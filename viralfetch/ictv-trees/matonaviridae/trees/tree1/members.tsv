@@ -1,0 +1,28 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+M15240_rubella_virus_genotype_1F	M15240	rubella virus genotype 1F	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus rubellae	ICTV19750326
+AY258322_rubella_virus_genotype_2A	AY258322	rubella virus genotype 2A	AA	none		False																
+DQ388279_rubella_virus_genotype_2C	DQ388279	rubella virus genotype 2C	AA	none		False																
+MF496142_rubella_virus_genotype_2B_	MF496142	rubella virus genotype 2B	AA	none		False																
+JN635284_rubella_virus_genotype_1C	JN635284	rubella virus genotype 1C	AA	none		False																
+JN635285_rubella_virus_genotype_1D	JN635285	rubella virus genotype 1D	AA	none		False																
+KT962871_rubella_virus_genotype_1E	KT962871	rubella virus genotype 1E	AA	none		False																
+AB860305_rubella_virus_genotype_1J	AB860305	rubella virus genotype 1J	AA	none		False																
+KX291007_rubella_virus_genotype_1G	KX291007	rubella virus genotype 1G	AA	none		False																
+JN635282_rubella_virus_genotype_1B	JN635282	rubella virus genotype 1B	AA	none		False																
+KU958641_rubella_virus_genotype_1A	KU958641	rubella virus genotype 1A	AA	none		False																
+MN547623_ruhugu_virus	MN547623	ruhugu virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus ruteetense	ICTV202009288
+MN552442_rustrela_virus	MN552442	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+MT274724_rustrela_virus	MT274724	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960724_rustrela_virus	OL960724	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960718_rustrela_virus	OL960718	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960722_rustrela_virus	OL960722	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+MT274725_rustrela_virus	MT274725	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960719_rustrela_virus	OL960719	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960726_rustrela_virus	OL960726	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960716_rustrela_virus	OL960716	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960721_rustrela_virus	OL960721	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960725_rustrela_virus	OL960725	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960723_rustrela_virus	OL960723	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960720_rustrela_virus	OL960720	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+OL960717_rustrela_virus	OL960717	rustrela virus	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus strelense	ICTV202009289
+BK014635_Tetronarce_matonavirus	BK014635	Tetronarce matonavirus	AA	none		False																

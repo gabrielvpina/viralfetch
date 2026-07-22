@@ -1,0 +1,38 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+HCRV-D		HCRV-D	AA	none		False																
+HCRV-2		HCRV-2	AA	none		False																
+Contig1-ERR84391		Contig1-ERR84391	AA	none		False																
+k119_35206-SRR20		k119 35206-SRR20	AA	none		False																
+Contig1-SRR17837		Contig1-SRR17837	AA	none		False																
+k141_3621-SRR616		k141 3621-SRR616	AA	none		False																
+HCRV-C		HCRV-C	AA	none		False																
+k119_45499-mgm46		k119 45499-mgm46	AA	none		False																
+PoSCV-5		PoSCV-5	AA	none		False																
+k141_4644-SRR580		k141 4644-SRR580	AA	none		False																
+Contig1-SRR58057		Contig1-SRR58057	AA	none		False																
+k141_270-SRR5805		k141 270-SRR5805	AA	none		False																
+k119_49066-SRR17		k119 49066-SRR17	AA	none		False																
+k119_207-SRR5805		k119 207-SRR5805	AA	none		False																
+KY052047.1	KY052047.1		AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Recrevirales		Redondoviridae		Torbevirus		Torbevirus brisa	ICTV201907364
+k99_67773-SRR177		k99 67773-SRR177	AA	none		False																
+k99_7875-SRR5088		k99 7875-SRR5088	AA	none		False																
+HCRV-I		HCRV-I	AA	none		False																
+HCRV-G		HCRV-G	AA	none		False																
+HCRV-1		HCRV-1	AA	none		False																
+HCRV-H		HCRV-H	AA	none		False																
+Maize_streak_virus		Maize streak virus	AA	none		False																
+Cotton_mastrevirus_TM5		Cotton mastrevirus TM5	AA	none		False																
+Thrips-associated_genomovirus_4		Thrips-associated genomovirus 4	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Genomoviridae		Gemykolovirus		Gemykolovirus echia1	ICTV202009067
+Tick-associated_genomovirus_2		Tick-associated genomovirus 2	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Genomoviridae		Gemykolovirus		Gemykolovirus derva1	ICTV202009068
+Bemisia-associated_genomovirus_AdDF		Bemisia-associated genomovirus AdDF	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Genomoviridae		Gemyduguivirus		Gemyduguivirus bemta1	ICTV202009026
+Human_feces_smacovirus_3		Human feces smacovirus 3	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cremevirales		Smacoviridae		Porprismacovirus		Porprismacovirus humas3	ICTV202009524
+Chicken_associated_smacovirus		Chicken associated smacovirus	AA	none		False																
+Cyclovirus_Chimp12		Cyclovirus Chimp12	AA	none		False																
+Cyclovirus_PK5006	PK5006	Cyclovirus	AA	none		False																
+Cyclovirus_VN		Cyclovirus VN	AA	none		False																
+Beak_and_feather_disease_virus		Beak and feather disease virus	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus parrot	ICTV19950821
+Canine_circovirus_strain_XF16		Canine circovirus strain XF16	AA	none		False																
+Porcine_circovirus_2		Porcine circovirus 2	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus porcine2	ICTV20025806
+Faba_bean_necrotic_yellows_virus		Faba bean necrotic yellows virus	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Mulpavirales		Nanoviridae		Nanovirus		Nanovirus necroflaviviciae	ICTV19982655
+Cardamom_bushy_dwarf_virus		Cardamom bushy dwarf virus	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Mulpavirales		Nanoviridae		Babuvirus		Babuvirus cardamomi	ICTV20094114
+Banana_bunchy_top_virus		Banana bunchy top virus	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Mulpavirales		Nanoviridae		Babuvirus		Babuvirus musae	ICTV19982654

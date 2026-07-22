@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_5",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/OPSR.Hepe.Fig5.v3.ALIGNMENT1 to 450.fst",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OPSR.Hepe.Fig5.v3.treefile.txt",
+    "molecule": "AA",
+    "n_members": 37,
+    "n_tips": 37,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

@@ -1,0 +1,126 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+M18370_Japanese_encephalitis_virus	M18370	Japanese encephalitis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus japonicum	ICTV19710103
+AF161266_Murray_Valley_encephalitis_virus	AF161266	Murray Valley encephalitis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus murrayense	ICTV19990839
+AF013384_Koutango_virus	AF013384	Koutango virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus koutangoense	ICTV19760611
+M12294_West_Nile_virus	M12294	West Nile virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus nilense	ICTV19990858
+AY453411_Usutu_virus	AY453411	Usutu virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus usutuense	ICTV19710122
+AF013413_Yaounde_virus	AF013413	Yaounde virus	nt	none		False																
+KF917536_Cacipacore_virus	KF917536	Cacipacore virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus cacipacoreense	ICTV19990816
+AY632539_Ilheus_virus	AY632539	Ilheus virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus ilheusense	ICTV19990824
+AY632544_Saint_Louis_encephalitis_virus	AY632544	Saint Louis encephalitis virus	nt	none		False																
+JF895923_Tembusu_virus	JF895923	Tembusu virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus tembusu	ICTV19760634
+JX236040_Ntaya_virus	JX236040	Ntaya virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus ntayaense	ICTV19710113
+AY632545_Bagaza_virus	AY632545	Bagaza virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus bagazaense	ICTV19790887
+AF013377_Israel_turkey_meningoencephalitis_virus	AF013377	Israel turkey meningoencephalitis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus israelense	ICTV19710102
+AY632536_Bussuquara_virus	AY632536	Bussuquara virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus aroaense	ICTV19990811
+AY632535_Zika_virus	AY632535	Zika virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus zikaense	ICTV19990862
+DQ859064_Spondweni_virus	DQ859064	Spondweni virus	nt	none		False																
+M19197_Dengue_virus	M19197	Dengue virus	nt	none		False																
+AY632541_Kokobera_virus	AY632541	Kokobera virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus kokoberaorum	ICTV19990831
+EU159426_Nounane_virus	EU159426	Nounane virus	nt	none		False																
+AY632540_Kedougou_virus	AY632540	Kedougou virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus kedougouense	ICTV19990830
+FJ883471_Chaoyang_virus	FJ883471	Chaoyang virus	nt	none		False																
+FJ606789_Lammi_virus	FJ606789	Lammi virus	nt	none		False																
+DQ837641_Entebbe_bat_virus	DQ837641	Entebbe bat virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus entebbeense	ICTV19710100
+AB114858_Yokose_virus	AB114858	Yokose virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus yokoseense	ICTV19910772
+DQ837642_Sepik_virus	DQ837642	Sepik virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus sepikense	ICTV19990850
+EU707555_Wesselsbron_virus	EU707555	Wesselsbron virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus wesselsbronense	ICTV19990857
+KJ152564_Paraiso_Escondido_virus	KJ152564	Paraiso Escondido virus	nt	none		False																
+X03700_Yellow_fever_virus	X03700	Yellow fever virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus flavi	ICTV19710125
+DQ859060_Edge_Hill_virus	DQ859060	Edge Hill virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus edgehillense	ICTV19710099
+DQ859057_Bouboui_virus	DQ859057	Bouboui virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus boubouiense	ICTV19760589
+DQ859056_Banzi_virus	DQ859056	Banzi virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus banziense	ICTV19710090
+DQ859065_Uganda_S_virus	DQ859065	Uganda S virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus ugandaense	ICTV19710120
+DQ859066_Jugra_virus	DQ859066	Jugra virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus jugraense	ICTV19990827
+DQ859062_Saboya_virus	DQ859062	Saboya virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus saboyaense	ICTV19760628
+DQ235150_Saumarez_Reef_virus	DQ235150	Saumarez Reef virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus saumarezense	ICTV19790927
+KF815939_Tyuleniy_virus	KF815939	Tyuleniy virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus tyuleniyense	ICTV19760635
+DQ235144_Meaban_virus	DQ235144	Meaban virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus meabanense	ICTV19910741
+DQ235146_Kadam_virus	DQ235146	Kadam virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus kadamense	ICTV19990829
+DQ235149_Royal_Farm_virus	DQ235149	Royal Farm virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus royalense	ICTV19990845
+DQ235147_Karshi_virus	DQ235147	Karshi virus	nt	none		False																
+L06436_Powassan_virus	L06436	Powassan virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus powassanense	ICTV19710115
+DQ235145_Gadgets_Gully_virus	DQ235145	Gadgets Gully virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus gadgetsense	ICTV19990823
+AY323490_Kyasanur_forest_disease_virus	AY323490	Kyasanur forest disease virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus kyasanurense	ICTV19710106
+AF253419_Langat_virus	AF253419	Langat virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus langatense	ICTV19710107
+Y07863_Louping_ill_virus	Y07863	Louping ill virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus loupingi	ICTV19710108
+AY193805_Omsk_hemorrhagic_fever_virus	AY193805	Omsk hemorrhagic fever virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus omskense	ICTV19710114
+TEU27495_Tick-borne_encephalitis_virus	TEU27495	Tick-borne encephalitis virus	nt	none		False																
+AF160193_Apoi_virus	AF160193	Apoi virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus apoiense	ICTV19710089
+KJ469371_Jutiapa_virus	KJ469371	Jutiapa virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus jutiapaense	ICTV19760607
+AF013402_San_Perlita_virus	AF013402	San Perlita virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus perlitaense	ICTV19910755
+AF013370_Cowbone_Ridge_virus	AF013370	Cowbone Ridge virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus cowboneense	ICTV19710093
+AF013401_Sal_Vieja_virus	AF013401	Sal Vieja virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus viejaense	ICTV19910756
+AJ242984_Modoc_virus	AJ242984	Modoc virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus modocense	ICTV19710109
+AF013368_Carey_Island_virus	AF013368	Carey Island virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus careyense	ICTV19760592
+AF013394_Phnom-Penh_bat_virus	AF013394	Phnom-Penh bat virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus phnompenhense	ICTV19760623
+AF144692_Rio_Bravo_virus	AF144692	Rio Bravo virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus bravoense	ICTV19760625
+AJ299445_Montana_myotis_leukoencephalitis_virus	AJ299445	Montana myotis leukoencephalitis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus montanaense	ICTV19990838
+AF013365_Bukalasa_bat_virus	AF013365	Bukalasa bat virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus bukalasaense	ICTV19710091
+AF013371_Dakar_bat	AF013371	Dakar bat	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Orthoflavivirus	Euflavivirus	Orthoflavivirus dakarense	ICTV19710094
+M91671_cell_fusing_agent_Flavivirus	M91671	cell fusing agent Flavivirus	nt	none		False																
+AY149905_Kamiti_River_virus	AY149905	Kamiti River virus	nt	none		False																
+AB488408_Aedes_flavivirus	AB488408	Aedes flavivirus	nt	none		False																
+JQ268258_Hanko_virus	JQ268258	Hanko virus	nt	none		False																
+JQ957875_Nienokoue_virus	JQ957875	Nienokoue virus	nt	none		False																
+GQ165809_Nakiwogo_virus	GQ165809	Nakiwogo virus	nt	none		False																
+KC505248_Palm_Creek_virus	KC505248	Palm Creek virus	nt	none		False																
+GQ165808_Culex_flavivirus	GQ165808	Culex flavivirus	nt	none		False																
+HE574574_Culex_theileri_flavivirus	HE574574	Culex theileri flavivirus	nt	none		False																
+KC464457_Mosquito_flavivirus	KC464457	Mosquito flavivirus	nt	none		False																
+FJ644291_Quang_Binh_virus	FJ644291	Quang Binh virus	nt	none		False																
+AF285080_Tamana_bat_virus	AF285080	Tamana bat virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Flaviviridae		Tamanavirus		Tamanavirus parnelli	ICTV202522302
+AF326963_Classical_swine_fever_virus	AF326963	Classical swine fever virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+JX428945_Pestivirus_Aydin_04-TR	JX428945	Pestivirus Aydin 04-TR	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus aydinense	ICTV20175784
+AF037405_Border_disease_virus	AF037405	Border disease virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+AF002227_Border_disease_virus	AF002227	Border disease virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+FJ040215_Bovine_viral_diarrhea_virus_3	FJ040215	Bovine viral diarrhea virus 3	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus brazilense	ICTV20175783
+AF144617_Pestivirus_giraffe-1	AF144617	Pestivirus giraffe-1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus giraffae	ICTV20175782
+M31182_Bovine_viral_diarrhea_virus_1	M31182	Bovine viral diarrhea virus 1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus bovis	ICTV19990865
+AY781152_Pronghorn_antelope_pestivirus	AY781152	Pronghorn antelope pestivirus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus antilocaprae	ICTV20175780
+EF100713_Bungowannah	EF100713	Bungowannah	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus australiaense	ICTV20175781
+KJ950914_Norway_rat_pestivirus	KJ950914	Norway rat pestivirus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ratti	ICTV20175785
+KR011347_Porcine_pestivirus-1	KR011347	Porcine pestivirus-1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus scrofae	ICTV20175786
+KC815310_Rodent_hepacivirus_RHV-339	KC815310	Rodent hepacivirus RHV-339	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus peromysci	ICTV20165286
+KC411784_Rodent_hepacivirus_NLR07-oct70_NEL_2007	KC411784	Rodent hepacivirus NLR07-oct70 NEL 2007	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus myodae	ICTV20165287
+KJ950938_Norway_rat_hepacivirus_NrHV-1	KJ950938	Norway rat hepacivirus NrHV-1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus ratti	ICTV20165288
+KJ950939_Norway_rat_hepacivirus_NrHV-2	KJ950939	Norway rat hepacivirus NrHV-2	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus norvegici	ICTV20165289
+HGU22304_GBV-B	HGU22304	GBV-B	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus platyrrhini	ICTV20165284
+KC411806_Rodent_hepacivirus_SAR-3_RSA_2008	KC411806	Rodent hepacivirus SAR-3 RSA 2008	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus rhabdomysis	ICTV20165290
+KC796077_Bat_hepacivirus_PDB-112	KC796077	Bat hepacivirus PDB-112	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus vittatae	ICTV20165293
+KC411777_Rodent_hepacivirus_RMU10-3382_GER_2010	KC411777	Rodent hepacivirus RMU10-3382 GER 2010	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus glareoli	ICTV20165291
+KC551800_Guereza_hepacivirus	KC551800	Guereza hepacivirus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus colobi	ICTV20165285
+KC796074_Bat_hepacivirus_PDB-829	KC796074	Bat hepacivirus PDB-829	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus macronycteridis	ICTV20165292
+KC796078_Bat_hepacivirus_PDB-491	KC796078	Bat hepacivirus PDB-491	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus otomopis	ICTV20165294
+KP641127_Bovine_hepacivirus_BovHepV_463/G	KP641127	Bovine hepacivirus BovHepV 463/G	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus bovis	ICTV20165295
+KP325401_Non-primate_hepacivirus_NZP1	KP325401	Non-primate hepacivirus NZP1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus equi	ICTV20165283
+D00944_Hepatitis_C_virus_HC-J6	D00944	Hepatitis C virus HC-J6	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+Y13184_Hepatitis_C_virus_EUH1480	Y13184	Hepatitis C virus EUH1480	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+EF108306_Hepatitis_C_virus_QC69	EF108306	Hepatitis C virus QC69	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+D17763_Hepatitis_C_virus_NZL1	D17763	Hepatitis C virus NZL1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+GU814265_Hepatitis_C_virus_ED43	GU814265	Hepatitis C virus ED43	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+Y12083_Hepatitis_C_virus_EUHK2	Y12083	Hepatitis C virus EUHK2	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+AF011751_Hepatitis_C_virus_H77	AF011751	Hepatitis C virus H77	nt	none		False																
+M62321_Hepatitis_C_virus_PT	M62321	Hepatitis C virus PT	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Orthohepacivirus		Orthohepacivirus hominis	ICTV19910774
+KT439329_Human_hepegivirus_AK-790	KT439329	Human hepegivirus AK-790	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus columbiaense	ICTV20165301
+KC796080_Bat_pegivirus_PDB-1698	KC796080	Bat pegivirus PDB-1698	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus carolliae	ICTV20165299
+KC815311_Rodent_pegivirus_CC61	KC815311	Rodent pegivirus CC61	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus neotomae	ICTV20165303
+KC796076_Bat_pegivirus_PDB-620	KC796076	Bat pegivirus PDB-620	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus scotophili	ICTV20165300
+GU566734_GBV-D_68	GU566734	GBV-D 68	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus pteropi	ICTV20125925
+GU566735_GBV-D_93	GU566735	GBV-D 93	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus pteropi	ICTV20125925
+KC796088_Bat_pegivirus_PDB-1715	KC796088	Bat pegivirus PDB-1715	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus sturnirae	ICTV20165302
+KC410872_Equine_Pegivirus-1_C0035	KC410872	Equine Pegivirus-1 C0035	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus caballi	ICTV20165298
+KC145265_TDAV-HorseA1	KC145265	TDAV-HorseA1	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus equi	ICTV20165297
+KU351669_Porcine_pegivirus_PPgV_903_Ger_2013	KU351669	Porcine pegivirus PPgV 903 Ger 2013	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus suis	ICTV20165304
+HGU22303_GBV-A	HGU22303	GBV-A	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus platyrrhini	ICTV20125924
+HGU94421_GBV-A_Alab	HGU94421	GBV-A Alab	nt	none		False																
+AF070476_chimpanzee_pegivirus	AF070476	chimpanzee pegivirus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+AB021287_human_pegivirus_HGV-MY14	AB021287	human pegivirus HGV-MY14	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+D87713_human_pegivirus_K2141	D87713	human pegivirus K2141	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+AY949771_human_pegivirus_D50	AY949771	human pegivirus D50	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+AB003292_human_pegivirus_G05BD	AB003292	human pegivirus G05BD	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+U63715_human_pegivirus_GBV-C	U63715	human pegivirus GBV-C	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+AY196904_human_pegivirus_765	AY196904	human pegivirus 765	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+U45966_human_pegivirus_R10291	U45966	human pegivirus R10291	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+U44402_Human_pegivirus_HGV	U44402	Human pegivirus HGV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296
+AB003289_human_pegivirus_CG01BD	AB003289	human pegivirus CG01BD	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Hepaciviridae		Pegivirus		Pegivirus hominis	ICTV20165296

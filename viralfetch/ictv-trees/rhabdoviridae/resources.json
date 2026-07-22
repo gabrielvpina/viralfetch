@@ -1,0 +1,41 @@
+[
+  {
+    "figure_label": "Figure_4",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig4.align.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig4_treefile.txt",
+    "molecule": "AA",
+    "n_members": 578,
+    "n_tips": 578,
+    "alignment_coverage": 0.998,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_5",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig5_Alpha_align.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig5_Alpha_2026_treefile.txt",
+    "molecule": "AA",
+    "n_members": 246,
+    "n_tips": 246,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig6.Beta_align.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Rha.Fig6_Beta_treefile.txt",
+    "molecule": "AA",
+    "n_members": 253,
+    "n_tips": 253,
+    "alignment_coverage": 0.996,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

@@ -1,0 +1,103 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AF403738_CuniNPV_Florida1997	AF403738	CuniNPV Florida1997	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Deltabaculovirus		Deltabaculovirus cunigripalpi	ICTV20020611
+L22858_AcMNPV_C6	L22858	AcMNPV C6	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus aucalifornicae	ICTV19990567
+MH077961_TraeNPV_wt	MH077961	TraeNPV wt	AA	none		False																
+AY145471_RoMNPV_R1	AY145471	RoMNPV R1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus raous	ICTV202214025
+L33180_BmNPV_T3	L33180	BmNPV T3	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus bomori	ICTV19710138
+EF125867_MaviNPV_MV-8	EF125867	MaviNPV MV-8	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus mavitratae	ICTV20125726
+X467702_ThorMNPV_p1	X467702	ThorMNPV p1	AA	none		False																
+OL685370_PaviNPV_Gz05	OL685370	PaviNPV Gz05	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus pavitrealis	ICTV202420214
+MK558262_DijuNPV_Araguari-MG	MK558262	DijuNPV Araguari-MG	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus dijunonis	ICTV202113426
+AP009046_HycuNPV_N9	AP009046	HycuNPV N9	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus hycuneae	ICTV20125724
+KC961304_ChroNPV_NB1	KC961304	ChroNPV NB1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus chorosaceanae	ICTV20020610
+AF512031_CfMNPV	AF512031	CfMNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus chofumiferanae	ICTV19910424
+KF894742_ChmuNPV_Darmstadt	KF894742	ChmuNPV Darmstadt	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus chomurinanae	ICTV20165234
+U75930_OpMNPV	U75930	OpMNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus orpseudotsugatae	ICTV19910426
+DQ486030_AnpeNPV_L2	DQ486030	AnpeNPV L2	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus anpernyi	ICTV20125720
+AY327402_CfDefMNPV	AY327402	CfDefMNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus alterchofumiferanae	ICTV20020608
+DQ813662_AgMNPV_2D	DQ813662	AgMNPV 2D	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus angemmatalis	ICTV19950512
+KJ631623_CoveMNPV	KJ631623	CoveMNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus covestigialis	ICTV201908661
+AY043265_EppoNPV	AY043265	EppoNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus eppostvittanae	ICTV20020612
+KU565883_CapoNPV_416	KU565883	CapoNPV 416	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus capomonae	ICTV20165233
+MF143631_OxocNPV_435	MF143631	OxocNPV 435	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus oxochraceae	ICTV201856530
+KT957089_CyunNPV_Whiov	KT957089	CyunNPV Whiov	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus cycundantis	ICTV201908663
+KP763670_LoobMNPV_SP-2000	KP763670	LoobMNPV SP-2000	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus lonobliquae	ICTV201856527
+ON704650_PastNPV_473	ON704650	PastNPV 473	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus pastagnalis	ICTV202420213
+MH320559_SperNPV_251	MH320559	SperNPV 251	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus speridaniae	ICTV201908666
+MK419955_SpcoNPV_VPN72	MK419955	SpcoNPV VPN72	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus spocosmioidis	ICTV202420215
+AF169823_SeMNPV_US1	AF169823	SeMNPV US1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus spexiguae	ICTV19950523
+MT040195_SperNPV_CNPSo-165	MT040195	SperNPV CNPSo-165	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus altersperidaniae	ICTV202113428
+EF035042_SfMNPV_3AP2	EF035042	SfMNPV 3AP2	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus spofrugiperdae	ICTV19950524
+MH370144_SeMNPV_Qingdao	MH370144	SeMNPV Qingdao	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus alterspexiguae	ICTV202008720
+MH717816_SpexNPV_244-1	MH717816	SpexNPV 244-1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus spexemptae	ICTV201908667
+KM102981_AgseNPV-B_English	KM102981	AgseNPV-B English	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus alteragsegetum	ICTV20152003
+EU839994_AgipMNPV_Illinois	EU839994	AgipMNPV Illinois	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus agipsilonis	ICTV20020603
+DQ123841_AgseNPV-A_Polish	DQ123841	AgseNPV-A Polish	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus agsegetum	ICTV20125719
+AY126275_MacoNPV-B_96B	AY126275	MacoNPV-B 96B	AA	none		False																
+JQ798165_MbMNPV_K1	JQ798165	MbMNPV K1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus mabrassicae	ICTV19910425
+U59461_MacoNPV-A_90-2	U59461	MacoNPV-A 90-2	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus maconfiguratae	ICTV20073239
+MF375894_MyunNPV_7	MF375894	MyunNPV 7	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus myunipunctae	ICTV201856528
+KM009991_PespNPV_GR167	KM009991	PespNPV GR167	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus pesauciae	ICTV201856531
+MK746083_ChinNPV_1	MK746083	ChinNPV 1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus alterchrincludentis	ICTV202214022
+MK419956_RanuNPV_VPN54	MK419956	RanuNPV VPN54	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus ranus	ICTV202113427
+KJ631622_PsinNPV_IE	KJ631622	PsinNPV IE	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus chrincludentis	ICTV20152002
+AY864330_ChchNPV	AY864330	ChchNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus chrychalcites	ICTV20125721
+DQ017380_TnSNPV	DQ017380	TnSNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus trini	ICTV19910429
+KR011717_UrprNPV_SouthernBrazil	KR011717	UrprNPV SouthernBrazil	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus urprotei	ICTV201908668
+Unannotated_PlidNPV_2680		Unannotated PlidNPV 2680	AA	none		False																
+DQ504428_ClbiNPV_DZ1	DQ504428	ClbiNPV DZ1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus clabilineatae	ICTV20125722
+KM596836_PeluSNPV	KM596836	PeluSNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus peluscae	ICTV201856532
+KP752043_LafiNPV_GR15	KP752043	LafiNPV GR15	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus lafiscellariae	ICTV20165235
+DQ837165_EcobNPV_A1	DQ837165	EcobNPV A1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus ecobliquae	ICTV20073233
+KJ676450_SujuNPV_473	KJ676450	SujuNPV 473	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus sujujubae	ICTV20152001
+MH261376_HytaNPV_India001	MH261376	HytaNPV India001	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus hytalacae	ICTV201908664
+KF611977_BusuNPV_Hubei	KF611977	BusuNPV Hubei	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus busuppressariae	ICTV20020607
+MW645368_TrviNPV_wuqi	MW645368	TrviNPV wuqi	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus travishnous	ICTV202214026
+KF158713_HespNPV_MEM	KF158713	HespNPV MEM	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus heleucae	ICTV201856526
+MN233792_ArdiNPV_424	MN233792	ArdiNPV 424	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus ardigrammae	ICTV202113425
+FJ227128_EupsNPV_Hangzhou	FJ227128	EupsNPV Hangzhou	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus eupseudoconspersae	ICTV20125723
+EU309041_OrleNPV_CFS77	EU309041	OrleNPV CFS77	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus orleucostigmae	ICTV20165237
+MZ127289_OpSNPV_MEM	MZ127289	OpSNPV MEM	AA	none		False																
+OK091173_EranNPV_wlcb	OK091173	EranNPV wlcb	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus erankerariae	ICTV202214023
+AF081810_LdMNPV_5-6	AF081810	LdMNPV 5-6	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus lydisparis	ICTV19950518
+MZ766431_OlmeNPV_435	MZ766431	OlmeNPV 435	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus olmendosae	ICTV202214024
+GQ202541_LyxyMNPV_5	GQ202541	LyxyMNPV 5	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus lyxylinae	ICTV20165236
+AP006270_AdhoNPV_ADN001	AP006270	AdhoNPV ADN001	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus adhonmai	ICTV20073223
+MH394321_CrpeNPV_SA	MH394321	CrpeNPV SA	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus crypeltasticae	ICTV201908662
+KY968317_ManeNPV_T2	KY968317	ManeNPV T2	AA	none		False																
+AF271059_HearNPV_G4	AF271059	HearNPV G4	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus helarmigerae	ICTV20020613
+AY394490_LeseNPV_AH1	AY394490	LeseNPV AH1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus leseparatae	ICTV20125725
+MH124167_MyunNPV_KY310	MH124167	MyunNPV KY310	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus altermyunipunctae	ICTV201908665
+AF325155_SpltNPV_G2	AF325155	SpltNPV G2	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus spliturae	ICTV20073247
+JX454574_SpliNPV_AN1956	JX454574	SpliNPV AN1956	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus splittoralis	ICTV20020623
+MF614691_OpbuNPV_MA	MF614691	OpbuNPV MA	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Alphabaculovirus		Alphabaculovirus opbrumatae	ICTV201856529
+AF499596_PhopGV_1346	AF499596	PhopGV 1346	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus phoperculellae	ICTV20073217
+MT844067_MaphGV_IOZ01	MT844067	MaphGV IOZ01	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus maphaseoli	ICTV202113430
+KP296186_DisaGV_Parana-2009	KP296186	DisaGV Parana-2009	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus disaccharalis	ICTV20165241
+AY229987_CrleGV_CV3	AY229987	CrleGV CV3	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus cryleucotretae	ICTV20020593
+U53466_CpGV_M1	U53466	CpGV M1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus cypomonellae	ICTV19910419
+GQ884143_PiraGV	GQ884143	PiraGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus arrapae	ICTV19990561
+DQ333351_ChocGV	DQ333351	ChocGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus chofumiferanae	ICTV20020592
+KR091910_ClanGV_B	KR091910	ClanGV B	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus alterclanastomosis	ICTV20165240
+ON803509_PsinGV_GZ	ON803509	PsinGV GZ	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus psincretae	ICTV202420216
+KJ406702_ErelGV	KJ406702	ErelGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus erellonis	ICTV20152020
+HQ116624_ClanGV_HBHN	HQ116624	ClanGV HBHN	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus clanachoretae	ICTV20165238
+KC179784_ClasGV_A	KC179784	ClasGV A	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus clanastomosis	ICTV20165239
+KU593505_CnmeGV	KU593505	CnmeGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus cnamedinalis	ICTV20175756
+AF547984_AdorGV	AF547984	AdorGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus adoranae	ICTV20020590
+KX151395_PiGV_Cambridge	KX151395	PiGV Cambridge	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus plinterpunctellae	ICTV19820256
+JN408834_EpapGV_Oliveros.SantaFe	JN408834	EpapGV Oliveros.SantaFe	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus epaporemae	ICTV20165242
+KR584663_AgseGV_DA	KR584663	AgseGV DA	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus agsegetum	ICTV20152021
+MH923363_HycuGV_Hc1	MH923363	HycuGV Hc1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus hycuneae	ICTV202113429
+AF270937_PlxyGV_K1	AF270937	PlxyGV K1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus pluxylostellae	ICTV20020599
+KX855660_MyunGV_8	KX855660	MyunGV 8	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus altermyunipunctae	ICTV20175757
+KM371112_SfGV_VG008	KM371112	SfGV VG008	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus spofrugiperdae	ICTV20152019
+EU678671_PsunGV_H	EU678671	PsunGV H	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus myunipunctae	ICTV20020600
+KU752557_TnGV_LBIV-12	KU752557	TnGV LBIV-12	AA	none		False																
+AF162221_XcGV_alpha4	AF162221	XcGV alpha4	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus xecnigri	ICTV19990565
+EU255577_HearGV	EU255577	HearGV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus helarmigerae	ICTV20020596
+KR011718_MolaGV_SouthernBrazil	KR011718	MolaGV SouthernBrazil	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus molatipedis	ICTV201856533
+DQ288858_SpltGV_K1	DQ288858	SpltGV K1	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus spliturae	ICTV20165243
+DQ317692_NeabNPV	DQ317692	NeabNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Gammabaculovirus		Gammabaculovirus neabietis	ICTV202214027
+AY349019_NeleNPV	AY349019	NeleNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Gammabaculovirus		Gammabaculovirus nelecontei	ICTV20020618
+AY430810_NeseNPV	AY430810	NeseNPV	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Gammabaculovirus		Gammabaculovirus nesertiferis	ICTV19990573

@@ -1,0 +1,28 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AY324870_sevenband_grouper_nervous_necrosis_virus	AY324870	sevenband grouper nervous necrosis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus epinepheli	ICTV19961425
+GU592791_Lates_calcarifer_nervous_necrosis_virus	GU592791	Lates calcarifer nervous necrosis virus	nt	none		False																
+MH017207_redspotted_grouper_nervous_necrosis_viru	MH017207	redspotted grouper nervous necrosis viru	nt	none		False																
+KY315689_redspotted_grouper_nervous_necrosis_viru	KY315689	redspotted grouper nervous necrosis viru	nt	none		False																
+AF499774_guppy_nervous_necrosis_virus	AF499774	guppy nervous necrosis virus	nt	none		False																
+HQ859939_tiger_grouper_nervous_necrosis_virus	HQ859939	tiger grouper nervous necrosis virus	nt	none		False																
+JX402858_redspotted_grouper_nervous_necrosis_viru	JX402858	redspotted grouper nervous necrosis viru	nt	none		False																
+JN189992_Dicentrarchus_labrax_betanodavirus	JN189992	Dicentrarchus labrax betanodavirus	nt	none		False																
+GQ402013_redspotted_grouper_nervous_necrosis_viru	GQ402013	redspotted grouper nervous necrosis viru	nt	none		False																
+AB045980_Japanese_flounder_nervous_necrosis_virus	AB045980	Japanese flounder nervous necrosis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus epinepheli	ICTV19961425
+U39876_Dicentrarchus_labrax_encephalitis_virus	U39876	Dicentrarchus labrax encephalitis virus	nt	none		False																
+AY547549_Melanogrammus_aeglefinus_nervous_necrosi	AY547549	Melanogrammus aeglefinus nervous necrosi	nt	none		False																
+KU355849_Atlantic_halibut_betanodavirus	KU355849	Atlantic halibut betanodavirus	nt	none		False																
+AJ245641_Atlantic_halibut_virus	AJ245641	Atlantic halibut virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus verasperi	ICTV19961421
+AY962682Atlantic_halibut_nodavirus		AY962682Atlantic halibut nodavirus	nt	none		False																
+AJ698094_Dicentrarchus_labrax_encephalitis_virus	AJ698094	Dicentrarchus labrax encephalitis virus	nt	none		False																
+EU826138_barfin_flounder_virus	EU826138	barfin flounder virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus verasperi	ICTV19961421
+EF433469_Atlantic_cod_nodavirus	EF433469	Atlantic cod nodavirus	nt	none		False																
+KU355847_Atlantic_cod_betanodavirus	KU355847	Atlantic cod betanodavirus	nt	none		False																
+EF577393_Atlantic_cod_nodavirus	EF577393	Atlantic cod nodavirus	nt	none		False																
+JN189919_Solea_senegalensis_betanodavirus	JN189919	Solea senegalensis betanodavirus	nt	none		False																
+KY785169_Sparus_aurata_betanodavirus	KY785169	Sparus aurata betanodavirus	nt	none		False																
+D30814_striped_jack_nervous_necrosis_virus	D30814	striped jack nervous necrosis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus pseudocarangis	ICTV19951375
+AB056572_striped_jack_nervous_necrosis_virus	AB056572	striped jack nervous necrosis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus pseudocarangis	ICTV19951375
+AJ608266_turbot_nodavirus	AJ608266	turbot nodavirus	nt	none		False																
+EU236149_tiger_puffer_nervous_necrosis_virus	EU236149	tiger puffer nervous necrosis virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Betanodavirus		Betanodavirus takifugui	ICTV19961427
+KT781097_KSNNV-KorMu1	KT781097	KSNNV-KorMu1	nt	none		False																

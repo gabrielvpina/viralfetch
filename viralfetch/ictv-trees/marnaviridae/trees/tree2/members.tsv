@@ -1,0 +1,239 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+APG76693_Beihai_picorna-like_virus_50	APG76693	Beihai picorna-like virus 50	AA	none		False																
+APG78898_Beihai_picorna-like_virus_50	APG78898	Beihai picorna-like virus 50	AA	none		False																
+APG78507_Wenzhou_picorna-like_virus_22	APG78507	Wenzhou picorna-like virus 22	AA	none		False																
+APG78497_Wenzhou_picorna-like_virus_23	APG78497	Wenzhou picorna-like virus 23	AA	none		False																
+APG76708_Beihai_picorna-like_virus_59	APG76708	Beihai picorna-like virus 59	AA	none		False																
+APG78921_Beihai_picorna-like_virus_59	APG78921	Beihai picorna-like virus 59	AA	none		False																
+APG76888_Beihai_picorna-like_virus_63	APG76888	Beihai picorna-like virus 63	AA	none		False																
+BAE47143_Aurantiochytrium_ssRNA_virus	BAE47143	Aurantiochytrium ssRNA virus	AA	none		False																
+APG76771_Beihai_picorna-like_virus_64	APG76771	Beihai picorna-like virus 64	AA	none		False																
+APG76815_Beihai_picorna-like_virus_64	APG76815	Beihai picorna-like virus 64	AA	none		False																
+APG76690_Beihai_picorna-like_virus_62	APG76690	Beihai picorna-like virus 62	AA	none		False																
+APG76696_Beihai_picorna-like_virus_61	APG76696	Beihai picorna-like virus 61	AA	none		False																
+APG76685_Beihai_picorna-like_virus_60	APG76685	Beihai picorna-like virus 60	AA	none		False																
+APG78560_Wenzhou_picorna-like_virus_24	APG78560	Wenzhou picorna-like virus 24	AA	none		False																
+APG77477_Sanxia_picorna-like_virus_7	APG77477	Sanxia picorna-like virus 7	AA	none		False																
+APG78553_Wenzhou_picorna-like_virus_17	APG78553	Wenzhou picorna-like virus 17	AA	none		False																
+YP_009227212_Delisea_pulchra_RNA_virus	YP_009227212	Delisea pulchra RNA virus	AA	none		False																
+APG76861_Beihai_sipunculid_worm_virus_3	APG76861	Beihai sipunculid worm virus 3	AA	none		False																
+APG78922_Beihai_sipunculid_worm_virus_3	APG78922	Beihai sipunculid worm virus 3	AA	none		False																
+APG78555_Wenzhou_picorna-like_virus_9	APG78555	Wenzhou picorna-like virus 9	AA	none		False																
+APG78585_Beihai_mollusks_virus_1	APG78585	Beihai mollusks virus 1	AA	none		False																
+APG76840_Beihai_mollusks_virus_1	APG76840	Beihai mollusks virus 1	AA	none		False																
+APG78876_Beihai_mollusks_virus_1	APG78876	Beihai mollusks virus 1	AA	none		False																
+APG76764_Beihai_mollusks_virus_1	APG76764	Beihai mollusks virus 1	AA	none		False																
+APG78610_Beihai_mollusks_virus_1	APG78610	Beihai mollusks virus 1	AA	none		False																
+APG78936_Beihai_mollusks_virus_1	APG78936	Beihai mollusks virus 1	AA	none		False																
+APG78969_Beihai_mollusks_virus_1	APG78969	Beihai mollusks virus 1	AA	none		False																
+APG76858_Beihai_sipunculid_worm_virus_2	APG76858	Beihai sipunculid worm virus 2	AA	none		False																
+APG78919_Beihai_picorna-like_virus_31	APG78919	Beihai picorna-like virus 31	AA	none		False																
+YP_009047193_Asterionellopsis_glacialis_RNA_virus	YP_009047193	Asterionellopsis glacialis RNA virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Kusarnavirus		Kusarnavirus tomaruii	ICTV201856540
+APG78972_Beihai_picorna-like_virus_33	APG78972	Beihai picorna-like virus 33	AA	none		False																
+APG76842_Beihai_sipunculid_worm_virus_4	APG76842	Beihai sipunculid worm virus 4	AA	none		False																
+APG76714_Beihai_sipunculid_worm_virus_4	APG76714	Beihai sipunculid worm virus 4	AA	none		False																
+APG78907_Beihai_sipunculid_worm_virus_4	APG78907	Beihai sipunculid worm virus 4	AA	none		False																
+APG76844_Beihai_picorna-like_virus_32	APG76844	Beihai picorna-like virus 32	AA	none		False																
+APG78899_Beihai_picorna-like_virus_32	APG78899	Beihai picorna-like virus 32	AA	none		False																
+APG78531_Wenzhou_picorna-like_virus_10	APG78531	Wenzhou picorna-like virus 10	AA	none		False																
+APG78583_Wenzhou_picorna-like_virus_10	APG78583	Wenzhou picorna-like virus 10	AA	none		False																
+APG77928_Beihai_picorna-like_virus_34	APG77928	Beihai picorna-like virus 34	AA	none		False																
+APG78896_Beihai_picorna-like_virus_35	APG78896	Beihai picorna-like virus 35	AA	none		False																
+APG78604_Beihai_picorna-like_virus_35	APG78604	Beihai picorna-like virus 35	AA	none		False																
+APG77936_Beihai_picorna-like_virus_35	APG77936	Beihai picorna-like virus 35	AA	none		False																
+APG78014_Beihai_picorna-like_virus_35	APG78014	Beihai picorna-like virus 35	AA	none		False																
+APG76890_Beihai_picorna-like_virus_35	APG76890	Beihai picorna-like virus 35	AA	none		False																
+APG76899_Beihai_picorna-like_virus_35	APG76899	Beihai picorna-like virus 35	AA	none		False																
+APG76877_Beihai_picorna-like_virus_35	APG76877	Beihai picorna-like virus 35	AA	none		False																
+APG76823_Beihai_picorna-like_virus_35	APG76823	Beihai picorna-like virus 35	AA	none		False																
+APG76752_Beihai_picorna-like_virus_35	APG76752	Beihai picorna-like virus 35	AA	none		False																
+APG76710_Beihai_picorna-like_virus_35	APG76710	Beihai picorna-like virus 35	AA	none		False																
+APG78978_Beihai_picorna-like_virus_35	APG78978	Beihai picorna-like virus 35	AA	none		False																
+APG78868_Beihai_picorna-like_virus_35	APG78868	Beihai picorna-like virus 35	AA	none		False																
+APG76783_Beihai_picorna-like_virus_35	APG76783	Beihai picorna-like virus 35	AA	none		False																
+APG78952_Beihai_mollusks_virus_2	APG78952	Beihai mollusks virus 2	AA	none		False																
+APG78581_Beihai_mollusks_virus_2	APG78581	Beihai mollusks virus 2	AA	none		False																
+APG78924_Beihai_mollusks_virus_2	APG78924	Beihai mollusks virus 2	AA	none		False																
+APG76853_Beihai_picorna-like_virus_30	APG76853	Beihai picorna-like virus 30	AA	none		False																
+APG78606_Beihai_paphia_shell_virus_2	APG78606	Beihai paphia shell virus 2	AA	none		False																
+APG78963_2_Beihai_paphia_shell_virus_2	APG78963	2 Beihai paphia shell virus 2	AA	none		False																
+APG77473_Sanxia_picorna-like_virus_6	APG77473	Sanxia picorna-like virus 6	AA	none		False																
+APG76803_Beihai_picorna-like_virus_36	APG76803	Beihai picorna-like virus 36	AA	none		False																
+APG76901_Beihai_picorna-like_virus_37	APG76901	Beihai picorna-like virus 37	AA	none		False																
+APG78914_Beihai_picorna-like_virus_38	APG78914	Beihai picorna-like virus 38	AA	none		False																
+APG78578_Wenzhou_picorna-like_virus_53	APG78578	Wenzhou picorna-like virus 53	AA	none		False																
+APG76871_Beihai_picorna-like_virus_39	APG76871	Beihai picorna-like virus 39	AA	none		False																
+ASG92532_N_OV_013	ASG92532	N OV 013	AA	none		False																
+APG77399_Shahe_picorna-like_virus_3	APG77399	Shahe picorna-like virus 3	AA	none		False																
+ASG92527_N_OV_001	ASG92527	N OV 001	AA	none		False																
+ASG92534_N_OV_003	ASG92534	N OV 003	AA	none		False																
+APG76780_Beihai_picorna-like_virus_25	APG76780	Beihai picorna-like virus 25	AA	none		False																
+APG78933_Beihai_picorna-like_virus_24	APG78933	Beihai picorna-like virus 24	AA	none		False																
+APG78982_Beihai_picorna-like_virus_26	APG78982	Beihai picorna-like virus 26	AA	none		False																
+BAG30951_Chaetoceros_tenuissimus_RNA_virus_01	BAG30951	Chaetoceros tenuissimus RNA virus 01	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Bacillarnavirus		Bacillarnavirus setoensis	ICTV20115398
+APG76847_Beihai_picorna-like_virus_27	APG76847	Beihai picorna-like virus 27	AA	none		False																
+APG78940_Beihai_picorna-like_virus_28	APG78940	Beihai picorna-like virus 28	AA	none		False																
+BAE79742_Rhizosolenia_setigera_RNA_virus_01	BAE79742	Rhizosolenia setigera RNA virus 01	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Bacillarnavirus		Bacillarnavirus nagasakii	ICTV20115399
+YP_002647032_Chaetoceros_socialis_F._radians_RNA_virus	YP_002647032	Chaetoceros socialis F. radians RNA virus	AA	none		False																
+APG78476_Wenling_picorna-like_virus_1	APG78476	Wenling picorna-like virus 1	AA	none		False																
+APG78576_Wenzhou_gastropodes_virus_1	APG78576	Wenzhou gastropodes virus 1	AA	none		False																
+APG76787_Beihai_picorna-like_virus_20	APG76787	Beihai picorna-like virus 20	AA	none		False																
+APG78570_Wenzhou_picorna-like_virus_5	APG78570	Wenzhou picorna-like virus 5	AA	none		False																
+APG78883_Wenzhou_picorna-like_virus_5	APG78883	Wenzhou picorna-like virus 5	AA	none		False																
+APG78942_Beihai_paphia_shell_virus_1	APG78942	Beihai paphia shell virus 1	AA	none		False																
+APG78967_Beihai_paphia_shell_virus_1	APG78967	Beihai paphia shell virus 1	AA	none		False																
+APG76675_Wenzhou_picorna-like_virus_2	APG76675	Wenzhou picorna-like virus 2	AA	none		False																
+APG78545_Wenzhou_picorna-like_virus_2	APG78545	Wenzhou picorna-like virus 2	AA	none		False																
+YP_009255229_Antarctic_picorna-like_virus_2	YP_009255229	Antarctic picorna-like virus 2	AA	none		False																
+YP_009111336_Chaetoceros_tenuissimus_RNA_virus_type-II	YP_009111336	Chaetoceros tenuissimus RNA virus type-II	AA	none		False																
+BAK40203_Chaetoceros_sp._RNA_virus_2	BAK40203	Chaetoceros sp. RNA virus 2	AA	none		False																
+APG78938_Beihai_picorna-like_virus_4	APG78938	Beihai picorna-like virus 4	AA	none		False																
+APG78567_Wenzhou_picorna-like_virus_50	APG78567	Wenzhou picorna-like virus 50	AA	none		False																
+YP_001429581_Marine_RNA_virus_JP-A	YP_001429581	Marine RNA virus JP-A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Sogarnavirus		Sogarnavirus culleyi	ICTV201856545
+APG76892_Beihai_picorna-like_virus_1	APG76892	Beihai picorna-like virus 1	AA	none		False																
+APG76835_Beihai_picorna-like_virus_1	APG76835	Beihai picorna-like virus 1	AA	none		False																
+APG76728_Beihai_picorna-like_virus_1	APG76728	Beihai picorna-like virus 1	AA	none		False																
+APG78893_Beihai_picorna-like_virus_1	APG78893	Beihai picorna-like virus 1	AA	none		False																
+APG78022_Beihai_picorna-like_virus_1	APG78022	Beihai picorna-like virus 1	AA	none		False																
+APG76799_Beihai_picorna-like_virus_1	APG76799	Beihai picorna-like virus 1	AA	none		False																
+APG78917_Beihai_picorna-like_virus_13	APG78917	Beihai picorna-like virus 13	AA	none		False																
+APG76758_Beihai_picorna-like_virus_14	APG76758	Beihai picorna-like virus 14	AA	none		False																
+APG78976_Beihai_picorna-like_virus_15	APG78976	Beihai picorna-like virus 15	AA	none		False																
+APG78931_Beihai_picorna-like_virus_15	APG78931	Beihai picorna-like virus 15	AA	none		False																
+APG78880_Beihai_picorna-like_virus_15	APG78880	Beihai picorna-like virus 15	AA	none		False																
+APG78889_Beihai_picorna-like_virus_15	APG78889	Beihai picorna-like virus 15	AA	none		False																
+APG78862_Beihai_picorna-like_virus_15	APG78862	Beihai picorna-like virus 15	AA	none		False																
+APG78602_Beihai_picorna-like_virus_15	APG78602	Beihai picorna-like virus 15	AA	none		False																
+APG77938_Beihai_picorna-like_virus_15	APG77938	Beihai picorna-like virus 15	AA	none		False																
+APG76886_Beihai_picorna-like_virus_15	APG76886	Beihai picorna-like virus 15	AA	none		False																
+APG76912_Beihai_picorna-like_virus_15	APG76912	Beihai picorna-like virus 15	AA	none		False																
+APG76833_Beihai_picorna-like_virus_15	APG76833	Beihai picorna-like virus 15	AA	none		False																
+APG76797_Beihai_picorna-like_virus_15	APG76797	Beihai picorna-like virus 15	AA	none		False																
+APG76724_Beihai_picorna-like_virus_15	APG76724	Beihai picorna-like virus 15	AA	none		False																
+APG78961_Beihai_picorna-like_virus_15	APG78961	Beihai picorna-like virus 15	AA	none		False																
+APG76741_Beihai_picorna-like_virus_15	APG76741	Beihai picorna-like virus 15	AA	none		False																
+APG76845_Beihai_picorna-like_virus_5	APG76845	Beihai picorna-like virus 5	AA	none		False																
+APG76855_Beihai_picorna-like_virus_7	APG76855	Beihai picorna-like virus 7	AA	none		False																
+APG76837_Beihai_picorna-like_virus_6	APG76837	Beihai picorna-like virus 6	AA	none		False																
+APG78909_Beihai_picorna-like_virus_6	APG78909	Beihai picorna-like virus 6	AA	none		False																
+APG76736_Beihai_picorna-like_virus_9	APG76736	Beihai picorna-like virus 9	AA	none		False																
+BC-3		BC-3	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Sogarnavirus		Sogarnavirus kitsilanoensis	ICTV201856544
+APG78954_Beihai_picorna-like_virus_11	APG78954	Beihai picorna-like virus 11	AA	none		False																
+APG78572_Wenzhou_picorna-like_virus_1	APG78572	Wenzhou picorna-like virus 1	AA	none		False																
+APG76677_Wenzhou_picorna-like_virus_52	APG76677	Wenzhou picorna-like virus 52	AA	none		False																
+BC-2		BC-2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Sogarnavirus		Sogarnavirus gustavseniae	ICTV201856542
+YP_009230120.1	YP_009230120.1		AA	none		False																
+APG76851_Beihai_picorna-like_virus_8	APG76851	Beihai picorna-like virus 8	AA	none		False																
+APG77486_Sanxia_picorna-like_virus_5	APG77486	Sanxia picorna-like virus 5	AA	none		False																
+APG78028_Beihai_sesarmid_crab_virus_1	APG78028	Beihai sesarmid crab virus 1	AA	none		False																
+APG77496_Hubei_leech_virus_2	APG77496	Hubei leech virus 2	AA	none		False																
+APG79027_Changjiang_crawfish_virus_1	APG79027	Changjiang crawfish virus 1	AA	none		False																
+BC-1		BC-1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Salisharnavirus		Salisharnavirus vlokiae	ICTV201856551
+APG78929_Beihai_picorna-like_virus_17	APG78929	Beihai picorna-like virus 17	AA	none		False																
+YP_009230118.1	YP_009230118.1		AA	none		False																
+APG78574_Wenzhou_picorna-like_virus_4	APG78574	Wenzhou picorna-like virus 4	AA	none		False																
+APG76869_Beihai_picorna-like_virus_18	APG76869	Beihai picorna-like virus 18	AA	none		False																
+APG78057_Wenzhou_picorna-like_virus_18	APG78057	Wenzhou picorna-like virus 18	AA	none		False																
+ASG92522_N_OV_011	ASG92522	N OV 011	AA	none		False																
+APG77469_Sanxia_picorna-like_virus_1	APG77469	Sanxia picorna-like virus 1	AA	none		False																
+APG77466_Sanxia_picorna-like_virus_2	APG77466	Sanxia picorna-like virus 2	AA	none		False																
+APG77397_Shahe_picorna-like_virus_1	APG77397	Shahe picorna-like virus 1	AA	none		False																
+APG77468_Sanxia_picorna-like_virus_4	APG77468	Sanxia picorna-like virus 4	AA	none		False																
+APG77480_Sanxia_picorna-like_virus_3	APG77480	Sanxia picorna-like virus 3	AA	none		False																
+ASG92520_N_OV_039	ASG92520	N OV 039	AA	none		False																
+YP_009255232_Antarctic_picorna-like_virus_4	YP_009255232	Antarctic picorna-like virus 4	AA	none		False																
+YP_009230124.1	YP_009230124.1		AA	none		False																
+APG77366_Shahe_picorna-like_virus_2	APG77366	Shahe picorna-like virus 2	AA	none		False																
+APG78948_Beihai_picorna-like_virus_21	APG78948	Beihai picorna-like virus 21	AA	none		False																
+APG78558_Wenzhou_picorna-like_virus_32	APG78558	Wenzhou picorna-like virus 32	AA	none		False																
+ASG92547_Q_sR_OV_019	ASG92547	Q sR OV 019	AA	none		False																
+BC-4		BC-4	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Salisharnavirus		Salisharnavirus britensis	ICTV201856549
+APG78965_Beihai_picorna-like_virus_23	APG78965	Beihai picorna-like virus 23	AA	none		False																
+APG78600_Beihai_picorna-like_virus_23	APG78600	Beihai picorna-like virus 23	AA	none		False																
+APG78946_Beihai_picorna-like_virus_23	APG78946	Beihai picorna-like virus 23	AA	none		False																
+APG77933_Beihai_picorna-like_virus_22	APG77933	Beihai picorna-like virus 22	AA	none		False																
+APG78926_Beihai_octopus_virus_1	APG78926	Beihai octopus virus 1	AA	none		False																
+APG78055_Wenzhou_picorna-like_virus_7	APG78055	Wenzhou picorna-like virus 7	AA	none		False																
+APG78565_Wenzhou_picorna-like_virus_6	APG78565	Wenzhou picorna-like virus 6	AA	none		False																
+APG76785_Beihai_picorna-like_virus_19	APG76785	Beihai picorna-like virus 19	AA	none		False																
+APG76827_Beihai_sipunculid_worm_virus_1	APG76827	Beihai sipunculid worm virus 1	AA	none		False																
+APG76906_Beihai_picorna-like_virus_2	APG76906	Beihai picorna-like virus 2	AA	none		False																
+APG78944_Beihai_picorna-like_virus_2	APG78944	Beihai picorna-like virus 2	AA	none		False																
+APG76825_Beihai_picorna-like_virus_2	APG76825	Beihai picorna-like virus 2	AA	none		False																
+APG76795_Beihai_picorna-like_virus_2	APG76795	Beihai picorna-like virus 2	AA	none		False																
+APG76716_Beihai_picorna-like_virus_2	APG76716	Beihai picorna-like virus 2	AA	none		False																
+APG76756_Beihai_picorna-like_virus_2	APG76756	Beihai picorna-like virus 2	AA	none		False																
+APG78980_Beihai_picorna-like_virus_2	APG78980	Beihai picorna-like virus 2	AA	none		False																
+APG77940_Beihai_picorna-like_virus_2	APG77940	Beihai picorna-like virus 2	AA	none		False																
+APG77476_Sanxia_picorna-like_virus_10	APG77476	Sanxia picorna-like virus 10	AA	none		False																
+ASG92549__Q_sR_OV_022	ASG92549	Q sR OV 022	AA	none		False																
+APG78020_Beihai_picorna-like_virus_42	APG78020	Beihai picorna-like virus 42	AA	none		False																
+APG76706_Beihai_picorna-like_virus_58	APG76706	Beihai picorna-like virus 58	AA	none		False																
+APG77485_Sanxia_picorna-like_virus_8	APG77485	Sanxia picorna-like virus 8	AA	none		False																
+APG79000_Changjiang_picorna-like_virus_1	APG79000	Changjiang picorna-like virus 1	AA	none		False																
+APG78593_Wenzhou_picorna-like_virus_14	APG78593	Wenzhou picorna-like virus 14	AA	none		False																
+APG76734_Beihai_picorna-like_virus_43	APG76734	Beihai picorna-like virus 43	AA	none		False																
+APG76791_Beihai_picorna-like_virus_43	APG76791	Beihai picorna-like virus 43	AA	none		False																
+APG76908_Beihai_picorna-like_virus_43	APG76908	Beihai picorna-like virus 43	AA	none		False																
+APG76831_Beihai_picorna-like_virus_43	APG76831	Beihai picorna-like virus 43	AA	none		False																
+APG78018_Beihai_picorna-like_virus_43	APG78018	Beihai picorna-like virus 43	AA	none		False																
+YP_001429583_Marine_RNA_virus_JP-B	YP_001429583	Marine RNA virus JP-B	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Locarnavirus		Locarnavirus jerichoensis	ICTV201856538
+APG78502_Wenzhou_picorna-like_virus_15	APG78502	Wenzhou picorna-like virus 15	AA	none		False																
+APG76697_Beihai_razor_shell_virus_2	APG76697	Beihai razor shell virus 2	AA	none		False																
+APG78903_Beihai_razor_shell_virus_2	APG78903	Beihai razor shell virus 2	AA	none		False																
+APG78900_Beihai_razor_shell_virus_1	APG78900	Beihai razor shell virus 1	AA	none		False																
+APG76694_Beihai_razor_shell_virus_1	APG76694	Beihai razor shell virus 1	AA	none		False																
+APG76730_Beihai_razor_shell_virus_1	APG76730	Beihai razor shell virus 1	AA	none		False																
+APG78992_Changjiang_picorna-like_virus_3	APG78992	Changjiang picorna-like virus 3	AA	none		False																
+APG78866_Beihai_picorna-like_virus_44	APG78866	Beihai picorna-like virus 44	AA	none		False																
+AHA44480_Marine_RNA_virus_SF-3	AHA44480	Marine RNA virus SF-3	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Locarnavirus		Locarnavirus rohweri	ICTV201856537
+APG77365_Shahe_picorna-like_virus_4	APG77365	Shahe picorna-like virus 4	AA	none		False																
+APG77387_Shahe_picorna-like_virus_4	APG77387	Shahe picorna-like virus 4	AA	none		False																
+APG78911_Beihai_picorna-like_virus_46	APG78911	Beihai picorna-like virus 46	AA	none		False																
+APG78916_Beihai_picorna-like_virus_45	APG78916	Beihai picorna-like virus 45	AA	none		False																
+APG77498_Hubei_leech_virus_3	APG77498	Hubei leech virus 3	AA	none		False																
+APG78398_Hubei_picorna-like_virus_2	APG78398	Hubei picorna-like virus 2	AA	none		False																
+AFM44930_Marine_RNA_virus_SF-1	AFM44930	Marine RNA virus SF-1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Locarnavirus		Locarnavirus greningerii	ICTV201856536
+APG78402_Ubei_picorna-like_virus_3	APG78402	Ubei picorna-like virus 3	AA	none		False																
+APG78525_Wenzhou_picorna-like_virus_16	APG78525	Wenzhou picorna-like virus 16	AA	none		False																
+AGZ83339_Marine_RNA_virus_SF-2	AGZ83339	Marine RNA virus SF-2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Locarnavirus		Locarnavirus derisii	ICTV201856535
+APG77383_Shahe_picorna-like_virus_5	APG77383	Shahe picorna-like virus 5	AA	none		False																
+APG78504_Wenzhou_channeled_applesnail_virus_1	APG78504	Wenzhou channeled applesnail virus 1	AA	none		False																
+APG78400_Hubei_picorna-like_virus_4	APG78400	Hubei picorna-like virus 4	AA	none		False																
+APG78392_Hubei_picorna-like_virus_5	APG78392	Hubei picorna-like virus 5	AA	none		False																
+APG78994_Changjiang_picorna-like_virus_4	APG78994	Changjiang picorna-like virus 4	AA	none		False																
+APG78891_Beihai_picorna-like_virus_49	APG78891	Beihai picorna-like virus 49	AA	none		False																
+APG77494_Hubei_leech_virus_4	APG77494	Hubei leech virus 4	AA	none		False																
+APG79016_Hubei_leech_virus_4	APG79016	Hubei leech virus 4	AA	none		False																
+APG78024_Beihai_picorna-like_virus_47	APG78024	Beihai picorna-like virus 47	AA	none		False																
+APG77478_Sanxia_picorna-like_virus_9	APG77478	Sanxia picorna-like virus 9	AA	none		False																
+APG78918_Beihai_picorna-like_virus_48	APG78918	Beihai picorna-like virus 48	AA	none		False																
+APG78521_Wenzhou_picorna-like_virus_12	APG78521	Wenzhou picorna-like virus 12	AA	none		False																
+ASG92524_N_OV_080	ASG92524	N OV 080	AA	none		False																
+APG78557_Wenzhou_picorna-like_virus_13	APG78557	Wenzhou picorna-like virus 13	AA	none		False																
+APG76773_Beihai_picorna-like_virus_57	APG76773	Beihai picorna-like virus 57	AA	none		False																
+APG76812_Beihai_picorna-like_virus_57	APG76812	Beihai picorna-like virus 57	AA	none		False																
+ASG92530_N_OV_137	ASG92530	N OV 137	AA	none		False																
+APG78434_Hubei_picorna-like_virus_7	APG78434	Hubei picorna-like virus 7	AA	none		False																
+APG78407_Hubei_picorna-like_virus_7	APG78407	Hubei picorna-like virus 7	AA	none		False																
+APG78424_Sanxia_atyid_shrimp_virus_2	APG78424	Sanxia atyid shrimp virus 2	AA	none		False																
+APG77465_Sanxia_atyid_shrimp_virus_2	APG77465	Sanxia atyid shrimp virus 2	AA	none		False																
+APG79001_Changjiang_picorna-like_virus_2	APG79001	Changjiang picorna-like virus 2	AA	none		False																
+AAP97137_Heterosigma_akashiwo_RNA_virus	AAP97137	Heterosigma akashiwo RNA virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Marnavirus		Marnavirus taichanarum	ICTV20041391
+ASG92540_Q_sR_OV_020	ASG92540	Q sR OV 020	AA	none		False																
+ASG92542__Q_sR_OV_041	ASG92542	Q sR OV 041	AA	none		False																
+APG78394_Hubei_picorna-like_virus_6	APG78394	Hubei picorna-like virus 6	AA	none		False																
+APG78509_Wenzhou_picorna-like_virus_11	APG78509	Wenzhou picorna-like virus 11	AA	none		False																
+APG77368_Shahe_picorna-like_virus_14	APG77368	Shahe picorna-like virus 14	AA	none		False																
+APG77395_Shahe_picorna-like_virus_14	APG77395	Shahe picorna-like virus 14	AA	none		False																
+APG78541_Wenzhou_picorna-like_virus_21	APG78541	Wenzhou picorna-like virus 21	AA	none		False																
+APG78550_Wenzhou_picorna-like_virus_20	APG78550	Wenzhou picorna-like virus 20	AA	none		False																
+ASG92536_N_OV_064	ASG92536	N OV 064	AA	none		False																
+NP_647481_Cricket_paralysis_virus	NP_647481	Cricket paralysis virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Cripavirus		Cripavirus grylli	ICTV19820877
+NP_620562_Triatoma_virus	NP_620562	Triatoma virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus triatomae	ICTV20020877
+NP_066241_Acute_bee_paralysis_virus	NP_066241	Acute bee paralysis virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus apisacutum	ICTV20040961
+YP_009255231_Antarctic_picorna-like_virus_3	YP_009255231	Antarctic picorna-like virus 3	AA	none		False																
+APG77377_Shahe_picorna-like_virus_6	APG77377	Shahe picorna-like virus 6	AA	none		False																
+APG77381_Shahe_picorna-like_virus_6	APG77381	Shahe picorna-like virus 6	AA	none		False																
+APG78591_Wenzhou_picorna-like_virus_19	APG78591	Wenzhou picorna-like virus 19	AA	none		False																
+APG78971_Beihai_picorna-like_virus_56	APG78971	Beihai picorna-like virus 56	AA	none		False																

@@ -1,0 +1,1544 @@
+{
+  "tool_version": "viraltree/0.1.0",
+  "vmr_file": "VMR_MSL41.v1.20260320.tsv",
+  "generated_at": "2026-07-21T18:33:05+00:00",
+  "counts": {
+    "total": 186,
+    "included": 75,
+    "omitted": 111,
+    "error": 0
+  },
+  "families": [
+    {
+      "family": "Adamaviridae",
+      "slug": "adamaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Adenoviridae",
+      "slug": "adenoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 151,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Ahmunviridae",
+      "slug": "ahmunviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Aliusviridae",
+      "slug": "aliusviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Alloherpesviridae",
+      "slug": "alloherpesviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Alphaflexiviridae",
+      "slug": "alphaflexiviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 116,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Alphatetraviridae",
+      "slug": "alphatetraviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Alternaviridae",
+      "slug": "alternaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Amalgaviridae",
+      "slug": "amalgaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Amesuviridae",
+      "slug": "amesuviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Amnoonviridae",
+      "slug": "amnoonviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Ampullaviridae",
+      "slug": "ampullaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Anaerodiviridae",
+      "slug": "anaerodiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Anelloviridae",
+      "slug": "anelloviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Anicreviridae",
+      "slug": "anicreviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Aoguangviridae",
+      "slug": "aoguangviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Apasviridae",
+      "slug": "apasviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Arenaviridae",
+      "slug": "arenaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 69,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Arteriviridae",
+      "slug": "arteriviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Artiviridae",
+      "slug": "artiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Artoviridae",
+      "slug": "artoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 11,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Ascoviridae",
+      "slug": "ascoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 22,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Asfarviridae",
+      "slug": "asfarviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 30,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Aspiviridae",
+      "slug": "aspiviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 54,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Astroviridae",
+      "slug": "astroviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Avsunviroidae",
+      "slug": "avsunviroidae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 4,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Bacilladnaviridae",
+      "slug": "bacilladnaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Baculoviridae",
+      "slug": "baculoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 102,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Belpaoviridae",
+      "slug": "belpaoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 210,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Benyviridae",
+      "slug": "benyviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 49,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Betaflexiviridae",
+      "slug": "betaflexiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Bicaudaviridae",
+      "slug": "bicaudaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Bidnaviridae",
+      "slug": "bidnaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Birnaviridae",
+      "slug": "birnaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 31,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Bornaviridae",
+      "slug": "bornaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 50,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Botourmiaviridae",
+      "slug": "botourmiaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Bromoviridae",
+      "slug": "bromoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 38,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Caliciviridae",
+      "slug": "caliciviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 73,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Carmotetraviridae",
+      "slug": "carmotetraviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Caulimoviridae",
+      "slug": "caulimoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 108,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Chaacviridae",
+      "slug": "chaacviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Chaseviridae",
+      "slug": "chaseviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 669,
+      "molecules": [
+        "AA",
+        "unknown"
+      ]
+    },
+    {
+      "family": "Chrysoviridae",
+      "slug": "chrysoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 45,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Chuviridae",
+      "slug": "chuviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Circoviridae",
+      "slug": "circoviridae",
+      "status": "included",
+      "n_trees": 4,
+      "n_members": 210,
+      "molecules": [
+        "AA",
+        "nt"
+      ]
+    },
+    {
+      "family": "Clavaviridae",
+      "slug": "clavaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Closteroviridae",
+      "slug": "closteroviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 52,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Coronaviridae",
+      "slug": "coronaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 110,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Corticoviridae",
+      "slug": "corticoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Crepuscuviridae",
+      "slug": "crepuscuviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Cruliviridae",
+      "slug": "cruliviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Cystoviridae",
+      "slug": "cystoviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 21,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Deltaflexiviridae",
+      "slug": "deltaflexiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Dicistroviridae",
+      "slug": "dicistroviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 20,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Discoviridae",
+      "slug": "discoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Draupnirviridae",
+      "slug": "draupnirviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Druskaviridae",
+      "slug": "druskaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Endornaviridae",
+      "slug": "endornaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 32,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Eupolintoviridae",
+      "slug": "eupolintoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Filoviridae",
+      "slug": "filoviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 38,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Fimoviridae",
+      "slug": "fimoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 35,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Finnlakeviridae",
+      "slug": "finnlakeviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Flaviviridae",
+      "slug": "flaviviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 192,
+      "molecules": [
+        "AA",
+        "nt"
+      ]
+    },
+    {
+      "family": "Fusariviridae",
+      "slug": "fusariviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 39,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Fuselloviridae",
+      "slug": "fuselloviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Gammaflexiviridae",
+      "slug": "gammaflexiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Gandrviridae",
+      "slug": "gandrviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Geminiviridae",
+      "slug": "geminiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 29,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Globuloviridae",
+      "slug": "globuloviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Graaviviridae",
+      "slug": "graaviviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Guttaviridae",
+      "slug": "guttaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Hadakaviridae",
+      "slug": "hadakaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 5,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Hafunaviridae",
+      "slug": "hafunaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Haloferuviridae",
+      "slug": "haloferuviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Halomagnusviridae",
+      "slug": "halomagnusviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Halspiviridae",
+      "slug": "halspiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Hantaviridae",
+      "slug": "hantaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 53,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Hepadnaviridae",
+      "slug": "hepadnaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 60,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Hepeviridae",
+      "slug": "hepeviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 37,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Herelleviridae",
+      "slug": "herelleviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 92,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Hypoviridae",
+      "slug": "hypoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 44,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Hytrosaviridae",
+      "slug": "hytrosaviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 57,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Iflaviridae",
+      "slug": "iflaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 29,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Inoviridae",
+      "slug": "inoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 38,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Inseviridae",
+      "slug": "inseviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Iridoviridae",
+      "slug": "iridoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 47,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Kirkoviridae",
+      "slug": "kirkoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Kitaviridae",
+      "slug": "kitaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Kolmioviridae",
+      "slug": "kolmioviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Konkoviridae",
+      "slug": "konkoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Krittikaviridae",
+      "slug": "krittikaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Lebotiviridae",
+      "slug": "lebotiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Leishbuviridae",
+      "slug": "leishbuviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Leisingerviridae",
+      "slug": "leisingerviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Lipothrixviridae",
+      "slug": "lipothrixviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Lispiviridae",
+      "slug": "lispiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Madisaviridae",
+      "slug": "madisaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Malacoherpesviridae",
+      "slug": "malacoherpesviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Marnaviridae",
+      "slug": "marnaviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 322,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Matonaviridae",
+      "slug": "matonaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 54,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Mayoviridae",
+      "slug": "mayoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Megabirnaviridae",
+      "slug": "megabirnaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 18,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Metaviridae",
+      "slug": "metaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 210,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Metaxyviridae",
+      "slug": "metaxyviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Mymonaviridae",
+      "slug": "mymonaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Mypoviridae",
+      "slug": "mypoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Myriaviridae",
+      "slug": "myriaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Nairoviridae",
+      "slug": "nairoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 71,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Nanoviridae",
+      "slug": "nanoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 27,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Narnaviridae",
+      "slug": "narnaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Natareviridae",
+      "slug": "natareviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Nimaviridae",
+      "slug": "nimaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Nipumfusiviridae",
+      "slug": "nipumfusiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 10,
+      "molecules": [
+        "unknown"
+      ]
+    },
+    {
+      "family": "Nodaviridae",
+      "slug": "nodaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 38,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Nudiviridae",
+      "slug": "nudiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 17,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Nyamiviridae",
+      "slug": "nyamiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 27,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Orthoherpesviridae",
+      "slug": "orthoherpesviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Orthototiviridae",
+      "slug": "orthototiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Ouroboviridae",
+      "slug": "ouroboviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Ovaliviridae",
+      "slug": "ovaliviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Pamosaviridae",
+      "slug": "pamosaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Papillomaviridae",
+      "slug": "papillomaviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 396,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Paramyxoviridae",
+      "slug": "paramyxoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 78,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Partitiviridae",
+      "slug": "partitiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 45,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Parvoviridae",
+      "slug": "parvoviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 94,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Paulinoviridae",
+      "slug": "paulinoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Pecoviridae",
+      "slug": "pecoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Peribunyaviridae",
+      "slug": "peribunyaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 196,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Permutotetraviridae",
+      "slug": "permutotetraviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Phasmaviridae",
+      "slug": "phasmaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Phenuiviridae",
+      "slug": "phenuiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Picobirnaviridae",
+      "slug": "picobirnaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 27,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Picornaviridae",
+      "slug": "picornaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Pistolviridae",
+      "slug": "pistolviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Plasmaviridae",
+      "slug": "plasmaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Plectroviridae",
+      "slug": "plectroviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 6,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Pleolipoviridae",
+      "slug": "pleolipoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 16,
+      "molecules": [
+        "unknown"
+      ]
+    },
+    {
+      "family": "Pneumoviridae",
+      "slug": "pneumoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 12,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Polycipiviridae",
+      "slug": "polycipiviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 17,
+      "molecules": [
+        "unknown"
+      ]
+    },
+    {
+      "family": "Polymycoviridae",
+      "slug": "polymycoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Polyomaviridae",
+      "slug": "polyomaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 102,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Portogloboviridae",
+      "slug": "portogloboviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Pospiviroidae",
+      "slug": "pospiviroidae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 28,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Potyviridae",
+      "slug": "potyviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 208,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Poxviridae",
+      "slug": "poxviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 69,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Pseudoviridae",
+      "slug": "pseudoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 210,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Pyrstoviridae",
+      "slug": "pyrstoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Qinviridae",
+      "slug": "qinviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Quadriviridae",
+      "slug": "quadriviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 27,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Redondoviridae",
+      "slug": "redondoviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 66,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Retroviridae",
+      "slug": "retroviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 32,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Rhabdoviridae",
+      "slug": "rhabdoviridae",
+      "status": "included",
+      "n_trees": 3,
+      "n_members": 1077,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Roniviridae",
+      "slug": "roniviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 38,
+      "molecules": [
+        "AA",
+        "nt"
+      ]
+    },
+    {
+      "family": "Rudiviridae",
+      "slug": "rudiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Saparoviridae",
+      "slug": "saparoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Sarthroviridae",
+      "slug": "sarthroviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Satyavativiridae",
+      "slug": "satyavativiridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Secoviridae",
+      "slug": "secoviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 147,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Sedoreoviridae",
+      "slug": "sedoreoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Shortaselviridae",
+      "slug": "shortaselviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Simuloviridae",
+      "slug": "simuloviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Sinhaliviridae",
+      "slug": "sinhaliviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Smacoviridae",
+      "slug": "smacoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Soleiviridae",
+      "slug": "soleiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Solemoviridae",
+      "slug": "solemoviridae",
+      "status": "included",
+      "n_trees": 2,
+      "n_members": 129,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Solinviviridae",
+      "slug": "solinviviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 66,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Sphaerolipoviridae",
+      "slug": "sphaerolipoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Spinareoviridae",
+      "slug": "spinareoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Spiraviridae",
+      "slug": "spiraviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Sunviridae",
+      "slug": "sunviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Suolaviridae",
+      "slug": "suolaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Thaspiviridae",
+      "slug": "thaspiviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Togaviridae",
+      "slug": "togaviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 47,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Tomosaviridae",
+      "slug": "tomosaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Tonesaviridae",
+      "slug": "tonesaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Tosoviridae",
+      "slug": "tosoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Tristromaviridae",
+      "slug": "tristromaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Tulasviridae",
+      "slug": "tulasviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Turriviridae",
+      "slug": "turriviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Ungulaviridae",
+      "slug": "ungulaviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Vertoviridae",
+      "slug": "vertoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Virgaviridae",
+      "slug": "virgaviridae",
+      "status": "included",
+      "n_trees": 6,
+      "n_members": 254,
+      "molecules": [
+        "nt"
+      ]
+    },
+    {
+      "family": "Wupedeviridae",
+      "slug": "wupedeviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Xinmoviridae",
+      "slug": "xinmoviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    },
+    {
+      "family": "Yadokariviridae",
+      "slug": "yadokariviridae",
+      "status": "included",
+      "n_trees": 1,
+      "n_members": 16,
+      "molecules": [
+        "AA"
+      ]
+    },
+    {
+      "family": "Yueviridae",
+      "slug": "yueviridae",
+      "status": "omitted",
+      "reason": "no_resources",
+      "n_trees": 0
+    }
+  ]
+}

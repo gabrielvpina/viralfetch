@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODD.Polyoma.Fig3.v8.alignment.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Polyoma.Fig3.v8_treefile.nwk",
+    "molecule": "nt",
+    "n_members": 102,
+    "n_tips": 102,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

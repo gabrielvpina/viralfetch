@@ -1,0 +1,68 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+BVDV-1_JQ799141	JQ799141	BVDV-1	AA	none		False																
+BVDV-1_JN400273	JN400273	BVDV-1	AA	none		False																
+BVDV-1_AF526381	AF526381	BVDV-1	AA	none		False																
+BVDV-1_KX987157	KX987157	BVDV-1	AA	none		False																
+BVDV-1_LT631725	LT631725	BVDV-1	AA	none		False																
+BVDV-1_LC089876	LC089876	BVDV-1	AA	none		False																
+BVDV-1_KC853441	KC853441	BVDV-1	AA	none		False																
+BVDV-1_M96751	M96751	BVDV-1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus bovis	ICTV19990865
+BVDV-1_KF896608	KF896608	BVDV-1	AA	none		False																
+BVDV-1_KP941591	KP941591	BVDV-1	AA	none		False																
+BVDV-1_KC757383	KC757383	BVDV-1	AA	none		False																
+BVDV-1_AB078950	AB078950	BVDV-1	AA	none		False																
+BVDV-1_KP313732	KP313732	BVDV-1	AA	none		False																
+BVDV-1_KX577637	KX577637	BVDV-1	AA	none		False																
+BVDV-2_KJ000672	KJ000672	BVDV-2	AA	none		False																
+BVDV-2_AB567658	AB567658	BVDV-2	AA	none		False																
+BVDV-2_KT832818	KT832818	BVDV-2	AA	none		False																
+BVDV-2_HQ258810	HQ258810	BVDV-2	AA	none		False																
+BVDV-2_FJ527854	FJ527854	BVDV-2	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus tauri	ICTV19990866
+BVDV-2_KX096718	KX096718	BVDV-2	AA	none		False																
+BVDV-2_LC006970	LC006970	BVDV-2	AA	none		False																
+BVDV-2_KT875169	KT875169	BVDV-2	AA	none		False																
+BVDV-2_JF714967	JF714967	BVDV-2	AA	none		False																
+BVDV-2_AF002227	AF002227	BVDV-2	AA	none		False																
+BVDV-2_GQ888686	GQ888686	BVDV-2	AA	none		False																
+Giraffe_AF144617	AF144617	Giraffe	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus giraffae	ICTV20175782
+Giraffe_KJ660072	KJ660072	Giraffe	AA	none		False																
+Hobi-like_FJ040215	FJ040215	Hobi-like	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus brazilense	ICTV20175783
+Hobi-like_KC297709	KC297709	Hobi-like	AA	none		False																
+Hobi-like_KC788748	KC788748	Hobi-like	AA	none		False																
+Hobi-like_HQ231763	HQ231763	Hobi-like	AA	none		False																
+Hobi-like_JQ612704	JQ612704	Hobi-like	AA	none		False																
+Hobi-like_AB871953	AB871953	Hobi-like	AA	none		False																
+Hobi-like_JX985409	JX985409	Hobi-like	AA	none		False																
+Hobi-like_JX469119	JX469119	Hobi-like	AA	none		False																
+BDV_AF037405	AF037405	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_U70263	U70263	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_KJ463422	KJ463422	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_AB897785	AB897785	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_KF925348	KF925348	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_KC963426	KC963426	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_GU270877	GU270877	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_KF918753	KF918753	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+BDV_AF144618	AF144618	BDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ovis	ICTV19760642
+CSFV_AY646427	AY646427	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_X87939	X87939	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_AF407339	AF407339	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KF669877	KF669877	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_J04358	J04358	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KM362426	KM362426	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_FJ529205	FJ529205	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KP233070	KP233070	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_GQ923951	GQ923951	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KU504339	KU504339	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KJ619377	KJ619377	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+CSFV_KC851953	KC851953	CSFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus suis	ICTV19760643
+Aydin-like_KM408491	KM408491	Aydin-like	AA	none		False																
+Aydin-like_JX428945	JX428945	Aydin-like	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus aydinense	ICTV20175784
+Pronghorn_AY781152	AY781152	Pronghorn	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus antilocaprae	ICTV20175780
+Bungowannah_EF100713	EF100713	Bungowannah	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus australiaense	ICTV20175781
+Rat_KJ950914	KJ950914	Rat	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus ratti	ICTV20175785
+APPV_KU194229	KU194229	APPV	AA	none		False																
+APPV_KU041639	KU041639	APPV	AA	none		False																
+APPV_KX77872	KX77872	APPV	AA	none		False																
+APPV_LT594521	LT594521	APPV	AA	none		False																
+APPV_KR011347	KR011347	APPV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Flasuviricetes		Amarillovirales		Pestiviridae		Orthopestivirus		Orthopestivirus scrofae	ICTV20175786
+APPV_KX929062	KX929062	APPV	AA	none		False																

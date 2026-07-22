@@ -1,0 +1,72 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KM817674_-_Sanxia_Water_Strider_virus_1	KM817674	- Sanxia Water Strider virus 1	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Nairoviridae		Striwavirus		Striwavirus sanxiaense	ICTV20186219
+MT153554_-_Blattodean_nairo-related_virus_OKIAV321	MT153554	- Blattodean nairo-related virus OKIAV321	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Nairoviridae		Ocetevirus		Ocetevirus paratemnopterygis	ICTV202009790
+Paratemnopteryx_couloniana_bunya-like_virus		Paratemnopteryx couloniana bunya-like virus	AA	none		False																
+KM817702_-_Xinzhou_Spider_virus_strain_XZZZ-2	KM817702	- Xinzhou Spider virus strain XZZZ-2	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Nairoviridae		Xinspivirus		Xinspivirus xinzhouense	ICTV202009784
+KM817676_-_Shayang_Spider_virus_1	KM817676	- Shayang Spider virus 1	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Nairoviridae		Shaspivirus		Shaspivirus aranei	ICTV20186217
+ON456901-Sichuan_tick		ON456901-Sichuan tick	AA	none		False																
+KJ746877-L-South_Bay		KJ746877-L-South Bay	AA	none		False																
+MW315101-L-Beiji_nairovirus		MW315101-L-Beiji nairovirus	AA	none		False																
+MN542362-L-Gakugsa_tick_virus		MN542362-L-Gakugsa tick virus	AA	none		False																
+KT007142-L-Pustyn_virus		KT007142-L-Pustyn virus	AA	none		False																
+MF141040-L-Norway_nairovirus_1		MF141040-L-Norway nairovirus 1	AA	none		False																
+KY700684-L-Grotenhout		KY700684-L-Grotenhout	AA	none		False																
+LC621355-L-Yezo		LC621355-L-Yezo	AA	none		False																
+MT263282-L-Sulina_virus		MT263282-L-Sulina virus	AA	none		False																
+AJG39237-Huangpi_Tick_Virus_1		AJG39237-Huangpi Tick Virus 1	AA	none		False																
+AJG39253-Tacheng_Tick_Virus_1		AJG39253-Tacheng Tick Virus 1	AA	none		False																
+QFU19352-Tamdy_virus		QFU19352-Tamdy virus	AA	none		False																
+MT328776-L-Songling		MT328776-L-Songling	AA	none		False																
+OQ207703-Antu_virus		OQ207703-Antu virus	AA	none		False																
+AKC89349-Burana_virus		AKC89349-Burana virus	AA	none		False																
+AJG39255-Wenzhou_Tick_Virus		AJG39255-Wenzhou Tick Virus	AA	none		False																
+ON024087-Pangolin_nairovirus		ON024087-Pangolin nairovirus	AA	none		False																
+AKC89343-Chim_orthonairovirus		AKC89343-Chim orthonairovirus	AA	none		False																
+AMT75383-Bandia_virus		AMT75383-Bandia virus	AA	none		False																
+KU343160-Qalyub_virus		KU343160-Qalyub virus	AA	none		False																
+AKC89340-Geran_virus		AKC89340-Geran virus	AA	none		False																
+ALD84358-Yogue_virus		ALD84358-Yogue virus	AA	none		False																
+BAP90965-Leopards_Hill_virus		BAP90965-Leopards Hill virus	AA	none		False																
+ALD84349-Kasokero_virus		ALD84349-Kasokero virus	AA	none		False																
+ALD83626-Gossas_virus		ALD83626-Gossas virus	AA	none		False																
+AII79373-Issyk-Kul_virus		AII79373-Issyk-Kul virus	AA	none		False																
+AKC89313-Uzun_Agach_virus		AKC89313-Uzun Agach virus	AA	none		False																
+ALD84352-Keterrah_virus		ALD84352-Keterrah virus	AA	none		False																
+AMT75422-Saphire_II_virus		AMT75422-Saphire II virus	AA	none		False																
+AMT75371-Abu_Hammad_virus		AMT75371-Abu Hammad virus	AA	none		False																
+AMT75374-Abu_Mina_virus		AMT75374-Abu Mina virus	AA	none		False																
+KU343151-Dera_Ghazi_Khan_virus		KU343151-Dera Ghazi Khan virus	AA	none		False																
+AUD40046-Vinegar_Hill_virus		AUD40046-Vinegar Hill virus	AA	none		False																
+AXP33563-Estero_Real_virus		AXP33563-Estero Real virus	AA	none		False																
+AMT75425-Soldado_virus		AMT75425-Soldado virus	AA	none		False																
+AMT75404-Great_Saltee_virus		AMT75404-Great Saltee virus	AA	none		False																
+AKC89346-Caspiy_virus		AKC89346-Caspiy virus	AA	none		False																
+AMT75437-Zirqa_virus		AMT75437-Zirqa virus	AA	none		False																
+AMT75410-Punta_Salinas_virus		AMT75410-Punta Salinas virus	AA	none		False																
+AMT75416-Raza_virus		AMT75416-Raza virus	AA	none		False																
+KU343154-Farallon_virus		KU343154-Farallon virus	AA	none		False																
+AMT75407-Hughes_orthonairovirus		AMT75407-Hughes orthonairovirus	AA	none		False																
+OP514653-Gubbo_nairo		OP514653-Gubbo nairo	AA	none		False																
+AKC89358-Artashat_orthonairovirus		AKC89358-Artashat orthonairovirus	AA	none		False																
+QHI42110-Rondonia_orthonairovirus		QHI42110-Rondonia orthonairovirus	AA	none		False																
+AMT75428-Taggert_virus		AMT75428-Taggert virus	AA	none		False																
+AMT75419-Sakhalin_orthonairovirus		AMT75419-Sakhalin orthonairovirus	AA	none		False																
+AMT75431-Tillamook_virus		AMT75431-Tillamook virus	AA	none		False																
+KU343139-Clo_Mor_virus		KU343139-Clo Mor virus	AA	none		False																
+AMT75377-Avalon_virus		AMT75377-Avalon virus	AA	none		False																
+AZB49553-Paramushir_virus		AZB49553-Paramushir virus	AA	none		False																
+LC671712-Lamusara		LC671712-Lamusara	AA	none		False																
+AFH89032-Erve_virus		AFH89032-Erve virus	AA	none		False																
+ALD84355-Thiafora_orthonairovirus		ALD84355-Thiafora orthonairovirus	AA	none		False																
+OM645180-Cencurut_virus		OM645180-Cencurut virus	AA	none		False																
+OM030321-Wufeng_crocidura		OM030321-Wufeng crocidura	AA	none		False																
+MW391927-Ortho_YS		MW391927-Ortho YS	AA	none		False																
+ABB30012-Agai_virus		ABB30012-Agai virus	AA	none		False																
+AAR25663-Crimean-Congo_hemorrhagic_fever_orthonairovirus		AAR25663-Crimean-Congo hemorrhagic fever orthonairovirus	AA	none		False																
+ABY82502-Kupe_virus		ABY82502-Kupe virus	AA	none		False																
+AAB18834-Dugbe_orthonairovirus		AAB18834-Dugbe orthonairovirus	AA	none		False																
+AIZ00432-Nairobi_sheep_disease_virus		AIZ00432-Nairobi sheep disease virus	AA	none		False																
+QNH88011-Meram_virus		QNH88011-Meram virus	AA	none		False																
+BAU21075-Tofla_virus		BAU21075-Tofla virus	AA	none		False																
+AJW66841-Hazara_virus		AJW66841-Hazara virus	AA	none		False																
+ON184084-Meihua_Mountain		ON184084-Meihua Mountain	AA	none		False																

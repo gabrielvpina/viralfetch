@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ODD.Herelle.Fig3_.v5.align_.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ODD.Herelle.Fig3_.v5.treefile.txt",
+    "molecule": "AA",
+    "n_members": 92,
+    "n_tips": 92,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

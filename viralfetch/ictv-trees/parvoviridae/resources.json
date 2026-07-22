@@ -1,0 +1,41 @@
+[
+  {
+    "figure_label": "Figure_5",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig5.align.v3.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig5.treefile.v3.nwk",
+    "molecule": "AA",
+    "n_members": 15,
+    "n_tips": 15,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig6a.align.v2.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig6a.treefile.v2.nwk",
+    "molecule": "AA",
+    "n_members": 20,
+    "n_tips": 21,
+    "alignment_coverage": 0.8,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig6b.v7.align.fa",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Parvo.Fig6B.v7.tree.tre",
+    "molecule": "AA",
+    "n_members": 59,
+    "n_tips": 59,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

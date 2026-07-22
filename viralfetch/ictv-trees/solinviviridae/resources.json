@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/Figure3-1.v2.aa.alignment.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Figure3-2.v2.newick.nwk",
+    "molecule": "AA",
+    "n_members": 66,
+    "n_tips": 67,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

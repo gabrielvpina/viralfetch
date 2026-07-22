@@ -1,0 +1,209 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+MH645042_wheat_spindle_streak_mosaic_virus	MH645042	wheat spindle streak mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus tritici	ICTV19931503
+D86635_wheat_yellow_mosaic_virus	D86635	wheat yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus triticitessellati	ICTV19991356
+AJ132269_barley_yellow_mosaic_virus	AJ132269	barley yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus hordeiluteum	ICTV19931500
+AJ306719_oat_mosaic_virus	AJ306719	oat mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus avenae	ICTV19931501
+X90904_barley_mild_mosaic_virus	X90904	barley mild mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus hordei	ICTV19931499
+LC060925_rice_necrosis_mosaic_virus	LC060925	rice necrosis mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bymovirus		Bymovirus oryzae	ICTV19931502
+OL472142ACCESSION_NOT_ON_SPREADSHEET	OL472142		AA	none		False																
+MG755240_yam_chlorotic_necrosis_virus	MG755240	yam chlorotic necrosis virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Macluravirus		Macluravirus dioscoreaflavinecrosis	ICTV201907444
+AB710145_Chinese_yam_necrotic_mosaic_virus	AB710145	Chinese yam necrotic mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Macluravirus		Macluravirus dioscoreachinense	ICTV20084479
+KT724961_yam_chlorotic_mosaic_virus	KT724961	yam chlorotic mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Macluravirus		Macluravirus dioscoreaflavitessellati	ICTV20165418
+MF622947_cardamom_mosaic_virus	MF622947	cardamom mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Macluravirus		Macluravirus cardamomi	ICTV19911763
+MG978107_Alpinia_oxyphylla_mosaic_virus	MG978107	Alpinia oxyphylla mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Macluravirus		Macluravirus alipiniatessallati	ICTV201907443
+0.16690164		0.16690164	AA	none		False																
+OL958554ACCESSION_NOT_ON_SPREADSHEET	OL958554		AA	none		False																
+KY491536_bellflower_veinal_mottle_virus	KY491536	bellflower veinal mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Bevemovirus		Bevemovirus campanulae	ICTV20175915
+MH330686_areca_palm_necrotic_spindleâspot_virus	MH330686	areca palm necrotic spindleâspot virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Arepavirus		Arepavirus arecamaculatum	ICTV201907456
+MH395371_areca_palm_necrotic_ringspot_virus	MH395371	areca palm necrotic ringspot virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Arepavirus		Arepavirus arecae	ICTV201907457
+MH932227_celery_latent_virus	MH932227	celery latent virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Celavirus		Celavirus apii	ICTV201907463
+JX156425_Caladenia_virus_A	JX156425	Caladenia virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Poacevirus		Poacevirus caladeniae	ICTV20153813
+GQ388116_sugarcane_streak_mosaic_virus	GQ388116	sugarcane streak mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Poacevirus		Poacevirus sacchari	ICTV20041836
+FJ263671_Triticum_mosaic_virus	FJ263671	Triticum mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Poacevirus		Poacevirus tritici	ICTV20115402
+MW537584ACCESSION_NOT_ON_SPREADSHEET	MW537584		AA	none		False																
+Z73124_sweet_potato_mild_mottle_virus	Z73124	sweet potato mild mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus lenisbatatae	ICTV19982236
+HM181930_Ugandan_cassava_brown_streak_virus	HM181930	Ugandan cassava brown streak virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus manihotis	ICTV20115387
+GU563327_cassava_brown_streak_virus	GU563327	cassava brown streak virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus brunusmanihotis	ICTV20041718
+EU259611_squash_vein_yellowing_virus	EU259611	squash vein yellowing virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus cucurbitavenaflavi	ICTV20084475
+AY578085_cucumber_vein_yellowing_virus	AY578085	cucumber vein yellowing virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus cucumisvenaflavi	ICTV20041719
+KU935732_Coccinia_mottle_virus	KU935732	Coccinia mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Ipomovirus		Ipomovirus cocciniae	ICTV20175917
+EF608612_wheat_Eqlid_mosaic_virus	EF608612	wheat Eqlid mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus eqlidense	ICTV20094672
+Z48506_brome_streak_mosaic_virus	Z48506	brome streak mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus bromi	ICTV19982324
+KF260962_tall_oatgrass_mosaic_virus	KF260962	tall oatgrass mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus arrhenatheri	ICTV20143353
+KF984546_yellow_oat-grass_mosaic_virus	KF984546	yellow oat-grass mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus triseti	ICTV20125750
+AY377938_oat_necrotic_mottle_virus	AY377938	oat necrotic mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus avenae	ICTV19931580
+AF057533_wheat_streak_mosaic_virus	AF057533	wheat streak mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Tritimovirus		Tritimovirus tritici	ICTV19931582
+MH379332_Passiflora_edulis_symptomless_virus	MH379332	Passiflora edulis symptomless virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Roymovirus		Roymovirus passifloralatentis	ICTV201907450
+JF280796_rose_yellow_mosaic_virus	JF280796	rose yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Roymovirus		Roymovirus rosae	ICTV20132985
+AY994084_blackberry_virus_Y	AY994084	blackberry virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Brambyvirus		Brambyvirus rubi	ICTV20094507
+KY612317_Common_reed_chlorotic_stripe_virus	KY612317	Common reed chlorotic stripe virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Phragmivirus		Phragmivirus phragmii	ICTV202420509
+MN788417_Spartina_mottle_virus	MN788417	Spartina mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Phragmivirus		Phragmivirus spartinae	ICTV202420510
+Y09854_ryegrass_mosaic_virus	Y09854	ryegrass mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Rymovirus		Rymovirus lolii	ICTV19931581
+AY623627_Hordeum_mosaic_virus	AY623627	Hordeum mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Rymovirus		Rymovirus hordei	ICTV19931579
+AY623626_Agropyron_mosaic_virus	AY623626	Agropyron mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Rymovirus		Rymovirus agropyronis	ICTV19931578
+KT692938_iris_severe_mosaic_virus	KT692938	iris severe mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus iriseverum	ICTV19911785
+OL584375ACCESSION_NOT_ON_SPREADSHEET	OL584375		AA	none		False																
+MK286375_Costus_stripe_mosaic_virus	MK286375	Costus stripe mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus costus	ICTV202009670
+AM182028_Narcissus_degeneration_virus	AM182028	Narcissus degeneration virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus narcissusdegeneris	ICTV19821313
+JQ723475_Cyrtanthus_elatus_virus_A	JQ723475	Cyrtanthus elatus virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cyrtanthi	ICTV20143340
+AJ510223_onion_yellow_dwarf_virus	AJ510223	onion yellow dwarf virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cepae	ICTV19760769
+AJ865076_shallot_yellow_stripe_virus	AJ865076	shallot yellow stripe virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus ascaloniae	ICTV19991430
+JX156422_donkey_orchid_virus_A	JX156422	donkey orchid virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus adiuris	ICTV20153974
+AF499738_cocksfoot_streak_virus	AF499738	cocksfoot streak virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus dactylis	ICTV19760760
+MW035311ACCESSION_NOT_ON_SPREADSHEET	MW035311		AA	none		False																
+Z26920_johnsongrass_mosaic_virus	Z26920	johnsongrass mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus halapensis	ICTV19911786
+GQ421689_Canna_yellow_streak_virus	GQ421689	Canna yellow streak virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cannae	ICTV20094545
+JQ692088_Zea_mosaic_virus_/_Iranian_johnsongrass_mosaic_virus	JQ692088	Zea mosaic virus / Iranian johnsongrass mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus zeatessellati	ICTV20041826
+AY642590_Pennisetum_mosaic_virus	AY642590	Pennisetum mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus pennisseti	ICTV20084560
+AJ297628_sugarcane_mosaic_virus	AJ297628	sugarcane mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus sacchari	ICTV19760782
+AJ001691_maize_dwarf_mosaic_virus	AJ001691	maize dwarf mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus zeananus	ICTV19911789
+AJ3101970ACCESSION_FORMAT_NOT_RECOGNISED		AJ3101970ACCESSION FORMAT NOT RECOGNISED	AA	none		False																
+D10930_pea_seed-borne_mosaic_virus	D10930	pea seed-borne mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus pisumsemenportati	ICTV19760774
+KP343681_Catharanthus_mosaic_virus	KP343681	Catharanthus mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus catharantessellati	ICTV20153973
+KY657266_cucurbit_vein_banding_virus	KY657266	cucurbit vein banding virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cucurbitae	ICTV201856672
+OL771186ACCESSION_NOT_ON_SPREADSHEET	OL771186		AA	none		False																
+OL771185ACCESSION_NOT_ON_SPREADSHEET	OL771185		AA	none		False																
+MH376747_Pleione_flower_breaking_virus	MH376747	Pleione flower breaking virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus pleionis	ICTV202009674
+JF838187_keunjorong_mosaic_virus	JF838187	keunjorong mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cynanchi	ICTV20143336
+LC228573_Gomphocarpus_mosaic_virus	LC228573	Gomphocarpus mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus gomphocarphi	ICTV201907434
+AY626825_Zantedeschia_mild_mosaic_virus	AY626825	Zantedeschia mild mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus zantedeschiatenuis	ICTV20084608
+AJ298033_dasheen_mosaic_virus	AJ298033	dasheen mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus dasheenis	ICTV19760763
+AF127929_zucchini_yellow_mosaic_virus	AF127929	zucchini yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cucurbitaflavitesselati	ICTV19911826
+MH286883_passionfruit_Vietnam_virus	MH286883	passionfruit Vietnam virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus passifloramaculae	ICTV202009673
+DQ851493_Telosma_mosaic_virus	DQ851493	Telosma mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus telosmae	ICTV20094642
+U19287_bean_common_mosaic_necrosis_virus	U19287	bean common mosaic necrosis virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus phaseoli	ICTV19951863
+AF348210_cowpea_aphid-borne_mosaic_virus	AF348210	cowpea aphid-borne mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus vignae	ICTV19710255
+OL584353ACCESSION_NOT_ON_SPREADSHEET	OL584353		AA	none		False																
+MK110656_Ugandan_Passiflora_virus	MK110656	Ugandan Passiflora virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus passiflorafricanse	ICTV202009675
+LC379162_East_Asian_Passiflora_distortion_virus	LC379162	East Asian Passiflora distortion virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus passifloradistorti	ICTV201907433
+KY562565_saffron_latent_virus	KY562565	saffron latent virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus croci	ICTV201856675
+MF509898_Paris_mosaic_necrosis_virus	MF509898	Paris mosaic necrosis virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus parisnecrosis	ICTV201856674
+AB246773_East_Asian_Passiflora_virus	AB246773	East Asian Passiflora virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus orionspassiflorae	ICTV20084517
+AM039800_fritillary_virus_Y	AM039800	fritillary virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus fritillariae	ICTV20084521
+AY656816_Wisteria_vein_mosaic_virus	AY656816	Wisteria vein mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus wisteriae	ICTV19821336
+OQ148665_Kudzu_chlorotic_ring_blotch_virus	OQ148665	Kudzu chlorotic ring blotch virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus puerariae	ICTV202420502
+AY437609_watermelon_mosaic_virus	AY437609	watermelon mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus citrulli	ICTV19760785
+D00507_soybean_mosaic_virus	D00507	soybean mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus glycitessellati	ICTV19710260
+EF105298ACCESSION_NOT_ON_SPREADSHEET	EF105298		AA	none		False																
+HQ122652_passion_fruit_woodiness_virus	HQ122652	passion fruit woodiness virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus passiflorae	ICTV19760772
+JQ807999_blue_squill_virus_A	JQ807999	blue squill virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus chamaescillae	ICTV20143332
+HQ161081_Hardenbergia_mosaic_virus	HQ161081	Hardenbergia mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus hardenbergiae	ICTV20094574
+KU981084_impatiens_flower_break_virus	KU981084	impatiens flower break virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus impatiensis	ICTV20175921
+JN190431_yambean_mosaic_virus	JN190431	yambean mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus pachyrhizus	ICTV20115432
+AJ312437_bean_common_mosaic_virus	AJ312437	bean common mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus phaseovulgaris	ICTV19991368
+FM206346_Freesia_mosaic_virus	FM206346	Freesia mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus freesiae	ICTV20094569
+AF023848_peanut_mottle_virus	AF023848	peanut mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus arachidis	ICTV19760775
+MN592680_Begonia_flower_breaking_virus	MN592680	Begonia flower breaking virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus begoniae	ICTV202009669
+AY206394_beet_mosaic_virus	AY206394	beet mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus betaceum	ICTV19710252
+DQ821938_Basella_rugose_mosaic_virus	DQ821938	Basella rugose mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus basellae	ICTV20084491
+MK241979_Dendrobium_chlorotic_mosaic_virus	MK241979	Dendrobium chlorotic mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus dendrobii	ICTV201907431
+DQ851496_banana_bract_mosaic_virus	DQ851496	banana bract mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus musae	ICTV19991366
+MN114634_Noni_mosaic_virus	MN114634	Noni mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus morindatessellati	ICTV202009671
+MH206616_Dioscorea_mosaic_virus	MH206616	Dioscorea mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus dioscoreae	ICTV201907432
+JX470965_yam_mild_mosaic_virus	JX470965	yam mild mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus yamplacidum	ICTV20074423
+EF427894_Gloriosa_stripe_mosaic_virus	EF427894	Gloriosa stripe mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus gloriosae	ICTV19911777
+MH779476ACCESSION_NOT_ON_SPREADSHEET	MH779476		AA	none		False																
+DQ851495_wild_tomato_mosaic_virus	DQ851495	wild tomato mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus torvi	ICTV20094659
+DQ645484_pepper_veinal_mottle_virus	DQ645484	pepper veinal mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsivenae	ICTV19760777
+AJ237843_chilli_veinal_mottle_virus	AJ237843	chilli veinal mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsivenamaculae	ICTV19951872
+MF997470_African_eggplant_mosaic_virus	MF997470	African eggplant mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus melongenae	ICTV201856671
+EF219408_tobacco_vein_banding_mosaic_virus	EF219408	tobacco vein banding mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus nicotianavenaobscurum	ICTV19982309
+JN008909_chilli_ringspot_virus	JN008909	chilli ringspot virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsianuli	ICTV20094551
+AB818538_Habenaria_mosaic_virus	AB818538	Habenaria mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus habenariae	ICTV20143335
+PQ156407ACCESSION_NOT_ON_SPREADSHEET	PQ156407		AA	none		False																
+KP769852_lettuce_Italian_necrotic_virus	KP769852	lettuce Italian necrotic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus lactucaitalicense	ICTV20165420
+X67673_papaya_ringspot_virus	X67673	papaya ringspot virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus papayanuli	ICTV19911795
+KC345607_zucchini_tigre_mosaic_virus	KC345607	zucchini tigre mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus pepotigris	ICTV20143342
+KY623506_wild_melon_banding_virus	KY623506	wild melon banding virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus melozonati	ICTV201856677
+EU410442_Algerian_watermelon_mosaic_virus	EU410442	Algerian watermelon mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus algeriaense	ICTV20094524
+KU355553_zucchini_shoestring_virus	KU355553	zucchini shoestring virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus peporesticulae	ICTV20165421
+EF579955_Moroccan_watermelon_mosaic_virus	EF579955	Moroccan watermelon mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus citrullimoroccense	ICTV19991406
+KY623505_Sudan_watermelon_mosaic_virus	KY623505	Sudan watermelon mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cordophani	ICTV201856676
+DQ925486_Arracacha_mottle_virus	DQ925486	Arracacha mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus arracachae	ICTV20094532
+JQ314463_tomato_necrotic_stunt_virus	JQ314463	tomato necrotic stunt virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus esculentinecrosis	ICTV20143339
+OL355031ACCESSION_NOT_ON_SPREADSHEET	OL355031		AA	none		False																
+KU685505_Barbacena_virus_Y	KU685505	Barbacena virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus barbacenense	ICTV20175918
+AF538686_Bidens_mottle_virus	AF538686	Bidens mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus bidenstessellati	ICTV19760756
+EU564817_Verbena_virus_Y	EU564817	Verbena virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus verbenae	ICTV20143341
+MH680824_mashua_virus_Y	MH680824	mashua virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus tropaeoli	ICTV201907436
+MK440140ACCESSION_NOT_ON_SPREADSHEET	MK440140		AA	none		False																
+OL584351ACCESSION_NOT_ON_SPREADSHEET	OL584351		AA	none		False																
+KX856009_sunflower_ring_blotch_virus	KX856009	sunflower ring blotch virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus heliannulabis	ICTV20175923
+KF649336_Bidens_mosaic_virus	KF649336	Bidens mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus bidensia	ICTV20143331
+GU181199_sunflower_chlorotic_mottle_virus	GU181199	sunflower chlorotic mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus helichloromaculae	ICTV20115436
+X12456_potato_virus_Y	X12456	potato virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus yituberosi	ICTV19710259
+AM181350_pepper_severe_mosaic_virus	AM181350	pepper severe mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsiseverum	ICTV19821322
+AB541985_pepper_yellow_mosaic_virus	AB541985	pepper yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsiflavi	ICTV20041794
+KT834407_tobacco_mosqueado_virus	KT834407	tobacco mosqueado virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus nicotianamaculae	ICTV20175924
+AJ437280_Peru_tomato_mosaic_virus	AJ437280	Peru tomato mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus perulycopersici	ICTV19911818
+AJ243766_potato_virus_V	AJ243766	potato virus V	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus vetuberosi	ICTV19911807
+AJ437279_wild_potato_mosaic_virus	AJ437279	wild potato mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus muricati	ICTV19991446
+M96425_pepper_mottle_virus	M96425	pepper mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus capsimaculae	ICTV19760776
+OR497357ACCESSION_NOT_ON_SPREADSHEET	OR497357		AA	none		False																
+JX867236_Brugmansia_mosaic_virus	JX867236	Brugmansia mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus brugmansiae	ICTV20143333
+OM323987ACCESSION_NOT_ON_SPREADSHEET	OM323987		AA	none		False																
+U42596_yam_mosaic_virus	U42596	yam mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus yamtesselati	ICTV19911824
+T63386_pecan_mosaic-associated_virus	T63386	pecan mosaic-associated virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus caryae	ICTV20175922
+X97705_lettuce_mosaic_virus	X97705	lettuce mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus lactucae	ICTV19760767
+MZ389235_Aconitum_virus_2	MZ389235	Aconitum virus 2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus aconiti	ICTV202420501
+MT895186ACCESSION_NOT_ON_SPREADSHEET	MT895186		AA	none		False																
+OR879085_Lily_virus_A	OR879085	Lily virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus alilii	ICTV202420503
+AJ564636_lily_mottle_virus	AJ564636	lily mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus lilimaculae	ICTV19991404
+AJ307057_leek_yellow_stripe_virus	AJ307057	leek yellow stripe virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus ampeloprasi	ICTV19821311
+MF543013_lily_yellow_mosaic_virus	MF543013	lily yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus yililii	ICTV201907435
+OK632024_Saffron_yellow_mosaic_virus	OK632024	Saffron yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus crocitessellati	ICTV202420507
+MF953305_Mediterranean_ruda_virus	MF953305	Mediterranean ruda virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus rutae	ICTV201856673
+AB011819_clover_yellow_vein_virus	AB011819	clover yellow vein virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus trifolii	ICTV19951873
+D83749_bean_yellow_mosaic_virus	D83749	bean yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus phaseoluteum	ICTV19710251
+ON871824_Paris_yunnanensis_mosaic_chlorotic_virus	ON871824	Paris yunnanensis mosaic chlorotic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus parisflavitessellati	ICTV202420504
+MH779625_Platycodon_mild_mottle_virus	MH779625	Platycodon mild mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus platycodonis	ICTV201907437
+MN549985_Paris_virus_1	MN549985	Paris virus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus paris	ICTV202009672
+AJ851866_Thunberg_fritillary_mosaic_virus	AJ851866	Thunberg fritillary mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus thurnbergii	ICTV20084591
+KT222674_Jasmine_virus_T	KT222674	Jasmine virus T	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus jasmini	ICTV20165419
+OP871788_Snowdrop_virus_Y	OP871788	Snowdrop virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus galanthi	ICTV202420508
+GQ916624_Panax_virus_Y	GQ916624	Panax virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus panax	ICTV20143338
+HQ676607_celery_mosaic_virus	HQ676607	celery mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus apiumtessellati	ICTV19760758
+OK058511ACCESSION_NOT_ON_SPREADSHEET	OK058511		AA	none		False																
+HM363516_Apium_virus_Y	HM363516	Apium virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus apii	ICTV20074321
+JX156434_carrot_thin_leaf_virus	JX156434	carrot thin leaf virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus carotatenuifoli	ICTV19911765
+AB219545_konjac_mosaic_virus	AB219545	konjac mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus konjac	ICTV20084536
+OL742438ACCESSION_NOT_ON_SPREADSHEET	OL742438		AA	none		False																
+D13751_plum_pox_virus	D13751	plum pox virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus plumpoxi	ICTV19791085
+MZ555807ACCESSION_NOT_ON_SPREADSHEET	MZ555807		AA	none		False																
+KJ830760_asparagus_virus_1	KJ830760	asparagus virus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus asparagi	ICTV19911757
+KY828925_hyacinth_mosaic_virus	KY828925	hyacinth mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus hyacinthi	ICTV19982270
+ON428226_Polygonatum_kingianum_mottle_virus	ON428226	Polygonatum kingianum mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus polygonatimaculae	ICTV202420506
+EU847625_lupine_mosaic_virus	EU847625	lupine mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus lupinus	ICTV20143337
+KX013584_Callistephus_mottle_virus	KX013584	Callistephus mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus calistephi	ICTV20175919
+KF906523_vanilla_distortion_mosaic_virus	KF906523	vanilla distortion mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus vanillae	ICTV20153977
+KU941946_endive_necrotic_mosaic_virus	KU941946	endive necrotic mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus chichorii	ICTV19991387
+AF169561_turnip_mosaic_virus	AF169561	turnip mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus rapae	ICTV19991444
+AB027007_Japanese_yam_mosaic_virus	AB027007	Japanese yam mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus nippodioscoreae	ICTV20041766
+AJ316084_scallion_mosaic_virus	AJ316084	scallion mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus ascaloniavirgae	ICTV20041804
+LC159494_wild_onion_symptomless_virus	LC159494	wild onion symptomless virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus alliumagrestis	ICTV20175925
+KC691259_Narcissus_late_season_yellows_virus	KC691259	Narcissus late season yellows virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus narcissuslineae	ICTV19982280
+AM158908_Narcissus_yellow_stripe_virus	AM158908	Narcissus yellow stripe virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus narcissus	ICTV19911791
+KC443039_sweet_potato_latent_virus	KC443039	sweet potato latent virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus batatalatentis	ICTV19982305
+D86371_sweet_potato_feathery_mottle_virus	D86371	sweet potato feathery mottle virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus batataplumei	ICTV19911813
+GU207957_sweet_potato_virus_C	GU207957	sweet potato virus C	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus cebatatae	ICTV20115386
+JN613807_sweet_potato_virus_2	JN613807	sweet potato virus 2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus duobatatae	ICTV20084588
+JQ824374_sweet_potato_virus_G	JQ824374	sweet potato virus G	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus gebatatae	ICTV20074409
+KX355613_Euphorbia_ringspot_virus	KX355613	Euphorbia ringspot virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus euphorbiae	ICTV20084519
+PP382205_Periwinkle_mild_yellow_mosaic_virus	PP382205	Periwinkle mild yellow mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus catharanthiflavitessellati	ICTV202420505
+X04083_tobacco_vein_mottling_virus	X04083	tobacco vein mottling virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus nicotianavenamaculae	ICTV19911817
+AJ296311_potato_virus_A	AJ296311	potato virus A	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus atuberosi	ICTV20074395
+JX294310_potato_yellow_blotch_virus	JX294310	potato yellow blotch virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus tuberosiflavi	ICTV201907438
+JQ609095_pokeweed_mosaic_virus	JQ609095	pokeweed mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus phytolaccae	ICTV19760778
+M11458_tobacco_etch_virus	M11458	tobacco etch virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus nicotianainsculpentis	ICTV19710261
+JQ350738_sunflower_mild_mosaic_virus	JQ350738	sunflower mild mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus helitenuitessellati	ICTV20153975
+PQ374234ACCESSION_NOT_ON_SPREADSHEET	PQ374234		AA	none		False																
+KM523548_Tamarillo_leaf_malformation_virus	KM523548	Tamarillo leaf malformation virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus betaci	ICTV20153976
+JQ801448_Colombian_datura_virus	JQ801448	Colombian datura virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus trompetae	ICTV19710254
+BD171712_papaya_leaf_distortion_mosaic_virus	BD171712	papaya leaf distortion mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus caricae	ICTV20041785
+KU556609_Daphne_virus_Y	KU556609	Daphne virus Y	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus hiemalisdaphnis	ICTV20175920
+DQ299908_Daphne_mosaic_virus	DQ299908	Daphne mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus daphnis	ICTV20084513
+PQ311706ACCESSION_NOT_ON_SPREADSHEET	PQ311706		AA	none		False																
+LC658681ACCESSION_NOT_ON_SPREADSHEET	LC658681		AA	none		False																
+JQ807997_Ornithogalum_stripe_mosaic_virus	JQ807997	Ornithogalum stripe mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus ornithogalitessellati	ICTV19911794
+JQ395040_Hippeastrum_mosaic_virus	JQ395040	Hippeastrum mosaic virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus hippeastri	ICTV19760765
+MT396083ACCESSION_NOT_ON_SPREADSHEET	MT396083		AA	none		False																

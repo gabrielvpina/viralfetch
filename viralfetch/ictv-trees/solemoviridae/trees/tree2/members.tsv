@@ -1,0 +1,63 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+EU000534_CP_MABYV	EU000534	CP MABYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus MABYV	ICTV20094023
+JQ700308_CP_SABYV	JQ700308	CP SABYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus SABYV	ICTV20132171
+X76931_CP_CABYV	X76931	CP CABYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CABYV	ICTV19981711
+MG800833_CP_PuPV	MG800833	CP PuPV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PUPV	ICTV201907553
+KU315178_CP_PABYV	KU315178	CP PABYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PABYV	ICTV20175863
+AY956384_CP_CPCSV	AY956384	CP CPCSV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CPCSV	ICTV20094021
+AF352024_CP_BChV	AF352024	CP BChV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus BCHV	ICTV20021150
+X83110_CP_BMYV	X83110	CP BMYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus BMYV	ICTV19981708
+X13063_CP_TuYV	X13063	CP TuYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus TUYV	ICTV20026173
+MH464873_CP_FBPV1	MH464873	CP FBPV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus FBPV	ICTV201907417
+AF473561_CP_BWYV	AF473561	CP BWYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus BWYV	ICTV19911691
+HQ388348_CP_BrYV	HQ388348	CP BrYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus TUYV	ICTV20026173
+GU167940_CP_CLRV	GU167940	CP CLRV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CLDV	ICTV20132169
+LT559483_CP_PVYV6	LT559483	CP PVYV6	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV6	ICTV201856625
+KY523072_CP_PVYV5	KY523072	CP PVYV5	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV5	ICTV201856624
+HM439608_CP_PVYV2	HM439608	CP PVYV2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV2	ICTV201856621
+AB594828_CP_PVYV1	AB594828	CP PVYV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV1	ICTV20132170
+KP326573_CP_PVYV3	KP326573	CP PVYV3	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV3	ICTV201856622
+KU999109_CP_PVYV4	KU999109	CP PVYV4	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PEVYV4	ICTV201856623
+EF529624_CP_TVDV	EF529624	CP TVDV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus TVDV	ICTV20073960
+KT992824_CP_MaYMV	KT992824	CP MaYMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus MAYMV	ICTV20175862
+AB038147_CP_SbDV	AB038147	CP SbDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Regressovirinae	Luteovirus		Luteovirus glycinis	ICTV19911696
+AF441393_CP_BLRV	AF441393	CP BLRV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Regressovirinae	Luteovirus		Luteovirus phaseoli	ICTV19911690
+D13954_CP_PLRV	D13954	CP PLRV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus PLRV	ICTV19991080
+L25299_CP_CYDV-RPV	L25299	CP CYDV-RPV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CYDVRPV	ICTV19981710
+AF235168_CP_CYDV-RPS	AF235168	CP CYDV-RPS	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CYDVRPS	ICTV20021153
+FM865413_CP_WYDV-GPV	FM865413	CP WYDV-GPV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus WYDVGPV	ICTV19991081
+AY695933_CP_CRLV	AY695933	CP CRLV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus CTRLV	ICTV19821232
+EU024678_CP_RSDaV	EU024678	CP RSDaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Regressovirinae	Luteovirus		Luteovirus rosae	ICTV20094013
+AF157029_CP_SCYLV	AF157029	CP SCYLV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polerovirus		Polerovirus SCYLV	ICTV20021166
+HF679486_CP_CVEV	HF679486	CP CVEV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Enamovirus		Enamovirus CVEV	ICTV201856590
+L04573_CP_PEMV1	L04573	CP PEMV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Enamovirus		Enamovirus PEMV	ICTV19981700
+MH614261_CP_BFTEV1	MH614261	CP BFTEV1	AA	none		False																
+KU297983_CP_AEV1	KU297983	CP AEV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Enamovirus		Enamovirus AEV	ICTV20165405
+KY820716_CP_GVEV1	KY820716	CP GVEV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Enamovirus		Enamovirus GEV	ICTV201856585
+J04357_CP_RCNMV	J04357	CP RCNMV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Regressovirinae	Dianthovirus		Dianthovirus trifolii	ICTV19821202
+L07884_CP_SCNMoV	L07884	CP SCNMoV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Regressovirinae	Dianthovirus		Dianthovirus meliloti	ICTV19821203
+LC460998_CP_CRSV	LC460998	CP CRSV	AA	none		False																
+AJ608206_CP_RYMV	AJ608206	CP RYMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus RYMV	ICTV19911831
+AM990928_CP_IYMV	AM990928	CP IYMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus IYMV	ICTV20115442
+DQ680848_CP_CfMV	DQ680848	CP CfMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus CFMV	ICTV19911829
+KC778720_CP_TRoV	KC778720	CP TRoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus TROV	ICTV19821341
+AJ867490_CP_PnLV	AJ867490	CP PnLV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Polemovirus		Polemovirus PNLV	ICTV20085022
+JX123318_CP_PLYV	JX123318	CP PLYV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus PLYV	ICTV20154533
+LC019764_CP_CyCMV	LC019764	CP CyCMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus CYCMV	ICTV20154532
+DQ875594_CP_SBMV	DQ875594	CP SBMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SBMV	ICTV19780836
+AY004291_CP_SeMV	AY004291	CP SeMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SEMV	ICTV20074857
+JF495127_CP_SYCMV	JF495127	CP SYCMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SYCMV	ICTV20154535
+NC_001625_CP_SCPMV	NC_001625	CP SCPMV	AA	none		False																
+AF208001_CP_SCMoV	AF208001	CP SCMoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SCMOV	ICTV19911835
+JQ782213_CP_LTSV	JQ782213	CP LTSV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus LTSV	ICTV19911830
+HM754263_CP_VTMoV	HM754263	CP VTMoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus VTMOV	ICTV19911837
+KC577470_CP_SNMoV	KC577470	CP SNMoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SNMOV	ICTV19911832
+MK681145_CP_PhyRMV	MK681145	CP PhyRMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus PHYRMV	ICTV202009704
+U62546_CP_TNV_D	U62546	CP TNV D	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Procedovirinae	Betanecrovirus		Betanecrovirus nicotianae	ICTV19982563
+M33002_CP_TNV_A	M33002	CP TNV A	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Procedovirinae	Alphanecrovirus		Alphanecrovirus nicotianae	ICTV19710324
+AF452884_CP_BBSV	AF452884	CP BBSV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Tolucaviricetes		Tolivirales		Tombusviridae	Procedovirinae	Betanecrovirus		Betanecrovirus betae	ICTV20042132
+AM940437_CP_SoMV	AM940437	CP SoMV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus SOMV	ICTV19911834
+LC081344_CP_BSSV	LC081344	CP BSSV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus BSSV	ICTV19911828
+EF091714_CP_RGMoV	EF091714	CP RGMoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus RGMOV	ICTV20074856
+KC577469_CP_RoMoV	KC577469	CP RoMoV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus ROMOV	ICTV20154534
+JN620802_CP_ArtVA	JN620802	CP ArtVA	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Sobelivirales		Solemoviridae		Sobemovirus		Sobemovirus ARTVA	ICTV20154531

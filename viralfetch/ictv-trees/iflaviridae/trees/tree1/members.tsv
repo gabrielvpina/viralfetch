@@ -1,0 +1,30 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+JN870848	JN870848		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus betaspexiguae	ICTV20151300
+AF323747	AF323747		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus pernudae	ICTV20026932
+AY365064	AY365064		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus ectobliquae	ICTV20083292
+AB000906	AB000906		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus flacherie	ICTV20026931
+JN091707	JN091707		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus spexiguae	ICTV20151299
+KR534892	KR534892		AA	none		False																
+KP714074	KP714074		AA	none		False																
+JF720348	JF720348		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus lylineolaris	ICTV20130614
+AF092924	AF092924		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus sacbroodi	ICTV20026933
+KF699344	KF699344		AA	none		False																
+KF843822	KF843822		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus dinococcinellae	ICTV20151297
+GAMC01001920	GAMC01001920		AA	none		False																
+GAMC01020602	GAMC01020602		AA	none		False																
+EF517277	EF517277		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus brebrassicae	ICTV20165186
+EU035616	EU035616		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus apistardum	ICTV20115382
+KP866792	KP866792		AA	none		False																
+AB826460	AB826460		AA	none		False																
+KJ679438	KJ679438		AA	none		False																
+KF751885	KF751885		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus vomitus	ICTV20151296
+KP217032	KP217032		AA	none		False																
+KJ629170	KJ629170		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus lineacelli	ICTV20151298
+LC068762	LC068762		AA	none		False																
+KF500002	KF500002		AA	none		False																
+AJ489744	AJ489744		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus aladeformis	ICTV20083291
+AY251269	AY251269		AA	none		False																
+AB826459	AB826459		AA	none		False																
+AB766259	AB766259		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Iflaviridae		Iflavirus		Iflavirus nilalugentis	ICTV20130615
+KF934491	KF934491		AA	none		False																
+KM272628	KM272628		AA	none		False																

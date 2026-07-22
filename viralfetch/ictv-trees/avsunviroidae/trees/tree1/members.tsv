@@ -1,0 +1,5 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+NC001410_avocado_sunblotch_viroid	NC001410	avocado sunblotch viroid	nt	none		True											Avsunviroidae		Avsunviroid		Avsunviroid albamaculaperseae	ICTV19911890
+AJ536613_eggplant_latent_viroid	AJ536613	eggplant latent viroid	nt	none		True											Avsunviroidae		Elaviroid		Elaviroid latensmelongenae	ICTV20083401
+NC003540_chrysanthemum_chlorotic_mottle_viroid	NC003540	chrysanthemum chlorotic mottle viroid	nt	none		True											Avsunviroidae		Pelamoviroid		Pelamoviroid maculachrysanthemi	ICTV19980900
+NC003636_peach_latent_mosaic_viroid	NC003636	peach latent mosaic viroid	nt	none		True											Avsunviroidae		Pelamoviroid		Pelamoviroid latenspruni	ICTV19911904

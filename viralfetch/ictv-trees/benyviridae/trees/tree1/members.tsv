@@ -1,0 +1,13 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+D84411_BNYVV	D84411	BNYVV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus necrobetae	ICTV19972431
+AF061869_BSBMV	AF061869	BSBMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus solibetae	ICTV19972432
+AB818899_BdMV	AB818899	BdMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus arctii	ICTV20133453
+EU099845_RSNV	EU099845	RSNV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus oryzae	ICTV20125748
+KU140663_MILV	KU140663	MILV	nt	none		False																
+V01408_TMV	V01408	TMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobamovirus		Tobamovirus tabaci	ICTV19710322
+L07938_SBWMV	L07938	SBWMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Furovirus		Furovirus tritici	ICTV19991804
+AJ243719_PMTV	AJ243719	PMTV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus solani	ICTV19871297
+Z36974_TRV	Z36974	TRV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobravirus		Tobravirus tabaci	ICTV19710327
+L07269_PCV	L07269	PCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pecluvirus		Pecluvirus arachidis	ICTV19871296
+AB976030_GORV	AB976030	GORV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Goravirus		Goravirus gentianae	ICTV20154611
+X03854_BSMV	X03854	BSMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Hordeivirus		Hordeivirus hordei	ICTV19750354

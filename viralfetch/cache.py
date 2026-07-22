@@ -1,10 +1,12 @@
 """On-disk cache with a simple TTL.
 
-Two namespaces (SPEC section 3):
+Three namespaces (SPEC section 3):
 
-- ``SEQS``  — sequences and accession metadata. Accessions are immutable, so
+- ``SEQS``   — sequences and accession metadata. Accessions are immutable, so
   these entries are cached **permanently** (no TTL).
-- ``TEXTS`` — ICTV chapter text. Cached with a **30-day TTL**.
+- ``TEXTS``  — ICTV chapter text. Cached with a **30-day TTL**.
+- ``IMAGES`` — ICTV chapter figures (binary). A published figure does not
+  change, so these are cached **permanently**, like sequences.
 
 The store is intentionally dumb: one file per entry, keyed by a hash of the
 logical key; expiry is decided from the file mtime. No "smart" invalidation
@@ -20,6 +22,7 @@ from pathlib import Path
 
 SEQS = "seqs"
 TEXTS = "texts"
+IMAGES = "images"
 
 TEXT_TTL = 30 * 24 * 60 * 60  # 30 days, in seconds
 
@@ -67,17 +70,41 @@ class Cache:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(value, encoding="utf-8")
 
-    def clear(self, *, texts: bool = False, seqs: bool = False) -> int:
-        """Remove cached entries. With neither flag, clear everything.
+    def get_bytes(self, namespace: str, key: str, ttl: int | None = None) -> bytes | None:
+        """Return cached bytes, or ``None`` if absent, expired, or disabled."""
+        if not self.enabled:
+            return None
+        path = self._path(namespace, key)
+        if not path.is_file():
+            return None
+        if ttl is not None and (time.time() - path.stat().st_mtime) > ttl:
+            return None
+        try:
+            return path.read_bytes()
+        except OSError:
+            return None
+
+    def set_bytes(self, namespace: str, key: str, value: bytes) -> None:
+        """Store binary ``value`` under ``key``. No-op when disabled."""
+        if not self.enabled:
+            return
+        path = self._path(namespace, key)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(value)
+
+    def clear(self, *, texts: bool = False, seqs: bool = False, images: bool = False) -> int:
+        """Remove cached entries. With no flag, clear everything.
 
         Returns the number of entries removed.
         """
-        both = not texts and not seqs
+        both = not texts and not seqs and not images
         targets = []
         if texts or both:
             targets.append(TEXTS)
         if seqs or both:
             targets.append(SEQS)
+        if images or both:
+            targets.append(IMAGES)
 
         removed = 0
         for ns in targets:
@@ -93,7 +120,7 @@ class Cache:
     def info(self) -> list[NamespaceInfo]:
         """Per-namespace entry counts and total bytes."""
         out: list[NamespaceInfo] = []
-        for ns in (SEQS, TEXTS):
+        for ns in (SEQS, TEXTS, IMAGES):
             ns_dir = self.base_dir / ns
             entries = 0
             total = 0

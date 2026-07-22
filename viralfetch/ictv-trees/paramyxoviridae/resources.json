@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ONSR.Paramyxo.Fig3.v6.alignment.FST",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ONSR.Paramyxo.Fig3.v6.tree.nwk",
+    "molecule": "AA",
+    "n_members": 78,
+    "n_tips": 78,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

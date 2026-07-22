@@ -1,0 +1,23 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+Lausannevirus		Lausannevirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Marseilleviridae		Losannavirus		Losannavirus lausannense	ICTV20133587
+Cannes8virus		Cannes8virus	AA	none		False																
+ISKNV		ISKNV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+OSGIV		OSGIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+RBIV		RBIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+LCDV		LCDV	AA	none		False																
+LCDV-C		LCDV-C	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Lymphocystivirus		Lymphocystivirus paralichthys1	ICTV201856332
+GIV		GIV	AA	none		True	Riboviria		Orthornavirae		Duplornaviricota		Resentoviricetes		Reovirales		Sedoreoviridae		Orbivirus		Orbivirus magninsulae	ICTV19952030
+FV3		FV3	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+ATV		ATV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus ambystoma1	ICTV20041353
+IIV6		IIV6	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Iridovirus		Iridovirus chilo1	ICTV19840548
+IIV31		IIV31	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Iridovirus		Iridovirus armadillidium1	ICTV201856334
+DpAV4a		DpAV4a	AA	none		False																
+TnAV6a		TnAV6a	AA	none		False																
+SfAV1a		SfAV1a	AA	none		False																
+HvAV3g		HvAV3g	AA	none		False																
+IIV3		IIV3	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus aedes1	ICTV19760245
+IIV9		IIV9	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus wiseana1	ICTV201856336
+IIV25		IIV25	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus simulium2	ICTV201856337
+IIV30		IIV30	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus simulium1	ICTV201856335
+IIV22		IIV22	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus simulium1	ICTV201856335
+IIV22A		IIV22A	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus simulium1	ICTV201856335

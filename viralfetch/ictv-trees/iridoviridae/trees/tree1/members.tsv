@@ -1,0 +1,48 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+FV3		FV3	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+SSME		SSME	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+RGV		RGV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Phenuiviridae		Phlebovirus		Phlebovirus riograndense	ICTV201907633
+STIV		STIV	AA	none		True											Polydnaviriformidae		Ichnoviriform		Ichnoviriform tenuifemoris	ICTV19951851
+TFV		TFV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Peribunyaviridae		Orthobunyavirus		Orthobunyavirus telokense	ICTV202214224
+GGRV		GGRV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+BIV		BIV	AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Lentivirus		Lentivirus bovimdef	ICTV19911437
+TORV		TORV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Phenuiviridae		Phlebovirus		Phlebovirus torosense	ICTV201907610
+CH8_96		CH8 96	AA	none		False																
+ADRV		ADRV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Phenuiviridae		Phlebovirus		Phlebovirus salehabadense	ICTV19990694
+CMTVVB		CMTVVB	AA	none		False																
+PPIV		PPIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus alytes1	ICTV20175861
+CMTVM		CMTVM	AA	none		False																
+CoIV		CoIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+Rmax		Rmax	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus rana1	ICTV19810474
+ATV		ATV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus ambystoma1	ICTV20041353
+EHNV		EHNV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus perca1	ICTV20041355
+ECV		ECV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus perca1	ICTV20041355
+ESV		ESV	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Mastrevirus		Mastrevirus eragrostis	ICTV20093829
+SERV		SERV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus thailandense	ICTV19950725
+DFV		DFV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus micropterus1	ICTV20041358
+GV6		GV6	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus micropterus1	ICTV20041358
+LMBV		LMBV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Hareavirales		Phenuiviridae		Beidivirus		Beidivirus liriomyzae	ICTV202522360
+GIV		GIV	AA	none		True	Riboviria		Orthornavirae		Duplornaviricota		Resentoviricetes		Reovirales		Sedoreoviridae		Orbivirus		Orbivirus magninsulae	ICTV19952030
+SGIV		SGIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Ranavirus		Ranavirus epinephelus1	ICTV20165404
+LCDV-C		LCDV-C	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Lymphocystivirus		Lymphocystivirus paralichthys1	ICTV201856332
+LCDV-Sa		LCDV-Sa	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Lymphocystivirus		Lymphocystivirus sparus1	ICTV201856333
+LCDV-1		LCDV-1	AA	none		False																
+OSGIV		OSGIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+GSIV-K1		GSIV-K1	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+RBIV		RBIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+RSIV		RSIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+TRBIV		TRBIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+LYCIV		LYCIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+ISKNV		ISKNV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus pagrus1	ICTV20041352
+SDDV		SDDV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Megalocytivirus		Megalocytivirus lates1	ICTV201856331
+ECIV		ECIV	AA	none		False																
+IIV-22		IIV-22	AA	none		False																
+IIV-22a		IIV-22a	AA	none		False																
+IIV-30		IIV-30	AA	none		False																
+IIV-9		IIV-9	AA	none		False																
+IIV-25		IIV-25	AA	none		False																
+IIV-3		IIV-3	AA	none		False																
+AMIV		AMIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Chloriridovirus		Chloriridovirus anopheles1	ICTV201856338
+IIV-6		IIV-6	AA	none		False																
+IIV-31		IIV-31	AA	none		False																
+SHIV		SHIV	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Decapodiridovirus		Decapodiridovirus litopenaeus1	ICTV201856295

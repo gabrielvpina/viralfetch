@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_5A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/OPSR.Corona.Fig5A.v3_RdRP_aa_align.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OPSR.Corona.Fig5A.v3_RdRP_aa_treefile.txt",
+    "molecule": "AA",
+    "n_members": 55,
+    "n_tips": 55,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_5B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/OPSR.Corona.Fig5BA.v3_Hel_aa_align.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OPSR.Corona.Fig5BA.v3_Hel_aa_treefile.txt",
+    "molecule": "AA",
+    "n_members": 55,
+    "n_tips": 55,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

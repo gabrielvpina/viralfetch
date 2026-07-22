@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_4",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Fig4_.v6.L_align_fst.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Fig4_.v6_L_treefile.txt",
+    "molecule": "AA",
+    "n_members": 66,
+    "n_tips": 66,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_3A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Antenna.Fig2_.v3_L_align_fst.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Antenna.Fig2_.v3_L_treefile.txt",
+    "molecule": "AA",
+    "n_members": 3,
+    "n_tips": 8,
+    "alignment_coverage": 0.0,
+    "tip_alignment_consistent": false,
+    "quality": "low_alignment_coverage",
+    "kept": true
+  }
+]

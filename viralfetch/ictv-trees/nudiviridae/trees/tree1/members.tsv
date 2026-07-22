@@ -1,0 +1,18 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+OrNV		OrNV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus andesense	ICTV19990658
+TNV		TNV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Alphatetraviridae		Betatetravirus		Betatetravirus trichoplusiae	ICTV19991669
+DuhNV		DuhNV	AA	none		False																
+ENV		ENV	AA	none		False																
+KV		KV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Alphanudivirus		Alphanudivirus dromelanogasteris	ICTV202008927
+MNV		MNV	AA	none		False																
+DiNV		DiNV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Alphanudivirus		Alphanudivirus droinnubilae	ICTV202008926
+OcNV		OcNV	AA	none		False																
+GbNV		GbNV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Tospoviridae		Orthotospovirus		Orthotospovirus arachinecrosis	ICTV19990697
+HzNV_1		HzNV 1	AA	none		False																
+HzNV_2		HzNV 2	AA	none		False																
+PmNV		PmNV	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Secoviridae	Comovirinae	Nepovirus		Nepovirus cenchri	ICTV202522705
+HgNV		HgNV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Gammanudivirus		Gammanudivirus hogammari	ICTV202008932
+CmNV		CmNV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Gammanudivirus		Gammanudivirus cameanadis	ICTV202113432
+CcNV		CcNV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Epsilonnudivirus		Epsilonnudivirus cracrangonis	ICTV202113431
+DhNV		DhNV	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Epsilonnudivirus		Epsilonnudivirus dikhaemobaphes	ICTV202522102
+ToNV		ToNV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus tonate	ICTV20074713

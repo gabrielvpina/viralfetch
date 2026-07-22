@@ -1,0 +1,8 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+TMMMV_AAT08133	AAT08133	TMMMV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Milneviricetes		Naedrevirales		Aspiviridae		Miraophiovirus		Miraophiovirus tulipae	ICTV19991820
+MiLBVV_AAN60449	AAN60449	MiLBVV	AA	none		False																
+RWMV_AAT08132	AAT08132	RWMV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Milneviricetes		Naedrevirales		Aspiviridae		Miraophiovirus		Miraophiovirus ranunculi	ICTV19991819
+FreSV_ACR56715	ACR56715	FreSV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Milneviricetes		Naedrevirales		Aspiviridae		Miraophiovirus		Miraophiovirus freesiae	ICTV20094137
+LRNV_AAT09112	AAT09112	LRNV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Milneviricetes		Naedrevirales		Aspiviridae		Miraophiovirus		Miraophiovirus lactucae	ICTV20042224
+CPVs_AAF00018	AAF00018	CPVs	AA	none		False																
+BlMaV_AIF28244	AIF28244	BlMaV	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Milneviricetes		Naedrevirales		Aspiviridae		Ophiovirus		Ophiovirus vaccinii	ICTV20153223

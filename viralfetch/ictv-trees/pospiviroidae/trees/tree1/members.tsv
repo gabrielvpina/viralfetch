@@ -1,0 +1,29 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+NC_000885.1_Tomato_chlorotic_dwarf_viroid	NC_000885.1	Tomato chlorotic dwarf viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid chloronani	ICTV20021428
+NC_002030.1_Potato_spindle_tuber_viroid	NC_002030.1	Potato spindle tuber viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid fusituberis	ICTV19911905
+NC_001558.1_Tomato_planta_macho_viroid	NC_001558.1	Tomato planta macho viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid machoplantae	ICTV19911908
+NC_003538.1_Columnea_latent_viroid	NC_003538.1	Columnea latent viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid latenscolumneae	ICTV19911899
+NC_002015.1_Chrysanthemum_stunt_viroid	NC_002015.1	Chrysanthemum stunt viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid impedichrysanthemi	ICTV19911892
+NC_001464.1_Citrus_exocortis_viroid	NC_001464.1	Citrus exocortis viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid exocortiscitri	ICTV19911893
+NC_001553.1_Tomato_apical_stunt_viroid	NC_001553.1	Tomato apical stunt viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid apicimpeditum	ICTV19911906
+NC_003613.1_Iresine_viroid_1	NC_003613.1	Iresine viroid 1	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid alphairesinis	ICTV19991346
+NC_011590.1_Pepper_chat_fruit_viroid	NC_011590.1	Pepper chat fruit viroid	nt	none		True											Pospiviroidae		Pospiviroid		Pospiviroid parvicapsici	ICTV20115412
+NC_003611.1_Hop_latent_viroid	NC_003611.1	Hop latent viroid	nt	none		True											Pospiviroidae		Cocadviroid		Cocadviroid latenshumuli	ICTV19911902
+NC_003539.1_Citrus_bark_cracking_viroid	NC_003539.1	Citrus bark cracking viroid	nt	none		True											Pospiviroidae		Cocadviroid		Cocadviroid rimocitri	ICTV19952491
+NC_001462.1_Coconut_cadang-cadang_viroid	NC_001462.1	Coconut cadang-cadang viroid	nt	none		True											Pospiviroidae		Cocadviroid		Cocadviroid cadangi	ICTV19911894
+NC_001471.1_Coconut_tinangaja_viroid	NC_001471.1	Coconut tinangaja viroid	nt	none		True											Pospiviroidae		Cocadviroid		Cocadviroid tinangajae	ICTV19911895
+NC_001351.1_Hop_stunt_viroid	NC_001351.1	Hop stunt viroid	nt	none		True											Pospiviroidae		Hostuviroid		Hostuviroid impedihumuli	ICTV19911903
+NC_020160.1_Dahlia_latent_viroid	NC_020160.1	Dahlia latent viroid	nt	none		True											Pospiviroidae		Hostuviroid		Hostuviroid latensdahliae	ICTV20143144
+NC_003682.1_Coleus_blumei_viroid_2	NC_003682.1	Coleus blumei viroid 2	nt	none		True											Pospiviroidae		Coleviroid		Coleviroid betacolei	ICTV19991340
+NC_003683.1_Coleus_blumei_viroid_3	NC_003683.1	Coleus blumei viroid 3	nt	none		True											Pospiviroidae		Coleviroid		Coleviroid gammacolei	ICTV19991341
+NC_003681.1_Coleus_blumei_viroid_1	NC_003681.1	Coleus blumei viroid 1	nt	none		True											Pospiviroidae		Coleviroid		Coleviroid alphacolei	ICTV19911896
+NC_001920.1_Grapevine_yellow_speckle_viroid_1	NC_001920.1	Grapevine yellow speckle viroid 1	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid alphaflavivitis	ICTV19911900
+NC_003612.1_Grapevine_yellow_speckle_viroid_2	NC_003612.1	Grapevine yellow speckle viroid 2	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid betaflavivitis	ICTV19911901
+NC_003553.1_Australian_grapevine_viroid	NC_003553.1	Australian grapevine viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid austravitis	ICTV19911889
+NC_001651.1_Citrus_bent_leaf_viroid	NC_001651.1	Citrus bent leaf viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid curvifoliumcitri	ICTV19952489
+NC_001830.1_Pear_blister_canker_viroid	NC_001830.1	Pear blister canker viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid pustulapyri	ICTV19952501
+NC_001340.1_Apple_scar_skin_viroid	NC_001340.1	Apple scar skin viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid cicatricimali	ICTV19911888
+NC_010165.1_Citrus_viroid_V	NC_010165.1	Citrus viroid V	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid epsiloncitri	ICTV20094485
+NC_003463.1_Apple_dimple_fruit_viroid	NC_003463.1	Apple dimple fruit viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid fossulamali	ICTV19991327
+NC_003264.1_Citrus_dwarfing_viroid	NC_003264.1	Citrus dwarfing viroid	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid nanocitri	ICTV19991331
+NC_004359.1_Citrus_viroid_VI	NC_004359.1	Citrus viroid VI	nt	none		True											Pospiviroidae		Apscaviroid		Apscaviroid zetacitri	ICTV20094486

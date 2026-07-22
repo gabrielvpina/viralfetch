@@ -1,0 +1,41 @@
+[
+  {
+    "figure_label": "Figure_4A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4A_L_align.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4A_L_tree.nwk",
+    "molecule": "nt",
+    "n_members": 7,
+    "n_tips": 7,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_4B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4B_M_align.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4B_M_tree.nwk",
+    "molecule": "nt",
+    "n_members": 7,
+    "n_tips": 7,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_4C",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4C_S_align.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODR.Cysto.Fig4C_S_tree.nwk",
+    "molecule": "nt",
+    "n_members": 7,
+    "n_tips": 7,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

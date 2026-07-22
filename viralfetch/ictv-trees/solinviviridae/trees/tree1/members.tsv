@@ -1,0 +1,67 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KU958718.1_Riptortus_pedestris_virus_1	KU958718.1	Riptortus pedestris virus 1	AA	none		False																
+KX884396.1_Hubei_picorna_like_virus_54	KX884396.1	Hubei picorna like virus 54	AA	none		False																
+KX883984.1_Wenzhou_shrimp_virus_8	KX883984.1	Wenzhou shrimp virus 8	AA	none		False																
+KX884384.1_Beihai_blue_swimmer_crab_virus_1	KX884384.1	Beihai blue swimmer crab virus 1	AA	none		False																
+KY200663.1_Diabrotica_virgifera_virgifera_virus_3	KY200663.1	Diabrotica virgifera virgifera virus 3	AA	none		False																
+KX884299.1_Wuhan_house_centipede_virus_2	KX884299.1	Wuhan house centipede virus 2	AA	none		False																
+KX883920.1_Hubei_picorna_like_virus_52	KX883920.1	Hubei picorna like virus 52	AA	none		False																
+KX883892.1_Hubei_earwig_virus_3	KX883892.1	Hubei earwig virus 3	AA	none		False																
+KX883925.1_Hubei_coleoptera_virus_2	KX883925.1	Hubei coleoptera virus 2	AA	none		False																
+KX883894.1_Hubei_picorna_like_virus_53	KX883894.1	Hubei picorna like virus 53	AA	none		False																
+GGMU01055215.1_Serangium_japonicum_TSA	GGMU01055215.1	Serangium japonicum TSA	AA	none		False																
+KX883699.1_Hubei_picorna_like_virus_64	KX883699.1	Hubei picorna like virus 64	AA	none		False																
+GDPL01011975.1_Oreina_cacaliae_TSA	GDPL01011975.1	Oreina cacaliae TSA	AA	none		False																
+GAPE01025462.1_Meligethes_aeneus_TSA	GAPE01025462.1	Meligethes aeneus TSA	AA	none		False																
+GBSB01003728.1_Diabrotica_virgifera_virgifera_TSA	GBSB01003728.1	Diabrotica virgifera virgifera TSA	AA	none		False																
+KX884308.1_Wuhan_insect_virus_12	KX884308.1	Wuhan insect virus 12	AA	none		False																
+FJ528584.1_Solenopsis_invicta_virus_3	FJ528584.1	Solenopsis invicta virus 3	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Solinviviridae		Invictavirus		Invictavirus solenopsis	ICTV20165427
+LA857567.1_Monomorium_pharaonis_TSA	LA857567.1	Monomorium pharaonis TSA	AA	none		False																
+KX884395.1_Hubei_orthoptera_virus_3	KX884395.1	Hubei orthoptera virus 3	AA	none		False																
+GDVN01043742.1_Acheta_domesticus_TSA	GDVN01043742.1	Acheta domesticus TSA	AA	none		False																
+KX024775.1_Nylanderia_fulva_virus_1	KX024775.1	Nylanderia fulva virus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Solinviviridae		Nyfulvavirus		Nyfulvavirus nylanderiae	ICTV20165428
+KX884394.1_Wuhan_coneheads_virus_2	KX884394.1	Wuhan coneheads virus 2	AA	none		False																
+GAWR01006667.1_Menopon_gallinae_TSA	GAWR01006667.1	Menopon gallinae TSA	AA	none		False																
+DQ112227.1_kelp_fly_virus	DQ112227.1	kelp fly virus	AA	none		False																
+KX884300.1_Wuhan_house_centipede_virus_3	KX884300.1	Wuhan house centipede virus 3	AA	none		False																
+GAYV02024882.1_Liposcelis_bostrychophila_TSA	GAYV02024882.1	Liposcelis bostrychophila TSA	AA	none		False																
+GEEF01170301.1_Leptinotarsa_decemlineata_TSA	GEEF01170301.1	Leptinotarsa decemlineata TSA	AA	none		False																
+KX883673.1_Shahe_isopoda_virus_1	KX883673.1	Shahe isopoda virus 1	AA	none		False																
+KX884538.1_Changjiang_picorna_like_virus_16	KX884538.1	Changjiang picorna like virus 16	AA	none		False																
+KX883642.1_Shahe_isopoda_virus_2	KX883642.1	Shahe isopoda virus 2	AA	none		False																
+GARW01000621.1_Eucyclops_serrulatus_TSA	GARW01000621.1	Eucyclops serrulatus TSA	AA	none		False																
+KX883359.1_Beihai_sea_slater_virus_1	KX883359.1	Beihai sea slater virus 1	AA	none		False																
+KX884393.1_Hubei_arthropod_virus_3	KX884393.1	Hubei arthropod virus 3	AA	none		False																
+KX883697.1_Hubei_tetragnatha_maxillosa_virus_4	KX883697.1	Hubei tetragnatha maxillosa virus 4	AA	none		False																
+GAUE01003473.1_Anurida_maritima_TSA	GAUE01003473.1	Anurida maritima TSA	AA	none		False																
+GFUB01067753.1_Podisus_maculiventris_TSA	GFUB01067753.1	Podisus maculiventris TSA	AA	none		False																
+GAJX01000318.1_Clavigralla_tomentosicollis_TSA	GAJX01000318.1	Clavigralla tomentosicollis TSA	AA	none		False																
+GCMR01001868.1_Lonchoptera_bifurcata_TSA	GCMR01001868.1	Lonchoptera bifurcata TSA	AA	none		False																
+IAAD01108000.1_Pogonomyrmex_californicus_TSA	IAAD01108000.1	Pogonomyrmex californicus TSA	AA	none		False																
+KP714072.1_Thika_virus	KP714072.1	Thika virus	AA	none		False																
+KP714071.1_Kilifi_virus	KP714071.1	Kilifi virus	AA	none		False																
+GBVF01018282.1_Blasticotoma_filiceti_TSA	GBVF01018282.1	Blasticotoma filiceti TSA	AA	none		False																
+KX883700.1_Hubei_tetragnatha_maxillosa_virus_5	KX883700.1	Hubei tetragnatha maxillosa virus 5	AA	none		False																
+KX883916.1_Zhejiang_mosquito_virus_1	KX883916.1	Zhejiang mosquito virus 1	AA	none		False																
+KX883915.1_Hubei_picorna_like_virus_61	KX883915.1	Hubei picorna like virus 61	AA	none		False																
+KX883911.1_Hubei_picorna_like_virus_63	KX883911.1	Hubei picorna like virus 63	AA	none		False																
+KX883686.1_Hubei_picorna_like_virus_62	KX883686.1	Hubei picorna like virus 62	AA	none		False																
+KX883682.1_Hubei_picorna_like_virus_59	KX883682.1	Hubei picorna like virus 59	AA	none		False																
+KX883701.1_Hubei_picorna_like_virus_58	KX883701.1	Hubei picorna like virus 58	AA	none		False																
+GBLT01002180.1_Perilampus_aeneus_TSA	GBLT01002180.1	Perilampus aeneus TSA	AA	none		False																
+KX883968.1_Hubei_picorna_like_virus_57	KX883968.1	Hubei picorna like virus 57	AA	none		False																
+GFWC01005196.1_Viola_albida_TSA	GFWC01005196.1	Viola albida TSA	AA	none		False																
+DQ286292.1_rosy_apple_aphid_virus	DQ286292.1	rosy apple aphid virus	AA	none		False																
+AF024514.1_Acyrthosiphon_pisum_virus	AF024514.1	Acyrthosiphon pisum virus	AA	none		False																
+GFWX01073157.1_Ischnura_elegans_TSA	GFWX01073157.1	Ischnura elegans TSA	AA	none		False																
+GAPL01023589_+3639_+3644_+3647_+4163_Sitobion_avenae_TSA	GAPL01023589	+3639 +3644 +3647 +4163 Sitobion avenae TSA	AA	none		False																
+KX884549.1_Changjiang_crawfish_virus_6	KX884549.1	Changjiang crawfish virus 6	AA	none		False																
+KX883691.1_Hubei_picorna_like_virus_55	KX883691.1	Hubei picorna like virus 55	AA	none		False																
+KX883969.1_Hubei_picorna_like_virus_56	KX883969.1	Hubei picorna like virus 56	AA	none		False																
+MF155030.1_Milolii_virus	MF155030.1	Milolii virus	AA	none		False																
+MG775312.1_HVAC_associated_RNA_virus_1	MG775312.1	HVAC associated RNA virus 1	AA	none		False																
+KX884326.1_Wenzhou_picorna_like_virus_46	KX884326.1	Wenzhou picorna like virus 46	AA	none		False																
+KX883414.1_Beihai_picorna_like_virus_108	KX883414.1	Beihai picorna like virus 108	AA	none		False																
+KX884392.1_Beihai_picorna_like_virus_109	KX884392.1	Beihai picorna like virus 109	AA	none		False																
+KX884270.1_Hubei_picorna_like_virus_65	KX884270.1	Hubei picorna like virus 65	AA	none		False																
+KX884470.1_Beihai_picorna_like_virus_110	KX884470.1	Beihai picorna like virus 110	AA	none		False																

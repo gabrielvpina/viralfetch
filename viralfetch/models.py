@@ -110,6 +110,18 @@ class Sequence:
 
 
 @dataclass
+class ChapterImage:
+    """A figure referenced by an ICTV Report chapter.
+
+    ``url`` is absolute (resolved against the ICTV domain); ``alt`` is the
+    image's alt text, which for ICTV figures usually names the figure.
+    """
+
+    url: str
+    alt: str = ""
+
+
+@dataclass
 class Chapter:
     """A parsed ICTV Report chapter rendered to Markdown."""
 
@@ -120,3 +132,4 @@ class Chapter:
     citation: str | None = None
     doi: str | None = None
     url: str | None = None
+    images: list[ChapterImage] = field(default_factory=list)

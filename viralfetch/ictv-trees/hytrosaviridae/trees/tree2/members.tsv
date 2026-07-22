@@ -1,0 +1,17 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+NC_001623_Autographa_californica_(Ac)_MNPV	NC_001623	Autographa californica (Ac) MNPV	AA	none		False																
+NC_001875_Orgyia_pseudotsugata_(Op)_MNPV	NC_001875	Orgyia pseudotsugata (Op) MNPV	AA	none		False																
+NC_001973_Lymantria_dispar_(Ld)_MNPV	NC_001973	Lymantria dispar (Ld) MNPV	AA	none		False																
+NC_002169_Spodoptera_exigua_(Se)_MNPV	NC_002169	Spodoptera exigua (Se) MNPV	AA	none		False																
+NC_002654_Heliothis_armigera_(Hear)_NPV	NC_002654	Heliothis armigera (Hear) NPV	AA	none		False																
+NC_002816_Cydia_pomonella_(Cp)_GV	NC_002816	Cydia pomonella (Cp) GV	AA	none		False																
+NC_002593_Plutella_xylostella_(Plxy)_GV	NC_002593	Plutella xylostella (Plxy) GV	AA	none		False																
+NC_005905_Neodiprion_sertifer_(Nese)_NPV	NC_005905	Neodiprion sertifer (Nese) NPV	AA	none		False																
+NC_005906_Neodiprion_lecontei_(Nele)_NPV	NC_005906	Neodiprion lecontei (Nele) NPV	AA	none		False																
+NC_008252_Neodiprion_abietes_(Neab)_NPV	NC_008252	Neodiprion abietes (Neab) NPV	AA	none		False																
+NC_004156_Helicoverpa_zea_(Hz)_NV-1	NC_004156	Helicoverpa zea (Hz) NV-1	AA	none		False																
+NC_011588_Oryctes_rhinoceros_virus	NC_011588	Oryctes rhinoceros virus	AA	none		False																
+NC_009240_Gryllus_bimaculatus_(Gb)_NV	NC_009240	Gryllus bimaculatus (Gb) NV	AA	none		False																
+NC_010671_Musca_domestica_(Md)_SGHV	NC_010671	Musca domestica (Md) SGHV	AA	none		False																
+KU050077_Glossina_pallidipes_(Gp)SGHV-Eth	KU050077	Glossina pallidipes (Gp)SGHV-Eth	AA	none		False																
+NC_010356_Glossina_pallidipes_(Gp)_SGHV-Uga	NC_010356	Glossina pallidipes (Gp) SGHV-Uga	AA	none		False																

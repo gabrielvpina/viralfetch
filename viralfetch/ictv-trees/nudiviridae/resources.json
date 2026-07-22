@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_2",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ODD.Nudi.Fig2.v5.Alignment.fst",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ODD.Nudi.Fig2.v5.treefile.txt",
+    "molecule": "AA",
+    "n_members": 17,
+    "n_tips": 17,
+    "alignment_coverage": 0.882,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

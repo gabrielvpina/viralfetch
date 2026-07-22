@@ -1,0 +1,13 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+HMPV-001_AF371337	AF371337	HMPV-001	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Pneumoviridae		Metapneumovirus		Metapneumovirus hominis	ICTV20073072
+HMPV_A2_FJ168779	FJ168779	HMPV A2	AA	none		False																
+HMPV_B1_AY525843	AY525843	HMPV B1	AA	none		False																
+HMPV_B2_FJ168778	FJ168778	HMPV B2	AA	none		False																
+AMPV_C_AY590688	AY590688	AMPV C	AA	none		False																
+AMPV_D_HG934339	HG934339	AMPV D	AA	none		False																
+AMPV_A_AY640317	AY640317	AMPV A	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Pneumoviridae		Metapneumovirus		Metapneumovirus avis	ICTV19910259
+AMPV_B_AB548428	AB548428	AMPV B	AA	none		False																
+MPV-15_AY729016	AY729016	MPV-15	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Pneumoviridae		Orthopneumovirus		Orthopneumovirus muris	ICTV19760297
+BRSV-Atue51908_AF092942	AF092942	BRSV-Atue51908	AA	none		False																
+HRSV_A2_M74567	M74567	HRSV A2	AA	none		False																
+HRSV_B1_AF013254	AF013254	HRSV B1	AA	none		False																

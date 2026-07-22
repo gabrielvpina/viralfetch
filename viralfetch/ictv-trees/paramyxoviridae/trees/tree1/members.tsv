@@ -1,0 +1,79 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+ACO48302.2_Avian_metaavulavirus_8	ACO48302.2	Avian metaavulavirus 8	AA	none		False																
+AUJ87608.1_Avian_metaavulavirus_20	AUJ87608.1	Avian metaavulavirus 20	AA	none		False																
+ACA49110.1_Avian_metaavulavirus_2	ACA49110.1	Avian metaavulavirus 2	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Paramyxoviridae	Avulavirinae	Metaavulavirus		Metaavulavirus procarduelis	ICTV202318317
+ADK12969.2_Avian_metaavulavirus_10	ADK12969.2	Avian metaavulavirus 10	AA	none		False																
+ARO49358.2_Avian_metaavulavirus_15	ARO49358.2	Avian metaavulavirus 15	AA	none		False																
+AFN06859.1_Avian_metaavulavirus_11	AFN06859.1	Avian metaavulavirus 11	AA	none		False																
+ABQ45549.1_Avian_metaavulavirus_6	ABQ45549.1	Avian metaavulavirus 6	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Paramyxoviridae	Avulavirinae	Metaavulavirus		Metaavulavirus calidris	ICTV202318319
+ADD39006.1_Avian_metaavulavirus_5	ADD39006.1	Avian metaavulavirus 5	AA	none		False																
+APP90895.1_Avian_metaavulavirus_14	APP90895.1	Avian metaavulavirus 14	AA	none		False																
+ACN72645.1_Avian_metaavulavirus_7	ACN72645.1	Avian metaavulavirus 7	AA	none		False																
+ARU83011.1_Avian_orthoavulavirus_17_APV-A	ARU83011.1	Avian orthoavulavirus 17 APV-A	AA	none		False																
+ARU83017.1_Avian_orthoavulavirus_18_APV-B	ARU83017.1	Avian orthoavulavirus 18 APV-B	AA	none		False																
+ARU83023.1_Avian_orthoavulavirus_19_APV-C	ARU83023.1	Avian orthoavulavirus 19 APV-C	AA	none		False																
+AGH32603.1_Avian_orthoavulavirus_12	AGH32603.1	Avian orthoavulavirus 12	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Paramyxoviridae	Avulavirinae	Orthoavulavirus		Orthoavulavirus taiwanense	ICTV202318314
+BAV03985.1_Avian_orthoavulavirus_13	BAV03985.1	Avian orthoavulavirus 13	AA	none		False																
+AAS67167.1_Avian_orthoavulavirus_1	AAS67167.1	Avian orthoavulavirus 1	AA	none		False																
+ARV85980.1_Avian_orthoavulavirus_16	ARV85980.1	Avian orthoavulavirus 16	AA	none		False																
+ACJ82944.1_Avian_orthoavulavirus_9	ACJ82944.1	Avian orthoavulavirus 9	AA	none		False																
+AVG72389.1_Avian_orthoavulavirus_21	AVG72389.1	Avian orthoavulavirus 21	AA	none		False																
+ACF60579.1_Avian_paraavulavirus_4	ACF60579.1	Avian paraavulavirus 4	AA	none		False																
+ACI47553.1_Avian_paraavulavirus_3	ACI47553.1	Avian paraavulavirus 3	AA	none		False																
+AAC95518.1_Mammalian_orthorubulavirus_5	AAC95518.1	Mammalian orthorubulavirus 5	AA	none		False																
+AZK31330.1_Alston_orthorubulavirus	AZK31330.1	Alston orthorubulavirus	AA	none		False																
+CAA40788.1_Human_orthorubulavirus_2	CAA40788.1	Human orthorubulavirus 2	AA	none		False																
+CAA45569.1_Simian_orthorubulavirus_SV-41	CAA45569.1	Simian orthorubulavirus SV-41	AA	none		False																
+BAA94391.1_Mumps_orthorubulavirus	BAA94391.1	Mumps orthorubulavirus	AA	none		False																
+ABQ23938.1_Mapuera_orthorubulavirus	ABQ23938.1	Mapuera orthorubulavirus	AA	none		False																
+DAA06049.1_Porcine_orthorubulavirus	DAA06049.1	Porcine orthorubulavirus	AA	none		False																
+BAJ11747.1_Human_orthorubulavirus_4	BAJ11747.1	Human orthorubulavirus 4	AA	none		False																
+AAM82288.1_Tioman_pararubulavirus	AAM82288.1	Tioman pararubulavirus	AA	none		False																
+AJP33335.1_Teviot_pararubulavirus	AJP33335.1	Teviot pararubulavirus	AA	none		False																
+AFY09794.1_Menangle_pararubulavirus	AFY09794.1	Menangle pararubulavirus	AA	none		False																
+KU672593.1_Hervey_pararubulavirus	KU672593.1	Hervey pararubulavirus	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Paramyxoviridae	Rubulavirinae	Pararubulavirus		Pararubulavirus herveyense	ICTV201907558
+ADI80715.1_Tuhoko_pararubulavirus_1	ADI80715.1	Tuhoko pararubulavirus 1	AA	none		False																
+AFX75118.1_Achimota_pararubulavirus_2	AFX75118.1	Achimota pararubulavirus 2	AA	none		False																
+ADI80722.1_Tuhoko_pararubulavirus_2	ADI80722.1	Tuhoko pararubulavirus 2	AA	none		False																
+AFX75110.1_Achimota_pararubulavirus_1	AFX75110.1	Achimota pararubulavirus 1	AA	none		False																
+ADI80729.1_Tuhoko_pararubulavirus_3	ADI80729.1	Tuhoko pararubulavirus 3	AA	none		False																
+AHH02041.1_Sosuga_pararubulavirus	AHH02041.1	Sosuga pararubulavirus	AA	none		False																
+AVM87378.1_Wenling_tonguesole_paramyxovirus	AVM87378.1	Wenling tonguesole paramyxovirus	AA	none		False																
+AVM87400.1_Wenling_hoplichthys_paramyxovirus	AVM87400.1	Wenling hoplichthys paramyxovirus	AA	none		False																
+AVM87362.1_Wenzhou_pacific_spadenose_shark_paramyxovirus	AVM87362.1	Wenzhou pacific spadenose shark paramyxovirus	AA	none		False																
+AVM87369.1_Synodus_synodonvirus	AVM87369.1	Synodus synodonvirus	AA	none		False																
+BAD74230.1_Murine_respirovirus_Sendai	BAD74230.1	Murine respirovirus Sendai	AA	none		False																
+SYZ47181.1_Squirrel_respirovirus	SYZ47181.1	Squirrel respirovirus	AA	none		False																
+AAL89409.1_Human_respirovirus_1	AAL89409.1	Human respirovirus 1	AA	none		False																
+AGR39549.1_Porcine_respirovirus_1	AGR39549.1	Porcine respirovirus 1	AA	none		False																
+AKO90683.1_Caprine_respirovirus_3	AKO90683.1	Caprine respirovirus 3	AA	none		False																
+AAF28259.1_Bovine_respirovirus_3	AAF28259.1	Bovine respirovirus 3	AA	none		False																
+ABY47607.1_Human_respirovirus_3	ABY47607.1	Human respirovirus 3	AA	none		False																
+ABX57743.1_Salmo_aquaparamyxovirus	ABX57743.1	Salmo aquaparamyxovirus	AA	none		False																
+AYN62580.1_Oncorrhynchus_aquaparamyxovirus	AYN62580.1	Oncorrhynchus aquaparamyxovirus	AA	none		False																
+AAN18266.1_Reptilian_ferlavirus	AAN18266.1	Reptilian ferlavirus	AA	none		False																
+AFM97198.1_Salem_salemvirus	AFM97198.1	Salem salemvirus	AA	none		False																
+AAC83194.3_Hendra_henipavirus	AAC83194.3	Hendra henipavirus	AA	none		False																
+AAK29089.1_Nipah_henipavirus	AAK29089.1	Nipah henipavirus	AA	none		False																
+AFP87280.1_Cedar_henipavirus	AFP87280.1	Cedar henipavirus	AA	none		False																
+AET43339.1_Ghana_henipavirus	AET43339.1	Ghana henipavirus	AA	none		False																
+AHM23778.1_Mojiang_henipavirus	AHM23778.1	Mojiang henipavirus	AA	none		False																
+AAZ82812.1_Beilong_jeilongvirus	AAZ82812.1	Beilong jeilongvirus	AA	none		False																
+AEU08865.1_Tailam_jeilongvirus	AEU08865.1	Tailam jeilongvirus	AA	none		False																
+AAX86035.1_J-jeilongvirus	AAX86035.1	J-jeilongvirus	AA	none		False																
+AVM86048.1_Myodes_jeilongvirus_1	AVM86048.1	Myodes jeilongvirus 1	AA	none		False																
+AVM86027.1_Lophuromys_jeilongvirus_2	AVM86027.1	Lophuromys jeilongvirus 2	AA	none		False																
+AVM86019.1_Lophuromys_jeilongvirus_1	AVM86019.1	Lophuromys jeilongvirus 1	AA	none		False																
+AXR70620.1_Shaan_jeilongvirus	AXR70620.1	Shaan jeilongvirus	AA	none		False																
+AAQ23993.1_Mossman_narmovirus	AAQ23993.1	Mossman narmovirus	AA	none		False																
+ATW63190.1_Bank_vole_narmovirus_1	ATW63190.1	Bank vole narmovirus 1	AA	none		False																
+ACL97360.2_Nariva_narmovirus	ACL97360.2	Nariva narmovirus	AA	none		False																
+AAF63393.1_Tupaia_narmovirus	AAF63393.1	Tupaia narmovirus	AA	none		False																
+AFH55518.1_Feline_morbillivirus	AFH55518.1	Feline morbillivirus	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Paramyxoviridae	Orthoparamyxovirinae	Morbillivirus		Morbillivirus felis	ICTV20151048
+AAC26996.1_Canine_morbillivirus	AAC26996.1	Canine morbillivirus	AA	none		False																
+AGL33555.1_Phocine_morbillivirus	AGL33555.1	Phocine morbillivirus	AA	none		False																
+CAE55659.1_Cetacean_morbillivirus	CAE55659.1	Cetacean morbillivirus	AA	none		False																
+CAH61259.1_Small_ruminant_morbillivirus	CAH61259.1	Small ruminant morbillivirus	AA	none		False																
+BAA35122.1_Measles_morbillivirus	BAA35122.1	Measles morbillivirus	AA	none		False																
+CAA66935.2_Rinderpest_morbillivirus	CAA66935.2	Rinderpest morbillivirus	AA	none		False																
+YP_009094051.1_Sunshine_Coast_virus	YP_009094051.1	Sunshine Coast virus	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Sunviridae		Sunshinevirus		Sunshinevirus reptilis	ICTV20151169

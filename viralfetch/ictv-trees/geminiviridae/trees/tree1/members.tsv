@@ -1,0 +1,30 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+X15656_Tomato_yellow_leaf_curl_virus	X15656	Tomato yellow leaf curl virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Begomovirus		Begomovirus coheni	ICTV20073780
+FM877473_African_cassava_mosaic_virus	FM877473	African cassava mosaic virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Begomovirus		Begomovirus manihotis	ICTV19790994
+JF502373_Cotton_leaf_curl_Burewala_virus	JF502373	Cotton leaf curl Burewala virus	nt	none		False																
+KY294724_Desmodium_mottle_virus	KY294724	Desmodium mottle virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Begomovirus		Begomovirus desmodii	ICTV20175798
+AB433786_Sweet_potato_leaf_curl_virus	AB433786	Sweet potato leaf curl virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Begomovirus		Begomovirus ipomoeae	ICTV20041185
+L01635_Bean_golden_yellow_mosaic_virus	L01635	Bean golden yellow mosaic virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Begomovirus		Begomovirus birdi	ICTV19981381
+KM386645_Apple_geminivirus_1	KM386645	Apple geminivirus 1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Maldovirus		Maldovirus mali	ICTV202009169
+KX570607_Grapevine_geminivirus_A	KX570607	Grapevine geminivirus A	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Maldovirus		Maldovirus vitis	ICTV202009170
+X84735_Tomato_pseudo-curly_top_virus	X84735	Tomato pseudo-curly top virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Topocuvirus		Topocuvirus solani	ICTV19911638
+MN100000_Opuntia_virus_1	MN100000	Opuntia virus 1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Opunvirus		Opunvirus opuntiae	ICTV202009173
+GU456685_Turnip_curly_top_virus	GU456685	Turnip curly top virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Turncurtovirus		Turncurtovirus brassicae	ICTV20125761
+AF379637_Beet_curly_top_virus	AF379637	Beet curly top virus	nt	none		False																
+U49907_Horseradish_curly_top_virus	U49907	Horseradish curly top virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Curtovirus		Curtovirus armoraciae	ICTV19990949
+KP410285_Beet_curly_top_Iran_virus	KP410285	Beet curly top Iran virus	nt	none		False																
+HQ443515_Spinach_curly_top_Arizona_virus	HQ443515	Spinach curly top Arizona virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Becurtovirus		Becurtovirus spinaciae	ICTV20125760
+FJ665630_Eragrostis_curvula_streak_virus	FJ665630	Eragrostis curvula streak virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Eragrovirus		Eragrovirus curvulae	ICTV20125762
+DQ458791_Chickpea_chlorotic_dwarf_virus	DQ458791	Chickpea chlorotic dwarf virus	nt	none		False																
+EF536860_Wheat_dwarf_virus	EF536860	Wheat dwarf virus	nt	none		False																
+AF003952_Maize_streak_virus	AF003952	Maize streak virus	nt	none		False																
+JX559642_Grapevine_red_blotch_virus	JX559642	Grapevine red blotch virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Grablovirus		Grablovirus vitis	ICTV20165309
+JQ920490_Citrus_chlorotic_dwarf_associated_virus	JQ920490	Citrus chlorotic dwarf associated virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Citlodavirus		Citlodavirus citri	ICTV20165310
+MG452759_Camellia_chlorotic_dwarf-associated_virus	MG452759	Camellia chlorotic dwarf-associated virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Citlodavirus		Citlodavirus camelliae	ICTV202009175
+KR131749_Mulberry_crinkle_leaf_virus	KR131749	Mulberry crinkle leaf virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Mulcrilevirus		Mulcrilevirus mori	ICTV202009181
+MN595124_Paper_mulberry_leaf_curl_virus_1	MN595124	Paper mulberry leaf curl virus 1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Mulcrilevirus		Mulcrilevirus broussonetiae	ICTV202009791
+MG491195_Tomato_apical_leaf_curl_virus	MG491195	Tomato apical leaf curl virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Topilevirus		Topilevirus solani	ICTV202009178
+MF072688_Tomato_geminivirus_1	MF072688	Tomato geminivirus 1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Topilevirus		Topilevirus lycopersici	ICTV202009179
+KT214389_Plantago_lanceolata_latent_virus	KT214389	Plantago lanceolata latent virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Capulavirus		Capulavirus plantagonis	ICTV20165308
+KT214373_Alfalfa_leaf_curl_virus	KT214373	Alfalfa leaf curl virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Capulavirus		Capulavirus medicagonis	ICTV20165305
+KT214386_Euphorbia_caput-medusae_latent_virus	KT214386	Euphorbia caput-medusae latent virus	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Repensiviricetes		Geplafuvirales		Geminiviridae		Capulavirus		Capulavirus euphorbiae	ICTV20165306

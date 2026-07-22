@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_1",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/NS5 alignment.FST",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Flaviviridae Tree ML file.nwk",
+    "molecule": "nt",
+    "n_members": 125,
+    "n_tips": 125,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Flavi.Fig3.Pestivirus.alignment.aa.FST",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Flavi.Fig3.Pestivirus.nwk",
+    "molecule": "AA",
+    "n_members": 67,
+    "n_tips": 67,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/OPSR.Poty.Fig3.v16_align.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OPSR.Poty.Fig3.v16_treefile.txt",
+    "molecule": "AA",
+    "n_members": 208,
+    "n_tips": 208,
+    "alignment_coverage": 0.986,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

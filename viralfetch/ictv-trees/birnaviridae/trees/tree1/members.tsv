@@ -1,0 +1,32 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KY548524_infectious_pancreatic_necrosis_virus	KY548524	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548527_infectious_pancreatic_necrosis_virus	KY548527	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548521_infectious_pancreatic_necrosis_virus	KY548521	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548528_infectious_pancreatic_necrosis_virus	KY548528	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548523_infectious_pancreatic_necrosis_virus	KY548523	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548525_infectious_pancreatic_necrosis_virus	KY548525	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548526_infectious_pancreatic_necrosis_virus	KY548526	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KP268679_Victorian_trout_aquabirnavirus	KP268679	Victorian trout aquabirnavirus	AA	none		False																
+AY129665_yellowtail_ascites_virus	AY129665	yellowtail ascites virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus ascitae	ICTV19990580
+M58756_infectious_pancreatic_necrosis_virus	M58756	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548519_infectious_pancreatic_necrosis_virus	KY548519	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+KY548520_infectious_pancreatic_necrosis_virus	KY548520	infectious pancreatic necrosis virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Aquabirnavirus		Aquabirnavirus salmonidae	ICTV19840276
+MG599937_Wenling_jack_mackerels_birnavirus	MG599937	Wenling jack mackerels birnavirus	AA	none		False																
+MG599938_Wenling_Japanese_topeshark_birnavirus	MG599938	Wenling Japanese topeshark birnavirus	AA	none		False																
+AJ459383_blotched_snakehead_virus	AJ459383	blotched snakehead virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Blosnavirus		Blosnavirus channae	ICTV20083451
+EF576658_infectious_bursal_disease_virus	EF576658	infectious bursal disease virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Avibirnavirus		Avibirnavirus gumboroense	ICTV19910433
+GQ451331_infectious_bursal_disease_virus	GQ451331	infectious bursal disease virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Avibirnavirus		Avibirnavirus gumboroense	ICTV19910433
+EU595674_infectious_bursal_disease_virus	EU595674	infectious bursal disease virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Avibirnavirus		Avibirnavirus gumboroense	ICTV19910433
+KU958717_infectious_bursal_disease_virus	KU958717	infectious bursal disease virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Avibirnavirus		Avibirnavirus gumboroense	ICTV19910433
+DQ679811_infectious_bursal_disease_virus	DQ679811	infectious bursal disease virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Avibirnavirus		Avibirnavirus gumboroense	ICTV19910433
+FM995221_rotifer_birnavirus	FM995221	rotifer birnavirus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Ronavirus		Ronavirus rotiferae	ICTV201908653
+KX883000_Jingmen_birna-like_virus	KX883000	Jingmen birna-like virus	AA	none		False																
+AF196645_Drosophila_X_virus	AF196645	Drosophila X virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Entomobirnavirus		Entomobirnavirus drosophilae	ICTV19910432
+KU754528_Eridge_virus	KU754528	Eridge virus	AA	none		False																
+KF298283_culicine-associated_Z_virus	KF298283	culicine-associated Z virus	AA	none		False																
+JN589002_Espirito_Santo_virus	JN589002	Espirito Santo virus	AA	none		False																
+JX403942_Mosquito_x_virus	JX403942	Mosquito x virus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Entomobirnavirus		Entomobirnavirus anophelae	ICTV201908649
+KX883001_Hubei_birna-like_virus	KX883001	Hubei birna-like virus	AA	none		False																
+AJ920336_Tellina_virus_1	AJ920336	Tellina virus 1	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Telnavirus		Telnavirus tellinae	ICTV201908655
+GQ342963_Drosophila_B_birnavirus	GQ342963	Drosophila B birnavirus	AA	none		True	Riboviria		Orthornavirae								Birnaviridae		Dronavirus		Dronavirus drosophilae	ICTV201908651
+HM038436_chicken_proventricular_necrosis_virus	HM038436	chicken proventricular necrosis virus	AA	none		False																

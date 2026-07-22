@@ -1,0 +1,33 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KM233624	KM233624		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Prosimiispumavirus		Prosimiispumavirus otocra	ICTV20175932
+SFU04327	SFU04327		AA	none		False																
+MF280817	MF280817		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Simiispumavirus		Simiispumavirus macmul	ICTV20175938
+SMFPOLORF		SMFPOLORF	AA	none		False																
+EU010385	EU010385		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Simiispumavirus		Simiispumavirus atespp	ICTV20175939
+GU356394	GU356394		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Simiispumavirus		Simiispumavirus saisci	ICTV20175940
+Y08851	Y08851		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Felispumavirus		Felispumavirus felcat	ICTV19760542
+BSU94514	BSU94514		AA	none		False																
+AF201902	AF201902		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Spumaretrovirinae	Equispumavirus		Equispumavirus equcab	ICTV20074662
+AY842951	AY842951		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Gammaretrovirus		Gammaretrovirus aviretend	ICTV19710196
+PCGGPE		PCGGPE	AA	none		False																
+AF151794	AF151794		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Gammaretrovirus		Gammaretrovirus koa	ICTV20165425
+MLMCG		MLMCG	AA	none		False																
+AF052723	AF052723		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Gammaretrovirus		Gammaretrovirus felleu	ICTV19760533
+AF033822	AF033822		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Epsilonretrovirus		Epsilonretrovirus waldersar	ICTV19982466
+AF014792	AF014792		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Epsilonretrovirus		Epsilonretrovirus walepihyp1	ICTV19982467
+AF014793	AF014793		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Epsilonretrovirus		Epsilonretrovirus walepihyp2	ICTV19982468
+AAB59933	AAB59933		AA	none		False																
+AF033807	AF033807		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Betaretrovirus		Betaretrovirus murmamtum	ICTV19710207
+POL_JSRV		POL JSRV	AA	none		False																
+POL_SMRVH		POL SMRVH	AA	none		False																
+SIVMPCG		SIVMPCG	AA	none		False																
+SIVRV1CG		SIVRV1CG	AA	none		False																
+BIM127		BIM127	AA	none		False																
+NC_001450	NC_001450		AA	none		False																
+FIVCG		FIVCG	AA	none		False																
+AF033819	AF033819		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Lentivirus		Lentivirus humimdef1	ICTV19911441
+HIV2BEN		HIV2BEN	AA	none		False																
+SIVMM239		SIVMM239	AA	none		False																
+HTVPRCAR		HTVPRCAR	AA	none		False																
+HL2V2CG		HL2V2CG	AA	none		False																
+AF033818	AF033818		AA	none		True	Riboviria		Pararnavirae		Artverviricota		Revtraviricetes		Ortervirales		Retroviridae	Orthoretrovirinae	Deltaretrovirus		Deltaretrovirus bovleu	ICTV19760530

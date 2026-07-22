@@ -274,11 +274,14 @@ def text(
     name: str = typer.Argument(..., help="Family name (ICTV Report chapter).", autocompletion=_complete_taxon),
     section: str = typer.Option(None, "--section", help="Show only a section by heading (e.g. summary)."),
     raw: bool = typer.Option(False, "--raw", help="Emit raw Markdown to stdout (for redirecting to a file)."),
+    images: bool = typer.Option(False, "--images", help="Also draw the chapter figures as terminal graphics."),
+    fig_width: int = typer.Option(None, "--fig-width", help="Cap figure width in terminal columns (default: full terminal width).", min=8),
 ) -> None:
     """Fetch an ICTV Report chapter and render it (headings, tables, italics).
 
     The original page URL and the chapter's references/attribution are shown at
-    the top, and the content is CC BY 4.0. Images are omitted.
+    the top, and the content is CC BY 4.0. Figure references are always kept as
+    image links; ``--images`` additionally draws the figures in the terminal.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -318,7 +321,29 @@ def text(
     if raw and cfg.format != "json":
         out.text_raw(markdown)
     else:
-        out.text(chapter, markdown)
+        figures = None
+        if _want_figures(images, raw, cfg):
+            # Pillow is a core dependency, so this normally fetches; the guard
+            # only skips the (large) downloads in a broken env missing Pillow,
+            # where the empty list lets the renderer say so in-band.
+            figures = _fetch_figures(client, chapter) if out.figures_supported() else {}
+        out.text(chapter, markdown, figures=figures, fig_width=fig_width)
+
+
+def _want_figures(images: bool, raw: bool, cfg: config_mod.Config) -> bool:
+    """Draw figures only for the interactive Rich view — not JSON, raw, or pipes."""
+    return images and not raw and cfg.format != "json" and sys.stdout.isatty()
+
+
+def _fetch_figures(client: ICTVClient, chapter) -> dict[str, bytes]:
+    """Fetch each figure's bytes (cached, polite), keyed by URL for inline
+    placement; unavailable ones are skipped."""
+    figures: dict[str, bytes] = {}
+    for img in chapter.images:
+        data = client.fetch_image(img.url)
+        if data is not None:
+            figures[img.url] = data
+    return figures
 
 
 def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -> None:
@@ -405,12 +430,13 @@ def cache_clear_cmd(
     ctx: typer.Context,
     texts: bool = typer.Option(False, "--texts", help="Clear only ICTV chapter text (30-day TTL namespace)."),
     seqs: bool = typer.Option(False, "--seqs", help="Clear only sequences/metadata (permanent namespace)."),
+    images: bool = typer.Option(False, "--images", help="Clear only ICTV chapter figures (permanent namespace)."),
 ) -> None:
-    """Remove cached entries. With neither flag, clear everything."""
+    """Remove cached entries. With no flag, clear everything."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
-    removed = Cache(config_mod.CACHE_DIR).clear(texts=texts, seqs=seqs)
-    out.cache_cleared(removed, texts=texts, seqs=seqs)
+    removed = Cache(config_mod.CACHE_DIR).clear(texts=texts, seqs=seqs, images=images)
+    out.cache_cleared(removed, texts=texts, seqs=seqs, images=images)
 
 
 if __name__ == "__main__":  # pragma: no cover

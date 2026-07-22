@@ -1,0 +1,18 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KX883688.1	KX883688.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Chipolycivirus		Chipolycivirus hubeiense	ICTV20175609
+KA182589.1	KA182589.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Chipolycivirus		Chipolycivirus chironomi	ICTV20175608
+KX883940.1	KX883940.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Hupolycivirus		Hupolycivirus hubeiense	ICTV20175611
+KX884540.1	KX884540.1		unknown	none		False																
+MF041808.1	MF041808.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus betasolenopsis	ICTV20175623
+KX883910.1	KX883910.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus bestiolae	ICTV20175621
+LA866448.1	LA866448.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus betamonomorii	ICTV20175619
+LH935077.1+LH935078.		LH935077.1+LH935078.	unknown	none		False																
+MF041810.1	MF041810.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus myrmicae	ICTV20175620
+MF041809.1	MF041809.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus lasii	ICTV20175614
+LI719284.1	LI719284.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus linepithematis	ICTV20175617
+MH213247.1	MH213247.1		unknown	none		False																
+MH213248.1	MH213248.1		unknown	none		False																
+MF041812.1	MF041812.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus gammalasii	ICTV20175616
+LI526777.1	LI526777.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus betalasii	ICTV20175615
+MF041813.1	MF041813.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus solenopsis	ICTV20175622
+LA858223.1	LA858223.1		unknown	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Polycipiviridae		Sopolycivirus		Sopolycivirus monomorii	ICTV20175618

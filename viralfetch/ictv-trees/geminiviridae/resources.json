@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Gem.Fig3.v3.alignment.fst",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OSD.Gem.Fig3.v3.treefile.txt",
+    "molecule": "nt",
+    "n_members": 29,
+    "n_tips": 29,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

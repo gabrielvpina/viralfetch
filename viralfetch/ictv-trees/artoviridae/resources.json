@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arto.Fig3.v6_alignment.FST",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.ARto.Fig3.v6_treefile.txt",
+    "molecule": "AA",
+    "n_members": 11,
+    "n_tips": 11,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

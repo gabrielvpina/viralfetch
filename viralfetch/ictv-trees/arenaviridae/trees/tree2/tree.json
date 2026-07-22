@@ -1,0 +1,66 @@
+{
+  "family": "Arenaviridae",
+  "family_slug": "arenaviridae",
+  "figure_label": "Figure_3A",
+  "source": {
+    "chapter_url": "https://ictv.global/report/chapter/arenaviridae/arenaviridae",
+    "resources_url": "https://ictv.global/report/chapter/arenaviridae/arenaviridae/resources",
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Antenna.Fig2_.v3_L_align_fst.TXT",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Arena_.Antenna.Fig2_.v3_L_treefile.txt",
+    "alignment_sha256": "0625ed7fa484bab0e4184f70a533ce1daaf48519c4cfbc62e4505d27097bce6a",
+    "tree_sha256": "f17801f1de1d429a53a27b2aa9e4691f96d1c58fab6dfe0c6c604056440c258b"
+  },
+  "caption": "Figure 3 Arenaviridae . Lifecycle of arenavirids. (1) Virion uptake; (2) virus-cell membrane fusion; (3) uncoating; (4) transcription, translation, and replication; (5) virion assembly; and (6) virion budding. GP, glycoprotein; IGR, intergenic region; L, large protein; NP, nucleoprotein; RNP, ribonucleoprotein; Z, zinc-binding protein. Note that antennaviruses, hartmaniviruses, and innmoviruses do not encode Z, possibly indicating that the lifecycle as depicted here is mammarenavirus-specific.",
+  "molecule": "AA",
+  "method": null,
+  "region": "nucleocapsid",
+  "region_kind": "protein",
+  "region_source": "caption",
+  "n_members": 3,
+  "n_tips": 8,
+  "alignment_coverage": 0.0,
+  "tip_alignment_consistent": false,
+  "members": [
+    {
+      "tip_label": "2",
+      "accession": null,
+      "name": "2",
+      "abbreviation": null,
+      "resolved_via": "none",
+      "ncbi_db": null,
+      "ncbi_taxid": null,
+      "raw_seq_fetched": false,
+      "vmr_match": false,
+      "lineage": {},
+      "ictv_id": null
+    },
+    {
+      "tip_label": "1",
+      "accession": null,
+      "name": "1",
+      "abbreviation": null,
+      "resolved_via": "none",
+      "ncbi_db": null,
+      "ncbi_taxid": null,
+      "raw_seq_fetched": false,
+      "vmr_match": false,
+      "lineage": {},
+      "ictv_id": null
+    },
+    {
+      "tip_label": "virus",
+      "accession": null,
+      "name": "virus",
+      "abbreviation": null,
+      "resolved_via": "none",
+      "ncbi_db": null,
+      "ncbi_taxid": null,
+      "raw_seq_fetched": false,
+      "vmr_match": false,
+      "lineage": {},
+      "ictv_id": null
+    }
+  ],
+  "parsed_at": "2026-07-21T18:32:15+00:00",
+  "tool_version": "viraltree/0.1.0"
+}

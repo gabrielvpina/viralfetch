@@ -1,0 +1,17 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+D84410_BNYVV	D84410	BNYVV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus necrobetae	ICTV19972431
+AF280539_BSBMV	AF280539	BSBMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus solibetae	ICTV19972432
+AB818898_BdMV	AB818898	BdMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus arctii	ICTV20133453
+KU140662_MILV	KU140662	MILV	nt	none		False																
+EU099844_RSNV	EU099844	RSNV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus oryzae	ICTV20125748
+KX883789_HBBLV1	KX883789	HBBLV1	nt	none		False																
+M15240_RUBV	M15240	RUBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus rubellae	ICTV19750326
+AF051830_HEV	AF051830	HEV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Hepeviridae	Orthohepevirinae	Paslahepevirus		Paslahepevirus balayani	ICTV19950816
+KF537660_MPTLV	KF537660	MPTLV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Tobaliviridae		Tobalivirus		Tobalivirus macrophominae	ICTV202522352
+V01408_TMV	V01408	TMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobamovirus		Tobamovirus tabaci	ICTV19710322
+AF166084_TRV	AF166084	TRV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobravirus		Tobravirus tabaci	ICTV19710327
+AB976029_GORV	AB976029	GORV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Goravirus		Goravirus gentianae	ICTV20154611
+M16576_BSMV	M16576	BSMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Hordeivirus		Hordeivirus hordei	ICTV19750354
+X78602_PCV	X78602	PCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pecluvirus		Pecluvirus arachidis	ICTV19871296
+L07937_SBWMV	L07937	SBWMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Furovirus		Furovirus tritici	ICTV19991804
+AJ238607_PMTV	AJ238607	PMTV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus solani	ICTV19871297

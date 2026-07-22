@@ -1,0 +1,36 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AJ272328_PZSV	AJ272328	PZSV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Bromoviridae		Anulavirus		Anulavirus PZSV	ICTV20083454
+D00355_CMV	D00355	CMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Bromoviridae		Cucumovirus		Cucumovirus CMV	ICTV19710166
+X58457_BMV	X58457	BMV	nt	none		True	Duplodnaviria		Heunggongvirae		Peploviricota		Herviviricetes		Herpesvirales		Orthoherpesviridae	Alphaherpesvirinae	Simplexvirus		Simplexvirus bovinealpha2	ICTV19790328
+X94347_OLV-2	X94347	OLV-2	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Bromoviridae		Oleavirus		Oleavirus OLV2	ICTV19970622
+X01572_AMV	X01572	AMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Bromoviridae		Alfamovirus		Alfamovirus AMV	ICTV19710072
+AF278535_PNRSV	AF278535	PNRSV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Bromoviridae		Ilarvirus		Ilarvirus PNRSV	ICTV19950553
+S51557_RBDV	S51557	RBDV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Mayoviridae		Idaeovirus		Idaeovirus rubi	ICTV19931865
+HE588185_GLRaV-7	HE588185	GLRaV-7	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Velarivirus		Velarivirus septemvitis	ICTV20020815
+U15440_LIYV	U15440	LIYV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus lactucaflavi	ICTV19960876
+AF037268_GLRaV-3	AF037268	GLRaV-3	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus trivitis	ICTV19990748
+X73476_BYV	X73476	BYV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus flavibetae	ICTV19750341
+JN651149_BNRBV	JN651149	BNRBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Kitaviridae		Blunervirus		Blunervirus vaccinii	ICTV20165505
+DQ352194_CiLV-C	DQ352194	CiLV-C	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Kitaviridae		Cilevirus		Cilevirus leprosis	ICTV20095206
+HQ852052_HGSV-2	HQ852052	HGSV-2	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Kitaviridae		Higrevirus		Higrevirus waimanalo	ICTV20133511
+V01408_TMV	V01408	TMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobamovirus		Tobamovirus tabaci	ICTV19710322
+AF166084_TRV	AF166084	TRV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Tobravirus		Tobravirus tabaci	ICTV19710327
+AB976029_GORV	AB976029	GORV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Goravirus		Goravirus gentianae	ICTV20154611
+M16576_BSMV	M16576	BSMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Hordeivirus		Hordeivirus hordei	ICTV19750354
+X78602_PCV	X78602	PCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pecluvirus		Pecluvirus arachidis	ICTV19871296
+L07937_SBWMV	L07937	SBWMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Furovirus		Furovirus tritici	ICTV19991804
+AJ238607_PMTV	AJ238607	PMTV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus solani	ICTV19871297
+KF537660_MPTLV	KF537660	MPTLV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Tobaliviridae		Tobalivirus		Tobalivirus macrophominae	ICTV202522352
+D84410_BNYVV	D84410	BNYVV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Benyviridae		Benyvirus		Benyvirus necrobetae	ICTV19972431
+KX883789_HBBLV1	KX883789	HBBLV1	nt	none		False																
+AF051830_HVE	AF051830	HVE	nt	none		False																
+M15240_RUBV	M15240	RUBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Matonaviridae		Rubivirus		Rubivirus rubellae	ICTV19750326
+AJ309022_GFkV	AJ309022	GFkV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Tymoviridae		Maculavirus		Maculavirus vitis	ICTV20021833
+X07441_TYMV	X07441	TYMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Tymoviridae		Tymovirus		Tymovirus brassicae	ICTV19710339
+D14449_PVM	D14449	PVM	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Betaflexiviridae	Quinvirinae	Carlavirus		Carlavirus misolani	ICTV19710150
+D21829_ASPV	D21829	ASPV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Betaflexiviridae	Quinvirinae	Foveavirus		Foveavirus mali	ICTV19982640
+AF237816_CNRMV	AF237816	CNRMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Betaflexiviridae	Quinvirinae	Robigovirus		Robigovirus necroavii	ICTV20083815
+AF406744_ICRSV	AF406744	ICRSV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Alphaflexiviridae		Potexvirus	Mandarivirus	Potexvirus citrindicum	ICTV20041072
+D00344_PVX	D00344	PVX	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Alphaflexiviridae		Potexvirus		Potexvirus ecspotati	ICTV19710248
+EU489641_LoLV	EU489641	LoLV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Alphaflexiviridae		Lolavirus		Lolavirus latenslolii	ICTV20093057
+M97264_ShVX	M97264	ShVX	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Tymovirales		Alphaflexiviridae		Allexivirus	Acarallexivirus	Allexivirus ecsascalonicum	ICTV19982603

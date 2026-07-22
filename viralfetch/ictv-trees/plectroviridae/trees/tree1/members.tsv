@@ -1,0 +1,7 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+NC_001365.1_Spiroplasma_phage_1-R8A2B	NC_001365.1	Spiroplasma phage 1-R8A2B	nt	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Plectroviridae		Vespertiliovirus		Vespertiliovirus R8A2B	ICTV19991059
+NC_009987.1_Spiroplasma_virus_SkV1_CR2-3x	NC_009987.1	Spiroplasma virus SkV1 CR2-3x	nt	none		False																
+NC_003793.1_Spiroplasma_phage_1-C74	NC_003793.1	Spiroplasma phage 1-C74	nt	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Plectroviridae		Vespertiliovirus		Vespertiliovirus C74	ICTV19991057
+NC_001270.2_Spiroplasma_phage_SVTS2	NC_001270.2	Spiroplasma phage SVTS2	nt	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Plectroviridae		Suturavirus		Suturavirus SVTS2	ICTV20165395
+NC_001341.1_Acholeplasma_phage_MV-L1	NC_001341.1	Acholeplasma phage MV-L1	nt	none		False																
+KJ619459.1_Vibrio_phage_CTXphi	KJ619459.1	Vibrio phage CTXphi	nt	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Affertcholeramvirus		Affertcholeramvirus CTXphi	ICTV19991040

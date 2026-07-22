@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ONSR.Peribunya.Fig3_.v10.align_corrected.FST",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ONSR.Peribunya.Fig3_.v10.treefile.txt",
+    "molecule": "AA",
+    "n_members": 196,
+    "n_tips": 196,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

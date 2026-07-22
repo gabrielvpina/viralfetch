@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ODD.Baculo.Fig3_.Align_core.2023.v4.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ODD.Baculo.Fig3_.Treefile.2023.v4.txt",
+    "molecule": "AA",
+    "n_members": 102,
+    "n_tips": 102,
+    "alignment_coverage": 0.961,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

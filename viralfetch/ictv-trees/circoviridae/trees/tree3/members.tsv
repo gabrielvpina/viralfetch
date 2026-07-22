@@ -1,0 +1,28 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KJ641711_BatACV-8	KJ641711	BatACV-8	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus morcego	ICTV20165252
+KJ641727_BatACV-5	KJ641727	BatACV-5	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus saguzarra	ICTV20165249
+KJ641724_BataCV-6	KJ641724	BataCV-6	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus ratpenat	ICTV20165250
+KJ641723_BatACV-7	KJ641723	BatACV-7	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus lepakko	ICTV20165251
+JQ814849_BatACV-3	JQ814849	BatACV-3	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus bianfu	ICTV20152321
+KT783484_BatACV-4	KT783484	BatACV-4	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus bastao	ICTV20165248
+JX863737_BatACV-1	JX863737	BatACV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus chauvesouris	ICTV20152319
+KJ020099_MiCV	KJ020099	MiCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus mink	ICTV20152325
+KC339249_BataCV-2	KC339249	BataCV-2	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus vleermuis	ICTV20152320
+AB072301_PCV-2	AB072301	PCV-2	nt	none		False																
+AF012107_PCV-1	AF012107	PCV-1	nt	none		False																
+JQ011377_EcatfishCV	JQ011377	EcatfishCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus catfish	ICTV20152327
+GU799606_BarCV	GU799606	BarCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus barbel	ICTV20152318
+GQ404856_HuACV	GQ404856	HuACV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus eniyan	ICTV20152324
+AF418552_GoCV	AF418552	GoCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus goose	ICTV20025804
+EU056309_SwCV	EU056309	SwCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus swan	ICTV20093483
+AY228555_DuCV	AY228555	DuCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus duck	ICTV20083621
+JQ821392_CanineCV	JQ821392	CanineCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus canine	ICTV20152322
+AF31129_BFDV	AF31129	BFDV	nt	none		True	Floreoviria		Shotokuvirae		Cossaviricota		Papovaviricetes		Sepolyvirales		Polyomaviridae		Gammapolyomavirus		Gammapolyomavirus avis	ICTV19951409
+DQ845074_GuCV	DQ845074	GuCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus gull	ICTV20083624
+AF252610_PiCV	AF252610	PiCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus pigeon	ICTV20073426
+GQ404851_ChimpACV	GQ404851	ChimpACV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus impundu	ICTV20152323
+DQ172906_StCV	DQ172906	StCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus starling	ICTV20083628
+DQ845075_FiCV	DQ845075	FiCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus finch	ICTV20083622
+KP793918_ZfiCV	KP793918	ZfiCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus zebrafinch	ICTV20152328
+DQ146997_RaCV	DQ146997	RaCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus raven	ICTV20152326
+AJ301633_CaCV	AJ301633	CaCV	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus canary	ICTV20025803

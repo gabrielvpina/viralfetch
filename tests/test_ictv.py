@@ -69,6 +69,38 @@ def test_characteristics_table_becomes_markdown():
     assert "*Betacoronavirus muris*" in md
 
 
+@pytest.mark.parametrize("slug", SLUGS)
+def test_figures_captured_as_images(slug):
+    ch = _load(slug)
+    # Every chapter carries figures; they are collected structurally...
+    assert ch.images, f"no figures captured for {slug}"
+    for img in ch.images:
+        assert img.url.startswith("https://ictv.global/")  # absolute, resolved
+    # ...and rendered inline as Markdown pointing at the same absolute URLs.
+    for img in ch.images:
+        assert f"]({img.url})" in ch.markdown
+
+
+def test_figure_urls_are_unique_and_exclude_boilerplate_logos():
+    ch = _load("coronaviridae")
+    urls = [img.url for img in ch.images]
+    assert len(urls) == len(set(urls))  # de-duplicated
+    # The ICTV header/logo images live outside the content container.
+    assert not any("ictvLogo" in u or "ICTV%20Report%20Header" in u for u in urls)
+
+
+@pytest.mark.parametrize("slug", SLUGS)
+def test_figures_are_standalone_blocks_not_table_rows(slug):
+    # ICTV wraps figures in layout tables; the parser unwraps them so each
+    # image sits on its own line (as a block) and can be drawn in place.
+    import re
+    md = _load(slug).markdown
+    assert "| ![" not in md  # no image left inside a Markdown table cell
+    for img in _load(slug).images:
+        # The reference appears as its own block line, surrounded by blank lines.
+        assert re.search(rf"(?m)^!\[[^\]]*\]\({re.escape(img.url)}\)\s*$", md)
+
+
 def test_doi_extracted_when_present_in_preamble():
     assert _load("poxviridae").doi == "10.1099/jgv.0.001849"
 
@@ -122,14 +154,16 @@ def test_slug():
 # -- client transport (fake session) --------------------------------------
 
 class FakeResponse:
-    def __init__(self, text, status_code=200):
+    def __init__(self, text="", status_code=200, content=b""):
         self.text = text
         self.status_code = status_code
+        self.content = content
 
 
 class FakeSession:
-    def __init__(self, pages, robots="User-agent: *\nDisallow: /admin/\n", fail_times=0):
+    def __init__(self, pages, robots="User-agent: *\nDisallow: /admin/\n", fail_times=0, images=None):
         self.pages = pages          # url -> html
+        self.images = images or {}  # url -> bytes
         self.robots = robots
         self.fail_times = fail_times
         self.calls = []
@@ -143,6 +177,8 @@ class FakeSession:
             return FakeResponse("", 503)
         if url in self.pages:
             return FakeResponse(self.pages[url])
+        if url in self.images:
+            return FakeResponse(content=self.images[url])
         return FakeResponse("", 404)
 
 
@@ -209,6 +245,46 @@ def test_retry_on_5xx_then_success(tmp_path):
     client = _client(session, tmp_path)
     ch = client.fetch_chapter("Coronaviridae")
     assert ch.title == "Family: Coronaviridae"
+
+
+# -- image fetch ----------------------------------------------------------
+
+IMG_URL = "https://ictv.global/system/files/inline-images/OPSR.Corona.Fig1_.v1.png"
+
+
+def test_fetch_image_returns_bytes_and_caches(tmp_path):
+    session = FakeSession({}, images={IMG_URL: b"\x89PNG\r\n\x1a\n-figure-bytes"})
+    client = _client(session, tmp_path)
+    data = client.fetch_image(IMG_URL)
+    assert data == b"\x89PNG\r\n\x1a\n-figure-bytes"
+    n = len(session.calls)
+    again = client.fetch_image(IMG_URL)  # served from the permanent cache
+    assert again == data
+    assert len(session.calls) == n  # no new request
+
+
+def test_fetch_image_offsite_src_refused(tmp_path):
+    off = "https://evil.example.com/tracker.png"
+    session = FakeSession({}, images={off: b"nope"})
+    client = _client(session, tmp_path)
+    assert client.fetch_image(off) is None
+    assert off not in session.calls  # never requested
+
+
+def test_fetch_image_missing_returns_none_not_raise(tmp_path):
+    session = FakeSession({})  # unknown url -> 404
+    client = _client(session, tmp_path)
+    assert client.fetch_image(IMG_URL) is None
+
+
+def test_fetch_image_robots_disallow_skips_image(tmp_path):
+    # robots disallowing the image path is respected but non-fatal: the figure
+    # is skipped (None), never fetched, and the chapter text is unaffected.
+    session = FakeSession({}, images={IMG_URL: b"data"},
+                          robots="User-agent: *\nDisallow: /system/\n")
+    client = _client(session, tmp_path)
+    assert client.fetch_image(IMG_URL) is None
+    assert IMG_URL not in session.calls  # never requested
 
 
 # -- VMR update check -----------------------------------------------------

@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_4",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ODD.Pospi.Fig4.v2.alignment.txt",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ODD.Pospi.Fig4.v2.treefile.txt",
+    "molecule": "nt",
+    "n_members": 28,
+    "n_tips": 28,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

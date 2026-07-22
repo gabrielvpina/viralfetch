@@ -1,0 +1,12 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+JF461542_Flock_House_virus_IP	JF461542	Flock House virus IP	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus flockense	ICTV19910987
+GQ342966_Drosophila_melanogaster_American_nodavir	GQ342966	Drosophila melanogaster American nodavir	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus flockense	ICTV19910987
+EF690538_Flock_House_virus_TNCL	EF690538	Flock House virus TNCL	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus flockense	ICTV19910987
+X15959_Flock_House_virus	X15959	Flock House virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus flockense	ICTV19910987
+X00956_black_beetle_virus	X00956	black beetle virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus heteronychi	ICTV19820586
+KU754530_Newington_virus	KU754530	Newington virus	nt	none		False																
+GU976286_Helicoverpa_zea	GU976286	Helicoverpa zea	nt	none		False																
+X15960_Boolarra_virus	X15960	Boolarra virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus boolarraense	ICTV19910986
+X15961_Nodamura_virus	X15961	Nodamura virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus nodamuraense	ICTV19810542
+AF174534_Nodamura_virus	AF174534	Nodamura virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus nodamuraense	ICTV19810542
+AF171943_Pariacoto_virus	AF171943	Pariacoto virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Magsaviricetes		Nodamuvirales		Nodaviridae		Alphanodavirus		Alphanodavirus pariacotoense	ICTV20021206

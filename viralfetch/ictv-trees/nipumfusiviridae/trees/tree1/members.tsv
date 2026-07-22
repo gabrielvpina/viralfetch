@@ -1,0 +1,11 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+BK067792_Nitrosopumilaceae_spindle-shaped_virus_NYM1	BK067792	Nitrosopumilaceae spindle-shaped virus NYM1	unknown	none		True											Nipumfusiviridae		Yangshanfusivirus		Yangshanfusivirus mimetica	ICTV202420085
+BK067791_Nitrosopumilaceae_spindle-shaped_virus_NTT1	BK067791	Nitrosopumilaceae spindle-shaped virus NTT1	unknown	none		True											Nipumfusiviridae		Terrafusivirus		Terrafusivirus tennesseense	ICTV202420082
+BK067788_Nitrosopumilaceae_spindle-shaped_virus_NTM1	BK067788	Nitrosopumilaceae spindle-shaped virus NTM1	unknown	none		True											Nipumfusiviridae		Terrafusivirus		Terrafusivirus michiganense	ICTV202420081
+BK067787_Nitrosopumilaceae_spindle-shaped_virus_NBD1	BK067787	Nitrosopumilaceae spindle-shaped virus NBD1	unknown	none		True											Nipumfusiviridae		Baiafusivirus		Baiafusivirus delawarense	ICTV202420083
+BK067786_Nitrosopumilaceae_spindle-shaped_virus_NBC1	BK067786	Nitrosopumilaceae spindle-shaped virus NBC1	unknown	none		True											Nipumfusiviridae		Baiafusivirus		Baiafusivirus chesapeakense	ICTV202420084
+BK067789_Nitrosopumilaceae_spindle-shaped_virus_NMC1	BK067789	Nitrosopumilaceae spindle-shaped virus NMC1	unknown	none		True											Nipumfusiviridae		Marefusivirus		Marefusivirus columbiaense	ICTV202420079
+BK067790_Nitrosopumilaceae_spindle-shaped_virus_NMM1	BK067790	Nitrosopumilaceae spindle-shaped virus NMM1	unknown	none		True											Nipumfusiviridae		Marefusivirus		Marefusivirus montereyense	ICTV202420080
+BK067784_Nitrosopumilaceae_spindle-shaped_virus_NMH1	BK067784	Nitrosopumilaceae spindle-shaped virus NMH1	unknown	none		True											Nipumfusiviridae		Marefusivirus		Marefusivirus helgoense	ICTV202420077
+BK067785_Nitrosopumilaceae_spindle-shaped_virus_NMJ1	BK067785	Nitrosopumilaceae spindle-shaped virus NMJ1	unknown	none		True											Nipumfusiviridae		Marefusivirus		Marefusivirus jervisense	ICTV202420078
+BK067782_Nitrosopumilaceae_spindle-shaped_virus_NMP1	BK067782	Nitrosopumilaceae spindle-shaped virus NMP1	unknown	none		True											Nipumfusiviridae		Marefusivirus		Marefusivirus pacificense	ICTV202420076

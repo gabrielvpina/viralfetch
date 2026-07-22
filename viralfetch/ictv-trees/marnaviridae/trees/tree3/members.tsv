@@ -1,0 +1,11 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AY337486_Heterosigma_akashiwo_RNA_virus	AY337486	Heterosigma akashiwo RNA virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Marnavirus		Marnavirus taichanarum	ICTV20041391
+AB243297_Rhizosolenia_setigera_RNA_virus_01	AB243297	Rhizosolenia setigera RNA virus 01	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Bacillarnavirus		Bacillarnavirus nagasakii	ICTV20115399
+AB469874_Chaetoceros_socialis_F.radians_RNA_virus	AB469874	Chaetoceros socialis F.radians RNA virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Bacillarnavirus		Bacillarnavirus yujii	ICTV20115397
+KX884511_Beihai_picorna-like_virus_28	KX884511	Beihai picorna-like virus 28	AA	none		False																
+AB375474_Chaetoceros_tenuissimus_RNA_virus_01	AB375474	Chaetoceros tenuissimus RNA virus 01	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Bacillarnavirus		Bacillarnavirus setoensis	ICTV20115398
+KX883399_Beihai_picorna-like_virus_27	KX883399	Beihai picorna-like virus 27	AA	none		False																
+KX884536_Beihai_picorna-like_virus_26	KX884536	Beihai picorna-like virus 26	AA	none		False																
+KX884507_Beihai_picorna-like_virus_24	KX884507	Beihai picorna-like virus 24	AA	none		False																
+KX883361_Beihai_picorna-like_virus_25	KX883361	Beihai picorna-like virus 25	AA	none		False																
+KY130496_N_OV_003	KY130496	N OV 003	AA	none		False																

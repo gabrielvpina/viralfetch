@@ -1,0 +1,6 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+LC519840_hadaka_virus_1	LC519840	hadaka virus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Mycopleornaviricetes		Xenadelphovirales		Hadakaviridae		Hadakavirus		Hadakavirus nanga	ICTV202112465
+LC592214_hadaka_virus_1	LC592214	hadaka virus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Mycopleornaviricetes		Xenadelphovirales		Hadakaviridae		Hadakavirus		Hadakavirus nanga	ICTV202112465
+MZ814973.1_ACCESSION_NOT_ON_SPREADSHEET	MZ814973.1		AA	none		False																
+HG975302.1_ACCESSION_NOT_ON_SPREADSHEET	HG975302.1		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Mycopleornaviricetes		Xenadelphovirales		Polymycoviridae		Multimycovirus		Multimycovirus aspergilli	ICTV201908685
+KX778766.1_ACCESSION_NOT_ON_SPREADSHEET	KX778766.1		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Mycopleornaviricetes		Xenadelphovirales		Polymycoviridae		Polymycovirus		Polymycovirus colletotrichi	ICTV201908690

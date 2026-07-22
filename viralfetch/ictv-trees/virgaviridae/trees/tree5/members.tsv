@@ -1,0 +1,14 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KT225273_CPSBV	KT225273	CPSBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus colombiense	ICTV20165508
+AJ277556_PMTV	AJ277556	PMTV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus solani	ICTV19871297
+KT225278_SBV2	KT225278	SBV2	nt	none		False																
+AJ223598_BVQ	AJ223598	BVQ	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus betae	ICTV19991827
+Z66493_BSBV	Z66493	BSBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus solibetae	ICTV19972496
+D86638_BBNV	D86638	BBNV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pomovirus		Pomovirus viciae	ICTV19972497
+X03854_BSMV	X03854	BSMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Hordeivirus		Hordeivirus hordei	ICTV19750354
+Z46351_LRSV	Z46351	LRSV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Hordeivirus		Hordeivirus lychnis	ICTV19760686
+AF447397_IPCV	AF447397	IPCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pecluvirus		Pecluvirus indicum	ICTV19972494
+L07269_PCV	L07269	PCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Pecluvirus		Pecluvirus arachidis	ICTV19871296
+AB976030_GORSV	AB976030	GORSV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Goravirus		Goravirus gentianae	ICTV20154611
+KP760462_DrVA	KP760462	DrVA	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Virgaviridae		Goravirus		Goravirus drakeae	ICTV20154612
+D00906_NVMV	D00906	NVMV	nt	none		False																

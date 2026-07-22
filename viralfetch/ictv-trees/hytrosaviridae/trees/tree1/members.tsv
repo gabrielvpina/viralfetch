@@ -1,0 +1,31 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AAC57976_Retroperitoneal_fibromatosis-associated_herpesvirus	AAC57976	Retroperitoneal fibromatosis-associated herpesvirus	AA	none		False																
+YP_238317_Macaca_fuscata_rhadinovirus	YP_238317	Macaca fuscata rhadinovirus	AA	none		False																
+NP_045328_Bovine_herpesvirus_1	NP_045328	Bovine herpesvirus 1	AA	none		False																
+NP_050219_Human_herpesvirus_6B	NP_050219	Human herpesvirus 6B	AA	none		True	Duplodnaviria		Heunggongvirae		Peploviricota		Herviviricetes		Herpesvirales		Orthoherpesviridae	Betaherpesvirinae	Roseolovirus		Roseolovirus humanbeta6b	ICTV20115683
+AAF80107_Porcine_cytomegalovirus	AAF80107	Porcine cytomegalovirus	AA	none		True	Duplodnaviria		Heunggongvirae		Peploviricota		Herviviricetes		Herpesvirales		Orthoherpesviridae	Betaherpesvirinae	Roseolovirus		Roseolovirus suidbeta2	ICTV20083083
+YP_001883329_Musca_domestica_SGHV	YP_001883329	Musca domestica SGHV	AA	none		False																
+AMB48691_Glossina_pallidipes_SGHV_Ethiopian_strain	AMB48691	Glossina pallidipes SGHV Ethiopian strain	AA	none		False																
+ABQ08852_Glossina_pallidipes_SGHV_Uganda_strain	ABQ08852	Glossina pallidipes SGHV Uganda strain	AA	none		False																
+AAC00532_Paramecium_bursaria_Chlorella_virus_1	AAC00532	Paramecium bursaria Chlorella virus 1	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Algavirales		Phycodnaviridae		Chlorovirus	Alphachlorovirus	Chlorovirus vanettense	ICTV19900812
+AAL58859_Emiliania_huxleyi_virus_86	AAL58859	Emiliania huxleyi virus 86	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Algavirales		Phycodnaviridae		Coccolithovirus		Coccolithovirus huxleyi	ICTV20041586
+NP_077578_Ectocarpus_siliculosus_virus_1	NP_077578	Ectocarpus siliculosus virus 1	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Algavirales		Phycodnaviridae		Phaeovirus		Phaeovirus unasiliculosus	ICTV19981929
+YP_142676_Acanthamoeba_polyphaga_mimivirus	YP_142676	Acanthamoeba polyphaga mimivirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Imitervirales	Orthomivirineae	Mimiviridae	Megamimivirinae	Mimivirus		Mimivirus bradfordmassiliense	ICTV20042222
+AAC54632_Spodoptera_ascovirus	AAC54632	Spodoptera ascovirus	AA	none		False																
+NP_078724_Lymphocystis_disease_virus_1	NP_078724	Lymphocystis disease virus 1	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Alphairidovirinae	Lymphocystivirus		Lymphocystivirus platichthys1	ICTV19991065
+CAC19195_Invertebrate_iridescent_virus_6	CAC19195	Invertebrate iridescent virus 6	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Megaviricetes		Pimascovirales		Iridoviridae	Betairidovirinae	Iridovirus		Iridovirus chilo1	ICTV19840548
+ABF82150_Aedes_taeniorhynchus_iridescent_virus	ABF82150	Aedes taeniorhynchus iridescent virus	AA	none		False																
+NP_042783_African_swine_fever_virus	NP_042783	African swine fever virus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Asfuvirales		Asfarviridae		Asfivirus		Asfivirus haemorrhagiae	ICTV19810440
+AAK13281_Culex_nigripalpus_NPV	AAK13281	Culex nigripalpus NPV	AA	none		False																
+YP_025217_Neodiprion_lecontei_NPV	YP_025217	Neodiprion lecontei NPV	AA	none		False																
+NP_148895_Cydia_pomonella_granulovirus	NP_148895	Cydia pomonella granulovirus	AA	none		True							Naldaviricetes		Lefavirales		Baculoviridae		Betabaculovirus		Betabaculovirus cypomonellae	ICTV19910419
+NP_054095_Autographa_californica_nucleopolyhedrovirus	NP_054095	Autographa californica nucleopolyhedrovirus	AA	none		False																
+NP_047720_Lymantria_dispar_nucleopolyhedrovirus	NP_047720	Lymantria dispar nucleopolyhedrovirus	AA	none		False																
+NP_064832_Amsacta_moorei_entomopoxvirus	NP_064832	Amsacta moorei entomopoxvirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Entomopoxvirinae	Betaentomopoxvirus		Betaentomopoxvirus amoorei	ICTV19760459
+CAA40566_Choristoneura_biennis_entomopoxvirus	CAA40566	Choristoneura biennis entomopoxvirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Entomopoxvirinae	Betaentomopoxvirus		Betaentomopoxvirus cbiennis	ICTV19760466
+NP_063712.1_Vaccinia_virus	NP_063712.1	Vaccinia virus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Chordopoxvirinae	Orthopoxvirus		Orthopoxvirus vaccinia	ICTV19911346
+AAL40129_Molluscum_contagiosum_virus	AAL40129	Molluscum contagiosum virus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Chordopoxvirinae	Molluscipoxvirus		Molluscipoxvirus molluscum	ICTV19710278
+YP_001111279_Gryllus_bimaculatus_nudivirus	YP_001111279	Gryllus bimaculatus nudivirus	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Alphanudivirus		Alphanudivirus grybimaculati	ICTV20133593
+NP_690550_Heliothis_zea_nudivirus_1	NP_690550	Heliothis zea nudivirus 1	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Betanudivirus		Betanudivirus hezeae	ICTV20133595
+ABF93350_Oryctes_rhinoceros_nudivirus	ABF93350	Oryctes rhinoceros nudivirus	AA	none		True							Naldaviricetes		Lefavirales		Nudiviridae		Alphanudivirus		Alphanudivirus oryrhinocerotis	ICTV20133592
+AAK77696_shrimp_white_spot_syndrome_virus	AAK77696	shrimp white spot syndrome virus	AA	none		False																

@@ -1,0 +1,4 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+2		2	AA	none		False																
+1		1	AA	none		False																
+virus		virus	AA	none		False																

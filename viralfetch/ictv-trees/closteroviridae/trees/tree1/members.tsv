@@ -1,0 +1,53 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+FMMaV		FMMaV	AA	none		False																
+BCCV1		BCCV1	AA	none		True	Riboviria		Orthornavirae		Duplornaviricota		Chrymotiviricetes		Ghabrivirales	Alphatotivirineae	Chrysoviridae		Alphachrysovirus		Alphachrysovirus brassicae	ICTV201856298
+CTV		CTV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Hepelivirales		Hepeviridae	Parahepevirinae	Piscihepevirus		Piscihepevirus heenan	ICTV20142436
+RLMoV		RLMoV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus macularubi	ICTV20115385
+SCFaV		SCFaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus fragariae	ICTV20115384
+CNFV		CNFV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus necrodianthi	ICTV19760667
+TV1		TV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus tabaci	ICTV20165269
+ReV1		ReV1	AA	none		False																
+MV1		MV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus menthae	ICTV20083643
+CYLV		CYLV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus flavicarotae	ICTV19821178
+AV1		AV1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Stelpaviricetes		Patatavirales		Potyviridae		Potyvirus		Potyvirus asparagi	ICTV19911757
+BYSV		BYSV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus nanobetae	ICTV19760665
+BYV		BYV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus flavibetae	ICTV19750341
+GLRaV2		GLRaV2	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Closterovirus		Closterovirus vitis	ICTV19990747
+BVA		BVA	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Bluvavirus		Bluvavirus vaccinii	ICTV20152407
+AcV1		AcV1	AA	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Circovirus		Circovirus yaa	ICTV201856569
+PeBV		PeBV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Olivavirus		Olivavirus betadiospyri	ICTV20165271
+MVBaV		MVBaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Menthavirus		Menthavirus menthae	ICTV20083656
+GLRaV4		GLRaV4	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus tetravitis	ICTV20125734
+PMWaV3		PMWaV3	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus triananas	ICTV20093491
+PMWaV1		PMWaV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus unananas	ICTV20020796
+AiPoV1		AiPoV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus bulbiferae	ICTV201856656
+PBNSPaV		PBNSPaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus pruni	ICTV20093492
+FLMaV2		FLMaV2	AA	none		False																
+LChV2		LChV2	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus nanoavii	ICTV20020795
+PMWaV2		PMWaV2	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus duananas	ICTV20020797
+BVBaV		BVBaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus venarubi	ICTV20152375
+GLRaV3		GLRaV3	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus trivitis	ICTV19990748
+GLRaV13		GLRaV13	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus tredecimvitis	ICTV20175771
+GLRaV1		GLRaV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus univitis	ICTV20020793
+PAVA		PAVA	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Ampelovirus		Ampelovirus pistaciae	ICTV201907265
+TICV		TICV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus contagichlorosis	ICTV19981259
+LIYV		LIYV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus lactucaflavi	ICTV19960876
+ToCV		ToCV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus tomatichlorosis	ICTV19981258
+SPCSV		SPCSV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus ipomeae	ICTV19981257
+CYSDV		CYSDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus cucurbitae	ICTV19981254
+TwVSV		TwVSV	AA	none		False																
+BYDV		BYDV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus flavibetae	ICTV20093503
+LCV		LCV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus lactucachlorosi	ICTV19981255
+PYVV		PYVV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus flavisolani	ICTV20083651
+SPaV		SPaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus palidofragariae	ICTV20083652
+DVCV		DVCV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus diodiae	ICTV20125747
+BYVaV		BYVaV	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Crinivirus		Crinivirus rubi	ICTV20083647
+BPYV		BPYV	AA	none		True	Floreoviria		Shotokuvirae		Cossaviricota		Papovaviricetes		Sepolyvirales		Polyomaviridae		Epsilonpolyomavirus		Epsilonpolyomavirus bovis	ICTV19911005
+ArPV1		ArPV1	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Velarivirus		Velarivirus arecae	ICTV20165272
+GLRaV7		GLRaV7	AA	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Closteroviridae		Velarivirus		Velarivirus septemvitis	ICTV20020815
+LChV1		LChV1	AA	none		False																
+CoV3		CoV3	AA	none		False																
+CoV1		CoV1	AA	none		False																
+CoV2		CoV2	AA	none		False																
+CoV4		CoV4	AA	none		False																
+Outgroup		Outgroup	AA	none		False																

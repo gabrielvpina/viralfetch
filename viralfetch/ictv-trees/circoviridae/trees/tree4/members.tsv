@@ -1,0 +1,44 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+GQ404854_HuACyV-6	GQ404854	HuACyV-6	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus mmadu	ICTV20152358
+KJ641720_BatACyV-9	KJ641720	BatACyV-9	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus khangkhaw	ICTV20165263
+KJ641715_BatACyV-8	KJ641715	BatACyV-8	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus nahkhiir	ICTV20165262
+KM382270_BatACyV-10	KM382270	BatACyV-10	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus bastao	ICTV20165253
+KC512920_DfACyV-8	KC512920	DfACyV-8	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus tarako	ICTV20152346
+JX569794_CroACyV-1	JX569794	CroACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus roach	ICTV20152347
+KM382269_BatACyV-12	KM382269	BatACyV-12	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus doi	ICTV20165255
+KJ641712_BatACyV-6	KJ641712	BatACyV-6	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus popo	ICTV20165260
+GQ404845_HuACyV-5	GQ404845	HuACyV-5	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus homa	ICTV20152357
+JF938081_BatACyV-3	JF938081	BatACyV-3	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus kiroptero	ICTV20152335
+HQ738637_BatACyV-5	HQ738637	BatACyV-5	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus flagermus	ICTV20152332
+JX185426_DfACyV-5	JX185426	DfACyV-5	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus libelula	ICTV20152343
+JF938079_BatACyV-2	JF938079	BatACyV-2	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus jemage	ICTV20152334
+HM228874_BatACyV-1	HM228874	BatACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus jaaabani	ICTV20152333
+HQ738643_ChickACyV-1	HQ738643	ChickACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus adie	ICTV20152348
+GQ404849_ChimpACyV-1	GQ404849	ChimpACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus sokwe	ICTV20152338
+KC512919_DfACyV-7	KC512919	DfACyV-7	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus namu	ICTV20152345
+KJ831064_HuACyV-11	KJ831064	HuACyV-11	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus manitan	ICTV20165266
+GQ404846_HuACyV-3	GQ404846	HuACyV-3	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus manukha	ICTV20152355
+GQ404844_HuACyV-2	GQ404844	HuACyV-2	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus insaan	ICTV20152354
+HQ738636_GoACyV-1	HQ738636	GoACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus bakri	ICTV20152349
+GQ404855_HuACyV-7	GQ404855	HuACyV-7	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus mutum	ICTV20152359
+KJ641728_BatACyV-13	KJ641728	BatACyV-13	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus nietoperz	ICTV20165256
+JF938082_BatACyV-4	JF938082	BatACyV-4	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus sismis	ICTV20152336
+HQ638049_DfACyV-1	HQ638049	DfACyV-1	nt	none		False																
+GQ404847_HuACyV-1	GQ404847	HuACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus maanav	ICTV20152353
+JF938080_DfACyV-4	JF938080	DfACyV-4	nt	none		False																
+KC512918_DfACyV-6	KC512918	DfACyV-6	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus babka	ICTV20152344
+LC018134_SqACyV-1	LC018134	SqACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus risi	ICTV20165267
+KJ641717_BatACyV-11	KJ641717	BatACyV-11	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus yarasa	ICTV20165254
+JX185422_DfACyV-2	JX185422	DfACyV-2	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus taniilai	ICTV20152340
+KF726984_HuACyV-10	KF726984	HuACyV-10	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus humana	ICTV20152352
+KM017740_FeACyV-1	KM017740	FeACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus gato	ICTV20165264
+KJ641740_BatACyV-7	KJ641740	BatACyV-7	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus liliac	ICTV20165261
+KT732785_BatACyV-14	KT732785	BatACyV-14	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus peka	ICTV20165257
+KT732786_BatACyV-15	KT732786	BatACyV-15	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus pea	ICTV20165258
+KR902499_HoACyV-1	KR902499	HoACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus caballo	ICTV20165265
+JX185424_DfACyV-3	JX185424	DfACyV-3	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus tonbo	ICTV20152341
+KC771281_HuACyV-9	KC771281	HuACyV-9	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus munthu	ICTV20152351
+KT732787_BatACyV-16	KT732787	BatACyV-16	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus pekapeka	ICTV20165259
+GQ404857_HuACyV-4	GQ404857	HuACyV-4	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus bashri	ICTV20152356
+HQ738634_BoACyV-1	HQ738634	BoACyV-1	nt	none		True	Floreoviria		Shotokuvirae		Cressdnaviricota		Arfiviricetes		Cirlivirales		Circoviridae		Cyclovirus		Cyclovirus gaaye	ICTV20152337
+AB937980_HuACyV-8	AB937980	HuACyV-8	nt	none		False																

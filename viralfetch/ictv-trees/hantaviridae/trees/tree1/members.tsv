@@ -1,0 +1,54 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+Mobatvirus_robinaense___NC_055633-34		Mobatvirus robinaense NC 055633-34	AA	none		False																
+Mobatvirus_dakrongense___MG663534-35		Mobatvirus dakrongense MG663534-35	AA	none		False																
+Mobatvirus_laibinense___KY662264-65		Mobatvirus laibinense KY662264-65	AA	none		False																
+Mobatvirus_xuansonense___OQ466086_OQ466078	OQ466086	Mobatvirus xuansonense OQ466078	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Mobatvirus		Mobatvirus xuansonense	ICTV202009701
+Mobatvirus_novaense___KY780086_87	KY780086	Mobatvirus novaense 87	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Mobatvirus		Mobatvirus novaense	ICTV20164792
+Orthohantavirus_artybashense___MG888402_MG913806	MG888402	Orthohantavirus artybashense MG913806	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus artybashense	ICTV202319088
+Orthohantavirus_asikkalaense___NC_043069_70	NC_043069	Orthohantavirus asikkalaense 70	AA	none		False																
+Orthohantavirus_kenkemeense___NC_034559_NC_034565	NC_034559	Orthohantavirus kenkemeense NC 034565	AA	none		False																
+Orthohantavirus_asamaense___EU929072_EU929075	EU929072	Orthohantavirus asamaense EU929075	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus asamaense	ICTV20164774
+Orthohantavirus_wufangense___OM030312-13		Orthohantavirus wufangense OM030312-13	AA	none		False																
+Orthohantavirus_caobangense___EF543524_EF543526	EF543524	Orthohantavirus caobangense EF543526	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus caobangense	ICTV20164778
+Orthohantavirus_boweense___NC_034405-06		Orthohantavirus boweense NC 034405-06	AA	none		False																
+Orthohantavirus_jejuense___MN295683_MN295685	MN295683	Orthohantavirus jejuense MN295685	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus jejuense	ICTV20164784
+Orthohantavirus_tigrayense___KU934009_10	KU934009	Orthohantavirus tigrayense 10	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus tigrayense	ICTV201856435
+Orthohantavirus_brugesense___NC_034394_95	NC_034394	Orthohantavirus brugesense 95	AA	none		False																
+Orthohantavirus_lankaense___LC553716-17		Orthohantavirus lankaense LC553716-17	AA	none		False																
+Orthohantavirus_thailandense___MZ343360-61		Orthohantavirus thailandense MZ343360-61	AA	none		False																
+Orthohantavirus_seoulense___OP946509-10		Orthohantavirus seoulense OP946509-10	AA	none		False																
+Orthohantavirus_dobravaense___GU904028_GU904034	GU904028	Orthohantavirus dobravaense GU904034	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus dobravaense	ICTV19950720
+Orthohantavirus_sangassouense___NC_034526_NC_034516_NC_034517	NC_034526	Orthohantavirus sangassouense NC 034516 NC 034517	AA	none		False																
+Orthohantavirus_hantanense___OR700530_OR700537	OR700530	Orthohantavirus hantanense OR700537	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus hantanense	ICTV19870409
+Orthohantavirus_dabieshanense___OM030306-07		Orthohantavirus dabieshanense OM030306-07	AA	none		False																
+Orthohantavirus_puumalaense___MN832783-4		Orthohantavirus puumalaense MN832783-4	AA	none		False																
+Orthohantavirus_khabarovskense___KJ857340_KJ857344	KJ857340	Orthohantavirus khabarovskense KJ857344	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus khabarovskense	ICTV19990666
+Orthohantavirus_tatenalense____NC_055635_NC_055637	NC_055635	Orthohantavirus tatenalense NC 055637	AA	none		False																
+Orthohantavirus_tulaense___NC_005227_28	NC_005227	Orthohantavirus tulaense 28	AA	none		False																
+Orthohantavirus_prospectense___M34011_NC_038940	M34011	Orthohantavirus prospectense NC 038940	AA	none		False																
+Orthohantavirus_luxiense___HM756286_HM756287	HM756286	Orthohantavirus luxiense HM756287	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus luxiense	ICTV20164788
+Orthohantavirus_fugongense___NC_034473_NC_034466	NC_034473	Orthohantavirus fugongense NC 034466	AA	none		False																
+Orthohantavirus_rockportense___NC_038696_NC_038694	NC_038696	Orthohantavirus rockportense NC 038694	AA	none		False																
+Orthohantavirus_sinnombreense___NC_005215-16		Orthohantavirus sinnombreense NC 005215-16	AA	none		False																
+Orthohantavirus_moroense___AB620103-104		Orthohantavirus moroense AB620103-104	AA	none		False																
+Orthohantavirus_montanoense___NC_034396_NC_034397	NC_034396	Orthohantavirus montanoense NC 034397	AA	none		False																
+Orthohantavirus_andesense___NC_003466-67		Orthohantavirus andesense NC 003466-67	AA	none		False																
+Orthohantavirus_mamorense___FJ532244_FJ608550	FJ532244	Orthohantavirus mamorense FJ608550	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus mamorense	ICTV19990667
+Orthohantavirus_maporalense___NC_034566_NC_034552	NC_034566	Orthohantavirus maporalense NC 034552	AA	none		False																
+Orthohantavirus_chocloense___OR365536_37	OR365536	Orthohantavirus chocloense 37	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus chocloense	ICTV20164779
+Orthohantavirus_delgaditoense___NC_034528_NC_034525	NC_034528	Orthohantavirus delgaditoense NC 034525	AA	none		False																
+Orthohantavirus_bayoui___GQ200820_GQ244521	GQ200820	Orthohantavirus bayoui GQ244521	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus bayoui	ICTV19990659
+Orthohantavirus_nigrorivense___L39949_L39950	L39949	Orthohantavirus nigrorivense L39950	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Orthohantavirus		Orthohantavirus nigrorivense	ICTV19990660
+Percilovirus_gobii___ON595962-63		Percilovirus gobii ON595962-63	AA	none		False																
+Percilovirus_lophii___MG599948_MG599947	MG599948	Percilovirus lophii MG599947	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Actantavirinae	Percilovirus		Percilovirus lophii	ICTV201856430
+Actinovirus_halieutaeae___MG599945_MG599944	MG599945	Actinovirus halieutaeae MG599944	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Actantavirinae	Actinovirus		Actinovirus halieutaeae	ICTV201856428
+Actinovirus_triacanthodis___MG599951_MG599950	MG599951	Actinovirus triacanthodis MG599950	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Actantavirinae	Actinovirus		Actinovirus triacanthodis	ICTV201856429
+Actinovirus_bernense___NC_055639_NC_055638	NC_055639	Actinovirus bernense NC 055638	AA	none		False																
+Agnathovirus_eptatreti___MG599954_MG599953	MG599954	Agnathovirus eptatreti MG599953	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Agantavirinae	Agnathovirus		Agnathovirus eptatreti	ICTV201856433
+Reptillovirus_hemidactyli___MG599942_MG599941	MG599942	Reptillovirus hemidactyli MG599941	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Repantavirinae	Reptillovirus		Reptillovirus hemidactyli	ICTV201856438
+Thottimvirus_thottapalayamense___KJ420560_KJ420542	KJ420560	Thottimvirus thottapalayamense KJ420542	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Thottimvirus		Thottimvirus thottapalayamense	ICTV19910608
+Thottimvirus_imjinense___EF641804_EF641798	EF641804	Thottimvirus imjinense EF641798	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Hantaviridae	Mammantavirinae	Thottimvirus		Thottimvirus imjinense	ICTV20164783
+Loanvirus_brunaense___KX845678-79		Loanvirus brunaense KX845678-79	AA	none		False																
+Loanvirus_longquanense___NC_043126-27		Loanvirus longquanense NC 043126-27	AA	none		False																
+Mobatvirus_lenaense___NC_078483_4	NC_078483	Mobatvirus lenaense 4	AA	none		False																
+Mobatvirus_quezonense___NC_034400_NC_034393	NC_034400	Mobatvirus quezonense NC 034393	AA	none		False																

@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Roni.Fig3.alignment.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Roni.Fig3.Mega7_tree.mtsx",
+    "molecule": "nt",
+    "n_members": 21,
+    "n_tips": 0,
+    "alignment_coverage": 0.0,
+    "tip_alignment_consistent": false,
+    "quality": "too_few_members",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_4",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/OPSR.Roni_Fig4_alignment.2022.fas",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OPSR.Roni_.Fig4_.v4.treefile.txt",
+    "molecule": "AA",
+    "n_members": 17,
+    "n_tips": 17,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

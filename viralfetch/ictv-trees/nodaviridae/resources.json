@@ -1,0 +1,28 @@
+[
+  {
+    "figure_label": "Figure_1",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/Figure1.Alphanodavirus nt.FASTA",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Figure1.Alphanodavirus.nwk",
+    "molecule": "nt",
+    "n_members": 11,
+    "n_tips": 11,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_2",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/Figure2.Betanodavirus.FASTA",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Figure2.Betanodavirus.nwk",
+    "molecule": "nt",
+    "n_members": 27,
+    "n_tips": 27,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

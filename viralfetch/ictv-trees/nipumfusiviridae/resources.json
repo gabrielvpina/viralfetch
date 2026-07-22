@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": null,
+    "tree_url": "https://ictv.global/sites/default/files/report_files/ODD.Nipumfusi.treefile.txt",
+    "molecule": "unknown",
+    "n_members": 10,
+    "n_tips": 10,
+    "alignment_coverage": 0.0,
+    "tip_alignment_consistent": false,
+    "quality": "molecule_indeterminate",
+    "kept": true
+  }
+]

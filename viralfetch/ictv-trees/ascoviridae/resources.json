@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_2",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODD.Asc.Fig2.Ascoviridae.Align.v2.FST",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Asc.Fig2.Ascoviridae.Tree.v1.nex",
+    "molecule": "AA",
+    "n_members": 22,
+    "n_tips": 22,
+    "alignment_coverage": 0.045,
+    "tip_alignment_consistent": false,
+    "quality": "low_alignment_coverage",
+    "kept": true
+  }
+]

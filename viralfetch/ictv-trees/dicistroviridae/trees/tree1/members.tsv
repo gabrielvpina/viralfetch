@@ -1,0 +1,21 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+AF022937	AF022937		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Cripavirus		Cripavirus ropadi	ICTV19991800
+AF536531	AF536531		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Cripavirus		Cripavirus mortiferum	ICTV20040953
+HM777507	HM777507		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus cancerluti	ICTV20115374
+AF277675	AF277675		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus tauraense	ICTV20025891
+HQ113110	HQ113110		AA	none		False																
+DQ288865	DQ288865		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus hocoagulatae	ICTV20093544
+AB006531	AB006531		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus plastali	ICTV19991799
+AF178440	AF178440		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus triatomae	ICTV20020877
+AB017037	AB017037		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus himetobi	ICTV19991798
+AF183905	AF183905		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Triatovirus		Triatovirus nigereginacellulae	ICTV20020871
+AY634314	AY634314		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus vallesi	ICTV20083289
+AF150629	AF150629		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus apisacutum	ICTV20040961
+KF500001	KF500001		AA	none		False																
+AY275710	AY275710		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus kashmirense	ICTV20083288
+EF219380	EF219380		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Aparavirus		Aparavirus israelense	ICTV20095352
+KT873140	KT873140		AA	none		False																
+KU169878	KU169878		AA	none		False																
+AF014388	AF014388		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Cripavirus		Cripavirus drosophilae	ICTV19820878
+KM270560	KM270560		AA	none		False																
+AF218039	AF218039		AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Dicistroviridae		Cripavirus		Cripavirus grylli	ICTV19820877

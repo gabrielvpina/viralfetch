@@ -1,0 +1,22 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+KP738164.1_Yellow_head_virus_isolate_YHV7_(13-00169-02)_PCR3_ORF1b_polyprotein_gene_partial_cds	KP738164.1	Yellow head virus isolate YHV7 (13-00169-02) PCR3 ORF1b polyprotein gene partial cds	nt	none		False																
+EU785015.1_Gill-associated_virus_genotype_5_isolate_PHL-03-H8_pp1ab_gene_partial_cds	EU785015.1	Gill-associated virus genotype 5 isolate PHL-03-H8 pp1ab gene partial cds	nt	none		False																
+EU784993.1_Gill-associated_virus_genotype_5_isolate_THA-03-SG21_pp1ab_gene_partial_cds	EU784993.1	Gill-associated virus genotype 5 isolate THA-03-SG21 pp1ab gene partial cds	nt	none		False																
+EU785003.1_Gill-associated_virus_genotype_5_isolate_MYS-03-H4_pp1ab_gene_partial_cds	EU785003.1	Gill-associated virus genotype 5 isolate MYS-03-H4 pp1ab gene partial cds	nt	none		False																
+EU784981.1_Gill-associated_virus_genotype_3_isolate_MYS-03-H1_pp1ab_gene_partial_cds	EU784981.1	Gill-associated virus genotype 3 isolate MYS-03-H1 pp1ab gene partial cds	nt	none		False																
+EU785000.1_Yellow_head_virus_isolate_THA-03-D33_pp1ab_gene_partial_cds	EU785000.1	Yellow head virus isolate THA-03-D33 pp1ab gene partial cds	nt	none		False																
+EU785001.1_Yellow_head_virus_isolate_THA-02-D34_pp1ab_gene_partial_cds	EU785001.1	Yellow head virus isolate THA-02-D34 pp1ab gene partial cds	nt	none		False																
+EU785033.1_Yellow_head_virus_isolate_THA-98-Ref_pp1ab_gene_partial_cds	EU785033.1	Yellow head virus isolate THA-98-Ref pp1ab gene partial cds	nt	none		False																
+EU785037.1_Gill-associated_virus_genotype_6_isolate_MOZ-04-H12_pp1ab_gene_partial_cds	EU785037.1	Gill-associated virus genotype 6 isolate MOZ-04-H12 pp1ab gene partial cds	nt	none		False																
+EU785018.1_Gill-associated_virus_genotype_6_isolate_MOZ-04-H9_pp1ab_gene_partial_cds	EU785018.1	Gill-associated virus genotype 6 isolate MOZ-04-H9 pp1ab gene partial cds	nt	none		False																
+EU785008.1_Gill-associated_virus_genotype_2_isolate_VNM-02-H64_pp1ab_gene_partial_cds	EU785008.1	Gill-associated virus genotype 2 isolate VNM-02-H64 pp1ab gene partial cds	nt	none		False																
+EU785026.1_Gill-associated_virus_genotype_2_isolate_AUS-96-Ref_pp1ab_gene_partial_cds	EU785026.1	Gill-associated virus genotype 2 isolate AUS-96-Ref pp1ab gene partial cds	nt	none		False																
+EU784992.1_Gill-associated_virus_genotype_2_isolate_THA-04-H20_pp1ab_gene_partial_cds	EU784992.1	Gill-associated virus genotype 2 isolate THA-04-H20 pp1ab gene partial cds	nt	none		False																
+EU785020.1_Gill-associated_virus_genotype_3_isolate_VNM-02-H93_pp1ab_gene_partial_cds	EU785020.1	Gill-associated virus genotype 3 isolate VNM-02-H93 pp1ab gene partial cds	nt	none		False																
+EU785017.1_Gill-associated_virus_genotype_4_isolate_IND-02-H9_pp1ab_gene_partial_cds	EU785017.1	Gill-associated virus genotype 4 isolate IND-02-H9 pp1ab gene partial cds	nt	none		False																
+EU785019.1_Yellow_head_virus_isolate_THA-01-D9_pp1ab_gene_partial_cds	EU785019.1	Yellow head virus isolate THA-01-D9 pp1ab gene partial cds	nt	none		False																
+EU785035.1_Yellow_head_virus_isolate_THA-03-D29_pp1ab_gene_partial_cds	EU785035.1	Yellow head virus isolate THA-03-D29 pp1ab gene partial cds	nt	none		False																
+EU785010.1_Gill-associated_virus_genotype_4_isolate_IND-02-H7_pp1ab_gene_partial_cds	EU785010.1	Gill-associated virus genotype 4 isolate IND-02-H7 pp1ab gene partial cds	nt	none		False																
+KX947267.1_Yellow_head_virus_genotype_8_20120706_complete_genome	KX947267.1	Yellow head virus genotype 8 20120706 complete genome	nt	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Nidovirales	Ronidovirineae	Roniviridae	Okanivirinae	Okavirus	Tipravirus	Okavirus orientale	ICTV201907510
+EU784999.1_Yellow_head_virus_isolate_THA-03-D30_pp1ab_gene_partial_cds	EU784999.1	Yellow head virus isolate THA-03-D30 pp1ab gene partial cds	nt	none		False																
+EU785002.1_Gill-associated_virus_genotype_3_isolate_IDN-04-H4_pp1ab_gene_partial_cds	EU785002.1	Gill-associated virus genotype 3 isolate IDN-04-H4 pp1ab gene partial cds	nt	none		False																

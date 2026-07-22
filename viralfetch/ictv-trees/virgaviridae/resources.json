@@ -1,0 +1,80 @@
+[
+  {
+    "figure_label": "Figure_1",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig1.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig1.v1.nwk",
+    "molecule": "nt",
+    "n_members": 53,
+    "n_tips": 53,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_2",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig2.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig2.v1.nwk",
+    "molecule": "nt",
+    "n_members": 52,
+    "n_tips": 52,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig3.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig3.v1.nwk",
+    "molecule": "nt",
+    "n_members": 57,
+    "n_tips": 57,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_4",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig4.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig4.v1.nwk",
+    "molecule": "nt",
+    "n_members": 44,
+    "n_tips": 44,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_5",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig5.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig5.v1.nwk",
+    "molecule": "nt",
+    "n_members": 13,
+    "n_tips": 13,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Alignment.Fig6.v1.fst",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OPSR.Virga.Tree_file.Fig6.v1.nwk",
+    "molecule": "nt",
+    "n_members": 35,
+    "n_tips": 35,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

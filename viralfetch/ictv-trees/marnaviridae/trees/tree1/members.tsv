@@ -1,0 +1,75 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+CAA30988_Poty	CAA30988	Poty	AA	none		False																
+CAA70983_Poty	CAA70983	Poty	AA	none		False																
+AAX87001_Poty	AAX87001	Poty	AA	none		False																
+CAA10637_Poty	CAA10637	Poty	AA	none		False																
+AAC13692_Poty	AAC13692	Poty	AA	none		False																
+CAA97466_Poty	CAA97466	Poty	AA	none		False																
+ABO41208_Poty	ABO41208	Poty	AA	none		False																
+NP_620559_Ifla	NP_620559	Ifla	AA	none		False																
+AAP97137_Marine	AAP97137	Marine	AA	none		False																
+BAE47143_Labyrna	BAE47143	Labyrna	AA	none		False																
+YP_001429583_Marine	YP_001429583	Marine	AA	none		False																
+AGZ83339_Marine	AGZ83339	Marine	AA	none		False																
+AFM44930_Marine	AFM44930	Marine	AA	none		False																
+AHA44480_Marine	AHA44480	Marine	AA	none		False																
+YP_009047193_Marine	YP_009047193	Marine	AA	none		False																
+BAG30951_Bacil	BAG30951	Bacil	AA	none		False																
+BAE79742_Bacil	BAE79742	Bacil	AA	none		False																
+YP_002647032_Bacil	YP_002647032	Bacil	AA	none		False																
+BC-2		BC-2	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Sogarnavirus		Sogarnavirus gustavseniae	ICTV201856542
+YP_009230120.1	YP_009230120.1		AA	none		False																
+BC-3		BC-3	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Sogarnavirus		Sogarnavirus kitsilanoensis	ICTV201856544
+YP_001429581_Marine	YP_001429581	Marine	AA	none		False																
+YP_009111336_Marine	YP_009111336	Marine	AA	none		False																
+BAK40203_Marine	BAK40203	Marine	AA	none		False																
+Contig_100		Contig 100	AA	none		False																
+YP_009230124.1	YP_009230124.1		AA	none		False																
+BC-1		BC-1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Marnaviridae		Salisharnavirus		Salisharnavirus vlokiae	ICTV201856551
+YP_009230118.1	YP_009230118.1		AA	none		False																
+ABD38934_Seco	ABD38934	Seco	AA	none		False																
+BAA76746_Seco	BAA76746	Seco	AA	none		False																
+CAF21713_Seco	CAF21713	Seco	AA	none		False																
+AIA10370_Seco	AIA10370	Seco	AA	none		False																
+BAD00183_Seco	BAD00183	Seco	AA	none		False																
+CAA25029_Seco	CAA25029	Seco	AA	none		False																
+BAA03151_Seco	BAA03151	Seco	AA	none		False																
+AAA66056_Seco	AAA66056	Seco	AA	none		False																
+NP_647481_Dicistro	NP_647481	Dicistro	AA	none		False																
+NP_620562_Dicistro	NP_620562	Dicistro	AA	none		False																
+NP_066241_Dicistro	NP_066241	Dicistro	AA	none		False																
+AKJ23343_Picorna	AKJ23343	Picorna	AA	none		False																
+AGO59796_Picorna	AGO59796	Picorna	AA	none		False																
+ABV57376_Picorna	ABV57376	Picorna	AA	none		False																
+AGV08598_Picorna	AGV08598	Picorna	AA	none		False																
+AFP96991_Picorna	AFP96991	Picorna	AA	none		False																
+AAB23363_Picorna	AAB23363	Picorna	AA	none		False																
+AFN70966_Picorna	AFN70966	Picorna	AA	none		False																
+ABB22725_Picorna	ABB22725	Picorna	AA	none		False																
+AGH06056_Picorna	AGH06056	Picorna	AA	none		False																
+AAA45465_Picorna	AAA45465	Picorna	AA	none		False																
+CAA12416_Picorna	CAA12416	Picorna	AA	none		False																
+AKC42744_Picorna	AKC42744	Picorna	AA	none		False																
+AJF23050_Picorna	AJF23050	Picorna	AA	none		False																
+AF406813_Picorna	AF406813	Picorna	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Picornaviridae	Ensavirinae	Sapelovirus		Sapelovirus anglia	ICTV19790566
+CAA24461_Picorna	CAA24461	Picorna	AA	none		False																
+CAA65615_Picorna	CAA65615	Picorna	AA	none		False																
+AF231769_Picorna	AF231769	Picorna	AA	none		False																
+AFS33288_Picorna	AFS33288	Picorna	AA	none		False																
+ACS32214_Picorna	ACS32214	Picorna	AA	none		False																
+BAB62889_Picorna	BAB62889	Picorna	AA	none		False																
+ADL38959_Picorna	ADL38959	Picorna	AA	none		False																
+AGZ63355_Picorna	AGZ63355	Picorna	AA	none		False																
+ADL38957_Picorna	ADL38957	Picorna	AA	none		False																
+AHN05554_Picorna	AHN05554	Picorna	AA	none		False																
+AFO66657_Picorna	AFO66657	Picorna	AA	none		False																
+ADN94255_Picorna	ADN94255	Picorna	AA	none		False																
+AEM05832_Picorna	AEM05832	Picorna	AA	none		False																
+AFB77697_Picorna	AFB77697	Picorna	AA	none		False																
+AIY68181_Picorna	AIY68181	Picorna	AA	none		False																
+AEM05833_Picorna	AEM05833	Picorna	AA	none		False																
+AAT01772_Picorna	AAT01772	Picorna	AA	none		False																
+ACL15185_Picorna	ACL15185	Picorna	AA	none		False																
+AAA43037_Picorna	AAA43037	Picorna	AA	none		False																
+AFK85007_Picorna	AFK85007	Picorna	AA	none		False																
+ABG23522_Picorna	ABG23522	Picorna	AA	none		False																

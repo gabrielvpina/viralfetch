@@ -1,0 +1,31 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+African_swine_fever_virus_BA71V_AAA65319.1	AAA65319.1	African swine fever virus BA71V	AA	none		False																
+African_swine_fever_virus_Italy_26544/OG10_AJZ77043.1	AJZ77043.1	African swine fever virus Italy 26544/OG10	AA	none		False																
+African_swine_fever_virus_Benin_97/1_CAN10189.1	CAN10189.1	African swine fever virus Benin 97/1	AA	none		False																
+African_swine_fever_virus_47/Ss/2008_AOO54438.1	AOO54438.1	African swine fever virus 47/Ss/2008	AA	none		False																
+African_swine_fever_virus_E75_CBH29190.1	CBH29190.1	African swine fever virus E75	AA	none		False																
+African_swine_fever_virus_OURT_88/3_CAN10439.1	CAN10439.1	African swine fever virus OURT 88/3	AA	none		False																
+African_swine_fever_virus_BA71_AKO62771.1	AKO62771.1	African swine fever virus BA71	AA	none		False																
+African_swine_fever_virus_NHV_AIY22439.1	AIY22439.1	African swine fever virus NHV	AA	none		False																
+African_swine_fever_virus_L60_AIY22281.1	AIY22281.1	African swine fever virus L60	AA	none		False																
+African_swine_fever_virus_Georgia_2007-1_CBW46756.1	CBW46756.1	African swine fever virus Georgia 2007-1	AA	none		False																
+African_swine_fever_virus_tick/South_Africa/Pretoriuskop_Pr4/1996_P0C971.1		African swine fever virus tick/South Africa/Pretoriuskop Pr4/1996 P0C971.1	AA	none		False																
+African_swine_fever_virus_warthog/Namibia/Wart80/1980_P0C973.1		African swine fever virus warthog/Namibia/Wart80/1980 P0C973.1	AA	none		False																
+African_swine_fever_virus_Malawi_LIL_20/1_P0C972.1		African swine fever virus Malawi LIL 20/1 P0C972.1	AA	none		False																
+African_swine_fever_virus_pig/Kenya/KEN-50/1950_P0C974.1		African swine fever virus pig/Kenya/KEN-50/1950 P0C974.1	AA	none		False																
+African_swine_fever_virus_Ken05/Tk1_AJL34103.1	AJL34103.1	African swine fever virus Ken05/Tk1	AA	none		False																
+Pacmanvirus_A23_SIP85962.1	SIP85962.1	Pacmanvirus A23	AA	none		False																
+Faustovirus_D5b_AMN83603.1	AMN83603.1	Faustovirus D5b	AA	none		False																
+Faustovirus_D3_AMP44130.1	AMP44130.1	Faustovirus D3	AA	none		False																
+Faustovirus_D6_AMN84738.1	AMN84738.1	Faustovirus D6	AA	none		False																
+Faustovirus_LC9_SMH63589.1	SMH63589.1	Faustovirus LC9	AA	none		False																
+Faustovirus_ST1_SME64977.1	SME64977.1	Faustovirus ST1	AA	none		False																
+Faustovirus_E24_AMN83240.1	AMN83240.1	Faustovirus E24	AA	none		False																
+Faustovirus_E23_AMN85209.1	AMN85209.1	Faustovirus E23	AA	none		False																
+Faustovirus_E12_AIB52014.1	AIB52014.1	Faustovirus E12	AA	none		False																
+Faustovirus_D5a_AMN84221.1	AMN84221.1	Faustovirus D5a	AA	none		False																
+Kaumoebavirus_Sc_ARA71927.1	ARA71927.1	Kaumoebavirus Sc	AA	none		False																
+Anomala_cuprea_entomopoxvirus_BAO49586.1	BAO49586.1	Anomala cuprea entomopoxvirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Entomopoxvirinae	Alphaentomopoxvirus		Alphaentomopoxvirus acuprea	ICTV19760460
+Amsacta_moorei_entomopoxvirus_AAG02756.1	AAG02756.1	Amsacta moorei entomopoxvirus	AA	none		True	Varidnaviria		Bamfordvirae		Nucleocytoviricota		Pokkesviricetes		Chitovirales		Poxviridae	Entomopoxvirinae	Betaentomopoxvirus		Betaentomopoxvirus amoorei	ICTV19760459
+Bovine_papular_stomatitis_virus_BV-AR02_AAR98382.1	AAR98382.1	Bovine papular stomatitis virus BV-AR02	AA	none		False																
+Monkeypox_virus_Zaire-96-I-16_AAL40515.1	AAL40515.1	Monkeypox virus Zaire-96-I-16	AA	none		False																

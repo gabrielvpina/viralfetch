@@ -1,0 +1,21 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+FJ217162_TAFV_-_L_CDS	FJ217162	TAFV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus taiense	ICTV19980652
+FJ217161_BDBV_-_L_CDS	FJ217161	BDBV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus bundibugyoense	ICTV20115622
+AF086833_EBOV_-_L_CDS	AF086833	EBOV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus zairense	ICTV19950287
+MF319185_BOMV_-_L_CDS	MF319185	BOMV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus bombaliense	ICTV201907261
+AY729654_SUDV_-_L_CDS	AY729654	SUDV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus sudanense	ICTV19950286
+AF522874_RESV_-_L_CDS	AF522874	RESV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthoebolavirus		Orthoebolavirus restonense	ICTV19950285
+KX371873	KX371873		AA	none		False																
+KP233864_-_L_CDS	KP233864	- L CDS	AA	none		False																
+MW775011_LLOV_-_RNA_polymerase_CDS	MW775011	LLOV - RNA polymerase CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Cuevavirus		Cuevavirus lloviuense	ICTV20130392
+DQ217792_MARV_-_L_CDS	DQ217792	MARV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthomarburgvirus		Orthomarburgvirus marburgense	ICTV19870485
+DQ447649_RAVV_-_L_CDS	DQ447649	RAVV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Orthomarburgvirus		Orthomarburgvirus marburgense	ICTV19870485
+OP924273_DEHV_-_L_CDS	OP924273	DEHV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Dianlovirus		Dianlovirus dehongense	ICTV202420257
+KX371887_MLAV_-_L_CDS	KX371887	MLAV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Dianlovirus		Dianlovirus menglaense	ICTV201907367
+BR001752_TAPV_-_L_CDS	BR001752	TAPV - L CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Tapjovirus		Tapjovirus bothropis	ICTV202113337
+MG599980_XILV_-_L_protein_CDS	MG599980	XILV - L protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Striavirus		Striavirus antennarii	ICTV201856582
+MW093492_KNDV_-_L-protein_CDS	MW093492	KNDV - L-protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Thamnovirus		Thamnovirus kanderense	ICTV202113341
+MN510772_FIWIV_-_L_protein_CDS	MN510772	FIWIV - L protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Thamnovirus		Thamnovirus percae	ICTV202113340
+MG599981_HUJV_-_L_protein_CDS	MG599981	HUJV - L protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Thamnovirus		Thamnovirus thamnaconi	ICTV201856584
+OQ186623_LTBV_-_L_protein_CDS	OQ186623	LTBV - L protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Loebevirus		Loebevirus percae	ICTV202318978
+MN510773_OBLV_-_L_protein_CDS	MN510773	OBLV - L protein CDS	AA	none		True	Riboviria		Orthornavirae		Negarnaviricota	Haploviricotina	Monjiviricetes		Mononegavirales		Filoviridae		Oblavirus		Oblavirus percae	ICTV202113343

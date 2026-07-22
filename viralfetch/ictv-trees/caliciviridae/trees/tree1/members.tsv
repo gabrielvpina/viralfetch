@@ -1,0 +1,74 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+Sapovirus_AY289803_Arg39_virus	AY289803	Sapovirus Arg39 virus	AA	none		False																
+Sapovirus_AY646856_NongKhai-24_virus	AY646856	Sapovirus NongKhai-24 virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_EU221477_porcine_sapovirus_43	EU221477	Sapovirus porcine sapovirus 43	AA	none		False																
+Sapovirus_FJ498786_porcine_sapovirus_F19-10	FJ498786	Sapovirus porcine sapovirus F19-10	AA	none		False																
+Sapovirus_U95644_Houston_virus/90	U95644	Sapovirus Houston virus/90	AA	none		False																
+Sapovirus_X86560_Manchester_virus	X86560	Sapovirus Manchester virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_HM002617_Sapovirus_MT-2010/1982	HM002617	Sapovirus Sapovirus MT-2010/1982	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_U65427_Sapporo_virus	U65427	Sapovirus Sapporo virus	AA	none		False																
+Sapovirus_AF435814_Houston_virus_7-1181	AF435814	Sapovirus Houston virus 7-1181	AA	none		False																
+Sapovirus_DQ058829_Ehime_virus	DQ058829	Sapovirus Ehime virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_DQ125333_Angelholm_virus_SW278	DQ125333	Sapovirus Angelholm virus SW278	AA	none		False																
+Sapovirus_AF435812_Mex340_virus	AF435812	Sapovirus Mex340 virus	AA	none		False																
+Sapovirus_AJ249939_Bristol_virus	AJ249939	Sapovirus Bristol virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_U95645_London_virus/29845	U95645	Sapovirus London virus/29845	AA	none		False																
+Sapovirus_AF182760_porcine_enteric_calicivirus_Cowden	AF182760	Sapovirus porcine enteric calicivirus Cowden	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Sapovirus		Sapovirus sapporoense	ICTV19981213
+Sapovirus_FJ387164_porcine_sapovirus_sav1	FJ387164	Sapovirus porcine sapovirus sav1	AA	none		False																
+Sapovirus_AY974192_Porcine_sapovirus_JJ681	AY974192	Sapovirus Porcine sapovirus JJ681	AA	none		False																
+Sapovirus_DQ359100_porcine_sapovirus_2053P4	DQ359100	Sapovirus porcine sapovirus 2053P4	AA	none		False																
+Bavovirus_KM254170_Chicken_calicivirus_D62/2013	KM254170	Bavovirus Chicken calicivirus D62/2013	AA	none		False																
+Bavovirus_KM254171_Chicken_calicivirus_Q45/2013	KM254171	Bavovirus Chicken calicivirus Q45/2013	AA	none		False																
+Bavovirus_HQ010042_Calicivirus_chicken/Bavaria04V0021/DE/2004	HQ010042	Bavovirus Calicivirus chicken/Bavaria04V0021/DE/2004	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Bavovirus		Bavovirus bavariaense	ICTV201856495
+Nacovirus_KJ473715_goose_calicivirus_strain_N	KJ473715	Nacovirus goose calicivirus strain N	AA	none		False																
+Nacovirus_JQ347522_turkey_calicivirus_L11043	JQ347522	Nacovirus turkey calicivirus L11043	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Nacovirus		Nacovirus meleagridis	ICTV201856499
+Nacovirus_JQ347523_chicken_calicivirus_F10026n	JQ347523	Nacovirus chicken calicivirus F10026n	AA	none		False																
+Vesivirus_AY343325_calicivirus_2117	AY343325	Vesivirus calicivirus 2117	AA	none		False																
+Vesivirus_JN204722_canine_vesivirus_Bari/212/07/ITA	JN204722	Vesivirus canine vesivirus Bari/212/07/ITA	AA	none		False																
+Vesivirus_AF053720_Canine_calicivirus-no48	AF053720	Vesivirus Canine calicivirus-no48	AA	none		False																
+Vesivirus_M86379_Feline_calicivirus-9	M86379	Vesivirus Feline calicivirus-9	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Vesivirus		Vesivirus felis	ICTV19710061
+Vesivirus_U13992_Feline_calicivirus_CFI/68	U13992	Vesivirus Feline calicivirus CFI/68	AA	none		False																
+Vesivirus_AF321298_walrus_calicivirus	AF321298	Vesivirus walrus calicivirus	AA	none		False																
+Vesivirus_M87481_San_Miguel_sea_lion_virus-1	M87481	Vesivirus San Miguel sea lion virus-1	AA	none		False																
+Vesivirus_AF091736_Pan-1_virus	AF091736	Vesivirus Pan-1 virus	AA	none		False																
+Vesivirus_U52005_San_Miguel_sea_lion_virus-17	U52005	Vesivirus San Miguel sea lion virus-17	AA	none		False																
+Vesivirus_AF181082_Vesicular_exanthema_of_swine_virus_strain_A48	AF181082	Vesivirus Vesicular exanthema of swine virus strain A48	AA	none		False																
+Vesivirus_M87482_San_Miguel_sea_lion_virus-4	M87482	Vesivirus San Miguel sea lion virus-4	AA	none		False																
+Nebovirus_DQ013304_Newbury-1_virus	DQ013304	Nebovirus Newbury-1 virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Nebovirus		Nebovirus newburyense	ICTV20093431
+Nebovirus_AY082891_Bovine_enteric_calicivirus_NB	AY082891	Nebovirus Bovine enteric calicivirus NB	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Nebovirus		Nebovirus newburyense	ICTV20093431
+Nebovirus_KT119483_bovine_calicivirus_Kirklareli	KT119483	Nebovirus bovine calicivirus Kirklareli	AA	none		False																
+Lagovirus_Z69620_European_brown_hare_syndrome_virus	Z69620	Lagovirus European brown hare syndrome virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Lagovirus		Lagovirus europaeus	ICTV19950818
+Lagovirus_KC741409_rabbit_hemorrhagic_disease_virus_isolate_Sr12_2	KC741409	Lagovirus rabbit hemorrhagic disease virus isolate Sr12 2	AA	none		False																
+Lagovirus_M67473_rabbit_hemorrhagic_disease_virus-FRG	M67473	Lagovirus rabbit hemorrhagic disease virus-FRG	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Lagovirus		Lagovirus europaeus	ICTV19950818
+Lagovirus_X96868_rabbit_calicivirus-1	X96868	Lagovirus rabbit calicivirus-1	AA	none		False																
+Recovirus_EU391643_Tulane_virus	EU391643	Recovirus Tulane virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Recovirus		Recovirus tulani	ICTV201856501
+Recovirus_KC662363_Tulane_Virus_FT205)	KC662363	Recovirus Tulane Virus FT205)	AA	none		False																
+Recovirus_JX627575_WUHARV_Calicivirus_1	JX627575	Recovirus WUHARV Calicivirus 1	AA	none		False																
+Recovirus_JQ745645_human_recovirus_Bangladesh	JQ745645	Recovirus human recovirus Bangladesh	AA	none		False																
+Recovirus_MG571787_Human_Recovirus_Venezuela	MG571787	Recovirus Human Recovirus Venezuela	AA	none		False																
+Valovirus_FJ355928_Calicivirus_pig/AB90/CAN	FJ355928	Valovirus Calicivirus pig/AB90/CAN	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Valovirus		Valovirus valerienense	ICTV201856505
+Valovirus_FJ355929_Calicivirus_pig/F15-10/CAN	FJ355929	Valovirus Calicivirus pig/F15-10/CAN	AA	none		False																
+Valovirus_FJ355930_Calicivirus_pig/AB104/CAN	FJ355930	Valovirus Calicivirus pig/AB104/CAN	AA	none		False																
+Norovirus_AY228235_murine_norovirus_1	AY228235	Norovirus murine norovirus 1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_JX486101_Rn/GV/HKU_CT2/HKG/2011	JX486101	Norovirus Rn/GV/HKU CT2/HKG/2011	AA	none		False																
+Norovirus_KJ790198_bat_norovirus-YN2010	KJ790198	Norovirus bat norovirus-YN2010	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_AF097917_bovine_norovirus_Newbury2	AF097917	Norovirus bovine norovirus Newbury2	AA	none		False																
+Norovirus_EU193658_sheep_norovirus_Norsewood	EU193658	Norovirus sheep norovirus Norsewood	AA	none		False																
+Norovirus_AJ011099_bovine_calicivirus_Jena	AJ011099	Norovirus bovine calicivirus Jena	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_L07418_Southampton_virus	L07418	Norovirus Southampton virus	AA	none		False																
+Norovirus_M87661_Norwalk_virus	M87661	Norovirus Norwalk virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_FJ692500_dog_norovirus_GVI1/HKU_Ca026F/2007/HKG	FJ692500	Norovirus dog norovirus GVI1/HKU Ca026F/2007/HKG	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_EF450827_lion_norovirus_GIV.2/Pistoia/387/06/ITA	EF450827	Norovirus lion norovirus GIV.2/Pistoia/387/06/ITA	AA	none		False																
+Norovirus_AF195847_Hu/NLV/Alphatron/98-2/1998/NET	AF195847	Norovirus Hu/NLV/Alphatron/98-2/1998/NET	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_AB074893_Swine_calicivirus_Sw918	AB074893	Norovirus Swine calicivirus Sw918	AA	none		False																
+Norovirus_X86557_Lordsdale_virus	X86557	Norovirus Lordsdale virus	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_U07611_Hawaii_calicivirus	U07611	Norovirus Hawaii calicivirus	AA	none		False																
+Norovirus_KJ196290_SapporoHK299_virus_GIX.1	KJ196290	Norovirus SapporoHK299 virus GIX.1	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_AJ844470_Chiba_virus/GVIII	AJ844470	Norovirus Chiba virus/GVIII	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Norovirus_KJ196291_Yuzawa_virus_GVIII	KJ196291	Norovirus Yuzawa virus GVIII	AA	none		False																
+Norovirus_MG572715_California_sea_lion_norovirus_strain_Csl/NoV2/PF080916-2	MG572715	Norovirus California sea lion norovirus strain Csl/NoV2/PF080916-2	AA	none		False																
+Norovirus_FJ875027_dog_norovirus_GVI.1/Bari/91/2007/ITA	FJ875027	Norovirus dog norovirus GVI.1/Bari/91/2007/ITA	AA	none		False																
+Norovirus_GQ443611_dog_norovirus_Viseu	GQ443611	Norovirus dog norovirus Viseu	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Norovirus		Norovirus norwalkense	ICTV19950817
+Minovirus_KX371097_fathead_minnow_calicivirus-USA/MN/2012	KX371097	Minovirus fathead minnow calicivirus-USA/MN/2012	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Minovirus		Minovirus pimephalis	ICTV201856497
+Salovirus_KJ577139_Atlantic_salmon_calicivirus_Nordland/2011	KJ577139	Salovirus Atlantic salmon calicivirus Nordland/2011	AA	none		True	Riboviria		Orthornavirae		Pisuviricota		Pisoniviricetes		Picornavirales		Caliciviridae		Salovirus		Salovirus nordlandense	ICTV201856503
+Salovirus_KJ577140_Atlantic_salmon_calicivirus_AL_V901	KJ577140	Salovirus Atlantic salmon calicivirus AL V901	AA	none		False																

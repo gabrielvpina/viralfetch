@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_6",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODD.Irido.Fig6.v9_alignment.fasta",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Irido.Fig6.v9_treefile.nwk",
+    "molecule": "AA",
+    "n_members": 47,
+    "n_tips": 47,
+    "alignment_coverage": 0.957,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/Polycipi_Figure3 3_ORF5.MUSCLE.Clustal.aln",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Figure3.nex.con.tre",
+    "molecule": "unknown",
+    "n_members": 17,
+    "n_tips": 17,
+    "alignment_coverage": 0.0,
+    "tip_alignment_consistent": false,
+    "quality": "molecule_indeterminate",
+    "kept": true
+  }
+]

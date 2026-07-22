@@ -1,0 +1,39 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+ANO58022.1_Xanthomonas_phage_Xf109	ANO58022.1	Xanthomonas phage Xf109	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Xylivirus		Xylivirus Xf109	ICTV201856876
+ARK07723.1_Xanthomonas_phage_Xf409	ARK07723.1	Xanthomonas phage Xf409	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Xylivirus		Xylivirus Xf109	ICTV201856876
+CDF76789.1_Stenotrophomonas_phage_SMA6	CDF76789.1	Stenotrophomonas phage SMA6	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Scuticavirus		Scuticavirus SMA6	ICTV20165397
+YP_001718372.1_Stenotrophomonas_phage_PSH1	YP_001718372.1	Stenotrophomonas phage PSH1	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Psecadovirus		Psecadovirus PSH1	ICTV20165396
+BAP16713.1_Xanthomonas_virus_XacF1	BAP16713.1	Xanthomonas virus XacF1	AA	none		False																
+NP_040477.1_Xanthomonas_virus_Cf1c	NP_040477.1	Xanthomonas virus Cf1c	AA	none		False																
+AFC62051.1_Ralstonia_phage_RSS0	AFC62051.1	Ralstonia phage RSS0	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Restivirus		Restivirus RSS1	ICTV20165394
+YP_863929.1_Ralstonia_phage_RSS1	YP_863929.1	Ralstonia phage RSS1	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Restivirus		Restivirus RSS1	ICTV20165394
+YP_004327586.1_Ralstonia_virus_PE226	YP_004327586.1	Ralstonia virus PE226	AA	none		False																
+AAA88391.1_Pseudomonas_phage_Pf3	AAA88391.1	Pseudomonas phage Pf3	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Tertilicivirus		Tertilicivirus Pf3	ICTV19910818
+NP_040656.1_Pseudomonas_virus_Pf3	NP_040656.1	Pseudomonas virus Pf3	AA	none		False																
+YP_008130373.1_Stenotrophomonas_phage_SMA7	YP_008130373.1	Stenotrophomonas phage SMA7	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Subteminivirus		Subteminivirus SMA7	ICTV20165398
+YP_257149.1_Stenotrophomonas_phage_SMA9	YP_257149.1	Stenotrophomonas phage SMA9	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Staminivirus		Staminivirus SMA9	ICTV20165399
+YP_009786103.1_Ralstonia_phage_Rs551	YP_009786103.1	Ralstonia phage Rs551	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Habenivirus		Habenivirus RS551	ICTV201907856
+YP_009103105.1_Ralstonia_phage_RS603	YP_009103105.1	Ralstonia phage RS603	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Habenivirus		Habenivirus RS603	ICTV20165388
+YP_863915.1_Ralstonia_phage_RSM1	YP_863915.1	Ralstonia phage RSM1	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Habenivirus		Habenivirus RSM1	ICTV20165389
+BAP28161.1_Ralstpnia_phage_RSMSuper	BAP28161.1	Ralstpnia phage RSMSuper	AA	none		False																
+YP_002290962.1_Ralstonia_phage_RSM3	YP_002290962.1	Ralstonia phage RSM3	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Habenivirus		Habenivirus RSM3	ICTV20165390
+YP_031685.1_Vibrio_virus_Vf33	YP_031685.1	Vibrio virus Vf33	AA	none		False																
+YP_031692.1_Vibrio_phage_Vf12	YP_031692.1	Vibrio phage Vf12	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Villovirus		Villovirus Vf33	ICTV19910821
+NP_835479.1_Vibrio_phage_VGJ	NP_835479.1	Vibrio phage VGJ	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Fibrovirus		Fibrovirus VGJ	ICTV20165387
+AAL40840.1_Vibrio_phage_VSKK	AAL40840.1	Vibrio phage VSKK	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Fibrovirus		Fibrovirus fs1	ICTV19991041
+BAJ12061.1_Vibrio_phage_ND1-fs1	BAJ12061.1	Vibrio phage ND1-fs1	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Fibrovirus		Fibrovirus fs1	ICTV19991041
+AAL49744.1_Vibrio_phage_VSK	AAL49744.1	Vibrio phage VSK	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Fibrovirus		Fibrovirus fs1	ICTV19991041
+NP_695195.1_Vibrio_virus_fs1	NP_695195.1	Vibrio virus fs1	AA	none		False																
+NP_039622.1_Escherichia_virus_I22	NP_039622.1	Escherichia virus I22	AA	none		False																
+NP_040578.1_Enterobacteria_phage_Ike	NP_040578.1	Enterobacteria phage Ike	AA	none		False																
+NP_047358.1_Enterobacteria_virus_If1	NP_047358.1	Enterobacteria virus If1	AA	none		False																
+NP_510893.1_Escherichia_virus_M13	NP_510893.1	Escherichia virus M13	AA	none		False																
+NP_047371.1_Vibrio_phage_fs2	NP_047371.1	Vibrio phage fs2	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Saetivirus		Saetivirus fs2	ICTV19991042
+YP_008130281.1_Vibrio_phage_VFJ	YP_008130281.1	Vibrio phage VFJ	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Saetivirus		Saetivirus VFJ	ICTV20165391
+AHY24960.1_Vibrio_phage_CTXphi	AHY24960.1	Vibrio phage CTXphi	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Affertcholeramvirus		Affertcholeramvirus CTXphi	ICTV19991040
+YP_004286239.1_Vibrio_virus_CTXphi	YP_004286239.1	Vibrio virus CTXphi	AA	none		False																
+NP_039606.1_Pseudomonas_virus_Pf1	NP_039606.1	Pseudomonas virus Pf1	AA	none		False																
+NP_059537.1_Vibrio_virus_VfO3K6	NP_059537.1	Vibrio virus VfO3K6	AA	none		False																
+NP_059547.1_Vibrio_phage_VfO4K68	NP_059547.1	Vibrio phage VfO4K68	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Versovirus		Versovirus VfO3K6	ICTV20165402
+YP_004934230.1_Vibrio_phage_VCY	YP_004934230.1	Vibrio phage VCY	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Vicialiavirus		Vicialiavirus VCY	ICTV20165401
+YP_087078.1_Vibrio_phage_KSF1	YP_087078.1	Vibrio phage KSF1	AA	none		True	Efunaviria		Loebvirae		Hofneiviricota		Faserviricetes		Tubulavirales		Inoviridae		Capistrivirus		Capistrivirus KSF1	ICTV20165400

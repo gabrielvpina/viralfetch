@@ -1,0 +1,41 @@
+[
+  {
+    "figure_label": "Figure_5",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/report_files/ODD.Hytro.Fig_5.DNApol_alignment aa.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Hytro.Fig_5.DNApol-NJ_3.nwk",
+    "molecule": "AA",
+    "n_members": 30,
+    "n_tips": 30,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODD.Hytro.Fig_6A.PIFs_1.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Hytro.Fig_6A.PIFs_tree_NJ_3.nwk",
+    "molecule": "AA",
+    "n_members": 16,
+    "n_tips": 16,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_6B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/ODD.Hytro.Fig_6B.odv-e66_alignment.meg",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/ODD.Hytro.Fig_6B.odv-e66-NJ_3.nwk",
+    "molecule": "AA",
+    "n_members": 11,
+    "n_tips": 11,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

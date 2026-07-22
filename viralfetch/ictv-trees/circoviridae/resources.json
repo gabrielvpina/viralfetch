@@ -1,0 +1,54 @@
+[
+  {
+    "figure_label": "Figure_1A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig1A.Cyclovirus_circovirus_reps_aln_ed.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig1A.circo_cyclo_reps_figure 4_ed.nwk",
+    "molecule": "AA",
+    "n_members": 70,
+    "n_tips": 70,
+    "alignment_coverage": 0.986,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_1B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig1B_Circo_cyclo_cps.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig1B.circo_cyclo_CPs _figure 4_280617.tre",
+    "molecule": "AA",
+    "n_members": 70,
+    "n_tips": 70,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_2A",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig2A.CircovirusGenomes_aln_ed.fas",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig2A.circoviruses_figure2.nwk",
+    "molecule": "nt",
+    "n_members": 27,
+    "n_tips": 27,
+    "alignment_coverage": 0.926,
+    "tip_alignment_consistent": false,
+    "quality": "ok",
+    "kept": true
+  },
+  {
+    "figure_label": "Figure_2B",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OSD.Cir.Fig2B.CyclovirusGenomes_aln_ed2.fas",
+    "tree_url": "https://ictv.global/sites/default/files/report_files/OSD.Circo.Fig2B.Cyclo.treefile.txt",
+    "molecule": "nt",
+    "n_members": 43,
+    "n_tips": 43,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

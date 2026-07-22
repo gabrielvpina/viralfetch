@@ -1,0 +1,15 @@
+[
+  {
+    "figure_label": "Figure_3",
+    "caption": null,
+    "alignment_url": "https://ictv.global/sites/default/files/inline-images/OOT.Avs.alignment.FASTA",
+    "tree_url": "https://ictv.global/sites/default/files/inline-images/Tree_Avsunviroid_250118_def.nwk",
+    "molecule": "nt",
+    "n_members": 4,
+    "n_tips": 4,
+    "alignment_coverage": 1.0,
+    "tip_alignment_consistent": true,
+    "quality": "ok",
+    "kept": true
+  }
+]

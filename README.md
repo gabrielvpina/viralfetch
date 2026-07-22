@@ -325,7 +325,8 @@ Fetch the ICTV Report chapter for a family, convert its main content to
 Markdown, and render it with headings, subsection titles, characteristic
 tables, and the **italics of scientific names** preserved. The original page
 URL and the chapter's references/attribution are shown at the top, and the
-content is **CC BY 4.0**. Images are omitted.
+content is **CC BY 4.0**. Figures are kept as image links; `--images` also
+draws them in the terminal (see below).
 
 ```bash
 viralfetch text Coronaviridae
@@ -378,7 +379,29 @@ The citation for this ICTV Report chapter is the summary published as
 Fiallo-Olivé et al., ICTV Virus Taxonomy Profile: *Geminiviridae* 2021, …
 ```
 
-With `--json`, the command emits `{slug, title, url, doi, markdown}` instead.
+With `--json`, the command emits `{slug, title, url, doi, images, markdown}`
+instead — `images` is a list of `{url, alt}` for the chapter's figures, whose
+absolute URLs also appear inline in the Markdown as `![alt](url)`.
+
+### Figures in the terminal
+
+`--images` draws the chapter's figures **in their original place** in the text,
+as truecolor Unicode block-element graphics sized to your terminal (full width
+by default, for the sharpest picture). Each character cell packs a 2×2 grid of
+sub-pixels with a per-cell best-fit of two colours; the image is downscaled in
+linear light (LANCZOS) and error-diffusion dithered, so gradients stay smooth.
+It renders the same on any truecolor terminal — no special graphics protocol
+required. Each figure keeps its `alt` as a caption. It applies only to the
+interactive Rich view (not `--raw`, `--json`, or when piped):
+
+```bash
+viralfetch text Coronaviridae --images
+viralfetch text Coronaviridae --images --fig-width 60   # cap the size
+```
+
+Figures are fetched politely (rate-limited, `robots.txt`-honouring, from the
+ICTV domain only) and cached permanently. A missing or broken figure is skipped,
+never fatal.
 
 ### Genera and species resolve to their family chapter
 
@@ -411,7 +434,7 @@ viralfetch update                   # is a newer VMR published on ictv.global?
 viralfetch config                   # show email, masked API key, cache paths
 viralfetch config --store-ncbi-email you@example.com   # persist credentials
 viralfetch cache info               # per-namespace entry counts and size
-viralfetch cache clear --texts      # drop cached ICTV chapters (or --seqs, or all)
+viralfetch cache clear --texts      # drop cached ICTV chapters (or --seqs, --images, or all)
 ```
 
 `diagnose` reports the parser's quality indicator — how many VMR rows yielded
@@ -443,8 +466,8 @@ zero accessions:
 
 ## Caching
 
-Immutable data (sequences, accession metadata) is cached permanently; ICTV
-chapter HTML uses a 30-day TTL. The cache lives in the platform cache
-directory. Use `--no-cache` to bypass it for a single run.
+Immutable data (sequences, accession metadata, and chapter figures) is cached
+permanently; ICTV chapter HTML uses a 30-day TTL. The cache lives in the
+platform cache directory. Use `--no-cache` to bypass it for a single run.
 
 

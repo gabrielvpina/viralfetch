@@ -1,0 +1,48 @@
+tip_label	accession	name	molecule	resolved_via	ncbi_taxid	vmr_match	realm	subrealm	kingdom	subkingdom	phylum	subphylum	class	subclass	order	suborder	family	subfamily	genus	subgenus	species	ictv_id
+L01442_VEEV_IAB	L01442	VEEV IAB	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus venezuelan	ICTV19710086
+AF375051_VEEV_IC	AF375051	VEEV IC	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus venezuelan	ICTV19710086
+L00930_VEEV_ID	L00930	VEEV ID	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus venezuelan	ICTV19710086
+AF075251_EVEV	AF075251	EVEV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus everglades	ICTV19760568
+U34999_VEEV_IE	U34999	VEEV IE	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus venezuelan	ICTV19710086
+AF075256_PIXV	AF075256	PIXV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus pixuna	ICTV19710081
+AF075255_VEEV_IIIC_71D1252	AF075255	VEEV IIIC 71D1252	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus venezuelan	ICTV19710086
+VEEV_IIID_PE4-0800		VEEV IIID PE4-0800	nt	none		False																
+AF075254_TONV	AF075254	TONV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus tonate	ICTV20074713
+AF075253_MUCV	AF075253	MUCV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus mucambo	ICTV19710079
+AF075257_MDPV	AF075257	MDPV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus mossopedras	ICTV20074702
+AF075258_RNV	AF075258	RNV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus negro	ICTV19991672
+AF075259_CABV	AF075259	CABV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus cabassou	ICTV19991676
+DQ241303_MADV(EEEV_Lin_II	DQ241303	MADV(EEEV Lin II	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus madariaga	ICTV20125921
+DQ241304_MADV(EEEV_Lin_III	DQ241304	MADV(EEEV Lin III	nt	none		False																
+EF151503_MADV(EEEV_Lin_IV	EF151503	MADV(EEEV Lin IV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus madariaga	ICTV20125921
+EF151502_EEEV	EF151502	EEEV	nt	none		False																
+NC_001547_SINV	NC_001547	SINV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus sindbis	ICTV19991691
+M69205_SINV_Ockelbo_virus	M69205	SINV Ockelbo virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus sindbis	ICTV19991691
+HM147984_SINV_Babanki_virus	HM147984	SINV Babanki virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus sindbis	ICTV19991691
+AF103728_SINV_XJ-160	AF103728	SINV XJ-160	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus sindbis	ICTV19991691
+AF429428_SINV_SW6562	AF429428	SINV SW6562	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus sindbis	ICTV19991691
+HM147993_WHATV	HM147993	WHATV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus whataroa	ICTV19710088
+GQ287646_WEEV(South_America)	GQ287646	WEEV(South America)	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus western	ICTV19710087
+NC_003908_WEEV(North_America)	NC_003908	WEEV(North America)	nt	none		False																
+GU167952_HJV	GU167952	HJV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus highlandsj	ICTV19911488
+HM147986_Buggy_Creek_virus_(FMV)	HM147986	Buggy Creek virus (FMV)	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus fortmorgan	ICTV19991680
+GQ281603_FMV	GQ281603	FMV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus fortmorgan	ICTV19991680
+AF126284_AURAV	AF126284	AURAV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus aura	ICTV19710073
+NC_032681_TALV	NC_032681	TALV	nt	none		True	Riboviria		Orthornavirae		Negarnaviricota	Polyploviricotina	Bunyaviricetes		Elliovirales		Peribunyaviridae		Orthobunyavirus		Orthobunyavirus cacheense	ICTV201856358
+NC_018615_EILV	NC_018615	EILV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus eilat	ICTV20133321
+HM147991_TROV	HM147991	TROV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus trocara	ICTV20021771
+U73745_BFV	U73745	BFV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus barmah	ICTV19820267
+AY702913_GETV	AY702913	GETV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus getah	ICTV19710076
+AB032553_GETV_Sagiyama_virus	AB032553	GETV Sagiyama virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus getah	ICTV19710076
+GQ433354_RRV	GQ433354	RRV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus rossriver	ICTV19991689
+HM147985_BEBV	HM147985	BEBV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus bebaru	ICTV19760565
+JF972635_SFV	JF972635	SFV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus semliki	ICTV19710083
+HM147992_UNAV	HM147992	UNAV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus una	ICTV19710085
+NC_003417_MAYV	NC_003417	MAYV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus mayaro	ICTV19710077
+EF536323_MIDV	EF536323	MIDV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus middelburg	ICTV19710078
+AF079456_ONNV	AF079456	ONNV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus onyong	ICTV19710080
+AF079457_ONNV_Igbo_Ora_virus	AF079457	ONNV Igbo Ora virus	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus onyong	ICTV19710080
+KP003813_CHIKV	KP003813	CHIKV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus chikungunya	ICTV19710074
+HM147989_NDUV	HM147989	NDUV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus ndumu	ICTV19760573
+HM147990_SESV	HM147990	SESV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus seal	ICTV20074712
+AJ316246_SPDV	AJ316246	SPDV	nt	none		True	Riboviria		Orthornavirae		Kitrinoviricota		Alsuviricetes		Martellivirales		Togaviridae		Alphavirus		Alphavirus salmon	ICTV20021768

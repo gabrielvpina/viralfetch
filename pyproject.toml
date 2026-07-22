@@ -28,6 +28,7 @@ viralfetch = "viralfetch.cli:app"
 
 [tool.hatch.build.targets.wheel]
 packages = ["viralfetch"]
+exclude = ["**/.DS_Store"]
 
 [tool.pytest.ini_options]
 markers = [

@@ -134,6 +134,40 @@ def text(chapter: Chapter, markdown: str, figures=None, fig_width=None) -> None:
     })
 
 
+def _tree_payload(result, doc):
+    return {
+        "tree_id": doc.tree_id,
+        "figure_label": doc.figure_label,
+        "region": doc.region,
+        "molecule": doc.molecule,
+        "method": doc.method,
+        "n_tips": doc.n_tips,
+        "caption": doc.caption,
+        "matched": sorted(doc.display_name(t) for t in doc.matched),
+        "newick": doc.newick,
+    }
+
+
+def tree(result, doc, others) -> None:
+    _emit({
+        "query": result.query,
+        "family": result.family,
+        "slug": result.slug,
+        "source": result.source,
+        "note": result.note,
+        "tree": _tree_payload(result, doc),
+        "other_trees": [{"n": n, "tree_id": d.tree_id, "region": d.region} for n, d in others],
+    })
+
+
+def tree_newick(newick: str) -> None:
+    _emit({"newick": newick})
+
+
+def tree_chapter(markdown: str) -> None:
+    _emit({"chapter": markdown})
+
+
 def cache_info(infos: list[NamespaceInfo]) -> None:
     _emit({info.namespace: {"entries": info.entries, "bytes": info.bytes} for info in infos})
 

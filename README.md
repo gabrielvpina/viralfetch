@@ -424,6 +424,52 @@ caches chapter HTML for 30 days.
 
 ---
 
+## `tree` — phylogenetic tree (local, no network)
+
+Show the ICTV Report phylogenetic tree for a taxon's **family**, drawn as an
+indented cladogram. Trees are bundled locally (Newick + metadata + a tip→virus
+table per family), so this works offline.
+
+The name is resolved through the VMR to its family, and the tip(s) it points at
+are highlighted: a **species** highlights its own tip, a **genus** its whole
+clade, a **family** shows the tree with nothing highlighted. A name the VMR does
+not know is searched for among every tree's members (so a virus member name that
+is not an ICTV taxon still finds its tree).
+
+```bash
+viralfetch tree "Betacoronavirus pandemicum"
+```
+
+```
+Coronaviridae · Figure 5A · RdRp (AA) · maximum likelihood · 55 tips · 2 matches
+     ┌─ Alphacoronavirus BT020
+   ┌─┤
+   │ └─ Scotophilus bat coronavirus 512
+  ─┤          …
+   │     ┌ severe acute respiratory syndrome coronavirus  ← match
+   └─────┤
+         └ severe acute respiratory syndrome coronavirus 2  ← match
+
+Caption: Figure 5 Coronaviridae. Phylogenetic relationships among members …
+Other trees for Coronaviridae: --tree 2 (helicase)
+```
+
+When a family has several trees, pick one with `--tree N`; the query defaults to
+whichever tree contains the match. Other options:
+
+| Option | Effect |
+|---|---|
+| `--tree N` | Choose a tree when a family has several (1-based). |
+| `--newick` | Emit the raw Newick string to stdout (for piping to other tools). |
+| `--chapter` | Show the family's bundled ICTV Report chapter text instead. |
+
+`--newick` and `--json` keep stdout clean (the redirect note goes to stderr).
+With `--json`, the command emits `{family, source, note, tree: {…, matched,
+newick}, other_trees}`. An unknown name gets "did you mean" suggestions and exit
+code `1`; a family with no bundled tree exits `1` with a note.
+
+---
+
 ## Utilities
 
 Small helper commands, all local except `update`.

@@ -413,6 +413,166 @@ def text_raw(markdown: str) -> None:
     sys.stdout.write(markdown if markdown.endswith("\n") else markdown + "\n")
 
 
+# -- phylogenetic trees ---------------------------------------------------
+
+def tree(result, doc, others) -> None:
+    """Render a family tree as an indented cladogram, highlighting the query.
+
+    ``doc`` is the selected tree; ``others`` is ``[(n, TreeDoc)]`` for the
+    family's remaining trees (shown as a footer hint). Long trees are paged.
+    """
+    header = Text(" · ".join(_tree_header_bits(result, doc)), style="bold")
+    renderables = [header, _ascii_tree(doc, _out.width)]
+    if doc.caption:
+        renderables.append(Text(f"\nCaption: {doc.caption}", style="dim"))
+    if others:
+        labels = ", ".join(f"--tree {n} ({d.region or d.tree_id})" for n, d in others)
+        renderables.append(Text(f"\nOther trees for {result.family}: {labels}", style="dim"))
+    body = Group(*renderables)
+    if _out.is_terminal:
+        os.environ.setdefault("LESS", "FRX")
+        with _out.pager(styles=True):
+            _out.print(body)
+    else:
+        _out.print(body)
+
+
+def _tree_header_bits(result, doc) -> list[str]:
+    bits = [result.family]
+    if doc.figure_label:
+        bits.append(doc.figure_label.replace("_", " "))
+    if doc.region:
+        bits.append(f"{doc.region} ({doc.molecule})" if doc.molecule else doc.region)
+    elif doc.molecule:
+        bits.append(doc.molecule)
+    if doc.method:
+        bits.append(doc.method)
+    bits.append(f"{doc.n_tips} tips")
+    if len(doc.matched) == 1:
+        bits.append("1 match")
+    elif doc.matched:
+        bits.append(f"{len(doc.matched)} matches")
+    return bits
+
+
+# Combine an incoming branch from the left with whatever box glyph is already
+# at a junction cell, so branches meet cleanly.
+_LEFT_ARM = {" ": "─", "│": "┤", "┌": "┬", "└": "┴", "├": "┼"}
+
+
+def _terminals(node) -> list:
+    if node.is_tip:
+        return [node]
+    out = []
+    for child in node.children:
+        out.extend(_terminals(child))
+    return out
+
+
+def _ascii_tree(doc, width: int) -> Text:
+    """Draw the tree left-to-right: tips one per line, branches in box-drawing.
+
+    This handles deep, ladder-like phylogenies (common here) that an indented
+    outline would push far off-screen. Column x is proportional to a node's
+    distance from the root (branch lengths, or levels if none), scaled to fit;
+    the queried tips are highlighted.
+    """
+    root = doc.root
+    tips = _terminals(root)
+    if not tips:
+        return Text("(empty tree)")
+
+    labels = {id(t): (doc.display_name(t.name) if t.name else "?") for t in tips}
+    matched = {id(t) for t in tips if t.name in doc.matched}
+    max_label = max(len(v) for v in labels.values())
+    draw_w = max(12, min(width, 100) - max_label - 3)
+    height = 2 * len(tips) - 1
+
+    row: dict[int, int] = {id(t): 2 * i for i, t in enumerate(tips)}
+
+    def calc_row(node) -> int:
+        if node.is_tip:
+            return row[id(node)]
+        child_rows = [calc_row(c) for c in node.children]
+        r = (child_rows[0] + child_rows[-1]) // 2
+        row[id(node)] = r
+        return r
+
+    calc_row(root)
+
+    depth: dict[int, float] = {}
+
+    def calc_depth(node, acc: float) -> None:
+        depth[id(node)] = acc
+        for c in node.children:
+            calc_depth(c, acc + (c.length or 0.0))
+
+    calc_depth(root, 0.0)
+    if max(depth.values()) <= 0:  # no usable branch lengths — fall back to levels
+        depth.clear()
+
+        def calc_level(node, lvl: int) -> None:
+            depth[id(node)] = lvl
+            for c in node.children:
+                calc_level(c, lvl + 1)
+
+        calc_level(root, 0)
+    maxd = max(depth.values()) or 1
+    col = {k: int(round(v / maxd * (draw_w - 1))) for k, v in depth.items()}
+
+    grid = [[" "] * draw_w for _ in range(height)]
+
+    def draw(node, startcol: int) -> None:
+        r, c = row[id(node)], col[id(node)]
+        for x in range(startcol, c):
+            if grid[r][x] == " ":
+                grid[r][x] = "─"
+        if node.children:
+            top, bot = row[id(node.children[0])], row[id(node.children[-1])]
+            for y in range(top, bot + 1):
+                if grid[y][c] == " ":
+                    grid[y][c] = "│"
+            for child in node.children:
+                grid[row[id(child)]][c] = "├"
+            grid[top][c] = "┌"
+            grid[bot][c] = "└"
+            grid[r][c] = _LEFT_ARM.get(grid[r][c], grid[r][c])
+            for child in node.children:
+                draw(child, c + 1)
+
+    draw(root, 0)
+
+    tip_by_row = {row[id(t)]: t for t in tips}
+    out = Text()
+    for y in range(height):
+        out.append("".join(grid[y]).rstrip(), style="dim")
+        tip = tip_by_row.get(y)
+        if tip is not None:
+            if id(tip) in matched:
+                out.append(f" {labels[id(tip)]}  ← match", style="bold yellow")
+            else:
+                out.append(f" {labels[id(tip)]}")
+        if y != height - 1:
+            out.append("\n")
+    return out
+
+
+def tree_newick(newick: str) -> None:
+    """Emit the raw Newick string to stdout (for piping to other tools)."""
+    sys.stdout.write(newick if newick.endswith("\n") else newick + "\n")
+
+
+def tree_chapter(markdown: str) -> None:
+    """Render a family's bundled chapter text (Markdown), paged like ``text``."""
+    md = Markdown(markdown)
+    if _out.is_terminal:
+        os.environ.setdefault("LESS", "FRX")
+        with _out.pager(styles=True):
+            _out.print(md)
+    else:
+        _out.print(md)
+
+
 def not_found(name: str, suggestions: list[str]) -> None:
     msg = Text()
     msg.append("No taxon named ", style="red")

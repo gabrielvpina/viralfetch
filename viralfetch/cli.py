@@ -18,6 +18,7 @@ from . import ictv
 from . import queries
 from . import render
 from . import sequences
+from . import trees as trees_mod
 from .cache import Cache
 from .ictv import ICTVClient
 from .ncbi import NCBIClient, NCBIError
@@ -344,6 +345,62 @@ def _fetch_figures(client: ICTVClient, chapter) -> dict[str, bytes]:
         if data is not None:
             figures[img.url] = data
     return figures
+
+
+@app.command(rich_help_panel=_PANEL_QUERY)
+def tree(
+    ctx: typer.Context,
+    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree.", autocompletion=_complete_taxon),
+    tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
+    newick: bool = typer.Option(False, "--newick", help="Emit the raw Newick string to stdout (for other tools)."),
+    chapter: bool = typer.Option(False, "--chapter", help="Show the family's bundled ICTV Report chapter text instead."),
+) -> None:
+    """Show the ICTV phylogenetic tree for a taxon's family (local, no network).
+
+    The name is resolved through the VMR to its family and that family's
+    tree(s) are drawn as an indented cladogram, highlighting the tip(s) the name
+    points at. A name unknown to the VMR is searched for among every tree's
+    members. Trees are bundled locally, so this works offline.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    vmr = load()
+
+    try:
+        result = trees_mod.resolve(vmr, name)
+    except trees_mod.TreesNotFound as exc:
+        out.not_found(name, exc.suggestions)
+        raise typer.Exit(1)
+
+    if result.note:
+        out.warn(result.note)  # to stderr, so --newick/--json stdout stays clean
+
+    if chapter:
+        if result.chapter_path is None:
+            out.error(f"No chapter text is bundled for {result.family}.")
+            raise typer.Exit(1)
+        out.tree_chapter(result.chapter_path.read_text(encoding="utf-8"))
+        return
+
+    if not result.has_trees:
+        out.error(f"No published tree is bundled for family {result.family}.")
+        raise typer.Exit(1)
+
+    docs = result.trees
+    # Default to the tree that contains the match, else the first one.
+    default_idx = next((i for i, d in enumerate(docs) if d.matched), 0)
+    idx = (tree_n - 1) if tree_n is not None else default_idx
+    if not 0 <= idx < len(docs):
+        out.error(f"--tree {tree_n} is out of range (family {result.family} has {len(docs)}).")
+        raise typer.Exit(2)
+
+    doc = docs[idx]
+    others = [(i + 1, d) for i, d in enumerate(docs) if i != idx]
+
+    if newick and cfg.format != "json":
+        out.tree_newick(doc.newick)
+    else:
+        out.tree(result, doc, others)
 
 
 def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -> None:

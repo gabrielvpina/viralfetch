@@ -573,6 +573,83 @@ def tree_chapter(markdown: str) -> None:
         _out.print(md)
 
 
+# -- multiple sequence alignments -----------------------------------------
+
+def msa(alignment, start: int, end: int, show_consensus: bool) -> None:
+    """Render columns ``start..end`` (1-based) of an alignment, coloured by
+    residue and wrapped into blocks with a column ruler (via ``alv``).
+
+    Matched records are marked ``▶``; an optional consensus row leads. ``alv``
+    windows and block-wraps itself, so no horizontal scrolling is needed.
+    """
+    import contextlib
+    import io as _io
+
+    from alv import get_alv_objects
+    from alv.alignmentterminal import AlignmentTerminal
+    from Bio.Align import MultipleSeqAlignment
+    from Bio.Seq import Seq
+    from Bio.SeqRecord import SeqRecord
+
+    from ..msa import consensus as _consensus
+
+    # Cap names so alv's left margin stays narrow enough to keep a name and its
+    # sequence on one line (alv sizes the margin to the longest id).
+    def _rid(name: str, matched: bool) -> str:
+        mark = "▶ " if matched else ""
+        return (mark + name)[:22]
+
+    records = []
+    if show_consensus:
+        records.append(SeqRecord(Seq(_consensus(alignment.rows)), id="consensus", description=""))
+    for row in alignment.rows:
+        records.append(SeqRecord(Seq(row.seq), id=_rid(row.name, row.matched), description=""))
+
+    header = Text(" · ".join(_msa_header_bits(alignment, start, end)), style="bold")
+    if not records:
+        _out.print(Group(header, Text("(empty alignment)", style="dim")))
+        return
+
+    width = _out.width if _out.is_terminal else 100
+    # al_end is exclusive, so `end` (1-based inclusive) maps straight across.
+    alignment_obj, painter = get_alv_objects(
+        MultipleSeqAlignment(records), "guess", "guess", 1, start - 1, end
+    )
+    terminal = AlignmentTerminal(width)
+    buf = _io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        # Pass chosen_width=0 so alv sizes each block to the terminal *after*
+        # the name margin — otherwise it assumes a tiny margin and the lines
+        # overflow and wrap, splitting names from their sequences.
+        terminal.output_alignment(alignment_obj, painter, 0)
+    body = Group(header, Text.from_ansi(buf.getvalue()))
+    if _out.is_terminal:
+        os.environ.setdefault("LESS", "RX")
+        with _out.pager(styles=True):
+            _out.print(body)
+    else:
+        _out.print(body)
+
+
+def _msa_header_bits(a, start: int, end: int) -> list[str]:
+    bits = [a.family, a.tree_id]
+    if a.molecule:
+        bits.append(a.molecule)
+    bits.append(f"cols {start}–{end} of {a.total_cols}")
+    bits.append(f"{a.n_rows} seqs")
+    if len(a.matched_names) == 1:
+        bits.append("1 match")
+    elif a.matched_names:
+        bits.append(f"{len(a.matched_names)} matches")
+    return bits
+
+
+def msa_fasta(alignment, start: int, end: int) -> None:
+    """Emit the windowed alignment as FASTA to stdout, for piping onward."""
+    for row in alignment.rows:
+        sys.stdout.write(f">{row.name}\n{row.seq[start - 1:end]}\n")
+
+
 def not_found(name: str, suggestions: list[str]) -> None:
     msg = Text()
     msg.append("No taxon named ", style="red")

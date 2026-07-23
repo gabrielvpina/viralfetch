@@ -470,6 +470,41 @@ code `1`; a family with no bundled tree exits `1` with a note.
 
 ---
 
+## `msa` — multiple sequence alignment (local, no network)
+
+Show the alignment behind a family's tree — the aligned FASTA that sits beside
+each Newick — coloured by residue and wrapped into blocks with a column ruler
+(via [`alv`](https://github.com/arvestad/alv)). The name is resolved to its
+family exactly as `tree` does, and the query's own records are marked `▶`.
+
+The alignments run to **thousands of columns**, so the view defaults to a
+leading column window that fits your terminal; move or widen it with `--range`.
+
+```bash
+viralfetch msa "Betacoronavirus pandemicum" --consensus
+```
+
+```
+Coronaviridae · tree1 · AA · cols 1–60 of 316 · 55 seqs · 2 matches
+consensus              KHFFFAQDGDAAITDYDYYRYNRPTMLDICQALFVYEVVDKYFDIYEGGCITAKEVVVTN
+▶ severe acute respir  KHFFFAQDGNAAISDYDYYRYNLPTMCDIRQLLFVVEVVDKYFDCYDGGCINANQVIVNN
+Alphapironavirus bona  EHFFYLQPRDCAVTDFDYYRFNRPTVLDPLQFRFVYNVVKHYFKSYSAGCLKSEFVIINN
+…                      0^                 20^                 40^
+```
+
+| Option | Effect |
+|---|---|
+| `--tree N` | Choose a tree when a family has several (1-based). |
+| `--range A:B` | Column window, 1-based inclusive (`100:180`; either bound may be omitted). |
+| `--consensus` | Prepend a per-column majority-residue row. |
+| `--fasta` | Emit the (windowed) alignment as FASTA to stdout. |
+
+With `--json`, the command emits `{family, tree_id, molecule, total_cols, start,
+n_cols, matched, consensus, rows: [{name, seq, matched}]}`. A family whose tree
+has no bundled alignment exits `1` with a note.
+
+---
+
 ## Utilities
 
 Small helper commands, all local except `update`.

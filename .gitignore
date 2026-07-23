@@ -239,4 +239,8 @@ viralfetch-cache/
 *.fa
 *.gb
 *.gbk
+
+# ...but the bundled ICTV tree alignments are package data — keep them tracked
+# and shipped in the wheel (the `msa` command reads them).
+!viralfetch/ictv-trees/**/*.fasta
 !tests/fixtures/**  # ...but always keep frozen test fixtures.

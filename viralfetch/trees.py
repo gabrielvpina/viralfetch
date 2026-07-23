@@ -129,6 +129,7 @@ class TreeDoc:
     newick: str
     root: NewickNode
     tip_rows: dict[str, dict[str, str]]  # tip_label -> members.tsv row
+    align_path: Path | None = None       # alignment.fasta beside the tree, if any
     matched: set[str] = field(default_factory=set)  # tip_labels hit by the query
 
     def display_name(self, tip_label: str) -> str:
@@ -198,6 +199,7 @@ def _load_tree(tree_dir: Path) -> TreeDoc | None:
         newick=newick,
         root=root,
         tip_rows=tip_rows,
+        align_path=(tree_dir / "alignment.fasta") if (tree_dir / "alignment.fasta").is_file() else None,
     )
 
 

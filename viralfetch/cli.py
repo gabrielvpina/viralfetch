@@ -7,6 +7,7 @@ Thin by design (SPEC section 4): commands resolve config, call a service in
 
 from __future__ import annotations
 
+import shutil
 import sys
 
 import typer
@@ -17,6 +18,7 @@ from . import config as config_mod
 from . import ictv
 from . import queries
 from . import render
+from . import msa as msa_mod
 from . import sequences
 from . import trees as trees_mod
 from .cache import Cache
@@ -386,21 +388,80 @@ def tree(
         out.error(f"No published tree is bundled for family {result.family}.")
         raise typer.Exit(1)
 
-    docs = result.trees
-    # Default to the tree that contains the match, else the first one.
-    default_idx = next((i for i, d in enumerate(docs) if d.matched), 0)
-    idx = (tree_n - 1) if tree_n is not None else default_idx
-    if not 0 <= idx < len(docs):
-        out.error(f"--tree {tree_n} is out of range (family {result.family} has {len(docs)}).")
-        raise typer.Exit(2)
-
-    doc = docs[idx]
-    others = [(i + 1, d) for i, d in enumerate(docs) if i != idx]
+    doc = _select_tree(result, tree_n, out)
+    others = [(i + 1, d) for i, d in enumerate(result.trees) if d is not doc]
 
     if newick and cfg.format != "json":
         out.tree_newick(doc.newick)
     else:
         out.tree(result, doc, others)
+
+
+def _select_tree(result, tree_n: int | None, out):
+    """Pick a tree from a resolution result (shared by `tree` and `msa`)."""
+    docs = result.trees
+    default_idx = next((i for i, d in enumerate(docs) if d.matched), 0)
+    idx = (tree_n - 1) if tree_n is not None else default_idx
+    if not 0 <= idx < len(docs):
+        out.error(f"--tree {tree_n} is out of range (family {result.family} has {len(docs)}).")
+        raise typer.Exit(2)
+    return docs[idx]
+
+
+@app.command(rich_help_panel=_PANEL_QUERY)
+def msa(
+    ctx: typer.Context,
+    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree.", autocompletion=_complete_taxon),
+    tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
+    col_range: str = typer.Option(None, "--range", help="Column window, 1-based inclusive (e.g. 100:180)."),
+    consensus: bool = typer.Option(False, "--consensus", help="Prepend a per-column consensus row."),
+    fasta: bool = typer.Option(False, "--fasta", help="Emit the (windowed) alignment as FASTA to stdout."),
+) -> None:
+    """Show a family's multiple sequence alignment, coloured by residue (local).
+
+    Resolves the name to its family (like `tree`), loads that tree's alignment,
+    and shows a column window — the alignments run to thousands of columns, so
+    the view defaults to what fits the terminal; widen or move it with `--range`.
+    The query's own sequences are marked ``▶``.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    vmr = load()
+
+    try:
+        result = trees_mod.resolve(vmr, name)
+    except trees_mod.TreesNotFound as exc:
+        out.not_found(name, exc.suggestions)
+        raise typer.Exit(1)
+
+    if result.note:
+        out.warn(result.note)
+    if not result.has_trees:
+        out.error(f"No published tree is bundled for family {result.family}.")
+        raise typer.Exit(1)
+
+    doc = _select_tree(result, tree_n, out)
+    if doc.align_path is None:
+        out.error(f"No alignment is bundled for {result.family} {doc.tree_id}.")
+        raise typer.Exit(1)
+
+    alignment = msa_mod.load_alignment(doc, result.family)
+    if col_range:
+        try:
+            start, end = msa_mod.parse_range(col_range, alignment.total_cols)
+        except ValueError:
+            out.error(f"Invalid --range {col_range!r} (use e.g. 100:180).")
+            raise typer.Exit(2)
+    else:
+        # Default viewport: a leading window that fits the terminal (alv wraps
+        # it into blocks); widen or move it with --range.
+        term_cols = shutil.get_terminal_size().columns
+        start, end = 1, min(alignment.total_cols, max(40, (term_cols - 22) * 3))
+
+    if fasta and cfg.format != "json":
+        out.msa_fasta(alignment, start, end)
+    else:
+        out.msa(alignment, start, end, consensus)
 
 
 def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -> None:

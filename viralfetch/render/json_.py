@@ -168,6 +168,27 @@ def tree_chapter(markdown: str) -> None:
     _emit({"chapter": markdown})
 
 
+def msa(alignment, start: int, end: int, show_consensus: bool) -> None:
+    from ..msa import window
+    view = window(alignment, start, end, add_consensus=show_consensus)
+    _emit({
+        "family": view.family,
+        "tree_id": view.tree_id,
+        "molecule": view.molecule,
+        "total_cols": view.total_cols,
+        "start": view.start,
+        "n_cols": view.n_cols,
+        "n_rows": view.n_rows,
+        "matched": view.matched_names,
+        "consensus": view.consensus,
+        "rows": [{"name": r.name, "seq": r.seq, "matched": r.matched} for r in view.rows],
+    })
+
+
+def msa_fasta(alignment, start: int, end: int) -> None:
+    _emit({"fasta": "".join(f">{r.name}\n{r.seq[start - 1:end]}\n" for r in alignment.rows)})
+
+
 def cache_info(infos: list[NamespaceInfo]) -> None:
     _emit({info.namespace: {"entries": info.entries, "bytes": info.bytes} for info in infos})
 

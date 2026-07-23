@@ -313,14 +313,20 @@ def text(
     client = _make_ictv_client(cfg, out)
 
     # The ICTV Report is organised by family: map a genus/species/etc. to its
-    # family chapter. A name unknown to the VMR is tried verbatim, and its
-    # suggestions are kept in case that fetch 404s.
+    # family chapter. A name unknown to the VMR is looked up in NCBI taxonomy
+    # (its family, if any), then tried verbatim; suggestions are kept for a 404.
     vmr = load()
     suggestions: list[str] = []
     try:
         target, note = queries.report_target(vmr, name)
     except queries.TaxonNotFound as exc:
         target, note, suggestions = name, None, exc.suggestions
+        family = _family_via_ncbi(cfg, out, name)
+        if family:
+            target, note, suggestions = family, (
+                f"{name!r} is not in the local VMR; NCBI places it in family "
+                f"{family} — showing that chapter."
+            ), []
     if note:
         out.warn(note)  # to stderr, so --raw/--json stdout stays clean
 
@@ -353,6 +359,19 @@ def text(
             # where the empty list lets the renderer say so in-band.
             figures = _fetch_figures(client, chapter) if out.figures_supported() else {}
         out.text(chapter, markdown, figures=figures, fig_width=fig_width)
+
+
+def _family_via_ncbi(cfg: config_mod.Config, out, name: str) -> str | None:
+    """Best-effort NCBI lookup of a name's family; never fatal for `text`.
+
+    Used as a fallback when the VMR doesn't know the name. A missing email or an
+    NCBI hiccup just yields ``None`` so the caller tries the name verbatim.
+    """
+    try:
+        client = NCBIClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
+        return compare.family_via_ncbi(client, name)
+    except (config_mod.ConfigError, NCBIError):
+        return None
 
 
 def _want_figures(images: bool, raw: bool, cfg: config_mod.Config) -> bool:
@@ -551,6 +570,22 @@ def config(
         "config_file": str(config_mod.CONFIG_FILE),
         "config_file_exists": config_mod.CONFIG_FILE.is_file(),
     })
+
+    # Nudge the user to persist an NCBI email: a session-scoped env var or flag
+    # won't survive a new terminal, and NCBI-bound commands need one.
+    if not config_mod.stored().get("email"):
+        if cfg.email:
+            out.warn(
+                "NCBI email is set for this session only (via $NCBI_EMAIL/--email) and is "
+                "not persisted. Store it with "
+                "`viralfetch config --store-ncbi-email you@example.com`."
+            )
+        else:
+            out.warn(
+                "No NCBI email is stored. Commands that reach NCBI (seq, text, "
+                "tax --ncbi/--compare-ncbi, update) need one — store it with "
+                "`viralfetch config --store-ncbi-email you@example.com`."
+            )
 
 
 cache_app = typer.Typer(help="Inspect or clear the on-disk cache.")

@@ -87,3 +87,21 @@ def tax_ncbi(ncbi: NCBIClient, name: str) -> NcbiLineage:
     if not taxid:
         raise NcbiTaxonNotFound(name)
     return ncbi.efetch_taxonomy(taxid)
+
+
+def family_via_ncbi(ncbi: NCBIClient, name: str) -> str | None:
+    """Resolve the family of ``name`` through NCBI taxonomy, or ``None``.
+
+    A fallback for names the local VMR does not know: search NCBI for the name
+    and return the ``family`` rank of its lineage (virus family names are shared
+    between NCBI and ICTV). Returns ``None`` if NCBI knows no such taxon or its
+    lineage has no family rank.
+    """
+    taxid = ncbi.esearch_taxid(name)
+    if not taxid:
+        return None
+    lineage = ncbi.efetch_taxonomy(taxid)
+    for rank, taxon_name in lineage.lineage:
+        if rank == "family":
+            return taxon_name
+    return None

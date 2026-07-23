@@ -42,9 +42,9 @@ alignment viewer). Python 3.10+ is required.
 
 ## NCBI configuration
 
-Commands that reach NCBI (`seq`, `tax --compare-ncbi`) require a real email
-address, per NCBI usage policy. There is **no default** — the command fails
-with an explanation if none is set.
+Commands that reach NCBI (`seq`, `tax --ncbi`, `tax --compare-ncbi`, `text`,
+`update`) require a real email address, per NCBI usage policy. There is **no
+default** — the command fails with an explanation if none is set.
 
 ```bash
 export NCBI_EMAIL="you@example.com"
@@ -52,6 +52,16 @@ export NCBI_API_KEY="..."   # optional; raises the rate limit from 3 to 10 req/s
 ```
 
 You can also pass `--email` / `--api-key` on any command.
+
+**Session vs. persisted.** An `export` (or `--email`) applies only to the
+current shell session. To store the email permanently, use:
+
+```bash
+viralfetch config --store-ncbi-email you@example.com
+```
+
+This writes to the config file (see `viralfetch config`), which survives across
+sessions. Running `viralfetch config` warns you when no email is persisted yet.
 
 ## Global options
 
@@ -112,6 +122,30 @@ viralfetch --json tax Coronaviridae
   }
 }
 ```
+
+### `tax --ncbi` (remote)
+
+Look the lineage up **directly in NCBI's taxonomy** database instead of the
+local VMR — useful for a name the VMR does not carry (a non-viral host, a very
+recent taxon, an NCBI synonym). The name is resolved to a taxid via `esearch`,
+then its lineage is fetched. Requires an NCBI email (see above).
+
+```bash
+viralfetch tax "SARS-CoV-2" --ncbi
+```
+
+```
+╭─ SARS-CoV-2  (species) ────────────────────────╮
+│ lineage                                        │
+│ └── realm: Riboviria                           │
+│     └── … → family: Coronaviridae              │
+│         └── species: SARS-CoV-2                │
+╰────────────────────────────────────────────────╯
+NCBI taxonomy — taxid 2697049
+```
+
+With `--json` the payload is `{source: "ncbi", taxid, name, rank, lineage}`. An
+unknown name exits `1`. `--ncbi` and `--compare-ncbi` are mutually exclusive.
 
 ### `tax --compare-ncbi` (remote)
 
@@ -420,7 +454,23 @@ viralfetch text Betacoronavirus
 # stdout: the Coronaviridae chapter
 ```
 
-An unknown name gets "did you mean" suggestions and exit code `1`.
+### Names the VMR doesn't know fall back to NCBI
+
+If a name is absent from the local VMR, `text` asks **NCBI taxonomy** for its
+family before giving up, and — if NCBI places it in one — shows that family's
+chapter (with a note on stderr). This catches recent taxa and NCBI synonyms the
+bundled VMR predates:
+
+```bash
+viralfetch text "some-recent-virus"
+# stderr: 'some-recent-virus' is not in the local VMR; NCBI places it in
+#         family Rhabdoviridae — showing that chapter.
+# stdout: the Rhabdoviridae chapter
+```
+
+The fallback is best-effort: if NCBI is unreachable or knows no family, the name
+is tried verbatim and, failing that, gets "did you mean" suggestions and exit
+code `1`.
 
 Fetching honours `ictv.global/robots.txt`, sends a descriptive `User-Agent`
 carrying your contact email, waits at least 1 second between requests, and
@@ -517,7 +567,9 @@ Small helper commands, all local except `update`.
 viralfetch diagnose                 # VMR parser quality (zero-accession rows)
 viralfetch update                   # is a newer VMR published on ictv.global?
 viralfetch config                   # show email, masked API key, cache paths
-viralfetch config --store-ncbi-email you@example.com   # persist credentials
+                                    # (warns if no NCBI email is persisted yet)
+viralfetch config --store-ncbi-email you@example.com    # persist email
+viralfetch config --store-ncbi-apikey KEY               # persist API key
 viralfetch cache info               # per-namespace entry counts and size
 viralfetch cache clear --texts      # drop cached ICTV chapters (or --seqs, --images, or all)
 ```

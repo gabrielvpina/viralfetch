@@ -17,6 +17,7 @@ from viralfetch.ncbi import (
     RateLimiter,
     _meta_from_json,
     _parse_elink,
+    _parse_esearch,
     _parse_esummary,
     _parse_taxonomy_xml,
     _split_fasta,
@@ -91,7 +92,7 @@ class FakeSession:
 
     def __init__(self, registry: dict, fail_times: int = 0, fail_status: int = 503,
                  protein_links: dict | None = None, taxonomy: dict | None = None,
-                 tax_xml: dict | None = None):
+                 tax_xml: dict | None = None, tax_search: dict | None = None):
         self.registry = registry
         self.calls = []
         self.fail_times = fail_times
@@ -99,12 +100,16 @@ class FakeSession:
         self.protein_links = protein_links or {}
         self.taxonomy = taxonomy or {}
         self.tax_xml = tax_xml or {}
+        self.tax_search = tax_search or {}  # term.casefold() -> [taxid, ...]
 
     def post(self, url, data=None, timeout=None):
         self.calls.append(data)
         if self.fail_times > 0:
             self.fail_times -= 1
             return FakeResponse("", self.fail_status)
+        if url.endswith("esearch.fcgi"):
+            idlist = self.tax_search.get(data["term"].casefold(), [])
+            return FakeResponse(json.dumps({"esearchresult": {"idlist": idlist}}))
         ids = data["id"].split(",")
         if url.endswith("esummary.fcgi"):
             result = {"uids": []}
@@ -276,6 +281,31 @@ def test_efetch_taxonomy_parses(tmp_path):
     client = make_client(session, tmp_path)
     lineage = client.efetch_taxonomy("2697049")
     assert lineage.name.startswith("Severe acute")
+
+
+def test_esearch_taxid_resolves_name(tmp_path):
+    session = FakeSession(REGISTRY, tax_search={"sars-cov-2": ["2697049"]})
+    client = make_client(session, tmp_path)
+    assert client.esearch_taxid("SARS-CoV-2") == "2697049"  # case-insensitive
+
+
+def test_esearch_taxid_no_match_returns_none(tmp_path):
+    session = FakeSession(REGISTRY, tax_search={})
+    client = make_client(session, tmp_path)
+    assert client.esearch_taxid("Nonexistent virus") is None
+
+
+def test_esearch_taxid_uses_cache_second_call(tmp_path):
+    session = FakeSession(REGISTRY, tax_search={"sars-cov-2": ["2697049"]})
+    client = make_client(session, tmp_path)
+    assert client.esearch_taxid("SARS-CoV-2") == "2697049"
+    n_calls = len(session.calls)
+    assert client.esearch_taxid("SARS-CoV-2") == "2697049"
+    assert len(session.calls) == n_calls  # hit came from cache, no new request
+
+
+def test_parse_esearch_empty():
+    assert _parse_esearch('{"esearchresult": {}}') == []
 
 
 def test_efetch_all_returns_every_record(tmp_path):

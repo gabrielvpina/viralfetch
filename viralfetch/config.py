@@ -76,6 +76,15 @@ def resolve(
     )
 
 
+def stored() -> dict:
+    """The values persisted in the config file (email/api_key), or ``{}``.
+
+    Distinct from :func:`resolve`, which also folds in flags and environment;
+    this reflects only what survives across terminal sessions.
+    """
+    return _load_file()
+
+
 def store(*, email: str | None = None, api_key: str | None = None) -> Path:
     """Persist email and/or API key to the config file. Returns its path."""
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)

@@ -4,7 +4,7 @@
 
 <br>
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.1.2-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CLI](https://img.shields.io/badge/CLI-Typer-0b7261)
@@ -14,17 +14,19 @@
 </div>
 
 <div align="center">
-A command-line tool for querying and downloading viral taxonomy, metadata and
-sequences. It combines three sources:
+A command-line tool for querying and downloading viral taxonomy, metadata,
+sequences, and per-family phylogenetic trees and alignments. It combines four
+sources:
 </div>
 
 | Source | Content | Access |
 |---|---|---|
 | **VMR** (ICTV Virus Metadata Resource) | taxonomic hierarchy + exemplar isolates + GenBank/RefSeq accessions | **local**, embedded TSV |
 | **NCBI E-utilities** | sequence metadata, sequences (nt/aa), NCBI taxonomy | **remote**, on demand |
-| **ICTV Report** | descriptive chapter text per family | **remote**, on demand |
+| **ICTV Report** | descriptive chapter text per family (with figures) | **remote**, on demand |
+| **ICTV Report trees** | per-family Newick trees + amino-acid/nucleotide alignments | **local**, bundled |
 
-The VMR is the local index; everything else is fetched on demand and cached.
+The VMR is the local index; remote sources are fetched on demand and cached.
 
 ---
 
@@ -34,7 +36,9 @@ The VMR is the local index; everything else is fetched on demand and cached.
 pip install viralfetch
 ```
 
-This installs the `viralfetch` command. Python 3.10+ is required.
+This installs the `viralfetch` command and everything it needs in one step —
+including Pillow (for drawing chapter figures) and `alv`/Biopython (for the
+alignment viewer). Python 3.10+ is required.
 
 ## NCBI configuration
 

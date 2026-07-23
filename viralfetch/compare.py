@@ -32,6 +32,14 @@ class NoNcbiTaxid(Exception):
         super().__init__(f"NCBI returned no taxid for {accession!r}")
 
 
+class NcbiTaxonNotFound(Exception):
+    """Raised when NCBI's taxonomy database has no match for a queried name."""
+
+    def __init__(self, name: str):
+        self.name = name
+        super().__init__(f"NCBI taxonomy has no match for {name!r}")
+
+
 @dataclass
 class LineageComparison:
     taxon: str
@@ -67,3 +75,15 @@ def compare_ncbi(vmr: VMR, ncbi: NCBIClient, name: str) -> LineageComparison:
         ictv=ictv,
         ncbi=ncbi_lineage,
     )
+
+
+def tax_ncbi(ncbi: NCBIClient, name: str) -> NcbiLineage:
+    """Look a taxon's lineage up directly in NCBI's taxonomy (no VMR).
+
+    Resolves ``name`` to a taxid with esearch, then efetches its lineage.
+    Raises :class:`NcbiTaxonNotFound` when NCBI knows no such taxon.
+    """
+    taxid = ncbi.esearch_taxid(name)
+    if not taxid:
+        raise NcbiTaxonNotFound(name)
+    return ncbi.efetch_taxonomy(taxid)

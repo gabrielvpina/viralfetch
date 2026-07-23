@@ -22,7 +22,7 @@ from ..cache import NamespaceInfo
 from ..compare import LineageComparison
 from ..ictv import VMRUpdate
 from ..models import RANKS, Chapter, plural
-from ..ncbi import MetaResult, RecordsResult
+from ..ncbi import MetaResult, NcbiLineage, RecordsResult
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 
@@ -62,6 +62,24 @@ def tax(view: TaxonView) -> None:
         if summary.example_accessions:
             table.add_row("examples", ", ".join(summary.example_accessions))
         _out.print(Panel(table, title="isolates", title_align="left", expand=False))
+
+
+def tax_ncbi(lineage: NcbiLineage) -> None:
+    """Render a lineage fetched directly from NCBI taxonomy (`tax --ncbi`)."""
+    tree = Tree(Text("lineage", style="bold"))
+    node = tree
+    for rank, name in lineage.lineage:
+        is_self = name == lineage.name and rank == lineage.rank
+        label = Text()
+        label.append(f"{rank or 'no rank'}: ", style="dim")
+        label.append(name, style="bold magenta" if is_self else "white")
+        node = node.add(label)
+
+    header = Text()
+    header.append(lineage.name, style="bold")
+    header.append(f"  ({lineage.rank or 'no rank'})", style="dim")
+    _out.print(Panel(tree, title=header, title_align="left", expand=False))
+    _out.print(f"[dim]NCBI taxonomy — taxid {lineage.taxid}[/]")
 
 
 def members(view: MembersView) -> None:

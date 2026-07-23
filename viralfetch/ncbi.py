@@ -376,6 +376,30 @@ class NCBIClient:
             self.cache.set(SEQS, f"taxonomy:{taxid}", body)
         return _parse_taxonomy_xml(body)
 
+    def esearch_taxid(self, name: str) -> str | None:
+        """Resolve a taxon name to an NCBI taxonomy taxid via esearch.
+
+        Searches ``db=taxonomy`` for ``name`` and returns the first matching
+        taxid, or ``None`` if NCBI knows no such taxon. The name query matches
+        scientific names as well as synonyms/common names. Cached permanently
+        (the name->taxid mapping is stable).
+        """
+        key = f"taxsearch:{name.casefold()}"
+        if self.cache:
+            cached = self.cache.get(SEQS, key)
+            if cached is not None:
+                return json.loads(cached)
+        body = self._post(
+            "esearch.fcgi", {"db": "taxonomy", "term": name, "retmode": "json"}
+        )
+        ids = _parse_esearch(body)
+        taxid = ids[0] if ids else None
+        # Only cache a hit: an empty result may be a transient failure, and
+        # caching it would hide a taxon added to NCBI later.
+        if self.cache and taxid is not None:
+            self.cache.set(SEQS, key, json.dumps(taxid))
+        return taxid
+
 
 # -- parsing helpers -------------------------------------------------------
 
@@ -387,6 +411,12 @@ def _parse_elink(body: str) -> list[str]:
         for db in linkset.get("linksetdbs", []) or []:
             out.extend(db.get("links", []) or [])
     return out
+
+
+def _parse_esearch(body: str) -> list[str]:
+    """The list of UIDs from an esearch JSON body (empty if none matched)."""
+    data = json.loads(body, strict=False)
+    return data.get("esearchresult", {}).get("idlist", []) or []
 
 
 def _parse_taxonomy_xml(body: str) -> NcbiLineage:

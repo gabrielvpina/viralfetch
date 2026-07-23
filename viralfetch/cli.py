@@ -129,15 +129,37 @@ def tax(
     compare_ncbi: bool = typer.Option(
         False, "--compare-ncbi", help="Show the ICTV lineage beside NCBI's, highlighting divergences."
     ),
+    ncbi: bool = typer.Option(
+        False, "--ncbi", help="Look the lineage up directly in NCBI taxonomy (online), bypassing the local VMR."
+    ),
 ) -> None:
     """Show the full ICTV lineage of a taxon (realm -> species).
 
-    With --compare-ncbi, fetch the NCBI taxonomy lineage for a representative
-    accession and render both side by side. Divergences are expected and are
-    the product of the command — NCBI commonly lags ICTV.
+    By default the lineage comes from the local VMR. With --ncbi, look the name
+    up directly in NCBI's taxonomy database (online) instead. With --compare-ncbi,
+    fetch the NCBI lineage for a representative accession and render both side by
+    side. Divergences are expected — NCBI commonly lags ICTV.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
+
+    if compare_ncbi and ncbi:
+        out.error("Choose only one of --ncbi and --compare-ncbi.")
+        raise typer.Exit(2)
+
+    if ncbi:
+        client = _make_client(cfg, out)
+        try:
+            lineage = compare.tax_ncbi(client, name)
+        except compare.NcbiTaxonNotFound as exc:
+            out.not_found(exc.name, [])
+            raise typer.Exit(1)
+        except NCBIError as exc:
+            out.error(f"NCBI request failed: {exc}")
+            raise typer.Exit(4)
+        out.tax_ncbi(lineage)
+        return
+
     vmr = load()
 
     if compare_ncbi:

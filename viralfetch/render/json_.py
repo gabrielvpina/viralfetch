@@ -35,6 +35,16 @@ def tax(view: TaxonView) -> None:
     _emit(payload)
 
 
+def tax_ncbi(lineage) -> None:
+    _emit({
+        "source": "ncbi",
+        "taxid": lineage.taxid,
+        "name": lineage.name,
+        "rank": lineage.rank,
+        "lineage": [{"rank": r, "name": n} for r, n in lineage.lineage],
+    })
+
+
 def members(view: MembersView) -> None:
     payload: dict = {
         "parent": {"name": view.parent.name, "rank": view.parent.rank},

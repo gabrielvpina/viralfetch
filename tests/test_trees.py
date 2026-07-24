@@ -5,7 +5,7 @@ import json
 import pytest
 from typer.testing import CliRunner
 
-from viralfetch import trees
+from viralfetch import cli, trees
 from viralfetch.cli import app
 from viralfetch.render import rich_
 from viralfetch.vmr import load
@@ -76,6 +76,73 @@ def test_unknown_name_raises_with_suggestions(vmr):
     assert isinstance(exc.value.suggestions, list)
 
 
+# -- NCBI fallback --------------------------------------------------------
+
+def _ncbi(*pairs):
+    """A stub lineage lookup returning ``pairs`` for any name."""
+    return lambda _name: list(pairs)
+
+
+def test_ncbi_fallback_highlights_the_nearest_shared_rank(vmr):
+    # A strain name neither the VMR nor the tree members know; NCBI's lineage
+    # gives the family (a bundled tree) and a genus that the tips do record.
+    r = trees.resolve(
+        vmr, "Dengue virus 2",
+        ncbi_lineage=_ncbi(("family", "Flaviviridae"), ("genus", "Orthoflavivirus"),
+                           ("no rank", "Dengue virus 2")),
+    )
+    assert r.source == "ncbi"
+    assert r.family == "Flaviviridae"
+    assert (r.matched_rank, r.matched_value) == ("genus", "Orthoflavivirus")
+    doc = next(d for d in r.trees if d.matched)
+    assert all(doc.tip_rows[t]["genus"] == "Orthoflavivirus" for t in doc.matched)
+    assert "genus" in r.note
+
+
+def test_ncbi_fallback_prefers_an_exact_tip_over_the_clade(vmr):
+    r = trees.resolve(
+        vmr, "JEV",
+        ncbi_lineage=_ncbi(("family", "Flaviviridae"), ("genus", "Orthoflavivirus"),
+                           ("no rank", "Japanese encephalitis virus")),
+    )
+    assert r.matched_rank is None                      # matched by name, not rank
+    assert r.matched_value == "Japanese encephalitis virus"
+    doc = next(d for d in r.trees if d.matched)
+    assert [doc.display_name(t) for t in doc.matched] == ["Japanese encephalitis virus"]
+
+
+def test_ncbi_fallback_without_a_family_rank_searches_the_members(vmr):
+    r = trees.resolve(
+        vmr, "some unclassified isolate",
+        ncbi_lineage=_ncbi(("no rank", "unclassified viruses"),
+                           ("genus", "Orthoflavivirus")),
+    )
+    assert r.source == "ncbi"
+    assert r.slug == "flaviviridae"
+    assert any(doc.matched for doc in r.trees)
+
+
+def test_ncbi_fallback_family_without_a_bundled_tree(vmr):
+    r = trees.resolve(
+        vmr, "Coxsackievirus A9",
+        ncbi_lineage=_ncbi(("family", "Picornaviridae"), ("genus", "Enterovirus")),
+    )
+    assert r.family == "Picornaviridae"
+    assert not r.has_trees          # the CLI reports "no published tree bundled"
+
+
+def test_ncbi_fallback_that_finds_nothing_still_raises(vmr):
+    with pytest.raises(trees.TreesNotFound):
+        trees.resolve(vmr, "Notarealvirusxyz", ncbi_lineage=lambda _n: None)
+
+
+def test_vmr_hit_never_consults_ncbi(vmr):
+    def boom(_name):
+        raise AssertionError("NCBI must only be a last resort")
+
+    assert trees.resolve(vmr, "Coronaviridae", ncbi_lineage=boom).source == "vmr"
+
+
 def test_family_without_bundled_tree_has_no_trees(vmr):
     r = trees.resolve(vmr, "Ahmunviridae")  # in VMR/index but omitted (no resources)
     assert r.family == "Ahmunviridae"
@@ -131,9 +198,25 @@ def test_tree_cli_newick_is_raw_stdout():
     assert result.stdout.strip().endswith(";")
 
 
-def test_tree_cli_unknown_exits_1():
+def test_tree_cli_unknown_exits_1(monkeypatch):
+    # Stub the NCBI fallback out so the test stays offline.
+    monkeypatch.setattr(cli, "_ncbi_lineage_lookup", lambda cfg: (lambda name: None))
     result = runner.invoke(app, ["tree", "Notarealvirusxyz"])
     assert result.exit_code == 1
+
+
+def test_tree_cli_reports_the_ncbi_fallback(monkeypatch):
+    monkeypatch.setattr(
+        cli, "_ncbi_lineage_lookup",
+        lambda cfg: (lambda name: [("family", "Filoviridae"), ("genus", "Orthoebolavirus")]),
+    )
+    result = runner.invoke(app, ["--json", "tree", "Ebola virus Makona"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["source"] == "ncbi"
+    assert payload["family"] == "Filoviridae"
+    assert payload["matched_rank"] == "genus"
+    assert payload["tree"]["matched"]
 
 
 def test_tree_cli_out_of_range_exits_2():

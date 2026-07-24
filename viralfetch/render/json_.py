@@ -165,6 +165,8 @@ def tree(result, doc, others) -> None:
         "slug": result.slug,
         "source": result.source,
         "note": result.note,
+        "matched_rank": result.matched_rank,
+        "matched_value": result.matched_value,
         "tree": _tree_payload(result, doc),
         "other_trees": [{"n": n, "tree_id": d.tree_id, "region": d.region} for n, d in others],
     })

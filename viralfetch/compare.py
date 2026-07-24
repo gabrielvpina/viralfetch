@@ -89,6 +89,18 @@ def tax_ncbi(ncbi: NCBIClient, name: str) -> NcbiLineage:
     return ncbi.efetch_taxonomy(taxid)
 
 
+def lineage_via_ncbi(ncbi: NCBIClient, name: str) -> NcbiLineage | None:
+    """The NCBI lineage of ``name``, or ``None`` if NCBI knows no such taxon.
+
+    The soft-failing sibling of :func:`tax_ncbi`, used as a fallback for names
+    the local VMR does not know.
+    """
+    taxid = ncbi.esearch_taxid(name)
+    if not taxid:
+        return None
+    return ncbi.efetch_taxonomy(taxid)
+
+
 def family_via_ncbi(ncbi: NCBIClient, name: str) -> str | None:
     """Resolve the family of ``name`` through NCBI taxonomy, or ``None``.
 
@@ -97,10 +109,9 @@ def family_via_ncbi(ncbi: NCBIClient, name: str) -> str | None:
     between NCBI and ICTV). Returns ``None`` if NCBI knows no such taxon or its
     lineage has no family rank.
     """
-    taxid = ncbi.esearch_taxid(name)
-    if not taxid:
+    lineage = lineage_via_ncbi(ncbi, name)
+    if lineage is None:
         return None
-    lineage = ncbi.efetch_taxonomy(taxid)
     for rank, taxon_name in lineage.lineage:
         if rank == "family":
             return taxon_name

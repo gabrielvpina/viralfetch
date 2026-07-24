@@ -478,7 +478,7 @@ caches chapter HTML for 30 days.
 
 ---
 
-## `tree` — phylogenetic tree (local, no network)
+## `tree` — phylogenetic tree (local, NCBI only as a fallback)
 
 Show the ICTV Report phylogenetic tree for a taxon's **family**, drawn as an
 indented cladogram. Trees are bundled locally (Newick + metadata + a tip→virus
@@ -489,6 +489,24 @@ are highlighted: a **species** highlights its own tip, a **genus** its whole
 clade, a **family** shows the tree with nothing highlighted. A name the VMR does
 not know is searched for among every tree's members (so a virus member name that
 is not an ICTV taxon still finds its tree).
+
+Failing that, the name is looked up in **NCBI taxonomy** — which knows strains,
+synonyms and taxa newer than the bundled VMR. Its lineage names the family (the
+same family names ICTV uses), and the deepest rank the trees do record —
+species → subgenus → genus → subfamily — highlights the query's **closest
+relatives** on that tree. The note on stderr always says which rank was used:
+
+```bash
+viralfetch tree "Dengue virus 2"
+# 'Dengue virus 2' is not in the local VMR; NCBI places it in family
+# Flaviviridae — no tip matches 'dengue virus type 2' itself, so its subgenus
+# 'Euflavivirus' is highlighted instead (closest relatives on the tree).
+```
+
+This step is the only one that touches the network, and it is best-effort: with
+no NCBI email configured (`viralfetch config --store-ncbi-email you@example.com`)
+or no connection it is silently skipped, leaving the offline behaviour intact.
+`msa` resolves names the same way.
 
 ```bash
 viralfetch tree "Betacoronavirus pandemicum"
@@ -518,8 +536,10 @@ whichever tree contains the match. Other options:
 | `--chapter` | Show the family's bundled ICTV Report chapter text instead. |
 
 `--newick` and `--json` keep stdout clean (the redirect note goes to stderr).
-With `--json`, the command emits `{family, source, note, tree: {…, matched,
-newick}, other_trees}`. An unknown name gets "did you mean" suggestions and exit
+With `--json`, the command emits `{family, source, note, matched_rank,
+matched_value, tree: {…, matched, newick}, other_trees}` — `source` is
+`vmr`, `member` or `ncbi`, and `matched_rank`/`matched_value` say what the
+highlight fell back to. An unknown name gets "did you mean" suggestions and exit
 code `1`; a family with no bundled tree exits `1` with a note.
 
 ---

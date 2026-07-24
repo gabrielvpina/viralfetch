@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import json
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from importlib import resources
 from pathlib import Path
@@ -148,8 +149,10 @@ class TreesResult:
     slug: str
     trees: list[TreeDoc]
     note: str | None = None       # redirect note (genus/species -> family)
-    source: str = "vmr"           # "vmr" | "member"
+    source: str = "vmr"           # "vmr" | "member" | "ncbi"
     chapter_path: Path | None = None
+    matched_rank: str | None = None   # rank the highlight fell back to (NCBI path)
+    matched_value: str | None = None  # its value, e.g. the genus that was hit
 
     @property
     def has_trees(self) -> bool:
@@ -223,8 +226,8 @@ def _chapter_path(slug: str) -> Path | None:
 
 # -- matching -------------------------------------------------------------
 
-def _mark_matches(docs: list[TreeDoc], *, rank: str | None, value: str, name: str) -> None:
-    """Flag the tips each tree that the query points at.
+def _mark_matches(docs: list[TreeDoc], *, rank: str | None, value: str, name: str) -> int:
+    """Flag the tips each tree that the query points at; return the hit count.
 
     A resolved taxon matches tips whose ``rank`` column equals its ``value``
     (so a species highlights its own tip, a genus highlights its whole clade).
@@ -232,24 +235,40 @@ def _mark_matches(docs: list[TreeDoc], *, rank: str | None, value: str, name: st
     """
     target = value.casefold()
     raw = name.casefold()
+    hits = 0
     for doc in docs:
         for tip, row in doc.tip_rows.items():
             if rank and row.get(rank, "").casefold() == target:
                 doc.matched.add(tip)
+                hits += 1
             elif not rank and raw in (row.get("name", "").casefold(),
                                       row.get("species", "").casefold()):
                 doc.matched.add(tip)
+                hits += 1
+    return hits
 
 
 # -- resolution -----------------------------------------------------------
 
-def resolve(vmr: VMR, name: str) -> TreesResult:
+def resolve(
+    vmr: VMR,
+    name: str,
+    *,
+    ncbi_lineage: Callable[[str], Sequence[tuple[str, str]] | None] | None = None,
+) -> TreesResult:
     """Resolve ``name`` to its family tree(s).
 
     First tries the VMR: any taxon (species/genus/…/family) maps to its family,
     whose tree(s) are then loaded and the query's tips highlighted. If the name
     is unknown to the VMR, falls back to searching every tree's members for a
-    matching virus. Raises :class:`TreesNotFound` if nothing matches.
+    matching virus, and then — when ``ncbi_lineage`` is given — to NCBI taxonomy:
+    the name's NCBI lineage points at a family, and its nearest rank that the
+    trees do carry (species → subgenus → genus → subfamily) highlights the
+    related tips. Raises :class:`TreesNotFound` if nothing matches.
+
+    ``ncbi_lineage`` is injected (a callable returning ``[(rank, name)]`` or
+    ``None``) so this module stays offline and testable; the CLI passes a
+    best-effort NCBI lookup that swallows config/network errors.
     """
     taxon = None
     try:
@@ -282,7 +301,131 @@ def resolve(vmr: VMR, name: str) -> TreesResult:
         return TreesResult(query=name, family=family, slug=slug, trees=docs,
                            note=note, source="member", chapter_path=_chapter_path(slug))
 
+    if ncbi_lineage is not None:
+        result = _resolve_via_ncbi(name, ncbi_lineage)
+        if result is not None:
+            return result
+
     raise TreesNotFound(name, vmr.suggest(name))
+
+
+# -- NCBI fallback --------------------------------------------------------
+
+# members.tsv ranks worth highlighting, deepest first. ``family`` is left out:
+# the whole tree already is the family, so marking it would highlight every tip.
+_RELATED_RANKS = ("species", "subgenus", "genus", "subfamily")
+
+
+def _resolve_via_ncbi(
+    name: str,
+    ncbi_lineage: Callable[[str], Sequence[tuple[str, str]] | None],
+) -> TreesResult | None:
+    """Resolve ``name`` through its NCBI lineage; ``None`` if that leads nowhere.
+
+    NCBI knows strains, synonyms and taxa the VMR release predates. Its lineage
+    shares the ICTV family names, so the family points at a bundled tree, and
+    the deepest shared rank highlights the query's closest relatives on it.
+    """
+    lineage = ncbi_lineage(name)
+    if not lineage:
+        return None
+
+    ranks = {rank: value for rank, value in lineage if rank and rank != "no rank"}
+    ncbi_name = lineage[-1][1]
+
+    family = ranks.get("family")
+    via_family = family is not None
+    if family:
+        slug = _slug(family)
+    else:
+        # No family rank (an unclassified taxon): find one via a lower rank that
+        # some tree's members do record.
+        hit = _search_ranks(ranks)
+        if hit is None:
+            return None
+        slug, family = hit
+
+    docs = _load_family_trees(slug)
+    rank, value = _mark_related(docs, ranks, ncbi_name)
+    return TreesResult(
+        query=name,
+        family=family,
+        slug=slug,
+        trees=docs,
+        note=_ncbi_note(name, ncbi_name, family, rank, value, docs, via_family),
+        source="ncbi",
+        chapter_path=_chapter_path(slug),
+        matched_rank=rank,
+        matched_value=value,
+    )
+
+
+def _mark_related(
+    docs: list[TreeDoc], ranks: dict[str, str], ncbi_name: str
+) -> tuple[str | None, str | None]:
+    """Highlight the tips closest to the query; return the ``(rank, value)`` used.
+
+    Tries the taxon's own name first (tips carry virus names as well as species),
+    then walks up the lineage until a rank the trees record produces a hit —
+    so a strain NCBI knows but ICTV does not still lands on its genus' clade.
+    """
+    if _mark_matches(docs, rank=None, value=ncbi_name, name=ncbi_name):
+        return None, ncbi_name
+    for rank in _RELATED_RANKS:
+        value = ranks.get(rank)
+        if value and _mark_matches(docs, rank=rank, value=value, name=ncbi_name):
+            return rank, value
+    return None, None
+
+
+def _ncbi_note(
+    name: str,
+    ncbi_name: str,
+    family: str,
+    rank: str | None,
+    value: str | None,
+    docs: list[TreeDoc],
+    via_family: bool,
+) -> str:
+    """Explain what NCBI resolved and how faithful the highlight is."""
+    if via_family:
+        head = f"{name!r} is not in the local VMR; NCBI places it in family {family}"
+    else:
+        head = (f"{name!r} is not in the local VMR and NCBI's lineage for it names "
+                f"no family; its ranks lead to the {family} tree")
+    if not docs:
+        return f"{head}."
+    if value is None:
+        return (f"{head} — showing that tree, but no tip of it matches "
+                f"{ncbi_name!r} or any rank of its lineage.")
+    if rank is None:
+        return f"{head} — showing that tree, highlighting {value!r}."
+    return (f"{head} — no tip matches {ncbi_name!r} itself, so its {rank} "
+            f"{value!r} is highlighted instead (closest relatives on the tree).")
+
+
+def _search_ranks(ranks: dict[str, str]) -> tuple[str, str] | None:
+    """Find a family whose members carry one of ``ranks``; deepest rank wins.
+
+    The fallback-of-the-fallback, for NCBI lineages with no family rank.
+    """
+    root = _root()
+    if not root.is_dir():
+        return None
+    for rank in _RELATED_RANKS:
+        value = ranks.get(rank)
+        if not value:
+            continue
+        needle = value.casefold()
+        for family_dir in sorted(root.iterdir()):
+            for members in (family_dir / "trees").glob("*/members.tsv"):
+                if needle not in members.read_text(encoding="utf-8").casefold():
+                    continue
+                for row in _load_members(members).values():
+                    if row.get(rank, "").casefold() == needle:
+                        family = row.get("family") or family_dir.name.capitalize()
+                        return family_dir.name, family
+    return None
 
 
 def _search_members(name: str) -> tuple[str, str] | None:

@@ -374,6 +374,24 @@ def _family_via_ncbi(cfg: config_mod.Config, out, name: str) -> str | None:
         return None
 
 
+def _ncbi_lineage_lookup(cfg: config_mod.Config):
+    """A best-effort NCBI lineage lookup for `tree`/`msa`; never fatal.
+
+    Returns a callable yielding ``[(rank, name)]`` for a taxon, or ``None`` when
+    NCBI knows no such name — or when there is no email configured / the request
+    fails, so the local-only behaviour is unchanged offline.
+    """
+    def lookup(name: str):
+        try:
+            client = NCBIClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
+            lineage = compare.lineage_via_ncbi(client, name)
+        except (config_mod.ConfigError, NCBIError):
+            return None
+        return lineage.lineage if lineage else None
+
+    return lookup
+
+
 def _want_figures(images: bool, raw: bool, cfg: config_mod.Config) -> bool:
     """Draw figures only for the interactive Rich view — not JSON, raw, or pipes."""
     return images and not raw and cfg.format != "json" and sys.stdout.isatty()
@@ -403,14 +421,16 @@ def tree(
     The name is resolved through the VMR to its family and that family's
     tree(s) are drawn as an indented cladogram, highlighting the tip(s) the name
     points at. A name unknown to the VMR is searched for among every tree's
-    members. Trees are bundled locally, so this works offline.
+    members, then looked up in NCBI taxonomy — whose lineage points at the
+    family and at the nearest related tips. Trees are bundled locally, so
+    everything but that last fallback works offline.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     vmr = load()
 
     try:
-        result = trees_mod.resolve(vmr, name)
+        result = trees_mod.resolve(vmr, name, ncbi_lineage=_ncbi_lineage_lookup(cfg))
     except trees_mod.TreesNotFound as exc:
         out.not_found(name, exc.suggestions)
         raise typer.Exit(1)
@@ -470,7 +490,7 @@ def msa(
     vmr = load()
 
     try:
-        result = trees_mod.resolve(vmr, name)
+        result = trees_mod.resolve(vmr, name, ncbi_lineage=_ncbi_lineage_lookup(cfg))
     except trees_mod.TreesNotFound as exc:
         out.not_found(name, exc.suggestions)
         raise typer.Exit(1)

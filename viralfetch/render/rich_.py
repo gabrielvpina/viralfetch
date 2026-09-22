@@ -30,24 +30,36 @@ _out = Console()
 _err = Console(stderr=True)
 
 
+def _lineage_table(
+    rows: list[tuple[str, str]], self_name: str, self_rank: str, self_style: str
+) -> Table:
+    """A lineage as aligned rank/name columns, root first.
+
+    Unlike a nested tree, its width doesn't grow with depth, so long lineages
+    stay compact. The queried taxon is highlighted and marked with ◀ (the
+    marker survives pipes, where colour is dropped).
+    """
+    table = Table(show_header=False, box=None, pad_edge=False, padding=(0, 2, 0, 0))
+    table.add_column(style="dim", no_wrap=True)
+    table.add_column()
+    for rank, name in rows:
+        label = Text(name, style="white")
+        if name == self_name and rank == self_rank:
+            label.stylize(self_style)
+            label.append("  ◀", style=self_style)
+        table.add_row(rank or "no rank", label)
+    return table
+
+
 def tax(view: TaxonView) -> None:
     taxon = view.taxon
-    tree = Tree(Text("lineage", style="bold"))
-    node = tree
-    for rank in RANKS:
-        value = taxon.lineage.get(rank)
-        if not value:
-            continue
-        is_self = value == taxon.name and rank == taxon.rank
-        label = Text()
-        label.append(f"{rank}: ", style="dim")
-        label.append(value, style="bold cyan" if is_self else "white")
-        node = node.add(label)
+    rows = [(rank, taxon.lineage[rank]) for rank in RANKS if taxon.lineage.get(rank)]
+    table = _lineage_table(rows, taxon.name, taxon.rank, "bold cyan")
 
     header = Text()
     header.append(taxon.name, style="bold")
     header.append(f"  ({taxon.rank})", style="dim")
-    _out.print(Panel(tree, title=header, title_align="left", expand=False))
+    _out.print(Panel(table, title=header, title_align="left", expand=False))
 
     summary = view.isolate_summary
     if summary is not None:
@@ -66,19 +78,12 @@ def tax(view: TaxonView) -> None:
 
 def tax_ncbi(lineage: NcbiLineage) -> None:
     """Render a lineage fetched directly from NCBI taxonomy (`tax --ncbi`)."""
-    tree = Tree(Text("lineage", style="bold"))
-    node = tree
-    for rank, name in lineage.lineage:
-        is_self = name == lineage.name and rank == lineage.rank
-        label = Text()
-        label.append(f"{rank or 'no rank'}: ", style="dim")
-        label.append(name, style="bold magenta" if is_self else "white")
-        node = node.add(label)
+    table = _lineage_table(lineage.lineage, lineage.name, lineage.rank, "bold magenta")
 
     header = Text()
     header.append(lineage.name, style="bold")
     header.append(f"  ({lineage.rank or 'no rank'})", style="dim")
-    _out.print(Panel(tree, title=header, title_align="left", expand=False))
+    _out.print(Panel(table, title=header, title_align="left", expand=False))
     _out.print(f"[dim]NCBI taxonomy — taxid {lineage.taxid}[/]")
 
 

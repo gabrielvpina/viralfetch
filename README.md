@@ -82,7 +82,8 @@ Run `viralfetch COMMAND --help` to see a command's own arguments and options.
 
 ## `tax` — taxonomy lineage (local, NCBI only as a fallback)
 
-Show the full ICTV lineage of a taxon (realm → species). Case-insensitive,
+Show the full ICTV lineage of a taxon (realm → species) as aligned rank/name
+columns, with the queried taxon marked `◀`. Case-insensitive,
 with "did you mean" suggestions on a near miss. A species also gets an isolate
 summary.
 
@@ -102,16 +103,15 @@ viralfetch tax Coronaviridae
 ```
 
 ```
-╭─ Coronaviridae  (family) ─────────────────────────╮
-│ lineage                                           │
-│ └── realm: Riboviria                              │
-│     └── kingdom: Orthornavirae                    │
-│         └── phylum: Pisuviricota                  │
-│             └── class: Pisoniviricetes            │
-│                 └── order: Nidovirales            │
-│                     └── suborder: Cornidovirineae │
-│                         └── family: Coronaviridae │
-╰───────────────────────────────────────────────────╯
+╭─ Coronaviridae  (family) ──╮
+│ realm     Riboviria        │
+│ kingdom   Orthornavirae    │
+│ phylum    Pisuviricota     │
+│ class     Pisoniviricetes  │
+│ order     Nidovirales      │
+│ suborder  Cornidovirineae  │
+│ family    Coronaviridae  ◀ │
+╰────────────────────────────╯
 ```
 
 Same query as JSON:
@@ -148,12 +148,12 @@ viralfetch tax "SARS-CoV-2" --ncbi
 ```
 
 ```
-╭─ SARS-CoV-2  (species) ────────────────────────╮
-│ lineage                                        │
-│ └── realm: Riboviria                           │
-│     └── … → family: Coronaviridae              │
-│         └── species: SARS-CoV-2                │
-╰────────────────────────────────────────────────╯
+╭─ SARS-CoV-2  (species) ────╮
+│ realm    Riboviria         │
+│ …        …                 │
+│ family   Coronaviridae     │
+│ species  SARS-CoV-2  ◀     │
+╰────────────────────────────╯
 NCBI taxonomy — taxid 2697049
 ```
 

@@ -120,6 +120,14 @@ def main(
         verbose=verbose,
         no_cache=no_cache,
     )
+    # Remind on every call until an email is configured. `config` has its own,
+    # more detailed warning (and may be storing the email right now).
+    if not ctx.obj.email and ctx.invoked_subcommand != "config" and not ctx.resilient_parsing:
+        render.get(ctx.obj.format).warn(
+            "NCBI email is not configured yet — commands that reach NCBI (seq, text, "
+            f"tax fallback/--ncbi/--compare-ncbi, tree/msa fallback, update) won't work. "
+            f"{config_mod.EMAIL_HOWTO}"
+        )
 
 
 @app.command(rich_help_panel=_PANEL_QUERY)
@@ -135,7 +143,8 @@ def tax(
 ) -> None:
     """Show the full ICTV lineage of a taxon (realm -> species).
 
-    By default the lineage comes from the local VMR. With --ncbi, look the name
+    By default the lineage comes from the local VMR; a name the VMR doesn't know
+    is automatically looked up in NCBI taxonomy instead. With --ncbi, look the name
     up directly in NCBI's taxonomy database (online) instead. With --compare-ncbi,
     fetch the NCBI lineage for a representative accession and render both side by
     side. Divergences are expected — NCBI commonly lags ICTV.
@@ -181,9 +190,36 @@ def tax(
     try:
         view = queries.tax(vmr, name)
     except queries.TaxonNotFound as exc:
-        out.not_found(exc.name, exc.suggestions)
-        raise typer.Exit(1)
+        # Not in the local VMR: fall back to NCBI taxonomy before giving up.
+        lineage = _tax_via_ncbi(cfg, out, name)
+        if lineage is None:
+            out.not_found(exc.name, exc.suggestions)
+            raise typer.Exit(1)
+        out.warn(f"{name!r} is not in the local VMR; showing its NCBI taxonomy lineage instead.")
+        out.tax_ncbi(lineage)
+        return
     out.tax(view)
+
+
+def _tax_via_ncbi(cfg: config_mod.Config, out, name: str):
+    """Best-effort NCBI lineage for a name the VMR doesn't know; never fatal.
+
+    Returns ``None`` when NCBI knows no such taxon, when no email is configured
+    (with a hint on how to set one), or when the request fails.
+    """
+    try:
+        client = NCBIClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
+    except config_mod.ConfigError:
+        out.warn(
+            f"{name!r} is not in the local VMR and no NCBI email is configured, so "
+            "NCBI taxonomy was not searched."
+        )
+        return None
+    try:
+        return compare.lineage_via_ncbi(client, name)
+    except NCBIError as exc:
+        out.warn(f"NCBI taxonomy fallback failed: {exc}")
+        return None
 
 
 @app.command(rich_help_panel=_PANEL_QUERY)
@@ -603,8 +639,8 @@ def config(
         else:
             out.warn(
                 "No NCBI email is stored. Commands that reach NCBI (seq, text, "
-                "tax --ncbi/--compare-ncbi, update) need one — store it with "
-                "`viralfetch config --store-ncbi-email you@example.com`."
+                "tax fallback/--ncbi/--compare-ncbi, tree/msa fallback, update) "
+                f"need one. {config_mod.EMAIL_HOWTO}"
             )
 
 

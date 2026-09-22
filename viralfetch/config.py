@@ -21,6 +21,15 @@ CONFIG_FILE = CONFIG_DIR / "config.json"
 CACHE_DIR = Path(user_cache_dir(APP_NAME))
 
 
+# The ways to set an NCBI email, shown whenever one is missing.
+EMAIL_HOWTO = (
+    "Configure it in one of these ways:\n"
+    "  • persist it (recommended): viralfetch config --store-ncbi-email you@example.com\n"
+    "  • for this terminal session: export NCBI_EMAIL=you@example.com\n"
+    "  • for a single call: viralfetch --email you@example.com <command> ..."
+)
+
+
 class ConfigError(Exception):
     """Raised for missing-but-required configuration (e.g. no NCBI email)."""
 
@@ -36,10 +45,7 @@ class Config:
     def require_email(self) -> str:
         """Return the NCBI email or fail loudly — never fabricate one."""
         if not self.email:
-            raise ConfigError(
-                "No NCBI email configured. Set $NCBI_EMAIL, pass --email, or run "
-                "`viralfetch config --store-ncbi-email you@example.com`."
-            )
+            raise ConfigError(f"No NCBI email configured. {EMAIL_HOWTO}")
         return self.email
 
     @property

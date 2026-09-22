@@ -5,9 +5,11 @@ from pathlib import Path
 
 from typer.testing import CliRunner
 
+from viralfetch import compare
 from viralfetch import config as config_mod
 from viralfetch.cache import SEQS, Cache
 from viralfetch.cli import app
+from viralfetch.ncbi import NcbiLineage
 
 runner = CliRunner()  # Click >= 8.2 keeps stderr separate by default
 
@@ -52,11 +54,36 @@ def test_members_tree_rich_runs():
     assert "descendant taxa" in result.stdout
 
 
-def test_tax_not_found_exit_code_and_stderr():
+def test_tax_not_found_exit_code_and_stderr(monkeypatch):
+    # NCBI fallback finds nothing either (stubbed: no network).
+    monkeypatch.setenv("NCBI_EMAIL", "test@example.com")
+    monkeypatch.setattr(compare, "lineage_via_ncbi", lambda client, name: None)
     result = runner.invoke(app, ["--json", "tax", "CoronaviridaX"])
     assert result.exit_code == 1
     # error payload goes to stderr, stdout stays clean for jq
     assert result.stdout.strip() == ""
+    assert "taxon_not_found" in result.stderr
+
+
+def test_tax_falls_back_to_ncbi_when_not_in_vmr(monkeypatch):
+    monkeypatch.setenv("NCBI_EMAIL", "test@example.com")
+    lineage = NcbiLineage(
+        taxid="12345", name="Fooviridae", rank="family",
+        lineage=[("realm", "Riboviria"), ("family", "Fooviridae")],
+    )
+    monkeypatch.setattr(compare, "lineage_via_ncbi", lambda client, name: lineage)
+    result = runner.invoke(app, ["--json", "tax", "Fooviridae"])
+    assert result.exit_code == 0
+    assert "12345" in result.stdout
+    assert "not in the local VMR" in result.stderr
+
+
+def test_tax_fallback_without_email_warns_and_not_found(monkeypatch, tmp_path):
+    monkeypatch.delenv("NCBI_EMAIL", raising=False)
+    monkeypatch.setattr(config_mod, "CONFIG_FILE", tmp_path / "config.json")
+    result = runner.invoke(app, ["--json", "tax", "CoronaviridaX"])
+    assert result.exit_code == 1
+    assert "no NCBI email is configured" in result.stderr
     assert "taxon_not_found" in result.stderr
 
 
@@ -138,3 +165,31 @@ def test_cache_clear_removes_entries(monkeypatch, tmp_path):
     payload = json.loads(result.stdout)
     assert payload["cleared"] == 1
     assert payload["scope"] == "seqs"
+
+
+def test_missing_email_warns_on_every_command(monkeypatch, tmp_path):
+    monkeypatch.delenv("NCBI_EMAIL", raising=False)
+    monkeypatch.setattr(config_mod, "CONFIG_FILE", tmp_path / "config.json")
+    result = runner.invoke(app, ["--json", "tax", "Coronaviridae"])
+    assert result.exit_code == 0
+    assert "NCBI email is not configured" in result.stderr
+    assert "--store-ncbi-email" in result.stderr
+    assert "export NCBI_EMAIL" in result.stderr
+    json.loads(result.stdout)  # stdout stays pure JSON
+
+
+def test_configured_email_does_not_warn(monkeypatch):
+    monkeypatch.setenv("NCBI_EMAIL", "test@example.com")
+    result = runner.invoke(app, ["tax", "Coronaviridae"])
+    assert result.exit_code == 0
+    assert "not configured" not in result.stderr
+
+
+def test_config_command_has_single_email_warning(monkeypatch, tmp_path):
+    monkeypatch.delenv("NCBI_EMAIL", raising=False)
+    monkeypatch.setattr(config_mod, "CONFIG_FILE", tmp_path / "config.json")
+    monkeypatch.setattr(config_mod, "CACHE_DIR", tmp_path / "cache")
+    result = runner.invoke(app, ["config"])
+    assert result.exit_code == 0
+    assert "NCBI email is not configured" not in result.stderr
+    assert "No NCBI email is stored" in result.stderr

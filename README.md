@@ -44,7 +44,9 @@ alignment viewer). Python 3.10+ is required.
 
 Commands that reach NCBI (`seq`, `tax --ncbi`, `tax --compare-ncbi`, `text`,
 `update`) require a real email address, per NCBI usage policy. There is **no
-default** — the command fails with an explanation if none is set.
+default** — the command fails with an explanation if none is set. Until one is
+configured, every `viralfetch` call prints a reminder on stderr listing the
+ways to set it (stdout stays clean, so `--json` output is unaffected).
 
 ```bash
 export NCBI_EMAIL="you@example.com"
@@ -78,11 +80,22 @@ Run `viralfetch COMMAND --help` to see a command's own arguments and options.
 
 ---
 
-## `tax` — taxonomy lineage (local)
+## `tax` — taxonomy lineage (local, NCBI only as a fallback)
 
 Show the full ICTV lineage of a taxon (realm → species). Case-insensitive,
 with "did you mean" suggestions on a near miss. A species also gets an isolate
 summary.
+
+If the name is not in the local VMR, `tax` automatically looks it up in NCBI
+taxonomy and shows that lineage instead (with a note on stderr). The fallback
+is best-effort: with no NCBI email configured, or if NCBI is unreachable or
+knows no such taxon, it reports "not found" with the usual suggestions.
+
+```bash
+viralfetch tax "Human immunodeficiency virus 1"
+# stderr: 'Human immunodeficiency virus 1' is not in the local VMR; showing its
+#         NCBI taxonomy lineage instead.
+```
 
 ```bash
 viralfetch tax Coronaviridae

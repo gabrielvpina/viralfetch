@@ -49,17 +49,6 @@ def _make_ictv_client(cfg: config_mod.Config, out) -> ICTVClient:
         raise typer.Exit(3)
 
 
-def _complete_taxon(incomplete: str) -> list[str]:
-    """Shell-completion source: taxon names starting with the typed prefix."""
-    try:
-        vmr = load()
-    except Exception:
-        return []
-    needle = incomplete.casefold()
-    names = sorted({t.name for t in vmr.taxa.values()}, key=str.casefold)
-    return [n for n in names if n.casefold().startswith(needle)][:40]
-
-
 def _mask(key: str | None) -> str:
     """Mask an API key for display, revealing only the last four characters."""
     if not key:
@@ -90,7 +79,7 @@ app = typer.Typer(
     name="viralfetch",
     help=HELP,
     no_args_is_help=True,
-    add_completion=True,
+    add_completion=False,
     rich_markup_mode="rich",
 )
 
@@ -124,7 +113,7 @@ def main(
     )
     # Remind on every call until an email is configured. `config` has its own,
     # more detailed warning (and may be storing the email right now).
-    if not ctx.obj.email and ctx.invoked_subcommand != "config" and not ctx.resilient_parsing:
+    if not ctx.obj.email and ctx.invoked_subcommand != "config":
         render.get(ctx.obj.format).warn(
             "NCBI email is not configured yet — commands that reach NCBI (seq, text, "
             f"tax fallback/--ncbi/--compare-ncbi, tree/msa fallback, update) won't work. "
@@ -135,7 +124,7 @@ def main(
 @app.command(rich_help_panel=_PANEL_QUERY)
 def tax(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Taxon name (any rank).", autocompletion=_complete_taxon),
+    name: str = typer.Argument(..., help="Taxon name (any rank)."),
     compare_ncbi: bool = typer.Option(
         False, "--compare-ncbi", help="Show the ICTV lineage beside NCBI's, highlighting divergences."
     ),
@@ -227,7 +216,7 @@ def _tax_via_ncbi(cfg: config_mod.Config, out, name: str):
 @app.command(rich_help_panel=_PANEL_QUERY)
 def members(
     ctx: typer.Context,
-    taxon: str = typer.Argument(..., help="Parent taxon name.", autocompletion=_complete_taxon),
+    taxon: str = typer.Argument(..., help="Parent taxon name."),
     rank: str = typer.Option(None, "--rank", help="Restrict to a rank below the parent (e.g. genus)."),
     count: bool = typer.Option(False, "--count", help="Show aggregated counts only."),
     tree: bool = typer.Option(False, "--tree", help="List the full descendant subtree as a hierarchy."),
@@ -264,8 +253,8 @@ def members(
 @app.command(rich_help_panel=_PANEL_QUERY)
 def seq(
     ctx: typer.Context,
-    species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon.", autocompletion=_complete_taxon),
-    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET, autocompletion=_complete_taxon),
+    species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon."),
+    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET),
     meta: bool = typer.Option(False, "--meta", help="Metadata via esummary (default).", rich_help_panel=_FORMAT),
     fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch.", rich_help_panel=_FORMAT),
     gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch.", rich_help_panel=_FORMAT),
@@ -344,7 +333,7 @@ def seq(
 @app.command(rich_help_panel=_PANEL_QUERY)
 def text(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Family name (ICTV Report chapter).", autocompletion=_complete_taxon),
+    name: str = typer.Argument(..., help="Family name (ICTV Report chapter)."),
     section: str = typer.Option(None, "--section", help="Show only a section by heading (e.g. summary)."),
     raw: bool = typer.Option(False, "--raw", help="Emit raw Markdown to stdout (for redirecting to a file)."),
     images: bool = typer.Option(False, "--images", help="Also draw the chapter figures as terminal graphics."),
@@ -479,7 +468,7 @@ def _fetch_figures(client: ICTVClient, chapter) -> dict[str, bytes]:
 @app.command(rich_help_panel=_PANEL_QUERY)
 def tree(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree.", autocompletion=_complete_taxon),
+    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree."),
     tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
     newick: bool = typer.Option(False, "--newick", help="Emit the raw Newick string to stdout (for other tools)."),
     chapter: bool = typer.Option(False, "--chapter", help="Show the family's bundled ICTV Report chapter text instead."),
@@ -540,7 +529,7 @@ def _select_tree(result, tree_n: int | None, out):
 @app.command(rich_help_panel=_PANEL_QUERY)
 def msa(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree.", autocompletion=_complete_taxon),
+    name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree."),
     tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
     col_range: str = typer.Option(None, "--range", help="Column window, 1-based inclusive (e.g. 100:180)."),
     consensus: bool = typer.Option(False, "--consensus", help="Prepend a per-column consensus row."),

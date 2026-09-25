@@ -677,10 +677,6 @@ an older install automatically.
 Note that the bundled trees and alignments (`tree`, `msa`) follow the bundled
 VMR, so taxa renamed in a newer release may no longer match them.
 
-**Shell completion:** taxon names complete from the VMR
-(`viralfetch tax Corona<TAB>` → `Coronaviridae`). Install it once with
-`viralfetch --install-completion`.
-
 ---
 
 ## Output & exit codes

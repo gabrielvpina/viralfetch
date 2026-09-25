@@ -193,3 +193,43 @@ def test_config_command_has_single_email_warning(monkeypatch, tmp_path):
     assert result.exit_code == 0
     assert "NCBI email is not configured" not in result.stderr
     assert "No NCBI email is stored" in result.stderr
+
+
+def _stub_ncbi_lineage(monkeypatch, pairs):
+    monkeypatch.setenv("NCBI_EMAIL", "test@example.com")
+    lineage = NcbiLineage(taxid="1", name=pairs[-1][1], rank=pairs[-1][0], lineage=pairs)
+    monkeypatch.setattr(compare, "lineage_via_ncbi", lambda client, name: lineage)
+
+
+def test_members_redirects_unknown_name_via_ncbi(monkeypatch):
+    _stub_ncbi_lineage(monkeypatch, [
+        ("family", "Retroviridae"), ("genus", "Lentivirus"), ("no rank", "Primate lentivirus group"),
+    ])
+    result = runner.invoke(app, ["--json", "members", "Primate lentivirus group", "--rank", "species"])
+    assert result.exit_code == 0
+    assert json.loads(result.stdout)["parent"] == {"name": "Lentivirus", "rank": "genus"}
+    assert "NCBI places it in genus Lentivirus" in result.stderr
+
+
+def test_seq_taxon_redirects_unknown_name_via_ncbi(monkeypatch):
+    _stub_ncbi_lineage(monkeypatch, [
+        ("family", "Retroviridae"), ("genus", "Lentivirus"), ("no rank", "Primate lentivirus group"),
+    ])
+    result = runner.invoke(app, ["--json", "seq", "--taxon", "Primate lentivirus group", "--meta"])
+    assert result.exit_code == 0
+    assert json.loads(result.stdout)["name"] == "Lentivirus"
+
+
+def test_seq_species_redirected_to_genus_asks_for_taxon(monkeypatch):
+    # NCBI only places it in a genus: `seq <species>` then points to --taxon.
+    _stub_ncbi_lineage(monkeypatch, [("genus", "Lentivirus"), ("no rank", "Some lentivirus")])
+    result = runner.invoke(app, ["seq", "Some lentivirus"])
+    assert result.exit_code == 2
+    assert "Use --taxon" in result.stderr
+
+
+def test_members_unknown_placed_only_above_family_is_not_found(monkeypatch):
+    _stub_ncbi_lineage(monkeypatch, [("realm", "Riboviria"), ("no rank", "unclassified Riboviria")])
+    result = runner.invoke(app, ["--json", "members", "unclassified Riboviria"])
+    assert result.exit_code == 1
+    assert "taxon_not_found" in result.stderr

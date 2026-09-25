@@ -232,7 +232,10 @@ def members(
     count: bool = typer.Option(False, "--count", help="Show aggregated counts only."),
     tree: bool = typer.Option(False, "--tree", help="List the full descendant subtree as a hierarchy."),
 ) -> None:
-    """List child taxa of a taxon at any rank below it (local, no network).
+    """List child taxa of a taxon at any rank below it (local).
+
+    A name the VMR doesn't know is placed via NCBI taxonomy and redirected to
+    the closest VMR taxon (down to family).
 
     With --tree, render the entire descendant hierarchy (subfamily -> genus ->
     species) rooted at the taxon. Without flags, show a per-rank breakdown.
@@ -240,6 +243,7 @@ def members(
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     vmr = load()
+    taxon = _redirect_via_ncbi(cfg, out, vmr, taxon)
     try:
         if tree:
             out.members_tree(queries.members_tree(vmr, taxon))
@@ -273,6 +277,8 @@ def seq(
 ) -> None:
     """Fetch NCBI sequence data for a species or a whole taxon (accessions come
     from the VMR). Output formats are mutually exclusive; --meta is the default.
+    A name the VMR doesn't know is redirected via NCBI taxonomy to the closest
+    VMR taxon.
 
     Note: --moltype/--biomol filter nuccore records locally, while --protein is
     a separate path (elink nuccore->protein), not a nuccore filter.
@@ -294,6 +300,10 @@ def seq(
         out.warn("--moltype/--biomol are nuccore fields and are ignored with --protein.")
 
     vmr = load()
+    if taxon is not None:
+        taxon = _redirect_via_ncbi(cfg, out, vmr, taxon)
+    else:
+        species = _redirect_via_ncbi(cfg, out, vmr, species)
     try:
         # Taxon --meta with no record-level need => cheap local aggregate.
         if taxon is not None and mode == "meta" and not protein:
@@ -412,6 +422,26 @@ def _family_via_ncbi(cfg: config_mod.Config, out, name: str) -> str | None:
         return None
 
 
+def _redirect_via_ncbi(cfg: config_mod.Config, out, vmr, name: str) -> str:
+    """Map a name the VMR doesn't know to the closest VMR taxon via NCBI.
+
+    Returns ``name`` unchanged when the VMR knows it, or when NCBI can't place
+    it (no email, request failure, or no VMR taxon down to family) — the caller
+    then reports "not found" with the usual suggestions.
+    """
+    if vmr.find(name) is not None:
+        return name
+    lineage = _ncbi_lineage_lookup(cfg)(name)
+    taxon = compare.nearest_vmr_taxon(vmr, lineage) if lineage else None
+    if taxon is None:
+        return name
+    out.warn(
+        f"{name!r} is not in the local VMR; NCBI places it in {taxon.rank} "
+        f"{taxon.name} — showing that {taxon.rank} instead."
+    )
+    return taxon.name
+
+
 def _ncbi_lineage_lookup(cfg: config_mod.Config):
     """A best-effort NCBI lineage lookup for `tree`/`msa`; never fatal.
 
@@ -454,7 +484,7 @@ def tree(
     newick: bool = typer.Option(False, "--newick", help="Emit the raw Newick string to stdout (for other tools)."),
     chapter: bool = typer.Option(False, "--chapter", help="Show the family's bundled ICTV Report chapter text instead."),
 ) -> None:
-    """Show the ICTV phylogenetic tree for a taxon's family (local, no network).
+    """Show the ICTV phylogenetic tree for a taxon's family (local; NCBI only as a fallback).
 
     The name is resolved through the VMR to its family and that family's
     tree(s) are drawn as an indented cladogram, highlighting the tip(s) the name

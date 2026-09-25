@@ -111,3 +111,17 @@ def test_family_via_ncbi_no_family_rank_returns_none():
     )
     stub = StubSearchNcbi("10", lineage)
     assert compare.family_via_ncbi(stub, "Riboviria") is None
+
+
+def test_nearest_vmr_taxon_picks_deepest_known(vmr):
+    lineage = [("family", "Alphaviridae"), ("genus", "Alphavirus"), ("no rank", "Alphavirus strain X")]
+    assert compare.nearest_vmr_taxon(vmr, lineage).name == "Alphavirus"
+
+
+def test_nearest_vmr_taxon_ignores_matches_above_family(vmr):
+    lineage = [("realm", "Testviria"), ("order", "Testord"), ("no rank", "unclassified Testord")]
+    assert compare.nearest_vmr_taxon(vmr, lineage) is None
+
+
+def test_nearest_vmr_taxon_none_when_unknown(vmr):
+    assert compare.nearest_vmr_taxon(vmr, [("family", "Nopeviridae")]) is None

@@ -43,7 +43,7 @@ alignment viewer). Python 3.10+ is required.
 ## NCBI configuration
 
 Commands that reach NCBI (`seq`, `tax --ncbi`, `tax --compare-ncbi`, `text`,
-`update`) require a real email address, per NCBI usage policy. There is **no
+`update`, and the fallback below) require a real email address, per NCBI usage policy. There is **no
 default** — the command fails with an explanation if none is set. Until one is
 configured, every `viralfetch` call prints a reminder on stderr listing the
 ways to set it (stdout stays clean, so `--json` output is unaffected).
@@ -64,6 +64,29 @@ viralfetch config --store-ncbi-email you@example.com
 
 This writes to the config file (see `viralfetch config`), which survives across
 sessions. Running `viralfetch config` warns you when no email is persisted yet.
+
+### Names the VMR doesn't know
+
+Every command that takes a taxon name falls back to **NCBI taxonomy** when the
+name is not in the local VMR (an NCBI-only name, an older synonym, a strain),
+and says so on stderr:
+
+| Command | What the NCBI lineage is used for |
+|---|---|
+| `tax` | shows the NCBI lineage itself |
+| `members`, `seq` | the closest VMR taxon in that lineage (down to family) |
+| `text` | the family's ICTV Report chapter |
+| `tree`, `msa` | the family's tree/alignment, highlighting the closest tips |
+
+```bash
+viralfetch members "Primate lentivirus group" --rank species
+# stderr: 'Primate lentivirus group' is not in the local VMR; NCBI places it in
+#         genus Lentivirus — showing that genus instead.
+```
+
+The fallback is best-effort: without an NCBI email, when NCBI is unreachable,
+or when the name only maps to a taxon broader than a family, the command
+reports "not found" with the usual suggestions.
 
 ## Global options
 
@@ -185,7 +208,7 @@ viralfetch tax "Betacoronavirus pandemicum" --compare-ncbi
 
 ---
 
-## `members` — child taxa (local, no network)
+## `members` — child taxa (local, NCBI only as a fallback)
 
 List the taxa below a given taxon.
 
@@ -557,7 +580,7 @@ code `1`; a family with no bundled tree exits `1` with a note.
 
 ---
 
-## `msa` — multiple sequence alignment (local, no network)
+## `msa` — multiple sequence alignment (local, NCBI only as a fallback)
 
 Show the alignment behind a family's tree — the aligned FASTA that sits beside
 each Newick — coloured by residue and wrapped into blocks with a column ruler

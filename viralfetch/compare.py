@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .models import RANKS
+from .models import RANKS, Taxon
 from .ncbi import NcbiLineage, NCBIClient
 from .queries import TaxonNotFound, descendant_isolates
 from .vmr import VMR
@@ -115,4 +115,21 @@ def family_via_ncbi(ncbi: NCBIClient, name: str) -> str | None:
     for rank, taxon_name in lineage.lineage:
         if rank == "family":
             return taxon_name
+    return None
+
+
+def nearest_vmr_taxon(
+    vmr: VMR, lineage: list[tuple[str, str]], broadest: str = "family"
+) -> Taxon | None:
+    """The deepest taxon of an NCBI lineage that the VMR knows, or ``None``.
+
+    Used to redirect a name the VMR doesn't know (an NCBI-only name, an old
+    synonym, a strain) to the closest VMR taxon. Matches broader than
+    ``broadest`` are ignored — "members of Riboviria" is rarely what was meant.
+    """
+    limit = RANKS.index(broadest)
+    for _rank, name in reversed(lineage):
+        taxon = vmr.find(name)
+        if taxon is not None:
+            return taxon if RANKS.index(taxon.rank) >= limit else None
     return None

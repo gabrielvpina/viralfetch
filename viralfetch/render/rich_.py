@@ -25,6 +25,7 @@ from ..models import RANKS, Chapter, plural
 from ..ncbi import MetaResult, NcbiLineage, RecordsResult
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
+from ..vmr_install import InstalledVMR
 
 _out = Console()
 _err = Console(stderr=True)
@@ -734,7 +735,10 @@ def config_view(view: dict) -> None:
     _out.print(Panel(lines, title="viralfetch config", expand=False))
 
 
-def update_status(u: VMRUpdate) -> None:
+def update_status(u: VMRUpdate, installed: InstalledVMR | None = None) -> None:
+    if installed is not None:
+        vmr_installed(installed)
+        return
     if u.up_to_date:
         _out.print(Text(f"VMR is up to date ({u.current}).", style="green"))
         return
@@ -747,6 +751,28 @@ def update_status(u: VMRUpdate) -> None:
     msg.append("  download: ", style="dim")
     msg.append(f"{u.latest_url}")
     _out.print(msg)
+
+
+def vmr_installed(v: InstalledVMR) -> None:
+    msg = Text()
+    msg.append("✓ ", style="bold green")
+    msg.append(f"Installed {v.filename}", style="bold")
+    msg.append(f" ({v.isolates} isolates, {v.species} species).\n")
+    msg.append(f"  stored at {v.path}\n", style="dim")
+    msg.append("  Run `viralfetch update --reset` to go back to the bundled VMR.", style="dim")
+    _out.print(msg)
+    _err.print(Text(
+        "Note: the bundled trees/alignments (tree, msa) follow the bundled VMR; "
+        "taxa renamed in the new release may no longer match them.",
+        style="yellow",
+    ))
+
+
+def vmr_reset(removed: list[str], bundled: str) -> None:
+    if removed:
+        _out.print(Text(f"Removed {', '.join(removed)}; using the bundled VMR ({bundled}).", style="green"))
+    else:
+        _out.print(Text(f"No installed VMR; already using the bundled one ({bundled}).", style="green"))
 
 
 def diagnose(d: Diagnostics) -> None:

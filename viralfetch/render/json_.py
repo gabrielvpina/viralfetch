@@ -17,6 +17,7 @@ from ..models import Chapter
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
+from ..vmr_install import InstalledVMR
 
 
 def _emit(payload) -> None:
@@ -215,13 +216,26 @@ def config_view(view: dict) -> None:
     _emit(view)
 
 
-def update_status(u: VMRUpdate) -> None:
+def _installed_payload(v: InstalledVMR) -> dict:
+    return {"filename": v.filename, "path": str(v.path), "isolates": v.isolates, "species": v.species}
+
+
+def update_status(u: VMRUpdate, installed: InstalledVMR | None = None) -> None:
     _emit({
         "current": u.current,
         "latest": u.latest,
         "latest_url": u.latest_url,
         "up_to_date": u.up_to_date,
+        "installed": _installed_payload(installed) if installed else None,
     })
+
+
+def vmr_installed(v: InstalledVMR) -> None:
+    _emit({"installed": _installed_payload(v)})
+
+
+def vmr_reset(removed: list[str], bundled: str) -> None:
+    _emit({"removed": removed, "active": bundled})
 
 
 def diagnose(d: Diagnostics) -> None:

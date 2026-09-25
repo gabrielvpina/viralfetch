@@ -12,13 +12,14 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from platformdirs import user_cache_dir, user_config_dir
+from platformdirs import user_cache_dir, user_config_dir, user_data_dir
 
 APP_NAME = "viralfetch"
 
 CONFIG_DIR = Path(user_config_dir(APP_NAME))
 CONFIG_FILE = CONFIG_DIR / "config.json"
 CACHE_DIR = Path(user_cache_dir(APP_NAME))
+DATA_DIR = Path(user_data_dir(APP_NAME))  # e.g. a VMR installed by `update`
 
 
 # The ways to set an NCBI email, shown whenever one is missing.

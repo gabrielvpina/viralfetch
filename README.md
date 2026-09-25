@@ -605,7 +605,9 @@ Small helper commands, all local except `update`.
 
 ```bash
 viralfetch diagnose                 # VMR parser quality (zero-accession rows)
-viralfetch update                   # is a newer VMR published on ictv.global?
+viralfetch update                   # newer VMR on ictv.global? offers to install it
+viralfetch update --yes             # install a newer VMR without asking
+viralfetch update --reset           # drop the installed VMR, back to the bundled one
 viralfetch config                   # show email, masked API key, cache paths
                                     # (warns if no NCBI email is persisted yet)
 viralfetch config --store-ncbi-email you@example.com    # persist email
@@ -625,6 +627,32 @@ zero accessions:
 │ unparsed rows         0            │
 ╰────────────────────────────────────╯
 ```
+
+### Updating the VMR
+
+The VMR ships inside the package. `update` checks whether ICTV has published a
+newer release and, if so, asks whether to download and install it:
+
+```
+$ viralfetch update
+A newer VMR is available.
+  current: VMR_MSL41.v1.20260320.tsv
+  latest:  VMR_MSL41.v1.20260729.xlsx
+  download: https://ictv.global/sites/default/files/VMR/VMR_MSL41.v1.20260729.xlsx
+Download and install it? [y/N]: y
+✓ Installed VMR_MSL41.v1.20260729.tsv (19285 isolates, 17554 species).
+```
+
+The workbook is converted to TSV, validated, and stored in your user data
+directory (not inside the package, so it survives reinstalls); every command
+uses it from then on. If anything fails, the current VMR is left untouched.
+`--yes` skips the question (needed in scripts and with `--json`, which never
+prompts); `--reset` removes the installed copy and goes back to the bundled VMR.
+A later viralfetch release that bundles an even newer VMR takes precedence over
+an older install automatically.
+
+Note that the bundled trees and alignments (`tree`, `msa`) follow the bundled
+VMR, so taxa renamed in a newer release may no longer match them.
 
 **Shell completion:** taxon names complete from the VMR
 (`viralfetch tax Corona<TAB>` → `Coronaviridae`). Install it once with

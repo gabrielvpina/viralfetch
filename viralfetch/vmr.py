@@ -1,7 +1,10 @@
-"""Load and index the embedded VMR TSV.
+"""Load and index the VMR TSV.
 
-The VMR is the local source of truth for taxonomy. The TSV is read-only and
-never modified; all normalisation happens here into in-memory structures.
+The VMR is the local source of truth for taxonomy. One ships embedded in the
+package; `viralfetch update` can install a newer release into the user data
+dir, which is then preferred while it is newer than the embedded one. The TSV
+is read-only and never modified; all normalisation happens here into in-memory
+structures.
 
 Design note (SPEC section 4): nothing in this module prints. It returns data.
 """
@@ -9,6 +12,7 @@ Design note (SPEC section 4): nothing in this module prints. It returns data.
 from __future__ import annotations
 
 import csv
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -16,6 +20,7 @@ from functools import lru_cache
 from importlib import resources
 from pathlib import Path
 
+from . import config as config_mod
 from .accessions import is_parseable, parse_accessions
 from .models import RANKS, Isolate, Taxon
 
@@ -98,9 +103,53 @@ class VMR:
         return out[:limit]
 
 
+def release_key(name: str) -> tuple[int, int, int]:
+    """Sortable (MSL, version, date) key parsed from a VMR filename.
+
+    Filenames vary over releases — ``VMR_MSL39.v1_20240912``,
+    ``VMR_MSL41.v1.20260320``, older ``VMR_MSL38_v1`` with no date — so each
+    component is extracted independently and defaults to 0 when absent.
+    """
+    msl = re.search(r"MSL(\d+)", name)
+    ver = re.search(r"[._]v(\d+)", name, re.I)
+    date = re.search(r"(\d{8})", name)
+    return (
+        int(msl.group(1)) if msl else 0,
+        int(ver.group(1)) if ver else 0,
+        int(date.group(1)) if date else 0,
+    )
+
+
+def installed_dir() -> Path:
+    """Where `viralfetch update` installs a downloaded VMR."""
+    return config_mod.DATA_DIR / "vmr"
+
+
+def installed_path() -> Path | None:
+    """The VMR installed by `update`, if any (the newest, should several exist)."""
+    candidates = list(installed_dir().glob("VMR_*.tsv"))
+    return max(candidates, key=lambda p: release_key(p.name)) if candidates else None
+
+
 def _data_path() -> Path:
     """Absolute path to the embedded VMR TSV."""
     return Path(resources.files("viralfetch").joinpath("data", VMR_FILENAME))
+
+
+def active_path() -> Path:
+    """The VMR in use: an installed one while it is newer than the embedded one.
+
+    A package upgrade that vendors a newer VMR thus wins over a stale install.
+    """
+    installed = installed_path()
+    if installed is not None and release_key(installed.name) > release_key(VMR_FILENAME):
+        return installed
+    return _data_path()
+
+
+def active_filename() -> str:
+    """Basename of the VMR in use (see :func:`active_path`)."""
+    return active_path().name
 
 
 def _lineage_from_row(row: dict[str, str]) -> dict[str, str]:
@@ -186,8 +235,8 @@ def _load(path: Path) -> VMR:
 
 @lru_cache(maxsize=1)
 def load() -> VMR:
-    """Load and index the embedded VMR (cached for the process lifetime)."""
-    return _load(_data_path())
+    """Load and index the active VMR (cached for the process lifetime)."""
+    return _load(active_path())
 
 
 def load_from(path: str | Path) -> VMR:

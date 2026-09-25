@@ -34,6 +34,7 @@ from .cache import IMAGES, TEXT_TTL, TEXTS, Cache
 from .config import Config
 from .models import Chapter, ChapterImage
 from .ncbi import RateLimiter
+from .vmr import release_key as _vmr_key
 
 BASE_URL = "https://ictv.global"
 REPO_URL = "https://github.com/gabrielvpina/viralfetch"
@@ -223,6 +224,19 @@ class ICTVClient:
             raise ICTVError(f"HTTP {status} from {BASE_URL + VMR_PATH}")
         return _compare_vmr(html, current_filename)
 
+    def download_vmr(self, url: str) -> bytes:
+        """Download a VMR spreadsheet (``.xlsx``) listed on the ICTV VMR page.
+
+        Only files hosted on the ICTV domain are fetched (SPEC section 3).
+        """
+        parsed = urlparse(url)
+        if parsed.netloc != urlparse(BASE_URL).netloc:
+            raise ICTVError(f"refusing to download a VMR from outside {BASE_URL}: {url}")
+        resp = self._send(url, parsed.path)
+        if resp.status_code != 200:
+            raise ICTVError(f"HTTP {resp.status_code} from {url}")
+        return resp.content
+
 
 # -- VMR version check ----------------------------------------------------
 
@@ -235,23 +249,6 @@ class VMRUpdate:
     latest: str | None
     latest_url: str | None
     up_to_date: bool
-
-
-def _vmr_key(name: str) -> tuple[int, int, int]:
-    """Sortable (MSL, version, date) key parsed from a VMR filename.
-
-    Filenames vary over releases — ``VMR_MSL39.v1_20240912``,
-    ``VMR_MSL41.v1.20260320``, older ``VMR_MSL38_v1`` with no date — so each
-    component is extracted independently and defaults to 0 when absent.
-    """
-    msl = re.search(r"MSL(\d+)", name)
-    ver = re.search(r"[._]v(\d+)", name, re.I)
-    date = re.search(r"(\d{8})", name)
-    return (
-        int(msl.group(1)) if msl else 0,
-        int(ver.group(1)) if ver else 0,
-        int(date.group(1)) if date else 0,
-    )
 
 
 def _compare_vmr(html: str, current_filename: str) -> VMRUpdate:

@@ -21,6 +21,8 @@ from . import render
 from . import msa as msa_mod
 from . import sequences
 from . import trees as trees_mod
+from . import vmr as vmr_mod
+from . import vmr_install
 from .cache import Cache
 from .ictv import ICTVClient
 from .ncbi import NCBIClient, NCBIError
@@ -591,21 +593,64 @@ def diagnose(ctx: typer.Context) -> None:
 
 
 @app.command(rich_help_panel=_PANEL_CONFIG)
-def update(ctx: typer.Context) -> None:
-    """Check whether a newer VMR is published on ictv.global/vmr.
+def update(
+    ctx: typer.Context,
+    yes: bool = typer.Option(False, "--yes", help="Install a newer VMR without asking."),
+    reset: bool = typer.Option(False, "--reset", help="Remove an installed VMR and go back to the bundled one."),
+) -> None:
+    """Check for a newer VMR on ictv.global/vmr and offer to install it.
 
-    The VMR ships embedded in the package; this only reports whether a newer
-    release exists (and where to download it), it does not replace the file.
+    The VMR ships embedded in the package. When ICTV has published a newer one,
+    you are asked whether to download it (--yes skips the question); it is
+    converted from .xlsx, validated and stored in your user data directory, and
+    used from then on. --reset removes it, reverting to the bundled VMR.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
+
+    if reset:
+        if yes:
+            out.error("--reset and --yes cannot be combined.")
+            raise typer.Exit(2)
+        out.vmr_reset(vmr_install.reset(), VMR_FILENAME)
+        return
+
     client = _make_ictv_client(cfg, out)
     try:
-        status = client.check_vmr_update(VMR_FILENAME)
+        status = client.check_vmr_update(vmr_mod.active_filename())
     except ictv.ICTVError as exc:
         out.error(f"ICTV request failed: {exc}")
         raise typer.Exit(4)
+
+    # JSON: a single object on stdout, so never prompt; install only on --yes.
+    if cfg.format == "json" or status.up_to_date:
+        installed = _install_vmr(client, status, out) if yes and not status.up_to_date else None
+        out.update_status(status, installed)
+        return
+
     out.update_status(status)
+    if not yes:
+        if not _interactive():
+            out.warn("Re-run with --yes to download and install it.")
+            return
+        if not typer.confirm("Download and install it?", default=False):
+            return
+    out.vmr_installed(_install_vmr(client, status, out))
+
+
+def _interactive() -> bool:
+    """Whether stdin is a terminal we can prompt on."""
+    return sys.stdin.isatty()
+
+
+def _install_vmr(client: ICTVClient, status, out) -> vmr_install.InstalledVMR:
+    """Download, convert and install ``status.latest``, or exit(4) on failure."""
+    try:
+        data = client.download_vmr(status.latest_url)
+        return vmr_install.install(data, status.latest)
+    except (ictv.ICTVError, vmr_install.VMRInstallError) as exc:
+        out.error(f"Could not install {status.latest}: {exc} (the current VMR is unchanged).")
+        raise typer.Exit(4)
 
 
 @app.command(rich_help_panel=_PANEL_CONFIG)

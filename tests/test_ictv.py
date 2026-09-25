@@ -326,3 +326,16 @@ def test_check_vmr_update_via_client(tmp_path):
     client = _client(session, tmp_path)
     result = client.check_vmr_update("VMR_MSL41.v1.20260320.tsv")
     assert result.up_to_date is True
+
+
+def test_download_vmr_returns_bytes(tmp_path):
+    url = "https://ictv.global/sites/default/files/VMR/VMR_MSL42.v1.20270101.xlsx"
+    session = FakeSession({}, images={url: b"PK\x03\x04xlsx"})
+    assert _client(session, tmp_path).download_vmr(url) == b"PK\x03\x04xlsx"
+
+
+def test_download_vmr_refuses_off_site(tmp_path):
+    session = FakeSession({})
+    with pytest.raises(ictv.ICTVError, match="outside"):
+        _client(session, tmp_path).download_vmr("https://evil.example/VMR_MSL42.xlsx")
+    assert session.calls == []

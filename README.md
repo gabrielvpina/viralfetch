@@ -566,6 +566,13 @@ family exactly as `tree` does, and the query's own records are marked `▶`.
 
 The alignments run to **thousands of columns**, so the view defaults to a
 leading column window that fits your terminal; move or widen it with `--range`.
+`--fasta` is the exception: it exports the **whole** alignment unless `--range`
+is given.
+
+```bash
+viralfetch msa Coronaviridae --fasta > coronaviridae_msa.fasta          # all columns
+viralfetch msa Coronaviridae --fasta --range 100:180 > window.fasta     # a slice
+```
 
 ```bash
 viralfetch msa "Betacoronavirus pandemicum" --consensus
@@ -584,7 +591,7 @@ Alphapironavirus bona  EHFFYLQPRDCAVTDFDYYRFNRPTVLDPLQFRFVYNVVKHYFKSYSAGCLKSEFVI
 | `--tree N` | Choose a tree when a family has several (1-based). |
 | `--range A:B` | Column window, 1-based inclusive (`100:180`; either bound may be omitted). |
 | `--consensus` | Prepend a per-column majority-residue row. |
-| `--fasta` | Emit the (windowed) alignment as FASTA to stdout. |
+| `--fasta` | Emit the alignment as FASTA to stdout — **all columns** by default, or only the `--range` window. |
 
 With `--json`, the command emits `{family, tree_id, molecule, total_cols, start,
 n_cols, matched, consensus, rows: [{name, seq, matched}]}`. A family whose tree

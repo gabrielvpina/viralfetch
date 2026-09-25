@@ -98,6 +98,14 @@ def test_msa_cli_fasta_is_raw_stdout():
     assert seqs and all(len(s) == 8 for s in seqs)
 
 
+def test_msa_cli_fasta_without_range_exports_all_columns():
+    result = runner.invoke(app, ["msa", "Coronaviridae", "--fasta"])
+    assert result.exit_code == 0
+    seqs = [ln for ln in result.stdout.splitlines() if not ln.startswith(">")]
+    # not the terminal-sized viewport: every record spans the full alignment
+    assert seqs and all(len(s) == 316 for s in seqs)
+
+
 def test_msa_cli_bad_range_exits_2():
     result = runner.invoke(app, ["msa", "Coronaviridae", "--range", "9:2"])
     assert result.exit_code == 2

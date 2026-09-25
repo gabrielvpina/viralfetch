@@ -512,13 +512,14 @@ def msa(
     tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
     col_range: str = typer.Option(None, "--range", help="Column window, 1-based inclusive (e.g. 100:180)."),
     consensus: bool = typer.Option(False, "--consensus", help="Prepend a per-column consensus row."),
-    fasta: bool = typer.Option(False, "--fasta", help="Emit the (windowed) alignment as FASTA to stdout."),
+    fasta: bool = typer.Option(False, "--fasta", help="Emit the alignment as FASTA to stdout (all columns unless --range is given)."),
 ) -> None:
     """Show a family's multiple sequence alignment, coloured by residue (local).
 
     Resolves the name to its family (like `tree`), loads that tree's alignment,
     and shows a column window — the alignments run to thousands of columns, so
     the view defaults to what fits the terminal; widen or move it with `--range`.
+    ``--fasta`` exports the whole alignment unless ``--range`` narrows it.
     The query's own sequences are marked ``▶``.
     """
     cfg: config_mod.Config = ctx.obj
@@ -549,6 +550,9 @@ def msa(
         except ValueError:
             out.error(f"Invalid --range {col_range!r} (use e.g. 100:180).")
             raise typer.Exit(2)
+    elif fasta:
+        # FASTA is for files and pipelines: export every column by default.
+        start, end = 1, alignment.total_cols
     else:
         # Default viewport: a leading window that fits the terminal (alv wraps
         # it into blocks); widen or move it with --range.

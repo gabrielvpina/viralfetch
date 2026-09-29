@@ -17,6 +17,7 @@ from ..models import Chapter
 from ..ncbi import MetaResult, RecordsResult
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
+from ..trees_install import InstalledTrees
 from ..vmr_install import InstalledVMR
 
 
@@ -236,6 +237,26 @@ def vmr_installed(v: InstalledVMR) -> None:
 
 def vmr_reset(removed: list[str], bundled: str) -> None:
     _emit({"removed": removed, "active": bundled})
+
+
+def trees_progress(i: int, n: int, entry: dict) -> None:
+    pass  # stdout carries only the final payload
+
+
+def trees_installed(t: InstalledTrees) -> None:
+    _emit({
+        "installed": {
+            "path": str(t.path),
+            "included": t.included,
+            "omitted": t.omitted,
+            "rebuilt": t.families,
+            "errors": t.errors,
+        }
+    })
+
+
+def trees_reset(removed: bool) -> None:
+    _emit({"removed": removed, "active": "bundled"})
 
 
 def diagnose(d: Diagnostics) -> None:

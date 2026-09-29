@@ -18,15 +18,42 @@ from dataclasses import dataclass, field
 from importlib import resources
 from pathlib import Path
 
+from . import config as config_mod
 from . import queries
 from .vmr import VMR
 
 
 # -- data location --------------------------------------------------------
 
-def _root() -> Path:
+def bundled_root() -> Path:
     """Filesystem path to the bundled ``ictv-trees`` data set."""
     return Path(resources.files("viralfetch").joinpath("ictv-trees"))
+
+
+def installed_root() -> Path:
+    """Where ``viralfetch update --trees`` installs a rebuilt data set."""
+    return config_mod.DATA_DIR / "ictv-trees"
+
+
+def _generated_at(root: Path) -> str:
+    try:
+        return json.loads((root / "_index.json").read_text(encoding="utf-8")).get("generated_at", "")
+    except (OSError, json.JSONDecodeError):
+        return ""
+
+
+def root() -> Path:
+    """The data set in use: an installed one while it is at least as new as the
+    bundled one, so a package upgrade that ships newer trees wins over a stale
+    install (the same rule as the VMR)."""
+    installed = installed_root()
+    stamp = _generated_at(installed)
+    if stamp and stamp >= _generated_at(bundled_root()):
+        return installed
+    return bundled_root()
+
+
+_root = root
 
 
 def _slug(family: str) -> str:
@@ -456,7 +483,7 @@ def _search_members(name: str) -> tuple[str, str] | None:
 
 
 def index() -> dict:
-    """The bundled ``_index.json`` (families, counts), or ``{}`` if absent."""
+    """The active data set's ``_index.json`` (families, counts), or ``{}``."""
     path = _root() / "_index.json"
     if not path.is_file():
         return {}

@@ -631,6 +631,9 @@ viralfetch diagnose                 # VMR parser quality (zero-accession rows)
 viralfetch update                   # newer VMR on ictv.global? offers to install it
 viralfetch update --yes             # install a newer VMR without asking
 viralfetch update --reset           # drop the installed VMR, back to the bundled one
+viralfetch update --trees           # rebuild the trees/alignments from the ICTV Report
+viralfetch update --trees -f Geminiviridae   # rebuild only some families
+viralfetch update --trees --reset   # drop the rebuilt trees, back to the bundled ones
 viralfetch config                   # show email, masked API key, cache paths
                                     # (warns if no NCBI email is persisted yet)
 viralfetch config --store-ncbi-email you@example.com    # persist email
@@ -674,8 +677,33 @@ prompts); `--reset` removes the installed copy and goes back to the bundled VMR.
 A later viralfetch release that bundles an even newer VMR takes precedence over
 an older install automatically.
 
-Note that the bundled trees and alignments (`tree`, `msa`) follow the bundled
-VMR, so taxa renamed in a newer release may no longer match them.
+### Updating the trees and alignments
+
+The trees and alignments behind `tree` and `msa` also ship inside the package,
+with their members joined to the bundled VMR. `update --trees` rebuilds them
+from the ICTV Report: for every VMR family with a published chapter it reads
+the chapter's *Resources* page, downloads the official alignment and tree of
+each figure (kept verbatim), parses their members, molecule, method and
+region, and joins the members to the VMR in use — so update the VMR first.
+
+```
+$ viralfetch update --trees
+[1/186] Adamaviridae: no trees (no_resources)
+[2/186] Adenoviridae: 1 tree(s)
+[3/186] Ahmunviridae: no trees (no_resources)
+…
+[6/186] Alphaflexiviridae: 2 tree(s)
+…
+✓ Rebuilt the ICTV trees (75 families with trees, 111 without).
+```
+
+ICTV is queried at most once per second, so a full rebuild (~186 families)
+takes 10–15 minutes; `--family`/`-f` (repeatable) rebuilds only the named families and
+merges them into the current data set. The result is stored in your user data
+directory and only replaces the current trees once complete; a family that
+fails keeps its previous trees. `--trees --reset` goes back to the bundled
+trees, and a later viralfetch release that bundles newer trees takes
+precedence over an older rebuild.
 
 ---
 
@@ -690,8 +718,8 @@ VMR, so taxa renamed in a newer release may no longer match them.
 
 ## Caching
 
-Immutable data (sequences, accession metadata, and chapter figures) is cached
-permanently; ICTV chapter HTML uses a 30-day TTL. The cache lives in the
+Immutable data (sequences, accession metadata, chapter figures, and ICTV
+alignment/tree files) is cached permanently; ICTV chapter HTML uses a 30-day TTL. The cache lives in the
 platform cache directory. Use `--no-cache` to bypass it for a single run.
 
 

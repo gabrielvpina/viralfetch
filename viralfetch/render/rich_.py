@@ -25,6 +25,7 @@ from ..models import RANKS, Chapter, plural
 from ..ncbi import MetaResult, NcbiLineage, RecordsResult
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
+from ..trees_install import InstalledTrees
 from ..vmr_install import InstalledVMR
 
 _out = Console()
@@ -762,8 +763,8 @@ def vmr_installed(v: InstalledVMR) -> None:
     msg.append("  Run `viralfetch update --reset` to go back to the bundled VMR.", style="dim")
     _out.print(msg)
     _err.print(Text(
-        "Note: the bundled trees/alignments (tree, msa) follow the bundled VMR; "
-        "taxa renamed in the new release may no longer match them.",
+        "Note: the trees/alignments (tree, msa) were joined to the previous VMR; "
+        "run `viralfetch update --trees` to rebuild them against this one.",
         style="yellow",
     ))
 
@@ -773,6 +774,43 @@ def vmr_reset(removed: list[str], bundled: str) -> None:
         _out.print(Text(f"Removed {', '.join(removed)}; using the bundled VMR ({bundled}).", style="green"))
     else:
         _out.print(Text(f"No installed VMR; already using the bundled one ({bundled}).", style="green"))
+
+
+def trees_progress(i: int, n: int, entry: dict) -> None:
+    status = entry.get("status")
+    if status == "included":
+        detail, style = f"{entry.get('n_trees', 0)} tree(s)", "dim"
+    elif status == "error":
+        detail, style = f"error: {entry.get('error')}", "yellow"
+    else:
+        detail, style = f"no trees ({entry.get('reason')})", "dim"
+    _err.print(Text(f"[{i}/{n}] {entry.get('family')}: {detail}", style=style))
+
+
+def trees_installed(t: InstalledTrees) -> None:
+    msg = Text()
+    msg.append("✓ ", style="bold green")
+    if t.partial:
+        msg.append(f"Rebuilt {', '.join(t.families)}", style="bold")
+    else:
+        msg.append("Rebuilt the ICTV trees", style="bold")
+    msg.append(f" ({t.included} families with trees, {t.omitted} without).\n")
+    msg.append(f"  stored at {t.path}\n", style="dim")
+    msg.append("  Run `viralfetch update --trees --reset` to go back to the bundled trees.", style="dim")
+    _out.print(msg)
+    if t.errors:
+        _err.print(Text(
+            f"{len(t.errors)} families failed and were left out: "
+            + ", ".join(e["family"] for e in t.errors),
+            style="yellow",
+        ))
+
+
+def trees_reset(removed: bool) -> None:
+    if removed:
+        _out.print(Text("Removed the installed trees; using the bundled ones.", style="green"))
+    else:
+        _out.print(Text("No installed trees; already using the bundled ones.", style="green"))
 
 
 def diagnose(d: Diagnostics) -> None:

@@ -21,6 +21,7 @@ from . import render
 from . import msa as msa_mod
 from . import sequences
 from . import trees as trees_mod
+from . import trees_install
 from . import vmr as vmr_mod
 from . import vmr_install
 from .cache import Cache
@@ -615,7 +616,9 @@ def diagnose(ctx: typer.Context) -> None:
 def update(
     ctx: typer.Context,
     yes: bool = typer.Option(False, "--yes", help="Install a newer VMR without asking."),
-    reset: bool = typer.Option(False, "--reset", help="Remove an installed VMR and go back to the bundled one."),
+    reset: bool = typer.Option(False, "--reset", help="Remove an installed VMR (or, with --trees, the installed trees) and go back to the bundled one."),
+    trees: bool = typer.Option(False, "--trees", help="Rebuild the phylogenetic trees and alignments (tree, msa) from the ICTV Report."),
+    family: list[str] = typer.Option(None, "--family", "-f", help="With --trees: rebuild only this family (repeatable)."),
 ) -> None:
     """Check for a newer VMR on ictv.global/vmr and offer to install it.
 
@@ -623,14 +626,31 @@ def update(
     you are asked whether to download it (--yes skips the question); it is
     converted from .xlsx, validated and stored in your user data directory, and
     used from then on. --reset removes it, reverting to the bundled VMR.
+
+    With --trees, the ICTV trees/alignments are downloaded again from every
+    family chapter's Resources page and their members joined to the VMR in
+    use (update the VMR first). A full rebuild takes 10-15 minutes; --family limits it
+    to some families, merged into the current data set. --trees --reset goes
+    back to the bundled trees.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
 
+    if family and not trees:
+        out.error("--family only applies to --trees.")
+        raise typer.Exit(2)
+    if reset and (yes or family):
+        out.error("--reset cannot be combined with --yes or --family.")
+        raise typer.Exit(2)
+
+    if trees:
+        if reset:
+            out.trees_reset(trees_install.reset())
+            return
+        _update_trees(_make_ictv_client(cfg, out), family, out)
+        return
+
     if reset:
-        if yes:
-            out.error("--reset and --yes cannot be combined.")
-            raise typer.Exit(2)
         out.vmr_reset(vmr_install.reset(), VMR_FILENAME)
         return
 
@@ -655,6 +675,16 @@ def update(
         if not typer.confirm("Download and install it?", default=False):
             return
     out.vmr_installed(_install_vmr(client, status, out))
+
+
+def _update_trees(client: ICTVClient, families: list[str] | None, out) -> None:
+    """Rebuild and install the trees data set, or exit(4) on failure."""
+    try:
+        result = trees_install.install(client, families=families, progress=out.trees_progress)
+    except (ictv.ICTVError, trees_install.TreesInstallError) as exc:
+        out.error(f"Could not rebuild the trees: {exc} (the current trees are unchanged).")
+        raise typer.Exit(4)
+    out.trees_installed(result)
 
 
 def _interactive() -> bool:

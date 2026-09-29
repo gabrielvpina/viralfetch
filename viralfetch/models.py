@@ -133,3 +133,12 @@ class Chapter:
     doi: str | None = None
     url: str | None = None
     images: list[ChapterImage] = field(default_factory=list)
+
+
+@dataclass
+class Resource:
+    """One figure's downloadable alignment + tree pair on a chapter's Resources page."""
+
+    figure_label: str
+    alignment_url: str | None = None
+    tree_url: str | None = None

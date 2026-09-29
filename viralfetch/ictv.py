@@ -30,15 +30,17 @@ import requests
 from bs4 import BeautifulSoup
 
 from . import __version__
-from .cache import IMAGES, TEXT_TTL, TEXTS, Cache
+from .cache import IMAGES, SEQS, TEXT_TTL, TEXTS, Cache
 from .config import Config
-from .models import Chapter, ChapterImage
+from .models import Chapter, ChapterImage, Resource
 from .ncbi import RateLimiter
 from .vmr import release_key as _vmr_key
 
 BASE_URL = "https://ictv.global"
 REPO_URL = "https://github.com/gabrielvpina/viralfetch"
 CHAPTER_PATH = "/report/chapter/{slug}/{slug}"
+RESOURCES_SUFFIX = "/resources"
+INDEX_PATH = "/report"
 CONTENT_SELECTOR = ".field--name-field-mt-srv-body"
 LICENSE_NOTE = "Content is licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
 
@@ -177,18 +179,77 @@ class ICTVClient:
 
     # -- public API -------------------------------------------------------
 
-    def fetch_chapter(self, name: str) -> Chapter:
-        """Fetch and parse the ICTV Report chapter for ``name``."""
+    def fetch_chapter(self, name: str, *, fresh: bool = False) -> Chapter:
+        """Fetch and parse the ICTV Report chapter for ``name``.
+
+        ``fresh`` bypasses the text cache (used when rebuilding the trees).
+        """
         slug = _slug(name)
         path = CHAPTER_PATH.format(slug=slug)
         url = BASE_URL + path
-        cache_key = f"chapter:{slug}"
-        html = self.cache.get(TEXTS, cache_key, ttl=TEXT_TTL) if self.cache else None
+        html = self._page(f"chapter:{slug}", path, name, fresh=fresh)
+        return parse_chapter(html, slug=slug, url=url)
+
+    def _page(self, cache_key: str, path: str, name: str, *, fresh: bool = False) -> str:
+        """An ICTV page's HTML, from the 30-day text cache unless ``fresh``.
+
+        A fresh fetch still refreshes the cache, so later reads see it.
+        """
+        html = None
+        if self.cache and not fresh:
+            html = self.cache.get(TEXTS, cache_key, ttl=TEXT_TTL)
         if html is None:
             html = self._get(path, name)
             if self.cache:
                 self.cache.set(TEXTS, cache_key, html)
-        return parse_chapter(html, slug=slug, url=url)
+        return html
+
+    def list_chapters(self, *, fresh: bool = False) -> list[str]:
+        """Slugs of every published Report chapter, from the ``/report`` index.
+
+        Includes higher taxa (realms, orders) as well as families; callers
+        reconcile against the VMR family list.
+        """
+        return parse_chapter_index(self._page("index:report", INDEX_PATH, "report index", fresh=fresh))
+
+    def fetch_resources(self, name: str, *, fresh: bool = False) -> list[Resource]:
+        """The alignment/tree downloads listed on a chapter's Resources page.
+
+        Returns ``[]`` when the page has no "Sequence alignments and tree files"
+        section; raises :class:`ChapterNotFound` when the page itself is absent.
+        """
+        slug = _slug(name)
+        path = CHAPTER_PATH.format(slug=slug) + RESOURCES_SUFFIX
+        html = self._page(f"resources:{slug}", path, name, fresh=fresh)
+        return parse_resources(html, url=BASE_URL + path)
+
+    def fetch_figure_captions(self, name: str, *, fresh: bool = False) -> dict[str, str]:
+        """``{figure_number: caption}`` from the chapter page."""
+        slug = _slug(name)
+        html = self._page(f"chapter:{slug}", CHAPTER_PATH.format(slug=slug), name, fresh=fresh)
+        return parse_figure_captions(html)
+
+    def download_file(self, url: str) -> str:
+        """Download an alignment/tree file from a Resources page, as text.
+
+        Cached permanently by URL (a revised file is published under a new
+        name). Only files hosted on the ICTV domain are fetched (SPEC section 3).
+        """
+        cache_key = f"resource-file:{url}"
+        if self.cache:
+            cached = self.cache.get(SEQS, cache_key)
+            if cached is not None:
+                return cached
+        parsed = urlparse(url)
+        if parsed.netloc != urlparse(BASE_URL).netloc:
+            raise ICTVError(f"refusing to download a file from outside {BASE_URL}: {url}")
+        resp = self._send(url, parsed.path)
+        if resp.status_code != 200:
+            raise ICTVError(f"HTTP {resp.status_code} from {url}")
+        text = resp.content.decode("utf-8", errors="replace")
+        if self.cache:
+            self.cache.set(SEQS, cache_key, text)
+        return text
 
     def fetch_image(self, url: str) -> bytes | None:
         """Fetch a chapter figure's bytes, cached permanently.
@@ -531,3 +592,122 @@ def section_markdown(chapter: Chapter, section: str) -> str:
 def _heading_text(chunk: str) -> str:
     first = chunk.lstrip().splitlines()[0] if chunk.strip() else ""
     return first.lstrip("#").strip() if first.startswith("##") else ""
+
+
+# -- report index & resources pages ---------------------------------------
+
+_CHAPTER_HREF_RE = re.compile(r"^/report/chapter/([^/\"?#]+)/?$")
+_FIG_CAPTION_RE = re.compile(r"^\s*Figure\s*([0-9]+[A-Za-z]*)\b", re.I)
+# Heading text that introduces the downloadable alignment/tree section.
+_RESOURCES_HEADING_RE = re.compile(r"sequence alignments? and tree files", re.I)
+_FIGURE_LABEL_RE = re.compile(r"^\s*(?:extended\s+)?fig(?:ure)?\b", re.I)
+_TREE_EXT = (".nwk", ".tre", ".treefile.txt", ".nwk.txt")
+_ALIGN_EXT = (".fas", ".fst", ".fasta", ".aln")
+
+
+def parse_chapter_index(html: str) -> list[str]:
+    """The sorted, unique chapter slugs linked from the ``/report`` index."""
+    soup = BeautifulSoup(html, "lxml")
+    slugs = {
+        m.group(1).lower()
+        for a in soup.find_all("a", href=True)
+        if (m := _CHAPTER_HREF_RE.match(a["href"]))
+    }
+    if not slugs:
+        raise ChapterParseError(
+            "no chapter links found on the report index — the layout may have changed"
+        )
+    return sorted(slugs)
+
+
+def parse_figure_captions(html: str) -> dict[str, str]:
+    """Map figure number -> caption from a chapter page.
+
+    ICTV places captions in layout-table cells (not ``<figcaption>``) whose text
+    begins ``Figure N.``. Short inline cross-references are skipped by requiring
+    a reasonably long caption; the longest text wins per figure number.
+    """
+    soup = BeautifulSoup(html, "lxml")
+    body = soup.select_one(CONTENT_SELECTOR) or soup
+    captions: dict[str, str] = {}
+    for el in body.find_all(["td", "p", "div", "figcaption"]):
+        text = _collapse_ws(el.get_text(" ", strip=True)).strip()
+        m = _FIG_CAPTION_RE.match(text)
+        if not m or len(text) < 40:
+            continue
+        num = m.group(1).upper()
+        if len(text) > len(captions.get(num, "")):
+            captions[num] = text
+    return captions
+
+
+def parse_resources(html: str, *, url: str) -> list[Resource]:
+    """Parse the "Sequence alignments and tree files" section into resources.
+
+    Download links are grouped under their figure sub-heading. Returns ``[]``
+    when the section is absent.
+    """
+    soup = BeautifulSoup(html, "lxml")
+    body = soup.select_one(CONTENT_SELECTOR)
+    if body is None:
+        raise ChapterParseError(
+            f"content container {CONTENT_SELECTOR!r} not found on resources page {url}"
+        )
+    heading = next(
+        (h for h in body.find_all(re.compile(r"^h[1-6]$"))
+         if _RESOURCES_HEADING_RE.search(h.get_text(" ", strip=True))),
+        None,
+    )
+    if heading is None:
+        return []
+
+    figures: dict[str, dict[str, str]] = {}  # label -> {kind: url}, in page order
+    current = "Figure"  # fallback label for links before any sub-heading
+    for el in heading.find_all_next():
+        name = getattr(el, "name", None)
+        if name in ("h1", "h2", "h3", "h4", "h5", "h6"):
+            text = el.get_text(" ", strip=True)
+            if _RESOURCES_HEADING_RE.search(text):
+                continue
+            if _FIGURE_LABEL_RE.match(text):
+                current = _clean_figure_label(text)
+                continue
+            break  # a different section — end of the downloads
+        if name in ("strong", "b"):
+            text = el.get_text(" ", strip=True)
+            if _FIGURE_LABEL_RE.match(text):
+                current = _clean_figure_label(text)
+            continue
+        if name == "a" and el.get("href"):
+            # Some hrefs carry stray whitespace that would otherwise land
+            # between the domain and the path.
+            href = el["href"].strip()
+            kind = _classify_file(el.get_text(" ", strip=True), href)
+            if kind is None:
+                continue
+            full = href if href.startswith("http") else urljoin(BASE_URL + "/", href)
+            figures.setdefault(current, {}).setdefault(kind, full)  # first link wins
+
+    return [
+        Resource(figure_label=label, alignment_url=files.get("alignment"),
+                 tree_url=files.get("tree"))
+        for label, files in figures.items()
+    ]
+
+
+def _classify_file(text: str, href: str) -> str | None:
+    """``"tree"``, ``"alignment"`` or ``None`` for a Resources-page link."""
+    low_text, low_href = text.lower(), href.lower()
+    if "tree" in low_text or "newick" in low_text or low_href.endswith(_TREE_EXT):
+        return "tree"
+    if "alignment" in low_text or "fasta" in low_text or low_href.endswith(_ALIGN_EXT):
+        return "alignment"
+    return None
+
+
+def _clean_figure_label(text: str) -> str:
+    """Turn ``'Figure 3. Geminiviridae:'`` into a filesystem-safe ``'Figure_3'``."""
+    text = text.strip().rstrip(":").strip()
+    m = re.match(r"^\s*((?:extended\s+)?fig(?:ure)?\s*\S+)", text, re.I)
+    core = m.group(1) if m else text
+    return re.sub(r"[^\w]+", "_", core).strip("_") or "Figure"

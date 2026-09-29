@@ -56,15 +56,10 @@ def _mask(key: str | None) -> str:
         return "(not set)"
     return ("…" + key[-4:]) if len(key) > 4 else "****"
 
-HELP = """Query and download viral taxonomy, metadata and sequences.
+HELP = """Query viral taxonomy (ICTV VMR), sequences (NCBI) and the ICTV Report.
 
-Combines the ICTV VMR (local, embedded), NCBI E-utilities (remote) and the
-ICTV Report (remote). The VMR is the local index; everything else is fetched
-on demand and cached.
-
-Global options below apply to every command and go [bold]before[/] it, e.g.
-[cyan]viralfetch --json tax Coronaviridae[/]. Each command has its own arguments
-and options — run [bold]viralfetch COMMAND --help[/] to see them in their own boxes.
+Global options go [bold]before[/] the command: [cyan]viralfetch --json tax Coronaviridae[/].
+Run [bold]viralfetch COMMAND --help[/] for command options.
 """
 
 # Help-panel titles group each command's options into their own boxes.
@@ -98,9 +93,9 @@ def main(
         None, "--version", callback=_version_callback, is_eager=True,
         help="Show the version and exit.",
     ),
-    json_out: bool = typer.Option(False, "--json", help="Emit pure JSON on stdout (for jq)."),
-    no_cache: bool = typer.Option(False, "--no-cache", help="Force refetch, ignore cache."),
-    verbose: bool = typer.Option(False, "--verbose", help="Verbose diagnostics on stderr."),
+    json_out: bool = typer.Option(False, "--json", help="JSON output."),
+    no_cache: bool = typer.Option(False, "--no-cache", help="Ignore the cache."),
+    verbose: bool = typer.Option(False, "--verbose", help="Verbose output."),
     email: str = typer.Option(None, "--email", help="NCBI email (overrides $NCBI_EMAIL)."),
     api_key: str = typer.Option(None, "--api-key", help="NCBI API key (overrides $NCBI_API_KEY)."),
 ) -> None:
@@ -127,19 +122,15 @@ def tax(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="Taxon name (any rank)."),
     compare_ncbi: bool = typer.Option(
-        False, "--compare-ncbi", help="Show the ICTV lineage beside NCBI's, highlighting divergences."
+        False, "--compare-ncbi", help="Compare with the NCBI lineage."
     ),
     ncbi: bool = typer.Option(
-        False, "--ncbi", help="Look the lineage up directly in NCBI taxonomy (online), bypassing the local VMR."
+        False, "--ncbi", help="Use NCBI taxonomy instead of the VMR."
     ),
 ) -> None:
-    """Show the full ICTV lineage of a taxon (realm -> species).
+    """Show the ICTV lineage of a taxon.
 
-    By default the lineage comes from the local VMR; a name the VMR doesn't know
-    is automatically looked up in NCBI taxonomy instead. With --ncbi, look the name
-    up directly in NCBI's taxonomy database (online) instead. With --compare-ncbi,
-    fetch the NCBI lineage for a representative accession and render both side by
-    side. Divergences are expected — NCBI commonly lags ICTV.
+    Names missing from the VMR fall back to NCBI taxonomy.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -218,17 +209,13 @@ def _tax_via_ncbi(cfg: config_mod.Config, out, name: str):
 def members(
     ctx: typer.Context,
     taxon: str = typer.Argument(..., help="Parent taxon name."),
-    rank: str = typer.Option(None, "--rank", help="Restrict to a rank below the parent (e.g. genus)."),
-    count: bool = typer.Option(False, "--count", help="Show aggregated counts only."),
-    tree: bool = typer.Option(False, "--tree", help="List the full descendant subtree as a hierarchy."),
+    rank: str = typer.Option(None, "--rank", help="Only this rank (e.g. genus)."),
+    count: bool = typer.Option(False, "--count", help="Counts only."),
+    tree: bool = typer.Option(False, "--tree", help="Show the full descendant hierarchy."),
 ) -> None:
-    """List child taxa of a taxon at any rank below it (local).
+    """List the taxa below a taxon.
 
-    A name the VMR doesn't know is placed via NCBI taxonomy and redirected to
-    the closest VMR taxon (down to family).
-
-    With --tree, render the entire descendant hierarchy (subfamily -> genus ->
-    species) rooted at the taxon. Without flags, show a per-rank breakdown.
+    Names missing from the VMR are mapped via NCBI taxonomy.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -255,23 +242,19 @@ def members(
 def seq(
     ctx: typer.Context,
     species: str = typer.Argument(None, help="Species name (VMR). Omit when using --taxon."),
-    taxon: str = typer.Option(None, "--taxon", help="Operate on a whole taxon (any rank) instead of one species.", rich_help_panel=_TARGET),
+    taxon: str = typer.Option(None, "--taxon", help="Use a whole taxon (any rank).", rich_help_panel=_TARGET),
     meta: bool = typer.Option(False, "--meta", help="Metadata via esummary (default).", rich_help_panel=_FORMAT),
     fasta: bool = typer.Option(False, "--fasta", help="FASTA sequences via efetch.", rich_help_panel=_FORMAT),
     gb: bool = typer.Option(False, "--gb", help="Full GenBank records via efetch.", rich_help_panel=_FORMAT),
-    moltype: str = typer.Option(None, "--moltype", help="Filter nuccore results by moltype (e.g. ssRNA); matches ss-RNA etc.", rich_help_panel=_SELECT),
-    biomol: str = typer.Option(None, "--biomol", help="Filter nuccore results by biomol (e.g. genomic, mRNA, cRNA).", rich_help_panel=_SELECT),
-    protein: bool = typer.Option(False, "--protein", help="Fetch PROTEINS via elink (nuccore->protein). Not a nuccore filter.", rich_help_panel=_SELECT),
-    output: str = typer.Option(None, "-o", "--output", help="Write records to a file instead of stdout.", rich_help_panel=_TARGET),
-    yes: bool = typer.Option(False, "--yes", help="Skip the confirmation prompt for large downloads.", rich_help_panel=_TARGET),
+    moltype: str = typer.Option(None, "--moltype", help="Filter by moltype (e.g. ssRNA).", rich_help_panel=_SELECT),
+    biomol: str = typer.Option(None, "--biomol", help="Filter by biomol (e.g. genomic, mRNA).", rich_help_panel=_SELECT),
+    protein: bool = typer.Option(False, "--protein", help="Fetch the linked proteins instead.", rich_help_panel=_SELECT),
+    output: str = typer.Option(None, "-o", "--output", help="Write to a file.", rich_help_panel=_TARGET),
+    yes: bool = typer.Option(False, "--yes", help="Don't ask before large downloads.", rich_help_panel=_TARGET),
 ) -> None:
-    """Fetch NCBI sequence data for a species or a whole taxon (accessions come
-    from the VMR). Output formats are mutually exclusive; --meta is the default.
-    A name the VMR doesn't know is redirected via NCBI taxonomy to the closest
-    VMR taxon.
+    """Fetch NCBI sequences for a species or taxon.
 
-    Note: --moltype/--biomol filter nuccore records locally, while --protein is
-    a separate path (elink nuccore->protein), not a nuccore filter.
+    Accessions come from the VMR. Choose one of --meta (default), --fasta, --gb.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -335,17 +318,12 @@ def seq(
 def text(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="Family name (ICTV Report chapter)."),
-    section: str = typer.Option(None, "--section", help="Show only a section by heading (e.g. summary)."),
-    raw: bool = typer.Option(False, "--raw", help="Emit raw Markdown to stdout (for redirecting to a file)."),
-    images: bool = typer.Option(False, "--images", help="Also draw the chapter figures as terminal graphics."),
-    fig_width: int = typer.Option(None, "--fig-width", help="Cap figure width in terminal columns (default: full terminal width).", min=8),
+    section: str = typer.Option(None, "--section", help="Only this section (e.g. summary)."),
+    raw: bool = typer.Option(False, "--raw", help="Print raw Markdown."),
+    images: bool = typer.Option(False, "--images", help="Draw the figures in the terminal."),
+    fig_width: int = typer.Option(None, "--fig-width", help="Figure width in columns.", min=8),
 ) -> None:
-    """Fetch an ICTV Report chapter and render it (headings, tables, italics).
-
-    The original page URL and the chapter's references/attribution are shown at
-    the top, and the content is CC BY 4.0. Figure references are always kept as
-    image links; ``--images`` additionally draws the figures in the terminal.
-    """
+    """Show a family's ICTV Report chapter (CC BY 4.0)."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     client = _make_ictv_client(cfg, out)
@@ -471,17 +449,12 @@ def tree(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="Virus/taxon name, or a member of a tree."),
     tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
-    newick: bool = typer.Option(False, "--newick", help="Emit the raw Newick string to stdout (for other tools)."),
-    chapter: bool = typer.Option(False, "--chapter", help="Show the family's bundled ICTV Report chapter text instead."),
+    newick: bool = typer.Option(False, "--newick", help="Print the Newick string."),
+    chapter: bool = typer.Option(False, "--chapter", help="Show the family's chapter instead."),
 ) -> None:
-    """Show the ICTV phylogenetic tree for a taxon's family (local; NCBI only as a fallback).
+    """Show the ICTV tree of a taxon's family, highlighting the taxon.
 
-    The name is resolved through the VMR to its family and that family's
-    tree(s) are drawn as an indented cladogram, highlighting the tip(s) the name
-    points at. A name unknown to the VMR is searched for among every tree's
-    members, then looked up in NCBI taxonomy — whose lineage points at the
-    family and at the nearest related tips. Trees are bundled locally, so
-    everything but that last fallback works offline.
+    Works offline; names unknown locally fall back to NCBI taxonomy.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -534,15 +507,12 @@ def msa(
     tree_n: int = typer.Option(None, "--tree", help="Pick a tree when a family has several (1-based).", min=1),
     col_range: str = typer.Option(None, "--range", help="Column window, 1-based inclusive (e.g. 100:180)."),
     consensus: bool = typer.Option(False, "--consensus", help="Prepend a per-column consensus row."),
-    fasta: bool = typer.Option(False, "--fasta", help="Emit the alignment as FASTA to stdout (all columns unless --range is given)."),
+    fasta: bool = typer.Option(False, "--fasta", help="Print as FASTA."),
 ) -> None:
-    """Show a family's multiple sequence alignment, coloured by residue (local).
+    """Show the ICTV alignment of a taxon's family.
 
-    Resolves the name to its family (like `tree`), loads that tree's alignment,
-    and shows a column window — the alignments run to thousands of columns, so
-    the view defaults to what fits the terminal; widen or move it with `--range`.
-    ``--fasta`` exports the whole alignment unless ``--range`` narrows it.
-    The query's own sequences are marked ``▶``.
+    Shows the columns that fit the terminal; use --range for others.
+    The query's sequences are marked ▶.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -602,11 +572,7 @@ def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -
 
 @app.command(rich_help_panel=_PANEL_CONFIG)
 def diagnose(ctx: typer.Context) -> None:
-    """Report VMR accession-parser quality (rows that yielded zero accessions).
-
-    The empty/unparsed counts are the parser's quality indicator (SPEC section
-    6); a spike means the free-text accession field grew an unhandled shape.
-    """
+    """Report VMR rows with no parseable accession."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     out.diagnose(queries.diagnostics(load()))
@@ -616,22 +582,13 @@ def diagnose(ctx: typer.Context) -> None:
 def update(
     ctx: typer.Context,
     yes: bool = typer.Option(False, "--yes", help="Install a newer VMR without asking."),
-    reset: bool = typer.Option(False, "--reset", help="Remove an installed VMR (or, with --trees, the installed trees) and go back to the bundled one."),
-    trees: bool = typer.Option(False, "--trees", help="Rebuild the phylogenetic trees and alignments (tree, msa) from the ICTV Report."),
-    family: list[str] = typer.Option(None, "--family", "-f", help="With --trees: rebuild only this family (repeatable)."),
+    reset: bool = typer.Option(False, "--reset", help="Go back to the bundled VMR (or trees, with --trees)."),
+    trees: bool = typer.Option(False, "--trees", help="Rebuild the trees and alignments from the ICTV Report."),
+    family: list[str] = typer.Option(None, "--family", "-f", help="With --trees: only this family (repeatable)."),
 ) -> None:
-    """Check for a newer VMR on ictv.global/vmr and offer to install it.
+    """Update the VMR, or the trees and alignments (--trees).
 
-    The VMR ships embedded in the package. When ICTV has published a newer one,
-    you are asked whether to download it (--yes skips the question); it is
-    converted from .xlsx, validated and stored in your user data directory, and
-    used from then on. --reset removes it, reverting to the bundled VMR.
-
-    With --trees, the ICTV trees/alignments are downloaded again from every
-    family chapter's Resources page and their members joined to the VMR in
-    use (update the VMR first). A full rebuild takes 10-15 minutes; --family limits it
-    to some families, merged into the current data set. --trees --reset goes
-    back to the bundled trees.
+    --trees takes 10-15 minutes for all families; update the VMR first.
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -705,13 +662,10 @@ def _install_vmr(client: ICTVClient, status, out) -> vmr_install.InstalledVMR:
 @app.command(rich_help_panel=_PANEL_CONFIG)
 def config(
     ctx: typer.Context,
-    store_ncbi_email: str = typer.Option(None, "--store-ncbi-email", help="Persist an NCBI email to the config file."),
-    store_ncbi_apikey: str = typer.Option(None, "--store-ncbi-apikey", help="Persist an NCBI API key to the config file."),
+    store_ncbi_email: str = typer.Option(None, "--store-ncbi-email", help="Save an NCBI email."),
+    store_ncbi_apikey: str = typer.Option(None, "--store-ncbi-apikey", help="Save an NCBI API key."),
 ) -> None:
-    """Show the effective NCBI email/API key (masked) and cache/config paths.
-
-    With --store-ncbi-email / --store-ncbi-apikey, persist those values first.
-    """
+    """Show or store the NCBI email and API key."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     if store_ncbi_email is not None or store_ncbi_apikey is not None:
@@ -742,13 +696,13 @@ def config(
             )
 
 
-cache_app = typer.Typer(help="Inspect or clear the on-disk cache.")
+cache_app = typer.Typer(help="Show or clear the cache.")
 app.add_typer(cache_app, name="cache", rich_help_panel=_PANEL_CONFIG)
 
 
 @cache_app.command("info")
 def cache_info_cmd(ctx: typer.Context) -> None:
-    """Show per-namespace entry counts and total size."""
+    """Show cache size."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     out.cache_info(Cache(config_mod.CACHE_DIR).info())
@@ -757,11 +711,11 @@ def cache_info_cmd(ctx: typer.Context) -> None:
 @cache_app.command("clear")
 def cache_clear_cmd(
     ctx: typer.Context,
-    texts: bool = typer.Option(False, "--texts", help="Clear only ICTV chapter text (30-day TTL namespace)."),
-    seqs: bool = typer.Option(False, "--seqs", help="Clear only sequences/metadata (permanent namespace)."),
-    images: bool = typer.Option(False, "--images", help="Clear only ICTV chapter figures (permanent namespace)."),
+    texts: bool = typer.Option(False, "--texts", help="Only ICTV chapters."),
+    seqs: bool = typer.Option(False, "--seqs", help="Only sequences, metadata and ICTV files."),
+    images: bool = typer.Option(False, "--images", help="Only chapter figures."),
 ) -> None:
-    """Remove cached entries. With no flag, clear everything."""
+    """Clear the cache (all of it with no flag)."""
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
     removed = Cache(config_mod.CACHE_DIR).clear(texts=texts, seqs=seqs, images=images)

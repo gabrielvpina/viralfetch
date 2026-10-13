@@ -117,42 +117,53 @@ viralfetch Orthoflavivirus denguei
 viralfetch SARS-CoV-2
 viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
 viralfetch Coronaviridae --local     # no network: VMR + ViralZone only
+viralfetch Orthoflavivirus --full    # every detail (lineage table, RefSeq list, biology)
 ```
 
 | Panel | Source | Content |
 |---|---|---|
-| taxonomy | VMR + NCBI | ICTV and NCBI lineages side by side, rank by rank (`✓` agree, `≠` differ), NCBI taxid and the ICTV status NCBI records for the name |
+| header | VMR + NCBI | name, rank and family, molecule, Baltimore group, NCBI taxid, ICTV status of the name, the lineage as a breadcrumb, and whether ICTV and NCBI agree |
 | ICTV (VMR) | VMR | species and isolates under the taxon, genome composition, host source, exemplar accessions (species) |
-| NCBI | E-utilities + NCBI Datasets | nucleotide records and complete genomes (records titled "complete genome") under the taxid, RefSeq sequences (one per segment; first ten listed), genome assemblies, molecule type, NCBI Virus link |
-| ViralZone | bundled ViralZone data | the closest factsheet (the taxon's own, else its genus or family): host groups, host, tropism, receptors, geography, diseases, transmission, vaccine, antivirals, replication site, virion, genome, host-virus interactions, reference strains — with the ViralZone credit and citation |
+| NCBI | E-utilities + NCBI Datasets | nucleotide records, complete genomes (records titled "complete genome", with their share of all records), RefSeq sequences (one per segment) and genome assemblies under the taxid |
+| ViralZone | bundled ViralZone data | the closest factsheet (the taxon's own, else its genus or family): host groups, host, tropism, geography, diseases, transmission, vaccine, antivirals, replication site — with the ViralZone credit |
 
 ```
-$ viralfetch Flaviviridae
-Flaviviridae  (family)
-╭─ taxonomy — ICTV vs NCBI ─────────────────────────────────────────╮
-│ rank     ICTV (VMR)       NCBI                                    │
-│ realm    Riboviria        Riboviria        ✓                      │
-│ …                                                                 │
-│ family   Flaviviridae     Flaviviridae     ✓                      │
-│ NCBI taxid 11050 · Name is currently accepted by the International│
-│ Committee on Taxonomy of Viruses                                  │
-╰───────────────────────────────────────────────────────────────────╯
-╭─ NCBI — taxid 11050 ─────────────────╮
-│ nucleotide records  109,650          │
-│ complete genomes    11,396           │
-│ RefSeq sequences    132              │
-│ genome assemblies   994              │
-│ …                                    │
-╰──────────────────────────────────────╯
-╭─ ViralZone — Flaviviridae (family) ───────────────────────────────╮
-│ host          Human, mammals.                                     │
-│               Vector:Ticks or mosquitoes                          │
-│ diseases      Hepaciviruses: hepatitis. …                         │
-│ …                                                                 │
-│ Source: ViralZone, SIB Swiss Institute of Bioinformatics. Cite: … │
-╰───────────────────────────────────────────────────────────────────╯
-More: viralfetch text Flaviviridae · viralfetch tree Flaviviridae · …
+$ viralfetch Orthoflavivirus
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Orthoflavivirus   genus · Flaviviridae                                                           │
+│ ssRNA(+) · Group IV · NCBI taxid 3044782 · ✓ ICTV-accepted name            ✓ ICTV and NCBI agree │
+│ Riboviria › Orthornavirae › Kitrinoviricota › Flasuviricetes › Amarillovirales › Flaviviridae ›  │
+│ Orthoflavivirus                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────┬──────────────────────────────────────────────────────────╮
+│ ICTV (VMR)                            │ NCBI                                                     │
+├───────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ 57 species                            │ 106,498 nucleotide records                               │
+│ 82 isolates (57 exemplar)             │  10,792 complete genomes (by title) █░░░░░░░░░░░ 10%     │
+│ ssRNA(+)                              │      85 RefSeq sequences                                 │
+│ hosts: invertebrates, vertebrates     │     944 genome assemblies                                │
+╰───────────────────────────────────────┴──────────────────────────────────────────────────────────╯
+╭─ ViralZone · Orthoflavivirus (genus) ────────────────────────────────────────────────────────────╮
+│ ● human  ● invertebrate                                                              factsheet ↗ │
+│ …                                                                                                │
+│ diseases      YFV: Hemorrhagic fever, encephalitis                                               │
+│               DENV: Dengue fever                                                                 │
+│               ZIKV: Zika fever                                                                   │
+│ transmission  Zoonosis, arthropod bite, mainly mosquitoes                                        │
+│ …                                                                                                │
+╰────────────────────────────────────────── ViralZone (SIB) · CC BY 4.0 · doi:10.1093/nar/gkad946 ─╯
+More: text Flaviviridae · tree · seq · members           --full: lineage table, RefSeq list, biology
 ```
+
+The view is compact by default: long ViralZone fields are cut (`…`), the ICTV
+and NCBI cards sit side by side (stacked on terminals narrower than 90
+columns), and "factsheet ↗" / "NCBI Virus ↗" / the taxid are clickable links in
+terminals that support them. The rank-by-rank ICTV-vs-NCBI table appears on
+its own when the two lineages disagree. `--full` shows everything: that table,
+the first ten RefSeq sequences, the complete ViralZone fields and its biology
+(receptors, virion, genome, host-virus interactions, reference strains,
+related factsheets). `--json` always carries all of it, plus the full ViralZone
+citation.
 
 A name the VMR doesn't know is placed through NCBI: the NCBI record is the
 subject, and the nearest VMR taxon (down to family) gives the ICTV lineage.

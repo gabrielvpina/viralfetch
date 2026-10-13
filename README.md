@@ -4,7 +4,7 @@
 
 <br>
 
-![Version](https://img.shields.io/badge/version-0.1.7-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CLI](https://img.shields.io/badge/CLI-Typer-0b7261)
@@ -15,16 +15,18 @@
 
 <div align="center">
 A command-line tool for querying and downloading viral taxonomy, metadata,
-sequences, and per-family phylogenetic trees and alignments. It combines four
+sequences, and per-family phylogenetic trees and alignments. It combines six
 sources:
 </div>
 
 | Source | Content | Access |
 |---|---|---|
 | **VMR** (ICTV Virus Metadata Resource) | taxonomic hierarchy + exemplar isolates + GenBank/RefSeq accessions | **local**, embedded TSV |
-| **NCBI E-utilities** | sequence metadata, sequences (nt/aa), NCBI taxonomy | **remote**, on demand |
+| **NCBI E-utilities** | sequence metadata, sequences (nt/aa), NCBI taxonomy, record counts | **remote**, on demand |
+| **NCBI Datasets** | RefSeq sequences of a taxon, assembly count, ICTV name status | **remote**, on demand |
 | **ICTV Report** | descriptive chapter text per family (with figures) | **remote**, on demand |
 | **ICTV Report trees** | per-family Newick trees + amino-acid/nucleotide alignments | **local**, bundled |
+| **ViralZone** (SIB) | curated factsheets: virion, genome, replication, host, geography, diseases, transmission, vaccines, antivirals, host-virus interactions, reference strains | **local**, bundled JSON |
 
 The VMR is the local index; remote sources are fetched on demand and cached.
 
@@ -90,7 +92,7 @@ reports "not found" with the usual suggestions.
 
 ## Global options
 
-These go **before** the command:
+These go **before** the name or command:
 
 | Option | Effect |
 |---|---|
@@ -102,6 +104,68 @@ These go **before** the command:
 Run `viralfetch COMMAND --help` to see a command's own arguments and options.
 
 ---
+
+## `viralfetch NAME` — taxon profile (the default; local + NCBI)
+
+Give any taxon or virus name — a family, genus, species (quotes optional) or a
+name only NCBI knows, like `SARS-CoV-2` — and viralfetch profiles it from every
+source at once (`viralfetch info NAME` is the same command):
+
+```bash
+viralfetch Flaviviridae
+viralfetch Orthoflavivirus denguei
+viralfetch SARS-CoV-2
+viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
+viralfetch Coronaviridae --local     # no network: VMR + ViralZone only
+```
+
+| Panel | Source | Content |
+|---|---|---|
+| taxonomy | VMR + NCBI | ICTV and NCBI lineages side by side, rank by rank (`✓` agree, `≠` differ), NCBI taxid and the ICTV status NCBI records for the name |
+| ICTV (VMR) | VMR | species and isolates under the taxon, genome composition, host source, exemplar accessions (species) |
+| NCBI | E-utilities + NCBI Datasets | nucleotide records and complete genomes (records titled "complete genome") under the taxid, RefSeq sequences (one per segment; first ten listed), genome assemblies, molecule type, NCBI Virus link |
+| ViralZone | bundled ViralZone data | the closest factsheet (the taxon's own, else its genus or family): host groups, host, tropism, receptors, geography, diseases, transmission, vaccine, antivirals, replication site, virion, genome, host-virus interactions, reference strains — with the ViralZone credit and citation |
+
+```
+$ viralfetch Flaviviridae
+Flaviviridae  (family)
+╭─ taxonomy — ICTV vs NCBI ─────────────────────────────────────────╮
+│ rank     ICTV (VMR)       NCBI                                    │
+│ realm    Riboviria        Riboviria        ✓                      │
+│ …                                                                 │
+│ family   Flaviviridae     Flaviviridae     ✓                      │
+│ NCBI taxid 11050 · Name is currently accepted by the International│
+│ Committee on Taxonomy of Viruses                                  │
+╰───────────────────────────────────────────────────────────────────╯
+╭─ NCBI — taxid 11050 ─────────────────╮
+│ nucleotide records  109,650          │
+│ complete genomes    11,396           │
+│ RefSeq sequences    132              │
+│ genome assemblies   994              │
+│ …                                    │
+╰──────────────────────────────────────╯
+╭─ ViralZone — Flaviviridae (family) ───────────────────────────────╮
+│ host          Human, mammals.                                     │
+│               Vector:Ticks or mosquitoes                          │
+│ diseases      Hepaciviruses: hepatitis. …                         │
+│ …                                                                 │
+│ Source: ViralZone, SIB Swiss Institute of Bioinformatics. Cite: … │
+╰───────────────────────────────────────────────────────────────────╯
+More: viralfetch text Flaviviridae · viralfetch tree Flaviviridae · …
+```
+
+A name the VMR doesn't know is placed through NCBI: the NCBI record is the
+subject, and the nearest VMR taxon (down to family) gives the ICTV lineage.
+NCBI is optional — without an email, with `--local`, or when a request fails,
+the profile keeps its local panels and says what was skipped on stderr.
+
+A first profile takes about 2–3 seconds (six NCBI requests, the E-utilities
+and Datasets ones running concurrently); NCBI answers are then cached — names
+and lineages permanently, counts and RefSeq listings for a week — so repeating
+a query is near-instant. Entrez has no completeness field, so "complete
+genomes" counts records titled "complete genome"; NCBI Virus' own completeness
+flag agrees within a few percent but takes tens of seconds to count on large
+families (and fails on the largest), so it is not used.
 
 ## `tax` — taxonomy lineage (local, NCBI only as a fallback)
 
@@ -634,12 +698,14 @@ viralfetch update --reset           # drop the installed VMR, back to the bundle
 viralfetch update --trees           # rebuild the trees/alignments from the ICTV Report
 viralfetch update --trees -f Geminiviridae   # rebuild only some families
 viralfetch update --trees --reset   # drop the rebuilt trees, back to the bundled ones
+viralfetch update --viralzone       # rebuild the ViralZone factsheets data set
+viralfetch update --viralzone --reset   # back to the bundled ViralZone data
 viralfetch config                   # show email, masked API key, cache paths
                                     # (warns if no NCBI email is persisted yet)
 viralfetch config --store-ncbi-email you@example.com    # persist email
 viralfetch config --store-ncbi-apikey KEY               # persist API key
 viralfetch cache info               # per-namespace entry counts and size
-viralfetch cache clear --texts      # drop cached ICTV chapters (or --seqs, --images, or all)
+viralfetch cache clear --texts      # drop cached ICTV chapters and NCBI counts (or --seqs, --images, or all)
 ```
 
 `diagnose` reports the parser's quality indicator — how many VMR rows yielded
@@ -704,6 +770,36 @@ directory and only replaces the current trees once complete; a family that
 fails keeps its previous trees. `--trees --reset` goes back to the bundled
 trees, and a later viralfetch release that bundles newer trees takes
 precedence over an older rebuild.
+
+### Updating the ViralZone data
+
+A snapshot of the [ViralZone](https://viralzone.expasy.org) factsheets ships in
+`viralfetch/data/viralzone.json`. `update --viralzone` rebuilds it: starting
+from the taxonomy diagram on the ViralZone home page it reads every realm/phylum
+page (the hierarchy down to genus, with each genus's host groups) and every
+factsheet they link (families, subfamilies, genera and a few notable viruses).
+Each factsheet keeps its NCBI taxid — the join key with NCBI and the VMR, since
+ViralZone may follow an older ICTV release — and its descriptive content:
+virion, genome, gene expression, replication (and its cellular site), host,
+tropism, receptors, geography, associated diseases, transmission, vaccines,
+antiviral drugs, host-virus interactions, reference strains (RefSeq / assembly
+accessions) and cross-references (NCBI, ICTV, UniProt, BV-BRC). The per-protein
+UniProt listings are left out (UniProt is their source).
+
+ViralZone is queried at most once per second, so a rebuild (~1000 pages) takes
+about 20 minutes. The result is stored in your user data directory and only
+replaces the current data once complete and loadable; `--viralzone --reset`
+goes back to the bundled copy. Maintainers refresh the bundled copy with
+`python -m viralfetch.viralzone_install`.
+
+ViralZone content is © SIB Swiss Institute of Bioinformatics; its images are
+licensed CC BY 4.0 and its data are provided for research, educational and
+informational purposes (not for medical use). Please cite:
+
+> De Castro E, Hulo C, Masson P, Auchincloss A, Bridge A, Le Mercier P.
+> ViralZone 2024 provides higher-resolution images and advanced virus-specific
+> resources. *Nucleic Acids Res.* 2024;52(D1):D817–D821.
+> doi:[10.1093/nar/gkad946](https://doi.org/10.1093/nar/gkad946)
 
 ---
 

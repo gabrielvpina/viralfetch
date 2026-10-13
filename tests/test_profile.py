@@ -282,8 +282,9 @@ def test_unquoted_multiword_name():
 def test_info_rich_output_credits_viralzone():
     result = runner.invoke(app, ["info", "Coronaviridae", "--local"])
     assert result.exit_code == 0, result.output
-    assert "ViralZone — Coronaviridae" in result.stdout
-    assert "SIB Swiss Institute of Bioinformatics" in result.stdout
+    assert "ViralZone · Coronaviridae" in result.stdout
+    assert "ViralZone (SIB) · CC BY 4.0 · doi:10.1093/nar/gkad946" in result.stdout
+    assert "https://viralzone.expasy.org/30" in result.stdout  # piped: the factsheet URL is spelt out
 
 
 def test_existing_commands_still_route():
@@ -308,3 +309,64 @@ def test_no_email_profile_stays_local(tmp_path, monkeypatch):
     payload = json.loads(result.stdout)
     assert payload["ncbi"] is None
     assert "no NCBI email" in payload["warnings"][0]
+
+
+# -- rich rendering ------------------------------------------------------------------
+
+def _render(p, full=False, width=100) -> str:
+    import io
+    from rich.console import Console
+    from viralfetch.render import rich_
+    buf = io.StringIO()
+    saved = rich_._out
+    rich_._out = Console(file=buf, width=width, color_system=None)
+    try:
+        rich_.profile(p, full=full)
+    finally:
+        rich_._out = saved
+    return buf.getvalue()
+
+
+def test_render_compact_profile(vmr, ncbi_knows, monkeypatch):
+    monkeypatch.setattr(compare, "lineage_via_ncbi",
+                        lambda client, name: NCBI_ALPHAVIRUS if name.casefold() == "alphavirus" else None)
+    p = profile.build(vmr, "Alphavirus", ncbi=FakeNCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    p.comparison = [r for r in p.comparison if r.agree is not False]  # make the lineages agree
+    out = _render(p)
+    assert "Testviria › Testvirae" in out and "Alphavirus" in out
+    assert "✓ ICTV and NCBI agree" in out
+    assert "lineage — ICTV vs NCBI" not in out          # table only on disagreement / --full
+    assert "RefSeq sequence" in out and "NC_000001.1" not in out  # RefSeq list only with --full
+    assert "● human" in out and "ViralZone · Alphavirus" in out
+    assert "--full:" in out
+
+
+def test_render_disagreement_shows_the_table(vmr, ncbi_knows):
+    p = profile.build(vmr, "Alphavirus", ncbi=FakeNCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    out = _render(p)
+    assert "≠ ICTV and NCBI differ at order" in out
+    assert "lineage — ICTV vs NCBI" in out and "Otherord" in out
+
+
+def test_render_full_adds_details(vmr, ncbi_knows):
+    p = profile.build(vmr, "Alphavirus", ncbi=FakeNCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    out = _render(p, full=True)
+    assert "NC_000001.1" in out
+    assert "also: Alphaviridae (family)" in out
+    assert "--full:" not in out
+
+
+def test_render_narrow_terminal_stacks_cards(vmr, ncbi_knows):
+    p = profile.build(vmr, "Alphavirus", ncbi=FakeNCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    out = _render(p, width=70)
+    assert "╭─ ICTV (VMR)" in out and "╭─ NCBI" in out
+    assert max(len(line) for line in out.splitlines()) <= 70
+
+
+def test_field_text_truncates_and_bolds_qualifiers():
+    from viralfetch.render import rich_
+    long = "DENV: " + " ".join(["word"] * 80)
+    compact = rich_._field_text(long, full=False)
+    assert compact.plain.endswith(" …") and len(compact.plain) < 260
+    assert compact.spans and compact.plain.startswith("DENV:")
+    assert rich_._field_text(long, full=True).plain == long

@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+<html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+<title>ssRNA(-) ~ ViralZone</title>
+                <link rel="shortcut icon" href="/favicon.ico"/>
+
+                <meta name="google-site-verification" content="NtyZwlqH6NZhGoT3FbOe53w-9G0avnGJyUZ3A2ih2m4"/>
+                <meta name="author" content="Philippe Le Mercier, Chantal Hulo, Patrick Masson (content); Yann Haefliger (front-end styling), Edouard de Castro (software)"/>
+                <meta name="description" content="A knowledge resource to understand virus diversity and a gateway to UniProtKB/Swiss-Prot viral entries"/>
+                <meta name="keywords" content="virus, viral, infection, cycle, biology, uniprotkb"/>
+
+                <link rel="stylesheet" preload="preload" href="/resources/css/viralzone.min.css"/>
+                <script src="/resources/libs/libs.min.js" defer="defer"></script>
+                <script src="/resources/js/viralzone.min.js" defer="defer"></script>
+                <script src="/resources/js/matomo-viralzone-tracking.js"></script>
+                <script src="https://matomo.sib.swiss/matomo.js" defer="defer"></script>
+            </head>
+            <body vocab="http://schema.org/" typeof="WebPage" class="antialiased font-inter leading-normal tracking-normal relative text-base lg:text-sm" data-session-active="@LOGGEDIN@">
+                <a href="#main" class="sr-only focus:not-sr-only focus:!fixed focus:top-0 focus:left-0 focus:z-30 focus:bg-white focus:p-2">Skip to main content</a>
+                <div id="announce" data-color="orange"></div>
+                <!-- Layout -->
+                <div id="page_content" class="min-h-dvh flex flex-col relative z-10">
+                    <div class="absolute inset-0 -z-10 max-w-none overflow-hidden">
+                        <img src="/resources/images/capsid-deco.svg" alt="" class="absolute right-0 left-auto translate-x-1/2 max-w-2/3 h-[400px] lg:h-[500px] w-auto -translate-y-1/2 opacity-20 top-8 lg:top-[96px] lg:rotate-[100deg]"/>
+                            <div class="top-0 h-72 lg:h-96 mx-auto header-gradient opacity-50 absolute inset-x-0"></div>
+                        </div>
+                        <header class="bg-white/50 backdrop-blur-[3px] border-b relative z-10 ori_header_flashback">
+                            <div class="container">
+                                <div class="flex items-center justify-between">
+                                    <a href="/" class="flex items-center gap-2 lg:text-4xl text-3xl font-bold tracking-tight py-4">
+                                        <img src="/resources/images/logo-emblem.png" width="46" height="46" alt="ViralZone logo emblem" class="size-8 lg:size-10"/>
+                                        <span>ViralZone</span>
+                                    </a>
+                                    <button id="main_menu_button" class="lg:hidden rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-primary">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
+                                    <nav aria-label="Main navigation" class="hidden lg:block">
+                                        <ul class="dropdown-menu" id="main_menu">
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-factsheets">
+                                                    <span>Browse Factsheets</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <div class="submenu space-y-4" id="submenu-factsheets">
+                                                    <a href="/by%5Fspecies/230" class="card">
+                                                        <div class="title">by Taxonomy</div>
+                                                        <p>Viruses factsheets classified by realms.</p>
+                                                    </a>
+                                                    <a href="/by%5Fspecies/664" class="card">
+                                                        <div class="title">by Host</div>
+                                                        <p>Viruses factsheets classified by their host.</p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-data">
+                                                    <span>Data</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <ul id="submenu-data" class="submenu">
+                                                    <li>
+                                                        <a href="/678">Human virus</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/resources/VMR/VMR_MSL40_ViralZone.html">ICTV Virus Species List</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/resources/Acronyms.xlsx">Vertebrate virus names and acronyms</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/5356">Virus receptors</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/10417">Enzyme</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/11725">Poylprotein splitting</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/8676">Virosaurus</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-education">
+                                                    <span>Education</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5 icon" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <div id="submenu-education" class="submenu lg:w-[850px] lg:-left-[500px] submenu-divided">
+                                                    <div class="flex flex-wrap lg:flex-nowrap">
+                                                        <div class="menu-section">
+                                                            <div class="title">Biology</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/886">Host - virus interaction</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/4557">Bacterial virus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/936">Virus entry</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/915">Replication / Transcription / Translation</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/1076">Viral Exit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/4136">Virus genome evolution</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="menu-section">
+                                                            <div class="title">Structure</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/885">Virion</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/10977">Virus structure predictions</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/11345">Virus protein folds</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="menu-section">
+                                                            <div class="title">Virus Spotlight</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/11845">Hantavirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/11865">Ebolavirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/1280">Hepatitis B Virus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/5736">Herpesvirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/4976">HIV-1</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/9957">Poxvirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/11605">RSV</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/254">Baltimore classification</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/5216">Human virus sizes</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/6096">Reference sequences</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/5576">Training</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/677">External links</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="/872" class="flex p-4">
+                                                    About
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/contact" class="flex p-4">
+                                                    Contact
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Search bar -->
+                                <div class="mt-2 mb-4">
+                                    <form action="/search" method="get" property="potentialAction" typeof="SearchAction">
+                                        <div class="relative isolate flex items-center px-2 z-20">
+                                            <a href="/doc/search" title="Search help" class="size-10 lg:size-12 bg-transparent text-vz-turquoise rounded-lg flex items-center justify-center">
+                                                <svg viewBox="0 0 24 24" fill="currentColor" class="size-8" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"/>
+                                                </svg>
+
+                                            </a>
+                                            <label for="search-input" class="sr-only">Search the ViralZone website</label>
+                                            <input type="text" id="search-input" name="query" data-suggest-path="/search/suggest" class="suggest peer p-4 lg:text-lg w-0 flex-auto bg-transparent text-base placeholder:text-gray-500 focus:outline-none" placeholder="e.g.: sphere / &quot;11 segments&quot; / 10979 / cat OR dog / nucleo*" data-public-sid="undefined" autocomplete="off" aria-label="Search"/>
+                                            <button class="h-10 lg:h-12 px-8 bg-primary hover:bg-primary-dark rounded-lg text-white font-bold flex items-center space-x-2">
+                                                <span class="hidden lg:block">Search</span>
+                                                <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </button>
+                                            <div class="absolute inset-0 -z-10 bg-white rounded-lg border peer-focus:ring-2 peer-focus:ring-primary"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </header>
+
+                        <main id="main" class="flex-1 text-gray-700 leading-normal">
+                            <div class="page">
+                                <div id="tab_bar">
+                                    <button id="tab_more" class="absolute right-0 cursor-pointer">
+                                        <svg id="open_tab_more" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                                        </svg>
+                                        <svg id="close_tab_more" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hidden" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                                        </svg>
+                                        <span id="tab_count" class=""><span></span></span>
+
+                                    </button>
+                                </div>
+                                <div class="core" id="core">
+                                    <div property="mainEntity" typeof="CreativeWork">
+                                        <div property="mainEntity" typeof="CreativeWork">
+            
+            
+            <div id="wiki"><style>
+p{margin-bottom:0;}
+ul{margin-top:0;}
+</style>
+
+<div id="t0">
+<div class="host">
+
+<p><button class="foldbutton diagram-fold" data-target-id="diagram">Show taxonomy</button>
+<div id="diagram" class="lg:!block">
+<div data-grid="8" class="diagram diagram-responsive">
+<div data-span="3" data-color="violet">
+<div class="heading top">DNA Viruses
+<small>&nbsp;</small>
+</div>
+<div data-grid="3">
+<div data-span="2">
+<div class="heading">
+ds DNA
+<img src="/resources/svg/dsdna.svg" alt="" />
+</div>
+<div data-grid="2">
+<div>
+<a href="/11018" class="btn">Adnaviria</a>
+<a href="/11365" class="btn">Duplodnaviria</a>
+<a href="/11485" class="btn" data-preview-url="/11485.preview" aria-expanded="false">Singelaviria</a>
+</div>
+<div>
+<a href="/11019" class="btn">Varidnaviria</a>
+<a href="/11747" class="btn">Pleomoviria</a>
+<a href="/11104" class="btn">Unassigned</a>
+</div>
+</div>
+</div>
+<div>
+<div class="heading">
+ss DNA
+<img src="/resources/svg/ssdna.svg" alt="" />
+</div>
+<a href="/11745" class="btn">Efunaviria</a>
+<a href="/283" class="btn">Floreoviria</a>
+<a href="/11746" class="btn">Volvereviria</a>
+<a href="/11124" class="btn">Unassigned</a>
+</div>
+</div>
+</div>
+<div data-span="5" data-color="green">
+<div class="heading top">Riboviria <br /><small> Ribozyviria/viroid</small></div>
+<div data-grid="5">
+<div data-color="turquoise">
+<div class="heading">
+<div class="text-sm">Reverse Transcribing</div>
+<img src="/resources/svg/rt.svg" alt="" />
+</div>
+<a href="/295" class="btn">Artverviricota</a>
+</div>
+<div>
+<div class="heading">
+<div class="text-sm">dsRNA</div>
+<img src="/resources/svg/dsrnas.svg" alt="" />
+</div>
+<a href="/293" class="btn">Duplornaviricota</a>
+</div>
+<div>
+<div class="heading">
+<div class="text-sm">ss RNA (+)</div>
+<img src="/resources/svg/ssrnap.svg" alt="" />
+</div>
+<a href="/294" class="btn">Pisuviricota</a>
+<a href="/11021" class="btn">Kitrinoviricota</a>
+<a href="/11022" class="btn">Lenarviricota</a>
+<a href="/11325" class="btn">Unassigned</a>
+</div>
+<div>
+<div class="heading">
+<div class="text-sm">SS RNA (-)</div>
+<img src="/resources/svg/ssrnam.svg" alt="" />
+</div>
+<a href="/237" class="btn active">Negarnaviricota</a>
+</div>
+<div>
+<div class="heading">
+<div class="text-sm">Circular ss RNA</div>
+<img src="/resources/svg/circularssrna.svg" alt="" />
+</div>
+<a href="/6896" class="btn">Ambiviricota <small> +Ribozyviria<br/> +Viroid</small> </a>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+<summary><font size="5">Phylum:</font> <font size="8"><b>Negarnaviricota</b></font>
+
+<p>The viruses of this phylum have linear, negative-stranded RNA genomes and a characteristic <a href="/preview%5Fby%5Fspecies/10557">RNA dependent RNA polymerase</a> of the monopartite genome type (Haploviricotina) or segmented genomes (Polyploviricotina). The capsids are helical and package the negative-stranded RNA genome.</summary></p>
+
+<div data-color="violet" data-grid="2">
+
+<fieldset>
+<legend><big><strong>Haploviricotina</strong></big></legend>
+<a class="btn" href="https://www.ebi.ac.uk/interpro/entry/pfam/PF00946/">PFAM mononega RdRp</a> <a class="btn" href="/preview_by_species/10179">Mononega-type capping</a>
+<div data-color="red" data-grid="2">
+
+<fieldset>
+<legend><big><strong>Class: Monjiviricetes</strong></big></legend>
+
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Mononegavirales</strong></big>
+</span>
+</div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/9617"><strong>Artoviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/9618">Hexartovirus</a>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7701">Peropuvirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/93"><strong>Bornaviridae</strong></a>
+<ul>
+<ul>
+<li data-host="vertebrate"> <a href="/preview%5Fby%5Fspecies/279">Orthobornavirus</a>
+<li data-host="vertebrate"> <a href="/preview%5Fby%5Fspecies/8358">Carbovirus</a>
+<li data-host="vertebrate"> <a href="/preview%5Fby%5Fspecies/9884">Cultervirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/23"><strong>Filoviridae</strong></a>
+<ul>
+<ul>
+<li data-host="vertebrate"> <a href="/preview%5Fby%5Fspecies/4916">Cuevavirus</a>
+<li data-host="vertebrate,unknown">
+<a href="/preview%5Fby%5Fspecies/9887">Dianlovirus</a>
+<li data-host="human"> <a href="/preview%5Fby%5Fspecies/207">Orthoebolavirus</a>
+<li data-host="human"> <a href="/preview%5Fby%5Fspecies/224">Orthomarburgvirus</a>
+<li data-host="vertebrate,unknown"> <a href="/preview%5Fby%5Fspecies/10777">Oblavirus</a>
+<li data-host="vertebrate,unknown"> <a href="/preview%5Fby%5Fspecies/9885">Striavirus</a>
+<li data-host="vertebrate,unknown"> <a href="/preview%5Fby%5Fspecies/10778">Tapjovirus</a>
+<li data-host="vertebrate,unknown">! <a href="/preview%5Fby%5Fspecies/9886">Thamnovirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/10798"><strong>Lispiviridae</strong></a> <button class="foldbutton" data-target-id="Lispi">+23 genera </button>
+<ul>
+<ul>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7257">Arlivirus</a>
+</ul>
+</ul>
+<div id="Lispi" class="hidden">
+<ul>
+<ul>
+<li data-host="invertebrate"> Acridvirus
+<li data-host="invertebrate"> Aleyavirus
+<li data-host="invertebrate"> Aleybvirus
+<li data-host="invertebrate"> Anicalvirus
+<li data-host="invertebrate"> Anidravirus
+<li data-host="invertebrate"> Aranavirus
+<li data-host="invertebrate">! Aranbvirus
+<li data-host="vertebrate"> Avesvirus
+<li data-host="unknown"> Birfecvirus
+<li data-host="invertebrate"> Copasivirus
+<li data-host="invertebrate"> Cybitervirus
+<li data-host="invertebrate"> Damravirus
+<li data-host="invertebrate"> Ganiavirus
+<li data-host="invertebrate"> Hemipvirus
+<li data-host="invertebrate"> Leocovirus
+<li data-host="invertebrate"> Nematovirus
+<li data-host="invertebrate"> Phelinovirus
+<li data-host="invertebrate"> Rivapovirus
+<li data-host="invertebrate"> Sanstrivirus
+<li data-host="invertebrate"> Stylovirus
+<li data-host="invertebrate"> Supelovirus
+<li data-host="invertebrate"> Synelinevirus
+<li data-host="vertebrate"> Usmuvirus
+<li data-host="invertebrate"> Xenophyvirus
+</ul>
+</ul>
+</div>
+</ul>
+<ul>
+<li><a href="/preview%5Fby%5Fspecies/7384"><strong>Mymonaviridae</strong></a> <button class="foldbutton" data-target-id="Mymo">+8 genera </button>
+<ul>
+<ul>
+<li data-host="fungi"><a href="/preview%5Fby%5Fspecies/7385">Sclerotimonavirus</a>
+</ul>
+</ul>
+<div id="Mymo" class="hidden">
+<ul>
+<ul>
+<li data-host="fungi,unknown"> <a href="/preview%5Fby%5Fspecies/9897">Auricularimonavirus</a>
+<li data-host="fungi,unknown"> <a href="/preview%5Fby%5Fspecies/9891">Botrytimonavirus</a>
+<li data-host="invertebrate,unknown"> <a href="/preview%5Fby%5Fspecies/9890">Hubramonavirus</a>
+<li> data-host="fungi,invertebrate,unknown"&gt; <a href="/preview%5Fby%5Fspecies/9892">Lentimonavirus</a>
+<li data-host="fungi,unknown"> <a href="/preview%5Fby%5Fspecies/9893">Penicillimonavirus</a>
+<li data-host="fungi,invertebrate,plant,unknown"> <a href="/preview%5Fby%5Fspecies/9894">Phyllomonavirus</a>
+<li data-host="fungi,unknown"> <a href="/preview%5Fby%5Fspecies/9895">Plasmopamonavirus</a>
+<li data-host="fungi,plant,unknown"> <a href="/preview%5Fby%5Fspecies/9896">Rhizomonavirus</a>
+</ul>
+</ul>
+</div>
+</ul>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/4679"><strong>Nyamiviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9898">Berhavirus</a>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7258">Crustavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9901">Formivirus</a>
+<li data-host="invertebrate,vertebrate"><a href="/preview%5Fby%5Fspecies/4678">Nyavirus</a>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/9899">Orinovirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/7702">Socyvirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9900">Tapwovirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/556"><strong>Paramyxoviridae</strong></a>
+<ul>
+<UL>
+<li data-host="vertebrate">
+<a href="/preview%5Fby%5Fspecies/9916">Cynoglossusvirus</a>
+<li data-host="vertebrate">
+<a href="/preview%5Fby%5Fspecies/9917">Hoplichthysvirus</a>
+<li data-host="vertebrate">
+<a href="/preview%5Fby%5Fspecies/9918">Scoliodonvirus</a>
+</ul>
+<li><ins>Avulavirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9919">Metaavulavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/84">Orthoavulavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9920">Paraavulavirus</a>
+</ul>
+<li><ins>Orthoparamyxovirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/2858">Aquaparamyxovirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/2876">Ferlavirus</a>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/85">Henipavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9921">Jeilongvirus</a>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/86">Morbillivirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9922">Narmovirus</a>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/87">Respirovirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9923">Salemvirus</a>
+</ul>
+<li><ins>Rubulavirinae</ins>
+<ul>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/88">Orthorubulavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9925">Pararubulavirus</a>
+</ul>
+<li><ins>Metaparamyxovirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9924">Synodonvirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/7877"><strong>Pneumoviridae</strong></a>
+<ul>
+<ul>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/89">Metapneumovirus</a>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/90">Orthopneumovirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/2"><strong>Rhabdoviridae</strong></a>
+<ul>
+<li><ins>Alpharhabdovirinae</ins> <button class="foldbutton" data-target-id="Rhabdo">+44 genera </button>
+<ul>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/22">Lyssavirus</a>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/21">Vesiculovirus</a>
+</ul>
+<div id="Rhabdo" class="hidden">
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/7276">Almendravirus</a>
+<li data-host="invertebrate">!"Alphanemrhavirus":/preview_by_species/9929
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/9930">Alphapaprhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9931">Alpharicinrhavirus</a>
+<li data-host="vertebrate">Amplylivirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9932">Arurhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9933">Barhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9934">Caligrhavirus</a>
+<li data-host="vertebrate">Cetarhavirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/7278">Curiovirus</a>
+<li data-host="invertebrate,vertebrate"><a href="/preview%5Fby%5Fspecies/75">Ephemerovirus</a>
+<li data-host="invertebrate,vertebrate"><a href="/preview%5Fby%5Fspecies/7280">Hapavirus</a>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/7281">Ledantevirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9935">Lostrhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9936">Merhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9937">Mousrhavirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9938">Ohlsrhavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/4636">Perhabdovirus</a>
+<li data-host="vertebrate">Replylivirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9939">Sawgrhavirus</a>
+<li data-host="vertebrate">Scophrhavirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/4656">Sigmavirus</a>
+<li data-host="vertebrate">Siniperhavirus
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/4657">Sprivivirus</a>
+<li data-host="invertebrate,vertebrate"><a href="/preview%5Fby%5Fspecies/7283">Sripuvirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9940">Sunrhavirus</a>
+<li data-host="invertebrate,vertebrate"><a href="/preview%5Fby%5Fspecies/4676">Tibrovirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/4677">Tupavirus</a>
+<li data-host="invertebrate"><a href="/by%5Fspecies/9941">Zarhavirus</a>
+</ul>
+<li><ins>Betarhabdovirinae</ins>
+<ul>
+<li data-host="invertebrate,plant"><a href="/preview%5Fby%5Fspecies/9944">Alphanucleorhabdovirus</a>
+<li data-host="invertebrate,plant"><a href="/preview%5Fby%5Fspecies/9945">Betanucleorhabdovirus</a>
+<li data-host="invertebrate,plant"><a href="/preview%5Fby%5Fspecies/77">Cytorhabdovirus</a>
+<li data-host="plant"><a href="/preview%5Fby%5Fspecies/7279">Dichorhavirus</a>
+<li data-host="plant">Gammanucleorhabdovirus
+<li data-host="plant"><a href="/preview%5Fby%5Fspecies/503">Varicosavirus</a>
+</ul>
+<li><ins>Gammarhabdovirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/by%5Fspecies/76"><cite>Novirhabdovirus</cite></a>
+</ul>
+
+<li><ins>Unassigned</ins> <button class="foldbutton" data-target-id="Unass">+7 genera </button>
+<div id="Unass" class="hidden">
+<ul>
+<ul>
+<li data-host="invertebrate">Alphacrustrhavirus
+<li data-host="invertebrate">Alphadrosrhavirus
+<li data-host="invertebrate">Alphahymrhavirus
+<li data-host="invertebrate">Betahymrhavirus
+<li data-host="invertebrate">Betanemrhavirus
+<li data-host="invertebrate">Betapaprhavirus
+<li data-host="invertebrate">Betaricinrhavirus
+</ul>
+</ul>
+</div>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/7237"><strong>Sunviridae</strong></a>
+<ul>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/7238">Sunshinevirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/10797"><strong>Xinmoviridae</strong></a> <button class="foldbutton" data-target-id="Xinm">+11 genera </button>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/7256">Anphevirus</a>
+</ul>
+</ul>
+<div id="Xinm" class="hidden">
+<ul>
+<ul>
+<li data-host="invertebrate">Alasvirus
+<li data-host="invertebrate">Doupovirus
+<li data-host="invertebrate">Draselvirus
+<li data-host="invertebrate">Drunivirus
+<li data-host="invertebrate">Gambievirus
+<li data-host="invertebrate">Gylbovirus
+<li data-host="invertebrate">Hoptevirus
+<li data-host="invertebrate">Madalivirus
+<li data-host="invertebrate">Pelmivirus
+<li data-host="invertebrate">Triniovirus
+<li data-host="invertebrate">Ulegvirus
+</ul>
+</ul>
+</div>
+</ul>
+<div data-color="gray">
+</br>
+<span class="badge"><big><strong>Order: Jingchuvirales</strong></big>
+</span>
+</div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/9736"><strong>Chuviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate,vertebrate"><button class="foldbutton" data-target-id="chu">13 genera </button>
+</ul>
+</ul>
+<div id="chu" class="hidden">
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9737">(Mivirus)</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9738">(Boscovirus)</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9740">(Chuvivirus)</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9739">(Culicidavirus)</a>
+<li data-host="invertebrate">Demapteravirus
+<li data-host="invertebrate">Doliuvirus
+<li data-host="invertebrate">Nigecruvirus
+<li data-host="invertebrate">Morsusvirus
+<li data-host="invertebrate">Odonatavirus
+<li data-host="invertebrate">Pediavirus
+<li data-host="invertebrate,vertebrate">Piscichuvirus
+<li data-host="invertebrate">Pterovirus
+<li data-host="invertebrate"><a href="/by%5Fspecies/9741">Scarabeuvirus</a>
+<li data-host="invertebrate">Taceavirus
+</ul>
+</ul>
+</div>
+<li><a href="/preview%5Fby%5Fspecies/9758"><strong>Aliusviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9757">Ollusvirus</a>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9759">Obscuruvirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/9756"><strong>Natareviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9742">Charybdivirus</a>
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/10939"><strong>Crepuscuviridae</strong></a>
+<ul>
+<Ul>
+<li data-host="invertebrate">Aqualaruvirus
+</ul>
+</ul>
+<li><a href="/preview%5Fby%5Fspecies/9761"><strong>Myriaviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9760">Myriavirus</a>
+</ul>
+</ul>
+</ul>
+</fieldset>
+<div>
+<fieldset>
+<legend><big><strong>Class: Yunchangviricetes</strong></big></legend>
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Goujianvirales</strong></big>
+</span>
+</div>
+<ul>
+<li><a href="/preview%5Fby%5Fspecies/9619"><strong>Yueviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9620">Yuyuevirus</a>
+</ul>
+</ul>
+</ul>
+</fieldset>
+<fieldset>
+<legend><big><strong>Class: Chunqiuviricetes</strong></big></legend>
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Muvirales</strong></big>
+</span>
+</div>
+<ul>
+<li><a href="/preview%5Fby%5Fspecies/9763"><strong>Qinviridae</strong></a>
+<ul>
+<ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9762">Yingvirus</a>
+</ul>
+</ul>
+</ul>
+</fieldset>
+<fieldset>
+<legend><big><strong>Class: Milneviricetes</strong></big></legend>
+
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Naedrevirales</strong></big>
+</span></div>
+<ul>
+<li><a href="/preview%5Fby%5Fspecies/557"><strong>Aspiviridae</strong></a>
+<ul><ul>
+<li data-host="plant"><a href="/preview%5Fby%5Fspecies/500">Ophiovirus</a>
+</ul>
+</fieldset>
+</div>
+</fieldset>
+<fieldset>
+<legend><big><strong>Polyploviricotina</strong></big></legend>
+<a class="btn" href="https://www.ebi.ac.uk/interpro/entry/InterPro/IPR007099/">Interpro polynega RdRp</a> <a class="btn" href="/preview_by_protein/839">Polynega Cap-snatching</a></br>
+<div data-color="red" data-grid="2">
+<fieldset style="border: 1px ridge #FF0000;">
+<legend><big><strong>Class: Bunyaviricetes</strong></big></legend>
+<a class="btn" href="https://www.ebi.ac.uk/interpro/entry/pfam/PF04196/">PFAM Bunya RdRp</a>
+</br></br>
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Elliovirales</strong></big>
+</span></div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/9863"><strong>Cruliviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9864">Lincruvirus</a>
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/7078"><strong>Fimoviridae</strong></a>
+<ul><ul>
+<li data-host="plant"><a href="/preview%5Fby%5Fspecies/771">Emaravirus</a>
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/7079"><strong>Hantaviridae</strong></a>
+<ul><ins>Actantavirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/8956">Actinovirus</a>
+</ul>
+<li><ins>Agantavirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/8976">Agnathovirus</a>
+</ul>
+<li><ins>Mammantavirinae</ins>
+<ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/8977">Loanvirus</a>
+<li data-host="vertebrate">Mobatvirus
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/213">Orthohantavirus</a>
+<li data-host="vertebrate">Thottimvirus
+</ul>
+<li><ins>Repantavirinae</ins>
+<ul>
+<li data-host="vertebrate">Reptillovirus
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/82"><strong>Peribunyaviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate,vertebrate">Gryffinivirus
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7100">Herbevirus</a>
+<li data-host="vertebrate"> Khurdivirus
+<li data-host="invertebrate"> Lakivirus
+<li data-host="unknown,vertebrate"> Lambavirus
+<li data-host="invertebrate,human"> <a href="/preview%5Fby%5Fspecies/250">Orthobunyavirus</a>
+<li data-host="invertebrate,vertebrate"> Pacuvirus
+<li data-host="invertebrate"> Shangavirus
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/8356"><strong>Phasmaviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate"> Cicadellivirus
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7077">Feravirus</a>
+<li data-host="invertebrate"> Hymovirus
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/7098">Jonvirus</a>
+<li data-host="invertebrate"> <a href="/preview%5Fby%5Fspecies/8357">Orthophasmavirus</a>
+<li data-host="invertebrate"> Sawastrivirus
+<li data-host="invertebrate"> Wuhivirus
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/9764"><strong>Tospoviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate, plant"> <a href="/preview%5Fby%5Fspecies/253">Orthotospovirus</a>
+</ul></ul></ul>
+<ul>
+<li><a href="/preview%5Fby%5Fspecies/10863"><strong>Tulasviridae</strong></a>
+<ul><ul>
+<li data-host="fungi"><a href="/preview%5Fby%5Fspecies/10864">Orthotulasvirus</a>
+</ul></ul></ul>
+
+<p></br>
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Hareavirales</strong></big>
+</span></div></p>
+
+<ul class="enveloped"><ul>
+<li><a href="/preview%5Fby%5Fspecies/501"><strong>Arenaviridae</strong></a>
+<ul><ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/9796">Antennavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/8516">Hartmanivirus</a>
+<li>Innmovirus
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/83">Mammarenavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/6599">Reptarenavirus</a> </ul></ul>
+
+<li><a href="/preview%5Fby%5Fspecies/10861"><strong>Discoviridae</strong></a>
+<ul><ul>
+<li data-host="fungi"><a href="/by%5Fspecies/10862">Orthodiscovirus</a>
+</ul></ul>
+<li><strong>Konkoviridae</strong>
+<ul><ul>
+<li data-host="plant">Olpivirus
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/9765"><strong>Leishbuviridae</strong></a>
+<ul><ul>
+<li data-host="micro"><a href="/preview%5Fby%5Fspecies/9766">Shilevirus</a>
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/9882"><strong>Mypoviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9883">Hubavirus</a>
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/7099"><strong>Nairoviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/11165">Norwavirus</a>
+<li data-host="invertebrate">Ocetevirus
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/251">Orthonairovirus</a>
+<li data-host="invertebrate">Sabavirus
+<li data-host="invertebrate">Shaspivirus
+<li data-host="invertebrate">Sitinavirus
+<li data-host="invertebrate">Striwavirus
+<li data-host="invertebrate">Xinspivirus
+</ul></ul></ul>
+
+<ul>
+<li data-host="invertebrate,human,plant"><a href="/preview%5Fby%5Fspecies/7101"><strong>Phenuiviridae</strong></a>
+</ul>
+<button class="foldbutton" data-target-id="Phe">+20 genera </button>
+<ul class="enveloped"><ul><ul>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/11167">Bandavirus</a>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/252">Phlebovirus</a>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/11166">Tanzavirus</a>
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/11168">Uukuvirus</a>
+</ul></ul></ul>
+<div id="Phe" class="hidden">
+<ul class="enveloped"><ul><ul>
+<li data-host="invertebrate">Beidivirus
+<li data-host="invertebrate">Citricivirus
+<li data-host="plant">Coguvirus
+<li data-host="invertebrate">Entovirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/7102">Goukovirus</a>
+<li data-host="invertebrate">Horwuvirus
+<li data-host="invertebrate">Hudivirus
+<li data-host="invertebrate">Hudovirus
+<li data-host="invertebrate">Ixovirus
+<li data-host="invertebrate">Laulavirus
+<li data-host="invertebrate">Lentinuvirus
+<li data-host="plant">Mechlorovirus
+<li data-host="invertebrate">Mobuvirus
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/8476">Phasivirus</a>
+<li data-host="invertebrate">Pidchovirus
+<li data-host="invertebrate">Rubodvirus
+<li data-host="invertebrate,plant"><a href="/preview%5Fby%5Fspecies/502">Tenuivirus</a>
+<li data-host="invertebrate">Wenrivirus
+</ul></ul>
+</div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/9880"><strong>Wupedeviridae</strong></a>
+<ul><ul>
+<li data-host="invertebrate"><a href="/preview%5Fby%5Fspecies/9881">Wumivirus</a>
+</ul></ul>
+</ul>
+
+</fieldset>
+<div>
+<fieldset style="border: 1px ridge #FF0000;">
+<legend><big><strong>Class: Insthoviricetes</strong></big></legend>
+<i>
+<a class="btn" href="https://www.ebi.ac.uk/interpro/entry/pfam/PF00602/">PFAM PB1 RdRp</a>
+</br></br>
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Articulavirales</strong></big>
+</span></div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fprotein/223"><strong>Orthomyxoviridae</strong></a>
+<ul><ul>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/6">Alphainfluenzavirus</a>
+<ul>
+<li></i><a href="/preview%5Fby%5Fspecies/131">H1N1</a>
+<li><a href="/preview%5Fby%5Fspecies/130">H5N1</a>
+</ul><i>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/80">Betainfluenzavirus</a>
+<li data-host="human"><a href="/preview%5Fby%5Fspecies/81">Gammainfluenzavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/6077">Deltainfluenzavirus</a>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/95">Isavirus</a>
+<li>Mykissvirus
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/4696">Quaranjavirus</a>
+<li>Sardinovirus
+<li data-host="invertebrate,human"><a href="/preview%5Fby%5Fspecies/79">Thogotovirus</a>
+</ul></ul>
+<li><a href="/preview%5Fby%5Fspecies/10799"><strong>Amnoonviridae</strong></a>
+<ul><ul>
+<li data-host="vertebrate"><a href="/preview%5Fby%5Fspecies/8517">Tilapinevirus</a>
+</ul></ul></ul>
+
+</fieldset>
+
+<div data-color="gray">
+<span class="badge"><big><strong>Order: Unassigned</strong></big>
+</span></div>
+<ul class="enveloped">
+<li><a href="/preview%5Fby%5Fspecies/10938"><strong>Tosoviridae</strong></a>
+<ul><ul>
+<li data-host="vertebrate">Fraservirus
+</ul></ul></ul>
+</div>
+</fieldset>
+</div>
+
+</div>
+
+</fieldset>
+
+</div>
+<div id="host_legend"></div></div>
+            
+            
+        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+
+                    <footer class="mt-8 relative overflow-hidden border-t">
+                        <div class="container relative z-20">
+                            <div class="py-8 flex flex-col lg:flex-row items-center justify-between  text-gray-500 text-center gap-8 ">
+                                <a href="https://www.expasy.org/" target="_blank" class="order-2 lg:order-1 block"><img src="https://www.expasy.org/img/expasy-addon.webp" alt="ExPASy logo" width="154" height="34" class="h-6 w-auto align-middle"/></a>
+
+                                <div class="order-1 lg:order-2 flex-1 text-center text-sm">
+                                    <p>
+                                        <strong class="text-gray-600">ViralZone</strong> is operated by the <a class="underline hover:text-gray-600" href="https://www.sib.swiss/alan-bridge-group">Swiss-Prot group</a> of the <a class="underline hover:text-gray-600" href="https://www.sib.swiss/">SIB Swiss Institute of Bioinformatics</a>, funded by NIH<sup>*</sup> through the <a class="underline hover:text-gray-600" href="https://pathogendatanetwork.org/">Pathogen Data Network</a> with support from the Swiss Federal Government through the <a class="underline hover:text-gray-600" href="https://www.sbfi.admin.ch/en">State Secretariat for Education, Research and Innovation</a> (SERI).
+                                        <sup>*</sup>This resource is supported as a whole or in part by the National Institute Of Allergy And Infectious Diseases of the National Institutes of Health under grant No <a class="underline hover:text-gray-600" href="https://reporter.nih.gov/search/JHbtQB-XeUu8wvs3vUlFFw/project-details/10913643">U24AI183840</a>, awarded to the SIB Swiss Institute of Bioinformatics.
+                                    </p>
+                                    <div class="flex items-center justify-center gap-2 mt-1">
+                                        <a class="underline hover:text-gray-600" href="/872#License__amp__Disclaimer">License &amp; Disclaimer</a>
+                                        <span class="text-gray-400 h-[12px] w-[1px] bg-gray-200"></span>
+                                        <a class="underline hover:text-gray-600" href="https://www.sib.swiss/privacy-policy" target="_blank">Privacy Policy</a>
+                                    </div>
+                                </div>
+                        <div class="order-3 flex items-center justify-center gap-2 text-gray-600">
+                            <a href="https://bsky.app/profile/viralzone.bsky.social" target="_blank" class="hover:text-gray-700" data-icon="bluesky" data-icon-size="lg" title="Follow us on Bluesky"></a>
+                            <a href="https://twitter.com/viralzone" target="_blank" class="hover:text-gray-700" data-icon="x" data-icon-size="lg" title="Follow us on X"></a>
+                        </div>
+                        </div>
+                            <img src="/resources/images/capsid-deco.svg" alt="" class="absolute max-w-2/3 h-auto w-[250px] left-1/2 -translate-x-1/2 opacity-6 lg:-top-[215px] lg:bottom-auto bottom-[-175px] top-auto -z-10"/>
+                        </div>
+                    </footer>
+
+                </div>
+
+                <div id="scrollTop" class="fixed  right-4 bottom-4 lg:bottom-8 lg:right-8 z-20 hidden">
+                    <button class="cursor-pointer bg-primary text-white rounded-lg p-4 shadow-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary transition-colors flex items-center justify-center" title="Scroll to top" aria-label="Scroll to top">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </body>
+        </html>

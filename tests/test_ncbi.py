@@ -321,3 +321,32 @@ def test_efetch_all_returns_every_record(tmp_path):
     result = client.efetch_all("protein", ["9"], "fasta")
     assert result.returned == ["YP_009"]
     assert ">YP_009.1" in result.text
+
+
+# -- record counts --------------------------------------------------------
+
+class _CountSession:
+    def __init__(self, body: str):
+        self.body = body
+        self.posts: list[dict] = []
+
+    def post(self, url, data=None, timeout=None):
+        self.posts.append(data)
+        return FakeResponse(self.body)
+
+
+def test_nuccore_count_and_cache(tmp_path):
+    session = _CountSession('{"esearchresult": {"count": "9293216", "idlist": []}}')
+    client = NCBIClient(Config(email="t@example.com"), cache=Cache(tmp_path),
+                        session=session, sleep=noop_sleep)
+    assert client.nuccore_count("txid11118[Organism:exp]") == 9293216
+    assert session.posts[0]["db"] == "nuccore" and session.posts[0]["retmax"] == "0"
+    assert client.nuccore_count("txid11118[Organism:exp]") == 9293216
+    assert len(session.posts) == 1  # second call served from the cache
+
+
+def test_nuccore_count_without_count_raises(tmp_path):
+    session = _CountSession('{"esearchresult": {"ERROR": "bad term"}}')
+    client = NCBIClient(Config(email="t@example.com"), session=session, sleep=noop_sleep)
+    with pytest.raises(NCBIError):
+        client.nuccore_count("txid1[Organism:exp]")

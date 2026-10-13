@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+<title>ViralZone root ~ ViralZone</title>
+                <link rel="shortcut icon" href="/favicon.ico"/>
+
+                <meta name="google-site-verification" content="NtyZwlqH6NZhGoT3FbOe53w-9G0avnGJyUZ3A2ih2m4"/>
+                <meta name="author" content="Philippe Le Mercier, Chantal Hulo, Patrick Masson (content); Yann Haefliger (front-end styling), Edouard de Castro (software)"/>
+                <meta name="description" content="A knowledge resource to understand virus diversity and a gateway to UniProtKB/Swiss-Prot viral entries"/>
+                <meta name="keywords" content="virus, viral, infection, cycle, biology, uniprotkb"/>
+
+                <link rel="stylesheet" preload="preload" href="/resources/css/viralzone.min.css"/>
+                <script src="/resources/libs/libs.min.js" defer="defer"></script>
+                <script src="/resources/js/viralzone.min.js" defer="defer"></script>
+                <script src="/resources/js/matomo-viralzone-tracking.js"></script>
+                <script src="https://matomo.sib.swiss/matomo.js" defer="defer"></script>
+            </head>
+            <body vocab="http://schema.org/" typeof="WebPage" class="antialiased font-inter leading-normal tracking-normal relative text-base lg:text-sm" data-session-active="@LOGGEDIN@">
+                <a href="#main" class="sr-only focus:not-sr-only focus:!fixed focus:top-0 focus:left-0 focus:z-30 focus:bg-white focus:p-2">Skip to main content</a>
+                <div id="announce" data-color="orange"></div>
+                <!-- Layout -->
+                <div id="page_content" class="min-h-dvh flex flex-col relative z-10">
+                    <div class="absolute inset-0 -z-10 max-w-none overflow-hidden">
+                        <img src="/resources/images/capsid-deco.svg" alt="" class="absolute right-0 left-auto translate-x-1/2 max-w-2/3 h-[400px] lg:h-[500px] w-auto -translate-y-1/2 opacity-20 top-8 lg:top-[96px] lg:rotate-[100deg]"/>
+                            <div class="top-0 h-72 lg:h-96 mx-auto header-gradient opacity-50 absolute inset-x-0"></div>
+                        </div>
+                        <header class="bg-white/50 backdrop-blur-[3px] border-b relative z-10 ori_header_flashback">
+                            <div class="container">
+                                <div class="flex items-center justify-between">
+                                    <a href="/" class="flex items-center gap-2 lg:text-4xl text-3xl font-bold tracking-tight py-4">
+                                        <img src="/resources/images/logo-emblem.png" width="46" height="46" alt="ViralZone logo emblem" class="size-8 lg:size-10"/>
+                                        <span>ViralZone</span>
+                                    </a>
+                                    <button id="main_menu_button" class="lg:hidden rounded-lg text-primary focus:outline-none focus:ring-2 focus:ring-primary">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
+                                    <nav aria-label="Main navigation" class="hidden lg:block">
+                                        <ul class="dropdown-menu" id="main_menu">
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-factsheets">
+                                                    <span>Browse Factsheets</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <div class="submenu space-y-4" id="submenu-factsheets">
+                                                    <a href="/by%5Fspecies/230" class="card">
+                                                        <div class="title">by Taxonomy</div>
+                                                        <p>Viruses factsheets classified by realms.</p>
+                                                    </a>
+                                                    <a href="/by%5Fspecies/664" class="card">
+                                                        <div class="title">by Host</div>
+                                                        <p>Viruses factsheets classified by their host.</p>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-data">
+                                                    <span>Data</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <ul id="submenu-data" class="submenu">
+                                                    <li>
+                                                        <a href="/678">Human virus</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/resources/VMR/VMR_MSL40_ViralZone.html">ICTV Virus Species List</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/resources/Acronyms.xlsx">Vertebrate virus names and acronyms</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/5356">Virus receptors</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/10417">Enzyme</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/11725">Poylprotein splitting</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/8676">Virosaurus</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <button class="p-4 flex items-center gap-2" aria-expanded="false" aria-controls="submenu-education">
+                                                    <span>Education</span>
+                                                    <svg viewBox="0 0 20 20" fill="currentColor" class="size-5 icon" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                </button>
+                                                <div id="submenu-education" class="submenu lg:w-[850px] lg:-left-[500px] submenu-divided">
+                                                    <div class="flex flex-wrap lg:flex-nowrap">
+                                                        <div class="menu-section">
+                                                            <div class="title">Biology</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/886">Host - virus interaction</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/4557">Bacterial virus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/936">Virus entry</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/915">Replication / Transcription / Translation</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/1076">Viral Exit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/4136">Virus genome evolution</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="menu-section">
+                                                            <div class="title">Structure</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/885">Virion</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/10977">Virus structure predictions</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/11345">Virus protein folds</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="menu-section">
+                                                            <div class="title">Virus Spotlight</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/11845">Hantavirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/11865">Ebolavirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/1280">Hepatitis B Virus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/5736">Herpesvirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/4976">HIV-1</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/9957">Poxvirus</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/11605">RSV</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/254">Baltimore classification</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/5216">Human virus sizes</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/6096">Reference sequences</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/5576">Training</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/by%5Fspecies/677">External links</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="/872" class="flex p-4">
+                                                    About
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/contact" class="flex p-4">
+                                                    Contact
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Search bar -->
+                                <div class="mt-2 mb-4">
+                                    <form action="/search" method="get" property="potentialAction" typeof="SearchAction">
+                                        <div class="relative isolate flex items-center px-2 z-20">
+                                            <a href="/doc/search" title="Search help" class="size-10 lg:size-12 bg-transparent text-vz-turquoise rounded-lg flex items-center justify-center">
+                                                <svg viewBox="0 0 24 24" fill="currentColor" class="size-8" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd"/>
+                                                </svg>
+
+                                            </a>
+                                            <label for="search-input" class="sr-only">Search the ViralZone website</label>
+                                            <input type="text" id="search-input" name="query" data-suggest-path="/search/suggest" class="suggest peer p-4 lg:text-lg w-0 flex-auto bg-transparent text-base placeholder:text-gray-500 focus:outline-none" placeholder="e.g.: sphere / &quot;11 segments&quot; / 10979 / cat OR dog / nucleo*" data-public-sid="undefined" autocomplete="off" aria-label="Search"/>
+                                            <button class="h-10 lg:h-12 px-8 bg-primary hover:bg-primary-dark rounded-lg text-white font-bold flex items-center space-x-2">
+                                                <span class="hidden lg:block">Search</span>
+                                                <svg viewBox="0 0 20 20" fill="currentColor" class="size-5" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </button>
+                                            <div class="absolute inset-0 -z-10 bg-white rounded-lg border peer-focus:ring-2 peer-focus:ring-primary"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </header>
+
+                        <main id="main" class="flex-1 text-gray-700 leading-normal">
+                            <div class="page">
+                                <div id="tab_bar">
+                                    <button id="tab_more" class="absolute right-0 cursor-pointer">
+                                        <svg id="open_tab_more" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                                        </svg>
+                                        <svg id="close_tab_more" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 hidden" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                                        </svg>
+                                        <span id="tab_count" class=""><span></span></span>
+
+                                    </button>
+                                </div>
+                                <div class="core" id="core">
+                                    <div property="mainEntity" typeof="CreativeWork">
+                                        <div property="mainEntity" typeof="CreativeWork">
+            
+            
+            <div id="wiki"><div id="t0">
+    <div class="flex items-center flex-wrap gap-4">
+        <div class="flex-1 w-full lg:w-auto">
+            <h1 class="mb-2 text-3xl lg:text-4xl">Explore the viral world</h1>
+            <p class="lead text-gray-600">
+                ViralZone is a comprehensive resource for information on viruses, providing detailed descriptions, images, and classifications of various viral families and species.
+            </p>
+        </div>
+    </div>
+
+<button class="foldbutton diagram-fold" data-target-id="diagram">Show taxonomy</button>
+        <div id="diagram" class="lg:!block">
+                    <div data-grid="8" class="diagram diagram-responsive">
+                        <div data-span="3" data-color="violet">
+                <div class="heading top">DNA Viruses
+                    <small>&nbsp;</small>
+                </div>
+                <div data-grid="3">
+                    <div data-span="2">
+                        <div class="heading">
+                            ds DNA
+                            <img src="/resources/svg/dsdna.svg" alt="" />
+                        </div>
+                        <div data-grid="2">
+                            <div>
+                                <a href="/11018" class="btn">Adnaviria</a>
+                                <a href="/11365" class="btn">Duplodnaviria</a>
+                                <a href="/11485" class="btn">Singelaviria</a>
+                            </div>
+                            <div>
+                                <a href="/11019" class="btn">Varidnaviria</a>
+                                <a href="/11747" class="btn">Pleomoviria</a>
+                                <a href="/11104" class="btn" style="style="height: 20px;">Unassigned</a>
+                                <a href="/11104">Unassigned</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="heading">
+                            ss DNA
+                            <img src="/resources/svg/ssdna.svg" alt="" />
+                        </div>
+                       <a href="/11745" class="btn">Efunaviria</a>
+                       <a href="/283" class="btn">Floreoviria</a>
+                       <a href="/11746" class="btn">Volvereviria</a>
+                       <a href="/11124" class="btn">Unassigned</a>
+                    </div>
+                </div>
+            </div>
+            <div data-span="5" data-color="green">
+                <div class="heading top">Riboviria <br /><small>+ Ribozyviria/viroid</small></div>
+                <div data-grid="5">
+                    <div data-color="turquoise">
+                        <div class="heading">
+                            <div class="text-sm">Reverse Transcribing</div>
+                            <img src="/resources/svg/rt.svg" alt="" />
+                        </div>
+                        <a href="/295" class="btn">Artverviricota</a>
+                    </div>
+                    <div>
+                        <div class="heading">
+                            <div class="text-sm">dsRNA</div>
+                            <img src="/resources/svg/dsrnas.svg" alt="" />
+                        </div>
+                        <a href="/293" class="btn">Duplornaviricota</a>
+                    </div>
+                    <div>
+                        <div class="heading">
+                            <div class="text-sm">ss RNA (+)</div>
+                            <img src="/resources/svg/ssrnap.svg" alt="" />
+                        </div>
+                        <a href="/294" class="btn">Pisuviricota</a>
+                        <a href="/11021" class="btn">Kitrinoviricota</a>
+                        <a href="/11022" class="btn">Lenarviricota</a>
+                        <a href="/11325" class="btn">Unassigned</a>
+                    </div>
+                    <div>
+                        <div class="heading">
+                            <div class="text-sm">SS RNA (-)</div>
+                            <img src="/resources/svg/ssrnam.svg" alt="" />
+                        </div>
+                        <a href="/237" class="btn">Negarnaviricota</a>
+                    </div>
+                    <div>
+                        <div class="heading">
+                            <div class="text-sm">Circular ss RNA</div>
+                            <img src="/resources/svg/circularssrna.svg" alt="" />
+                        </div>
+                         <a href="/6896" class="btn">Ambiviricota <small>&#43;Ribozyviria<br/>&#43;Viroid</small> </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="info-turquoise" data-icon="megaphone" >
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-2 lg:gap-4">
+            <div>
+                <strong>Please cite us:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/37897348/" target="_blank">ViralZone 2024 provides higher-resolution images and advanced virus-specific resources</a> Edouard De Castro, Chantal Hulo, Patrick Masson, Andrea Auchincloss, Alan Bridge, Philippe Le Mercier Nucleic Acids Res. 2024 Jan 5;52(D1):D817-D821.
+            </div>
+            <a href="/resources/cite.nbib" class="btn text-nowrap">Download citation</a>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-[auto_400px] mt-8 lg:mt-16 gap-8 lg:gap-12">
+        <div class="">
+            <h2 class="text-2xl lg:text-3xl mt-0 mb-2">ViralZone news</h2>
+            <div class="flex-1 mt-1 mb-2 text-gray-600"><strong>Follow us</strong> to stay updated with the latest news and resources from ViralZone.</div>
+            <a data-icon="bluesky" href="https://bsky.app/profile/viralzone.bsky.social" target="_blank"  class="btn whitespace-nowrap">
+                Follow us on BlueSky
+            </a>
+            <a data-icon="x" href="https://twitter.com/viralzone" target="_blank"  class="btn whitespace-nowrap">
+                Follow us on X
+            </a>
+            <div class="bg-gray-50 rounded-lg mt-8 lg:mt-14 border ring-1 ring-primary/10" data-color="green">
+                <a href="/9056" class="block text-white relative rounded-t-lg bg-linear-to-r from-75% hover:from-theme-dark from-theme to-vz-violet not-prose p-4 overflow-hidden group">
+                    <div class="text-lg mt-2">SARS-Cov-2, COVID-19</div>
+                    <h3 class="text-2xl lg:text-3xl mt-1 mb-3">Coronavirus Resource</h3>
+
+                    <img src="/resources/images/7DDD-min.jpg" alt="" class="absolute inset-x-0 top-0 opacity-10 translate-y-0 group-hover:-translate-y-4 transition" />
+                    <img src="/resources/images/sars-virion-only.svg" alt="Coronavirus" class="absolute top-1 lg:right-0 -right-30  h-40 w-auto group-hover:rotate-45 duration-300 transition " />
+                </a>
+</div>
+<div>
+                <a href="/11865"><div class="p-4 border-b"><img src="/resources/Geminiviridae_virion_M.png" style="float: right"></a>
+ <h3 class="flex items-baseline justify-between mt-0"><span>Monodnaviria classification update</span><span class="upcount">August 2026</span></h3>
+The taxonomy has been updated for the realm of monodnaviria. It has been split in three monophyltic realms: one with eukaryotic viruses <a href="/283">Floreoviria</a>, one with bacterial viruses <a href="/11745">Efunaviria</a>, and one with archaeal viruses <a href="/11746">Volvereviria</a>. Moreover the <a href="/11747">Pleomoviria</a> realm assemble all archaeal viruses with a common pleomorphic envelope.
+</br>
+</br>
+</div>
+<div>
+                <a href="/11865"><div class="p-4 border-b"><img src="/resources/Polyprotein_M.png" style="float: right"></a>
+ <h3 class="flex items-baseline justify-between mt-0"><span>Polyprotein Cleavage Prediction</span><span class="upcount">August 2026</span></h3>
+The <a href="/11725">Polyprotein Cleavage Prediction</a> page provides matured products in Fasta for virus families infecting humans and encoding polyproteins. It has been has been enriched with Togaviridae, Picornaviridae and Caliciviridae virus families
+</br>
+</br>
+</div>
+<div>
+                <a href="/11865"><div class="p-4 border-b"><img src="/resources/Ebola/Filovirus_virion_M.png" style="float: right"></a>
+ <h3 class="flex items-baseline justify-between mt-0"><span>Ebolavirus resource</span><span class="upcount">June 2026</span></h3>
+                    The <a href="/11845">Ebolavirus</a> features a detailed virus fact sheet, dedicated pages on viral proteins, as well as virus replication cycle. Moreover it provides links to epidemiology Nextstrain resources, and sequence shared by Pathoplexus.
+</br>
+</br>
+</div>
+<div>
+                <a href="/11845"><div class="p-4 border-b"><img src="/resources/Andes/Andes_virus_M.png" style="float: right"></a>
+ <h3 class="flex items-baseline justify-between mt-0"><span>Andes virus resource</span><span class="upcount">June 2026</span></h3>
+                    The <a href="/11845">Andes virus resource</a> brings together extensive information, including data specifically related to the 2026 cruise ship outbreak of Andes virus (a hantavirus). It features a detailed virus fact sheet, dedicated pages on viral glycoproteins, as well as references and variant information. The hantavirus virion illustration has also been updated and is now available.
+
+                </div>
+                <div class="p-4 border-b">Exploring ICTV virus metadata just got easier on ViralZone ? interactive table, instant CSV export, and full search. The new species names are displayed alongside virus names and acronyms.
+<a href="/resources/VMR/VMR_MSL40_standalone.html">VMR ICTV</a>
+                </div>
+
+                <a href="/996" class="flex p-4 items-center justify-center bg-white hover:bg-primary/5 rounded-b-lg no-underline">
+                    <span>
+                        Show all news
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="info-pink" data-icon="microphone">
+                <h3>Virology Podcast</h3>
+                <p>
+                    Listen to <a href="https://www.microbe.tv/twiv/">TWIV: This Week in Virology</a> a <strong>weekly podcast</strong> animated by professors Vincent Racaniello and Dick Despommier from the Columbia University, USA.
+                </p>
+            </div>
+        </div>
+        <div class="space-y-8">
+            <div class="color-box text-center text-sm mt-0" data-color="red">
+                <h3 data-icon="play" data-icon-size="lg">Discover ViralZone</h3>
+                <p>
+                    Watch our introduction video to learn how to use ViralZone and find the information you need about viruses.
+                </p>
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/DXXSspwt3AE?si=t1JSbxmUs3nJHrue" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="aspect-video w-full h-auto rounded-lg mb-2"></iframe>
+                <a href="https://www.youtube.com/watch?v=DXXSspwt3AE" target="_blank" class="btn w-full text-center">Watch the video on YouTube</a>
+            </div>
+            <div class="info-color text-sm" data-icon="photo" data-color="green">
+                <h3>ViralZone picture copyright</h3>
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a>
+                <p>
+                    This work is licensed under a <strong>Creative Commons Attribution 4.0 International License</strong>.
+                </p>
+
+                <p>
+                    Please cite the source<br /><strong>ViralZone, SIB Swiss Institute of Bioinformatics</strong>
+                </p>
+                <p class="text-xs">
+                    For any question please contact us via our <a href="/contact">contact form</a>.
+                </p>
+            </div>
+            <div class="info-color text-sm" data-icon="chart" data-color="blue">
+                <h3>ViralZone current statistics<br /><div class="opacity-60 text-sm">August 2026</div></h3>
+
+                <div class="">
+                    <strong>955</strong> Virus description pages:
+                    <ul>
+                        <li><strong>224</strong> <i>Families</i></li>
+                        <li><strong>711</strong> <i>Genera</i></li>
+                        <li><strong>8</strong> individual <i>Species</i></li>
+                    </ul>
+                    <strong>352</strong> Viral molecular biology pages
+                </div>
+                <div class="mt-2 pt-2 border-t border-gray-200">
+                    Linking to:<br />
+                    <span class="opacity-80">(UniProt release 2026_02)</span>
+                    <ul>
+                        <li><a href="https://www.uniprot.org/proteomes?query=%28taxonomy_id%3A10239%29&facets=proteome_type%3AREFERENCE"><strong>14,345</strong></a> reference proteomes</li>
+                        <li><a href="https://www.uniprot.org/uniprotkb?facets=reviewed%3Atrue&amp;query=%28taxonomy%5Fid%3A10239%29"><strong>17,717</strong></a> manually reviewed proteins</li>
+                        <li><a href="https://www.uniprot.org/uniprotkb?facets=reviewed%3Afalse&amp;query=%28taxonomy%5Fid%3A10239%29"><strong>1,087,163</strong></a> unreviewed proteins</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+            
+            
+        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+
+                    <footer class="mt-8 relative overflow-hidden border-t">
+                        <div class="container relative z-20">
+                            <div class="py-8 flex flex-col lg:flex-row items-center justify-between  text-gray-500 text-center gap-8 ">
+                                <a href="https://www.expasy.org/" target="_blank" class="order-2 lg:order-1 block"><img src="https://www.expasy.org/img/expasy-addon.webp" alt="ExPASy logo" width="154" height="34" class="h-6 w-auto align-middle"/></a>
+
+                                <div class="order-1 lg:order-2 flex-1 text-center text-sm">
+                                    <p>
+                                        <strong class="text-gray-600">ViralZone</strong> is operated by the <a class="underline hover:text-gray-600" href="https://www.sib.swiss/alan-bridge-group">Swiss-Prot group</a> of the <a class="underline hover:text-gray-600" href="https://www.sib.swiss/">SIB Swiss Institute of Bioinformatics</a>, funded by NIH<sup>*</sup> through the <a class="underline hover:text-gray-600" href="https://pathogendatanetwork.org/">Pathogen Data Network</a> with support from the Swiss Federal Government through the <a class="underline hover:text-gray-600" href="https://www.sbfi.admin.ch/en">State Secretariat for Education, Research and Innovation</a> (SERI).
+                                        <sup>*</sup>This resource is supported as a whole or in part by the National Institute Of Allergy And Infectious Diseases of the National Institutes of Health under grant No <a class="underline hover:text-gray-600" href="https://reporter.nih.gov/search/JHbtQB-XeUu8wvs3vUlFFw/project-details/10913643">U24AI183840</a>, awarded to the SIB Swiss Institute of Bioinformatics.
+                                    </p>
+                                    <div class="flex items-center justify-center gap-2 mt-1">
+                                        <a class="underline hover:text-gray-600" href="/872#License__amp__Disclaimer">License &amp; Disclaimer</a>
+                                        <span class="text-gray-400 h-[12px] w-[1px] bg-gray-200"></span>
+                                        <a class="underline hover:text-gray-600" href="https://www.sib.swiss/privacy-policy" target="_blank">Privacy Policy</a>
+                                    </div>
+                                </div>
+                        <div class="order-3 flex items-center justify-center gap-2 text-gray-600">
+                            <a href="https://bsky.app/profile/viralzone.bsky.social" target="_blank" class="hover:text-gray-700" data-icon="bluesky" data-icon-size="lg" title="Follow us on Bluesky"></a>
+                            <a href="https://twitter.com/viralzone" target="_blank" class="hover:text-gray-700" data-icon="x" data-icon-size="lg" title="Follow us on X"></a>
+                        </div>
+                        </div>
+                            <img src="/resources/images/capsid-deco.svg" alt="" class="absolute max-w-2/3 h-auto w-[250px] left-1/2 -translate-x-1/2 opacity-6 lg:-top-[215px] lg:bottom-auto bottom-[-175px] top-auto -z-10"/>
+                        </div>
+                    </footer>
+
+                </div>
+
+                <div id="scrollTop" class="fixed  right-4 bottom-4 lg:bottom-8 lg:right-8 z-20 hidden">
+                    <button class="cursor-pointer bg-primary text-white rounded-lg p-4 shadow-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary transition-colors flex items-center justify-center" title="Scroll to top" aria-label="Scroll to top">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </body>
+        </html>

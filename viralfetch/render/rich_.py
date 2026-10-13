@@ -23,9 +23,12 @@ from ..compare import LineageComparison
 from ..ictv import VMRUpdate
 from ..models import RANKS, Chapter, plural
 from ..ncbi import MetaResult, NcbiLineage, RecordsResult
+from ..profile import Profile
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 from ..trees_install import InstalledTrees
+from ..viralzone import CREDIT as VIRALZONE_CREDIT
+from ..viralzone_install import InstalledViralZone
 from ..vmr_install import InstalledVMR
 
 _out = Console()
@@ -813,6 +816,41 @@ def trees_reset(removed: bool) -> None:
         _out.print(Text("No installed trees; already using the bundled ones.", style="green"))
 
 
+def viralzone_progress(i: int, n: int, entry: dict) -> None:
+    status = entry.get("status")
+    if status == "factsheet":
+        detail, style = f"{entry.get('name')} ({entry.get('rank')})", "dim"
+    elif status == "error":
+        detail, style = f"error: {entry.get('error')}", "yellow"
+    else:
+        detail, style = "not a factsheet", "dim"
+    _err.print(Text(f"[{i}/{n}] page {entry.get('id')}: {detail}", style=style))
+
+
+def viralzone_installed(v: InstalledViralZone) -> None:
+    msg = Text()
+    msg.append("✓ ", style="bold green")
+    msg.append("Rebuilt the ViralZone data set", style="bold")
+    msg.append(f" ({v.factsheets} factsheets, {v.taxa} taxa).\n")
+    msg.append(f"  stored at {v.path}\n", style="dim")
+    msg.append(f"  Source: {VIRALZONE_CREDIT['source']} ({VIRALZONE_CREDIT['source_url']}).\n", style="dim")
+    msg.append("  Run `viralfetch update --viralzone --reset` to go back to the bundled data.", style="dim")
+    _out.print(msg)
+    if v.failed:
+        _err.print(Text(
+            f"{len(v.failed)} pages failed and were left out: "
+            + ", ".join(str(e["id"]) for e in v.failed),
+            style="yellow",
+        ))
+
+
+def viralzone_reset(removed: bool) -> None:
+    if removed:
+        _out.print(Text("Removed the installed ViralZone data; using the bundled one.", style="green"))
+    else:
+        _out.print(Text("No installed ViralZone data; already using the bundled one.", style="green"))
+
+
 def diagnose(d: Diagnostics) -> None:
     summary = Table.grid(padding=(0, 2))
     summary.add_row("isolates", str(d.isolates))
@@ -827,3 +865,172 @@ def diagnose(d: Diagnostics) -> None:
         for species, raw in d.unparsed:
             table.add_row(species, raw)
         _out.print(table)
+
+
+# -- profile (the default command) ------------------------------------------
+
+_PROFILE_REFSEQ_ROWS = 10
+_VZ_FIELDS = (
+    ("host", "host"), ("tropism", "tropism"), ("receptors", "receptors"),
+    ("geography", "geography"), ("diseases", "diseases"),
+    ("transmission", "transmission"), ("vaccine", "vaccine"),
+    ("antiviral_drugs", "antivirals"),
+)
+
+
+def _kv_table() -> Table:
+    table = Table(show_header=False, box=None, pad_edge=False, padding=(0, 2, 0, 0))
+    table.add_column(style="dim", no_wrap=True)
+    table.add_column()
+    return table
+
+
+def _count(n: int | None) -> str:
+    return f"{n:,}" if n is not None else "unavailable"
+
+
+def _profile_taxonomy(p: Profile) -> Panel:
+    if p.ncbi is None:  # local only: the plain ICTV lineage
+        rows = [(r.rank, r.ictv) for r in p.comparison if r.ictv]
+        table = _lineage_table(rows, p.ictv.name, p.ictv.rank, "bold cyan") if p.ictv else Text("")
+        return Panel(table, title="taxonomy — ICTV", title_align="left", expand=False)
+    table = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0))
+    table.add_column("rank", style="dim", no_wrap=True)
+    table.add_column("ICTV (VMR)", style="cyan")
+    table.add_column("NCBI", style="magenta")
+    table.add_column("", no_wrap=True)
+    for row in p.comparison:
+        mark = Text("✓", style="green") if row.agree else (
+            Text("≠", style="bold yellow") if row.agree is False else Text("·", style="dim"))
+        ictv = Text(row.ictv or "—", style="" if row.ictv else "dim")
+        ncbi = Text(row.ncbi or "—", style="" if row.ncbi else "dim")
+        table.add_row(row.rank, ictv, ncbi, mark)
+    if p.ncbi is not None and p.ncbi.rank not in RANKS:
+        table.add_row(p.ncbi.rank or "no rank", Text("—", style="dim"), Text(p.ncbi.name), Text("·", style="dim"))
+
+    bits = []
+    if p.ncbi is not None:
+        bits.append(f"NCBI taxid {p.ncbi.taxid}")
+    if p.ncbi_report is not None and p.ncbi_report.ictv_status:
+        bits.append(p.ncbi_report.ictv_status.rstrip("."))
+    caption = Text(" · ".join(bits), style="dim")
+    body = Group(table, caption) if bits else table
+    return Panel(body, title="taxonomy — ICTV vs NCBI", title_align="left", expand=False)
+
+
+def _profile_ictv(p: Profile) -> Panel | None:
+    s = p.vmr
+    if s is None or p.ictv is None:
+        return None
+    table = _kv_table()
+    if p.ictv.rank != "species":
+        table.add_row("species", f"{s.species:,}")
+    table.add_row("isolates", f"{s.isolates:,} ({s.exemplars:,} exemplar)")
+    if s.genome_compositions:
+        table.add_row("genome", ", ".join(f"{k} ×{v}" for k, v in s.genome_compositions.items()))
+    if s.host_sources:
+        table.add_row("host source", ", ".join(f"{k} ×{v}" for k, v in s.host_sources.items()))
+    if s.exemplar_accessions:
+        table.add_row("exemplar", ", ".join(s.exemplar_accessions))
+    return Panel(table, title=f"ICTV (VMR) — {p.ictv.name} ({p.ictv.rank})", title_align="left", expand=False)
+
+
+def _profile_ncbi(p: Profile) -> Panel | None:
+    s, r = p.sequences, p.ncbi_report
+    if s is None and r is None:
+        return None
+    table = _kv_table()
+    if s is not None:
+        table.add_row("nucleotide records", _count(s.total))
+        table.add_row("complete genomes", _count(s.complete) + (" (titled \"complete genome\")" if s.complete is not None else ""))
+        table.add_row("RefSeq sequences", _count(s.refseq))
+    if r is not None:
+        if r.assemblies is not None:
+            table.add_row("genome assemblies", f"{r.assemblies:,}")
+        if r.genomic_moltype:
+            table.add_row("molecule", r.genomic_moltype)
+    parts: list = [table]
+    if s is not None and s.refseq_genomes:
+        genomes = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0), title_justify="left")
+        for col, justify in (("RefSeq", "left"), ("organism", "left"), ("segment", "left"),
+                             ("length", "right"), ("updated", "left")):
+            genomes.add_column(col, justify=justify, style="cyan" if col == "RefSeq" else None,
+                               header_style="dim")
+        for g in s.refseq_genomes[:_PROFILE_REFSEQ_ROWS]:
+            genomes.add_row(g.accession, g.organism, g.segment or "", f"{g.length:,}" if g.length else "-",
+                            g.update_date)
+        parts += [Text(""), genomes]
+        shown = min(len(s.refseq_genomes), _PROFILE_REFSEQ_ROWS)
+        if s.refseq and s.refseq > shown:
+            parts.append(Text(f"… {s.refseq - shown:,} more RefSeq sequence(s)", style="dim"))
+    if s is not None and s.portal_url:
+        parts.append(Text(s.portal_url, style="dim"))
+    title = f"NCBI — taxid {s.taxid if s else r.taxid}"
+    return Panel(Group(*parts), title=title, title_align="left", expand=False)
+
+
+def _profile_viralzone(p: Profile) -> Panel | None:
+    z = p.viralzone
+    if z is None:
+        return None
+    fs = z.factsheet
+    table = _kv_table()
+    if z.host_groups:
+        table.add_row("host groups", ", ".join(z.host_groups))
+    for key, label in _VZ_FIELDS:
+        if fs.get(key):
+            table.add_row(label, fs[key])
+    if fs.get("replication_site"):
+        table.add_row("replication", fs["replication_site"].lower())
+    summary = fs.get("summary", {})
+    for key in ("virion", "genome"):
+        if summary.get(key):
+            table.add_row(key, summary[key])
+    if fs.get("host_virus_interactions"):
+        table.add_row("host-virus", "; ".join(i["title"] for i in fs["host_virus_interactions"] if i["title"]))
+    if fs.get("reference_strains"):
+        strains = []
+        for st in fs["reference_strains"][:3]:
+            accs = ", ".join(x["accession"] for x in st["sequences"][:3])
+            strains.append(f"{st['name']} ({accs})" if accs else st["name"])
+        table.add_row("ref. strains", "\n".join(strains))
+
+    parts: list = []
+    if z.note:
+        parts += [Text(z.note, style="yellow"), Text("")]
+    parts.append(table)
+    links = Text(fs["url"], style="dim")
+    for other in z.related:
+        links.append(f"\nalso: {other['name']} ({other['rank']}) {other['url']}", style="dim")
+    parts += [Text(""), links,
+              Text(f"Source: {z.credit['source']}. Cite: {z.credit['citation']}", style="dim italic")]
+    title = f"ViralZone — {fs['name']} ({fs['rank']})"
+    return Panel(Group(*parts), title=title, title_align="left", expand=False)
+
+
+def profile(p: Profile) -> None:
+    header = Text()
+    header.append(p.name, style="bold")
+    header.append(f"  ({p.rank})", style="dim")
+    if p.name.casefold() != p.query.casefold():
+        header.append(f"  ← {p.query}", style="dim")
+    _out.print(header)
+    for note in p.notes:
+        _err.print(Text(note, style="yellow"))
+    for panel in (_profile_taxonomy(p), _profile_ictv(p), _profile_ncbi(p), _profile_viralzone(p)):
+        if panel is not None:
+            _out.print(panel)
+    for message in p.warnings:
+        warn(message)
+
+    hints = []
+    if p.family:
+        hints.append(f"viralfetch text {p.family}")
+        if p.has_trees:
+            hints.append(f"viralfetch tree {p.ictv.name if p.ictv else p.family}")
+    if p.ictv is not None:
+        hints.append(f"viralfetch seq {p.ictv.name}")
+        if p.ictv.rank != "species":
+            hints.append(f"viralfetch members {p.ictv.name}")
+    if hints:
+        _out.print(Text("More: " + " · ".join(hints), style="dim"))

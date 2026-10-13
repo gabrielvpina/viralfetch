@@ -4,7 +4,8 @@ Three namespaces (SPEC section 3):
 
 - ``SEQS``   — sequences and accession metadata. Accessions are immutable, so
   these entries are cached **permanently** (no TTL).
-- ``TEXTS``  — ICTV chapter text. Cached with a **30-day TTL**.
+- ``TEXTS``  — ICTV chapter text (**30-day TTL**) and NCBI Datasets counts
+  (a shorter TTL chosen by the caller, as they grow with every release).
 - ``IMAGES`` — ICTV chapter figures (binary). A published figure does not
   change, so these are cached **permanently**, like sequences.
 
@@ -25,6 +26,7 @@ TEXTS = "texts"
 IMAGES = "images"
 
 TEXT_TTL = 30 * 24 * 60 * 60  # 30 days, in seconds
+COUNTS_TTL = 7 * 24 * 60 * 60  # NCBI record counts grow with every release
 
 
 def _hash(key: str) -> str:

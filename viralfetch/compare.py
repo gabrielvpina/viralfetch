@@ -48,7 +48,7 @@ class LineageComparison:
     ncbi: NcbiLineage | None = None
 
 
-def _representative_accession(vmr: VMR, name: str) -> str:
+def representative_accession(vmr: VMR, name: str) -> str:
     _taxon, isolates = descendant_isolates(vmr, name)
     # Prefer an exemplar isolate's first accession; fall back to any.
     for iso in sorted(isolates, key=lambda i: not i.exemplar):
@@ -62,7 +62,7 @@ def compare_ncbi(vmr: VMR, ncbi: NCBIClient, name: str) -> LineageComparison:
     if taxon is None:
         raise TaxonNotFound(name, vmr.suggest(name))
 
-    accession = _representative_accession(vmr, name)
+    accession = representative_accession(vmr, name)
     taxid = ncbi.taxid_for_accession(accession)
     if not taxid:
         raise NoNcbiTaxid(accession)

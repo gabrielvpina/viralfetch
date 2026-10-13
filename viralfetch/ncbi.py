@@ -20,12 +20,13 @@ from __future__ import annotations
 
 import json
 import re
+import threading
 import time
 from dataclasses import dataclass, field
 
 import requests
 
-from .cache import SEQS, Cache
+from .cache import COUNTS_TTL, SEQS, TEXTS, Cache
 from .config import Config
 
 BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
@@ -81,6 +82,7 @@ class RateLimiter:
     """Enforces a minimum interval between requests, process-wide.
 
     Single central instance per client; there are no ad-hoc sleeps elsewhere.
+    Thread-safe, so a client may be shared by concurrent lookups.
     """
 
     def __init__(self, per_second: int, sleep=time.sleep, clock=time.monotonic):
@@ -88,13 +90,15 @@ class RateLimiter:
         self._sleep = sleep
         self._clock = clock
         self._last = 0.0
+        self._lock = threading.Lock()
 
     def wait(self) -> None:
-        now = self._clock()
-        gap = self._min_interval - (now - self._last)
-        if gap > 0:
-            self._sleep(gap)
-        self._last = self._clock()
+        with self._lock:
+            now = self._clock()
+            gap = self._min_interval - (now - self._last)
+            if gap > 0:
+                self._sleep(gap)
+            self._last = self._clock()
 
 
 class NCBIClient:
@@ -375,6 +379,27 @@ class NCBIClient:
         if self.cache:
             self.cache.set(SEQS, f"taxonomy:{taxid}", body)
         return _parse_taxonomy_xml(body)
+
+    def nuccore_count(self, term: str) -> int:
+        """How many nuccore records match an Entrez query (e.g.
+        ``txid11050[Organism:exp]``). Fast even for millions of records;
+        cached for a week, since counts grow with every GenBank release."""
+        key = f"nuccore-count:{term}"
+        if self.cache:
+            cached = self.cache.get(TEXTS, key, ttl=COUNTS_TTL)
+            if cached is not None:
+                return int(cached)
+        body = self._post(
+            "esearch.fcgi", {"db": "nuccore", "term": term, "retmax": "0", "retmode": "json"}
+        )
+        data = json.loads(body, strict=False)
+        try:
+            count = int(data["esearchresult"]["count"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise NCBIError(f"esearch returned no count for {term!r}") from exc
+        if self.cache:
+            self.cache.set(TEXTS, key, str(count))
+        return count
 
     def esearch_taxid(self, name: str) -> str | None:
         """Resolve a taxon name to an NCBI taxonomy taxid via esearch.

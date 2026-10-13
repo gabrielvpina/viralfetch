@@ -15,9 +15,11 @@ from ..compare import LineageComparison
 from ..ictv import VMRUpdate
 from ..models import Chapter
 from ..ncbi import MetaResult, RecordsResult
+from ..profile import Profile
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 from ..trees_install import InstalledTrees
+from ..viralzone_install import InstalledViralZone
 from ..vmr_install import InstalledVMR
 
 
@@ -259,6 +261,25 @@ def trees_reset(removed: bool) -> None:
     _emit({"removed": removed, "active": "bundled"})
 
 
+def viralzone_progress(i: int, n: int, entry: dict) -> None:
+    pass  # stdout carries only the final payload
+
+
+def viralzone_installed(v: InstalledViralZone) -> None:
+    _emit({
+        "installed": {
+            "path": str(v.path),
+            "factsheets": v.factsheets,
+            "taxa": v.taxa,
+            "failed": v.failed,
+        }
+    })
+
+
+def viralzone_reset(removed: bool) -> None:
+    _emit({"removed": removed, "active": "bundled"})
+
+
 def diagnose(d: Diagnostics) -> None:
     _emit({
         "isolates": d.isolates,
@@ -284,3 +305,35 @@ def error(message: str) -> None:
 
 def warn(message: str) -> None:
     print(json.dumps({"warning": message}, ensure_ascii=False), file=sys.stderr)
+
+
+def profile(p: Profile) -> None:
+    payload = {
+        "query": p.query,
+        "name": p.name,
+        "rank": p.rank,
+        "notes": p.notes,
+        "warnings": p.warnings,
+        "ictv": None if p.ictv is None else {
+            "name": p.ictv.name, "rank": p.ictv.rank, "lineage": p.ictv.lineage,
+            **({"summary": asdict(p.vmr)} if p.vmr else {}),
+        },
+        "ncbi": None if p.ncbi is None else {
+            "taxid": p.ncbi.taxid, "name": p.ncbi.name, "rank": p.ncbi.rank,
+            "lineage": [{"rank": r, "name": n} for r, n in p.ncbi.lineage],
+            "report": asdict(p.ncbi_report) if p.ncbi_report else None,
+            "sequences": asdict(p.sequences) if p.sequences else None,
+        },
+        "comparison": [asdict(r) for r in p.comparison],
+        "viralzone": None if p.viralzone is None else {
+            "factsheet": p.viralzone.factsheet,
+            "related": [{"name": r["name"], "rank": r["rank"], "url": r["url"]}
+                        for r in p.viralzone.related],
+            "host_groups": p.viralzone.host_groups,
+            "note": p.viralzone.note,
+            "credit": p.viralzone.credit,
+        },
+        "family": p.family,
+        "has_trees": p.has_trees,
+    }
+    _emit(payload)

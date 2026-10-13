@@ -7,14 +7,17 @@ Thin by design (SPEC section 4): commands resolve config, call a service in
 
 from __future__ import annotations
 
+import difflib
 import shutil
 import sys
 
 import typer
+from typer.core import TyperGroup
 
 from . import __version__
 from . import compare
 from . import config as config_mod
+from . import profile as profile_mod
 from . import ictv
 from . import queries
 from . import render
@@ -22,9 +25,12 @@ from . import msa as msa_mod
 from . import sequences
 from . import trees as trees_mod
 from . import trees_install
+from . import viralzone as viralzone_mod
+from . import viralzone_install
 from . import vmr as vmr_mod
 from . import vmr_install
 from .cache import Cache
+from .datasets import DatasetsClient
 from .ictv import ICTVClient
 from .ncbi import NCBIClient, NCBIError
 from .vmr import VMR_FILENAME, load
@@ -56,9 +62,11 @@ def _mask(key: str | None) -> str:
         return "(not set)"
     return ("…" + key[-4:]) if len(key) > 4 else "****"
 
-HELP = """Query viral taxonomy (ICTV VMR), sequences (NCBI) and the ICTV Report.
+HELP = """Query viral taxonomy (ICTV VMR), sequences (NCBI), the ICTV Report and ViralZone.
 
-Global options go [bold]before[/] the command: [cyan]viralfetch --json tax Coronaviridae[/].
+[bold]viralfetch NAME[/] profiles any taxon or virus name: ICTV vs NCBI taxonomy,
+NCBI genome counts and the ViralZone factsheet ([cyan]viralfetch Flaviviridae[/]).
+Global options go [bold]before[/] the name or command: [cyan]viralfetch --json tax Coronaviridae[/].
 Run [bold]viralfetch COMMAND --help[/] for command options.
 """
 
@@ -71,8 +79,19 @@ _TARGET = "Target & output"
 _PANEL_QUERY = "Query & retrieval"
 _PANEL_CONFIG = "Configuration & maintenance"
 
+class _DefaultToInfo(TyperGroup):
+    """Route ``viralfetch NAME ...`` to the ``info`` command when NAME is not a
+    command, so the profile is the default mode."""
+
+    def resolve_command(self, ctx, args):
+        if args and args[0] not in self.commands and not args[0].startswith("-"):
+            return "info", self.commands["info"], args
+        return super().resolve_command(ctx, args)
+
+
 app = typer.Typer(
     name="viralfetch",
+    cls=_DefaultToInfo,
     help=HELP,
     no_args_is_help=True,
     add_completion=False,
@@ -111,10 +130,53 @@ def main(
     # more detailed warning (and may be storing the email right now).
     if not ctx.obj.email and ctx.invoked_subcommand != "config":
         render.get(ctx.obj.format).warn(
-            "NCBI email is not configured yet — commands that reach NCBI (seq, text, "
+            "NCBI email is not configured yet — commands that reach NCBI (the profile, seq, text, "
             f"tax fallback/--ncbi/--compare-ncbi, tree/msa fallback, update) won't work. "
             f"{config_mod.EMAIL_HOWTO}"
         )
+
+
+@app.command(rich_help_panel=_PANEL_QUERY)
+def info(
+    ctx: typer.Context,
+    name: list[str] = typer.Argument(..., help="Taxon or virus name (quotes optional)."),
+    local: bool = typer.Option(False, "--local", help="Skip NCBI: VMR and ViralZone only."),
+) -> None:
+    """Profile a taxon: ICTV vs NCBI taxonomy, NCBI genomes, ViralZone factsheet.
+
+    The default command: [cyan]viralfetch Flaviviridae[/] is [cyan]viralfetch info Flaviviridae[/].
+    ViralZone content is credited to the SIB Swiss Institute of Bioinformatics.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    query = " ".join(name).strip()
+
+    ncbi_client = datasets_client = None
+    skipped = None
+    if local:
+        skipped = "NCBI was skipped (--local)."
+    else:
+        cache = Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache)
+        try:
+            ncbi_client = NCBIClient(cfg, cache=cache)
+            datasets_client = DatasetsClient(cfg, cache=cache)
+        except config_mod.ConfigError:
+            skipped = "NCBI was skipped: no NCBI email is configured."
+
+    try:
+        result = profile_mod.build(
+            load(), query, ncbi=ncbi_client, datasets=datasets_client,
+            viralzone=viralzone_mod.load(),
+        )
+    except queries.TaxonNotFound as exc:
+        out.not_found(exc.name, exc.suggestions)
+        command = difflib.get_close_matches(query, list(ctx.parent.command.commands), n=1)
+        if command and " " not in query:
+            out.warn(f"Did you mean the command `viralfetch {command[0]}`?")
+        raise typer.Exit(1)
+    if skipped:
+        result.warnings.insert(0, skipped)
+    out.profile(result)
 
 
 @app.command(rich_help_panel=_PANEL_QUERY)
@@ -582,13 +644,15 @@ def diagnose(ctx: typer.Context) -> None:
 def update(
     ctx: typer.Context,
     yes: bool = typer.Option(False, "--yes", help="Install a newer VMR without asking."),
-    reset: bool = typer.Option(False, "--reset", help="Go back to the bundled VMR (or trees, with --trees)."),
+    reset: bool = typer.Option(False, "--reset", help="Go back to the bundled VMR (or trees / ViralZone data, with --trees / --viralzone)."),
     trees: bool = typer.Option(False, "--trees", help="Rebuild the trees and alignments from the ICTV Report."),
     family: list[str] = typer.Option(None, "--family", "-f", help="With --trees: only this family (repeatable)."),
+    viralzone: bool = typer.Option(False, "--viralzone", help="Rebuild the ViralZone factsheets data set."),
 ) -> None:
-    """Update the VMR, or the trees and alignments (--trees).
+    """Update the VMR, the trees and alignments (--trees), or the ViralZone data (--viralzone).
 
     --trees takes 10-15 minutes for all families; update the VMR first.
+    --viralzone takes about 20 minutes (one request per second).
     """
     cfg: config_mod.Config = ctx.obj
     out = render.get(cfg.format)
@@ -596,9 +660,22 @@ def update(
     if family and not trees:
         out.error("--family only applies to --trees.")
         raise typer.Exit(2)
+    if trees and viralzone:
+        out.error("--trees and --viralzone cannot be combined; run them one at a time.")
+        raise typer.Exit(2)
+    if viralzone and yes:
+        out.error("--yes does not apply to --viralzone.")
+        raise typer.Exit(2)
     if reset and (yes or family):
         out.error("--reset cannot be combined with --yes or --family.")
         raise typer.Exit(2)
+
+    if viralzone:
+        if reset:
+            out.viralzone_reset(viralzone_install.reset())
+            return
+        _update_viralzone(cfg, out)
+        return
 
     if trees:
         if reset:
@@ -642,6 +719,21 @@ def _update_trees(client: ICTVClient, families: list[str] | None, out) -> None:
         out.error(f"Could not rebuild the trees: {exc} (the current trees are unchanged).")
         raise typer.Exit(4)
     out.trees_installed(result)
+
+
+def _update_viralzone(cfg: config_mod.Config, out) -> None:
+    """Rebuild and install the ViralZone data set, or exit(4) on failure."""
+    try:
+        client = viralzone_install.ViralZoneClient(cfg)
+    except config_mod.ConfigError as exc:
+        out.error(str(exc))
+        raise typer.Exit(3)
+    try:
+        result = viralzone_install.install(client, progress=out.viralzone_progress)
+    except (viralzone_install.ViralZoneError, viralzone_install.ViralZoneInstallError) as exc:
+        out.error(f"Could not rebuild the ViralZone data: {exc} (the current data are unchanged).")
+        raise typer.Exit(4)
+    out.viralzone_installed(result)
 
 
 def _interactive() -> bool:
@@ -711,7 +803,7 @@ def cache_info_cmd(ctx: typer.Context) -> None:
 @cache_app.command("clear")
 def cache_clear_cmd(
     ctx: typer.Context,
-    texts: bool = typer.Option(False, "--texts", help="Only ICTV chapters."),
+    texts: bool = typer.Option(False, "--texts", help="Only ICTV chapters and NCBI counts."),
     seqs: bool = typer.Option(False, "--seqs", help="Only sequences, metadata and ICTV files."),
     images: bool = typer.Option(False, "--images", help="Only chapter figures."),
 ) -> None:

@@ -11,124 +11,41 @@
 ![Output](https://img.shields.io/badge/output-Rich-009688)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 
+**Viral taxonomy, sequences, trees and curated knowledge — from one command.**
+
 </div>
 
-<div align="center">
-A command-line tool for querying and downloading viral taxonomy, metadata,
-sequences, and per-family phylogenetic trees and alignments. It combines six
-sources:
-</div>
+viralfetch brings together the ICTV taxonomy, NCBI, the ICTV Report and
+ViralZone in the terminal:
 
-| Source | Content | Access |
+| Source | What it provides | Access |
 |---|---|---|
-| **VMR** (ICTV Virus Metadata Resource) | taxonomic hierarchy + exemplar isolates + GenBank/RefSeq accessions | **local**, embedded TSV |
-| **NCBI E-utilities** | sequence metadata, sequences (nt/aa), NCBI taxonomy, record counts | **remote**, on demand |
-| **NCBI Datasets** | RefSeq sequences of a taxon, assembly count, ICTV name status | **remote**, on demand |
-| **ICTV Report** | descriptive chapter text per family (with figures) | **remote**, on demand |
-| **ICTV Report trees** | per-family Newick trees + amino-acid/nucleotide alignments | **local**, bundled |
-| **ViralZone** (SIB) | curated factsheets: virion, genome, replication, host, geography, diseases, transmission, vaccines, antivirals, host-virus interactions, reference strains | **local**, bundled JSON |
+| **ICTV VMR** | taxonomy, exemplar isolates, GenBank/RefSeq accessions | local (bundled) |
+| **ICTV Report** | family chapters (text + figures), phylogenetic trees and alignments | chapters on demand · trees bundled |
+| **NCBI** (E-utilities, Datasets) | taxonomy, sequences, metadata, genome counts | on demand, cached |
+| **ViralZone** (SIB) | curated factsheets: host, geography, diseases, transmission, vaccines, antivirals | local (bundled) |
 
-The VMR is the local index; remote sources are fetched on demand and cached.
-
----
-
-## Installation
+## Install
 
 ```bash
 pip install viralfetch
+viralfetch config --store-ncbi-email you@example.com   # required by NCBI for remote queries
 ```
 
-This installs the `viralfetch` command and everything it needs in one step —
-including Pillow (for drawing chapter figures) and `alv`/Biopython (for the
-alignment viewer). Python 3.10+ is required.
+Python 3.10+. An NCBI API key (`--store-ncbi-apikey KEY`) is optional and raises the
+rate limit from 3 to 10 requests/s. Without an email, local commands still work.
 
-## NCBI configuration
+## Quick start: profile any virus
 
-Commands that reach NCBI (`seq`, `tax --ncbi`, `tax --compare-ncbi`, `text`,
-`update`, and the fallback below) require a real email address, per NCBI usage policy. There is **no
-default** — the command fails with an explanation if none is set. Until one is
-configured, every `viralfetch` call prints a reminder on stderr listing the
-ways to set it (stdout stays clean, so `--json` output is unaffected).
-
-```bash
-export NCBI_EMAIL="you@example.com"
-export NCBI_API_KEY="..."   # optional; raises the rate limit from 3 to 10 req/s
-```
-
-You can also pass `--email` / `--api-key` on any command.
-
-**Session vs. persisted.** An `export` (or `--email`) applies only to the
-current shell session. To store the email permanently, use:
-
-```bash
-viralfetch config --store-ncbi-email you@example.com
-```
-
-This writes to the config file (see `viralfetch config`), which survives across
-sessions. Running `viralfetch config` warns you when no email is persisted yet.
-
-### Names the VMR doesn't know
-
-Every command that takes a taxon name falls back to **NCBI taxonomy** when the
-name is not in the local VMR (an NCBI-only name, an older synonym, a strain),
-and says so on stderr:
-
-| Command | What the NCBI lineage is used for |
-|---|---|
-| `tax` | shows the NCBI lineage itself |
-| `members`, `seq` | the closest VMR taxon in that lineage (down to family) |
-| `text` | the family's ICTV Report chapter |
-| `tree`, `msa` | the family's tree/alignment, highlighting the closest tips |
-
-```bash
-viralfetch members "Primate lentivirus group" --rank species
-# stderr: 'Primate lentivirus group' is not in the local VMR; NCBI places it in
-#         genus Lentivirus — showing that genus instead.
-```
-
-The fallback is best-effort: without an NCBI email, when NCBI is unreachable,
-or when the name only maps to a taxon broader than a family, the command
-reports "not found" with the usual suggestions.
-
-## Global options
-
-These go **before** the name or command:
-
-| Option | Effect |
-|---|---|
-| `--json` | Emit pure JSON on stdout (warnings/errors go to stderr) — ready for `jq`. |
-| `--no-cache` | Ignore the cache and refetch. |
-| `--verbose` | Extra diagnostics on stderr. |
-| `--email`, `--api-key` | Override the NCBI credentials for this run. |
-
-Run `viralfetch COMMAND --help` to see a command's own arguments and options.
-
----
-
-## `viralfetch NAME` — taxon profile (the default; local + NCBI)
-
-Give any taxon or virus name — a family, genus, species (quotes optional) or a
-name only NCBI knows, like `SARS-CoV-2` — and viralfetch profiles it from every
-source at once (`viralfetch info NAME` is the same command):
+Type a name — family, genus, species or a common virus name:
 
 ```bash
 viralfetch Flaviviridae
-viralfetch Orthoflavivirus denguei
-viralfetch SARS-CoV-2
-viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
-viralfetch Coronaviridae --local     # no network: VMR + ViralZone only
-viralfetch Orthoflavivirus --full    # every detail (lineage table, RefSeq list, biology)
+viralfetch Orthoflavivirus denguei     # quotes are optional
+viralfetch SARS-CoV-2                  # names only NCBI knows work too
 ```
 
-| Panel | Source | Content |
-|---|---|---|
-| header | VMR + NCBI | name, rank and family, molecule, Baltimore group, NCBI taxid, ICTV status of the name, the lineage as a breadcrumb, and whether ICTV and NCBI agree |
-| ICTV (VMR) | VMR | species and isolates under the taxon, genome composition, host source, exemplar accessions (species) |
-| NCBI | E-utilities + NCBI Datasets | nucleotide records, complete genomes (records titled "complete genome", with their share of all records), RefSeq sequences (one per segment) and genome assemblies under the taxid |
-| ViralZone | bundled ViralZone data | the closest factsheet (the taxon's own, else its genus or family): host groups, host, tropism, geography, diseases, transmission, vaccine, antivirals, replication site — with the ViralZone credit |
-
 ```
-$ viralfetch Orthoflavivirus
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ Orthoflavivirus   genus · Flaviviridae                                                           │
 │ ssRNA(+) · Group IV · NCBI taxid 3044782 · ✓ ICTV-accepted name            ✓ ICTV and NCBI agree │
@@ -145,482 +62,73 @@ $ viralfetch Orthoflavivirus
 ╰───────────────────────────────────────┴──────────────────────────────────────────────────────────╯
 ╭─ ViralZone · Orthoflavivirus (genus) ────────────────────────────────────────────────────────────╮
 │ ● human  ● invertebrate                                                              factsheet ↗ │
-│ …                                                                                                │
 │ diseases      YFV: Hemorrhagic fever, encephalitis                                               │
 │               DENV: Dengue fever                                                                 │
 │               ZIKV: Zika fever                                                                   │
 │ transmission  Zoonosis, arthropod bite, mainly mosquitoes                                        │
 │ …                                                                                                │
 ╰────────────────────────────────────────── ViralZone (SIB) · CC BY 4.0 · doi:10.1093/nar/gkad946 ─╯
-More: text Flaviviridae · tree · seq · members           --full: lineage table, RefSeq list, biology
 ```
 
-The view is compact by default: long ViralZone fields are cut (`…`), the ICTV
-and NCBI cards sit side by side (stacked on terminals narrower than 90
-columns), and "factsheet ↗" / "NCBI Virus ↗" / the taxid are clickable links in
-terminals that support them. The rank-by-rank ICTV-vs-NCBI table appears on
-its own when the two lineages disagree. `--full` shows everything: that table,
-the first ten RefSeq sequences, the complete ViralZone fields and its biology
-(receptors, virion, genome, host-virus interactions, reference strains,
-related factsheets). `--json` always carries all of it, plus the full ViralZone
-citation.
-
-A name the VMR doesn't know is placed through NCBI: the NCBI record is the
-subject, and the nearest VMR taxon (down to family) gives the ICTV lineage.
-NCBI is optional — without an email, with `--local`, or when a request fails,
-the profile keeps its local panels and says what was skipped on stderr.
-
-A first profile takes about 2–3 seconds (six NCBI requests, the E-utilities
-and Datasets ones running concurrently); NCBI answers are then cached — names
-and lineages permanently, counts and RefSeq listings for a week — so repeating
-a query is near-instant. Entrez has no completeness field, so "complete
-genomes" counts records titled "complete genome"; NCBI Virus' own completeness
-flag agrees within a few percent but takes tens of seconds to count on large
-families (and fails on the largest), so it is not used.
-
-## `tax` — taxonomy lineage (local, NCBI only as a fallback)
-
-Show the full ICTV lineage of a taxon (realm → species) as aligned rank/name
-columns, with the queried taxon marked `◀`. Case-insensitive,
-with "did you mean" suggestions on a near miss. A species also gets an isolate
-summary.
-
-If the name is not in the local VMR, `tax` automatically looks it up in NCBI
-taxonomy and shows that lineage instead (with a note on stderr). The fallback
-is best-effort: with no NCBI email configured, or if NCBI is unreachable or
-knows no such taxon, it reports "not found" with the usual suggestions.
+The profile compares the ICTV and NCBI lineages, counts what NCBI holds and shows
+the closest ViralZone factsheet. Useful variants:
 
 ```bash
-viralfetch tax "Human immunodeficiency virus 1"
-# stderr: 'Human immunodeficiency virus 1' is not in the local VMR; showing its
-#         NCBI taxonomy lineage instead.
+viralfetch Orthoflavivirus --full                 # + lineage table, RefSeq list, virion/genome biology
+viralfetch Coronaviridae --local                  # offline: VMR + ViralZone only
+viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
 ```
+
+## Commands
+
+### Taxonomy — `tax`, `members`
 
 ```bash
-viralfetch tax Coronaviridae
+viralfetch tax Coronaviridae                          # ICTV lineage
+viralfetch tax "Betacoronavirus pandemicum" --compare-ncbi   # ICTV vs NCBI, side by side
+viralfetch tax SARS-CoV-2 --ncbi                      # NCBI taxonomy directly
+
+viralfetch members Coronaviridae --rank genus         # genera, with species counts
+viralfetch members Coronaviridae --tree               # full descendant hierarchy
+viralfetch members Riboviria --rank family --count    # "158 families in realm Riboviria"
 ```
 
-```
-╭─ Coronaviridae  (family) ──╮
-│ realm     Riboviria        │
-│ kingdom   Orthornavirae    │
-│ phylum    Pisuviricota     │
-│ class     Pisoniviricetes  │
-│ order     Nidovirales      │
-│ suborder  Cornidovirineae  │
-│ family    Coronaviridae  ◀ │
-╰────────────────────────────╯
-```
+### Sequences — `seq`
 
-Same query as JSON:
+Accessions come from the VMR; records come from NCBI.
 
 ```bash
-viralfetch --json tax Coronaviridae
+viralfetch seq "Betacoronavirus pandemicum"                   # metadata table
+viralfetch seq "Betacoronavirus pandemicum" --fasta -o sars.fa
+viralfetch seq "Betacoronavirus pandemicum" --protein --fasta # proteins via elink
+viralfetch seq --taxon Coronaviridae --meta                   # local download estimate
+viralfetch seq --taxon Filoviridae --moltype ssRNA --gb -o filo.gb
 ```
 
-```json
-{
-  "name": "Coronaviridae",
-  "rank": "family",
-  "lineage": {
-    "realm": "Riboviria",
-    "kingdom": "Orthornavirae",
-    "phylum": "Pisuviricota",
-    "class": "Pisoniviricetes",
-    "order": "Nidovirales",
-    "suborder": "Cornidovirineae",
-    "family": "Coronaviridae"
-  }
-}
-```
+Downloads above 500 accessions ask for confirmation (`--yes` to skip).
 
-### `tax --ncbi` (remote)
-
-Look the lineage up **directly in NCBI's taxonomy** database instead of the
-local VMR — useful for a name the VMR does not carry (a non-viral host, a very
-recent taxon, an NCBI synonym). The name is resolved to a taxid via `esearch`,
-then its lineage is fetched. Requires an NCBI email (see above).
+### ICTV Report — `text`
 
 ```bash
-viralfetch tax "SARS-CoV-2" --ncbi
-```
-
-```
-╭─ SARS-CoV-2  (species) ────╮
-│ realm    Riboviria         │
-│ …        …                 │
-│ family   Coronaviridae     │
-│ species  SARS-CoV-2  ◀     │
-╰────────────────────────────╯
-NCBI taxonomy — taxid 2697049
-```
-
-With `--json` the payload is `{source: "ncbi", taxid, name, rank, lineage}`. An
-unknown name exits `1`. `--ncbi` and `--compare-ncbi` are mutually exclusive.
-
-### `tax --compare-ncbi` (remote)
-
-Fetch the NCBI taxonomy lineage for a representative accession and render it
-beside the ICTV lineage, highlighting divergences. Divergences are expected —
-NCBI commonly lags ICTV — and are the point of the command.
-
-```bash
-viralfetch tax "Betacoronavirus pandemicum" --compare-ncbi
-```
-
-```
-             ICTV vs NCBI lineage — Betacoronavirus pandemicum
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ ICTV (VMR)                          ┃ NCBI (taxid 227984)                ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ realm: Riboviria                    │ acellular root: Viruses            │
-│ kingdom: Orthornavirae              │ realm: Riboviria                   │
-│ …                                   │ …                                  │
-│ species: Betacoronavirus pandemicum │ species: Betacoronavirus pandemi…  │
-│                                     │ no rank: SARS coronavirus Tor2     │
-└─────────────────────────────────────┴────────────────────────────────────┘
-```
-
----
-
-## `members` — child taxa (local, NCBI only as a fallback)
-
-List the taxa below a given taxon.
-
-### At a specific rank
-
-```bash
-viralfetch members Coronaviridae --rank genus
-```
-
-```
-genera in family Coronaviridae
-┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
-┃ genus            ┃ species ┃
-┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
-│ Alphacoronavirus │      26 │
-│ Alphaletovirus   │       1 │
-│ Alphapironavirus │       1 │
-│ Betacoronavirus  │      14 │
-│ Deltacoronavirus │       7 │
-│ Gammacoronavirus │       5 │
-└──────────────────┴─────────┘
-           6 genera
-```
-
-### Counts only
-
-```bash
-viralfetch members Riboviria --rank family --count
-```
-
-```
-158 families in realm Riboviria
-```
-
-### Per-rank breakdown (no flags)
-
-```bash
-viralfetch members Coronaviridae
-```
-
-```
-  members of family
-Coronaviridae by rank
-┏━━━━━━━━━━━┳━━━━━━━┓
-┃ rank      ┃ count ┃
-┡━━━━━━━━━━━╇━━━━━━━┩
-│ subfamily │     3 │
-│ genus     │     6 │
-│ subgenus  │    28 │
-│ species   │    54 │
-└───────────┴───────┘
-Tip: add --tree to list every member of Coronaviridae as a hierarchy.
-```
-
-### Full descendant tree
-
-```bash
-viralfetch members Coronaviridae --tree
-```
-
-```
-Coronaviridae  (family)
-├── Letovirinae  (subfamily)
-│   └── Alphaletovirus  (genus)
-│       └── Milecovirus  (subgenus)
-│           └── Alphaletovirus microhylae  (species)
-├── Orthocoronavirinae  (subfamily)
-│   ├── Alphacoronavirus  (genus)
-│   │   ├── Amalacovirus  (subgenus)
-│   │   │   └── Alphacoronavirus almalfi  (species)
-│   │   └── …
-│   └── …
-└── …
-91 descendant taxa
-```
-
-`--rank`, `--tree`, and the breakdown all work with `--json` too.
-
----
-
-## `seq` — NCBI sequence data (remote)
-
-Accessions are resolved locally from the VMR, then metadata or records are
-fetched from NCBI. Output formats are mutually exclusive; `--meta` is the
-default.
-
-| Flag | Fetches |
-|---|---|
-| `--meta` | metadata via `esummary` (~1 KB/accession) |
-| `--fasta` | FASTA sequences via `efetch` |
-| `--gb` | full GenBank records via `efetch` |
-
-### Metadata for a species
-
-```bash
-viralfetch seq "Betacoronavirus pandemicum" --meta
-```
-
-```
-             nuccore metadata — Betacoronavirus pandemicum
-┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━┈
-┃ accession  ┃ organism            ┃   len ┃ moltype ┃ biomol  ┃ …
-┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━┈
-│ AY274119.3 │ SARS coronavirus…   │ 29751 │ rna     │ genomic │ …
-│ AY613950.1 │ SARS coronavirus…   │ 29728 │ rna     │ genomic │ …
-│ MN908947.3 │ SARS-CoV-2 Wuhan-…  │ 29903 │ rna     │ genomic │ …
-│ KY352407.1 │ SARS-related coro…  │ 29274 │ rna     │ genomic │ …
-└────────────┴─────────────────────┴───────┴─────────┴─────────┴───┈
-```
-
-(Columns `topology`, `completeness`, `sourcedb` and `updatedate` are shown too;
-trimmed here for width. Add `--json` for the full, untruncated records.)
-
-### Download FASTA to a file
-
-```bash
-viralfetch seq "Betacoronavirus pandemicum" --fasta -o out.fa
-```
-
-```
-Wrote 4 fasta record(s) for Betacoronavirus pandemicum to out.fa
-```
-
-Without `-o`, records go to stdout (pipeable), and the summary goes to stderr.
-
-### A whole taxon
-
-`--taxon` operates on every species beneath a taxon. With `--meta` it shows a
-**local aggregate** (no network) so you can decide whether a download is worth
-it:
-
-```bash
-viralfetch seq --taxon Coronaviridae --meta
-```
-
-```
-╭─ Coronaviridae (family) — download estimate ─╮
-│ species     54                               │
-│ isolates    59                               │
-│ accessions  59                               │
-│ RefSeq       0                               │
-╰──────────────────────────────────────────────╯
-   by genome composition
-┏━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
-┃ composition ┃ accessions ┃
-┡━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
-│ ssRNA(+)    │         59 │
-└─────────────┴────────────┘
-```
-
-```json
-{
-  "name": "Coronaviridae",
-  "rank": "family",
-  "species": 54,
-  "isolates": 59,
-  "accessions": 59,
-  "refseq": 0,
-  "moltype_breakdown": { "ssRNA(+)": 59 }
-}
-```
-
-Fetches of more than 500 accessions ask for confirmation unless `--yes` is
-given (in `--json` / non-interactive mode they refuse without `--yes`).
-
-### Molecule selection
-
-`--moltype` and `--biomol` are `db=nuccore` fields, filtered locally over the
-metadata (matching is lenient — `--moltype ssRNA` matches `ss-RNA`):
-
-```bash
-viralfetch seq --taxon Filoviridae --moltype ssRNA --fasta -o filo.fa
-viralfetch seq "Betacoronavirus pandemicum" --biomol genomic
-```
-
-`--protein` is a **separate path**, not a nuccore filter: proteins live in
-`db=protein`, reached via `elink` (nuccore → protein).
-
-```bash
-viralfetch seq "Betacoronavirus pandemicum" --protein --fasta
-```
-
----
-
-## `text` — ICTV Report chapter (remote)
-
-Fetch the ICTV Report chapter for a family, convert its main content to
-Markdown, and render it with headings, subsection titles, characteristic
-tables, and the **italics of scientific names** preserved. The original page
-URL and the chapter's references/attribution are shown at the top, and the
-content is **CC BY 4.0**. Figures are kept as image links; `--images` also
-draws them in the terminal (see below).
-
-```bash
-viralfetch text Coronaviridae
-```
-
-```
-                          Family: Coronaviridae
-
-Source: https://ictv.global/report/chapter/coronaviridae/coronaviridae
-
-Patrick C.Y. Woo, Raoul J. de Groot, Bart Haagmans, Susanna K.P. Lau, …
-
-The citation for this ICTV Report chapter is the summary published as:
-Woo et al., (2023), ICTV Virus Taxonomy Profile: Coronaviridae 2023,
-Journal of General Virology (2023) 104, 001843
-
-Content is licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
-────────────────────────────────────────────────────────────────────────
-Summary
-
-Members of the family Coronaviridae, a monophyletic group of viruses in
-the order Nidovirales, are enveloped, positive-sense RNA viruses …
-```
-
-### A single section
-
-`--section` restricts the output to one section, matched by heading
-(case-insensitive substring). The top attribution block is always kept.
-
-```bash
+viralfetch text Coronaviridae                    # chapter rendered as Markdown
 viralfetch text Coronaviridae --section summary
+viralfetch text Coronaviridae --images           # figures drawn in the terminal
+viralfetch text Geminiviridae --raw > gemini.md
+viralfetch text Betacoronavirus                  # genera/species resolve to their family
 ```
 
-### Raw Markdown to a file
+### Trees and alignments — `tree`, `msa`
 
-`--raw` emits the pure Markdown (no Rich decoration), ready to redirect:
+The ICTV Report trees and alignments are bundled, so these work offline.
 
 ```bash
-viralfetch text Geminiviridae --raw > geminiviridae.md
-```
+viralfetch tree "Betacoronavirus pandemicum"     # family tree, the species highlighted
+viralfetch tree Coronaviridae --tree 2           # another figure of the same family
+viralfetch tree Geminiviridae --newick > gemini.nwk
 
-```markdown
-# Family: Geminiviridae
-
-*Source: https://ictv.global/report/chapter/geminiviridae/geminiviridae*
-
-**Elvira Fiallo-Olivé, Jean-Michel Lett, Darren P. Martin, …**
-
-The citation for this ICTV Report chapter is the summary published as
-Fiallo-Olivé et al., ICTV Virus Taxonomy Profile: *Geminiviridae* 2021, …
-```
-
-With `--json`, the command emits `{slug, title, url, doi, images, markdown}`
-instead — `images` is a list of `{url, alt}` for the chapter's figures, whose
-absolute URLs also appear inline in the Markdown as `![alt](url)`.
-
-### Figures in the terminal
-
-`--images` draws the chapter's figures **in their original place** in the text,
-as truecolor Unicode block-element graphics sized to your terminal (full width
-by default, for the sharpest picture). Each character cell packs a 2×2 grid of
-sub-pixels with a per-cell best-fit of two colours; the image is downscaled in
-linear light (LANCZOS) and error-diffusion dithered, so gradients stay smooth.
-It renders the same on any truecolor terminal — no special graphics protocol
-required. Each figure keeps its `alt` as a caption. It applies only to the
-interactive Rich view (not `--raw`, `--json`, or when piped):
-
-```bash
-viralfetch text Coronaviridae --images
-viralfetch text Coronaviridae --images --fig-width 60   # cap the size
-```
-
-Figures are fetched politely (rate-limited, `robots.txt`-honouring, from the
-ICTV domain only) and cached permanently. A missing or broken figure is skipped,
-never fatal.
-
-### Genera and species resolve to their family chapter
-
-The ICTV Report is organised **by family** — genera and species have no chapter
-of their own. Given one, `text` looks it up in the VMR and shows its family's
-chapter, with a note on stderr (so `--raw`/`--json` stdout stays clean):
-
-```bash
-viralfetch text Betacoronavirus
-# stderr: 'Betacoronavirus' is a genus; the ICTV Report has no genus chapter
-#         — showing its family, Coronaviridae.
-# stdout: the Coronaviridae chapter
-```
-
-### Names the VMR doesn't know fall back to NCBI
-
-If a name is absent from the local VMR, `text` asks **NCBI taxonomy** for its
-family before giving up, and — if NCBI places it in one — shows that family's
-chapter (with a note on stderr). This catches recent taxa and NCBI synonyms the
-bundled VMR predates:
-
-```bash
-viralfetch text "some-recent-virus"
-# stderr: 'some-recent-virus' is not in the local VMR; NCBI places it in
-#         family Rhabdoviridae — showing that chapter.
-# stdout: the Rhabdoviridae chapter
-```
-
-The fallback is best-effort: if NCBI is unreachable or knows no family, the name
-is tried verbatim and, failing that, gets "did you mean" suggestions and exit
-code `1`.
-
-Fetching honours `ictv.global/robots.txt`, sends a descriptive `User-Agent`
-carrying your contact email, waits at least 1 second between requests, and
-caches chapter HTML for 30 days.
-
----
-
-## `tree` — phylogenetic tree (local, NCBI only as a fallback)
-
-Show the ICTV Report phylogenetic tree for a taxon's **family**, drawn as an
-indented cladogram. Trees are bundled locally (Newick + metadata + a tip→virus
-table per family), so this works offline.
-
-The name is resolved through the VMR to its family, and the tip(s) it points at
-are highlighted: a **species** highlights its own tip, a **genus** its whole
-clade, a **family** shows the tree with nothing highlighted. A name the VMR does
-not know is searched for among every tree's members (so a virus member name that
-is not an ICTV taxon still finds its tree).
-
-Failing that, the name is looked up in **NCBI taxonomy** — which knows strains,
-synonyms and taxa newer than the bundled VMR. Its lineage names the family (the
-same family names ICTV uses), and the deepest rank the trees do record —
-species → subgenus → genus → subfamily — highlights the query's **closest
-relatives** on that tree. The note on stderr always says which rank was used:
-
-```bash
-viralfetch tree "Dengue virus 2"
-# 'Dengue virus 2' is not in the local VMR; NCBI places it in family
-# Flaviviridae — no tip matches 'dengue virus type 2' itself, so its subgenus
-# 'Euflavivirus' is highlighted instead (closest relatives on the tree).
-```
-
-This step is the only one that touches the network, and it is best-effort: with
-no NCBI email configured (`viralfetch config --store-ncbi-email you@example.com`)
-or no connection it is silently skipped, leaving the offline behaviour intact.
-`msa` resolves names the same way.
-
-```bash
-viralfetch tree "Betacoronavirus pandemicum"
+viralfetch msa "Betacoronavirus pandemicum" --consensus
+viralfetch msa Coronaviridae --range 100:180
+viralfetch msa Coronaviridae --fasta > coronaviridae_msa.fasta
 ```
 
 ```
@@ -632,201 +140,57 @@ Coronaviridae · Figure 5A · RdRp (AA) · maximum likelihood · 55 tips · 2 ma
    │     ┌ severe acute respiratory syndrome coronavirus  ← match
    └─────┤
          └ severe acute respiratory syndrome coronavirus 2  ← match
-
-Caption: Figure 5 Coronaviridae. Phylogenetic relationships among members …
-Other trees for Coronaviridae: --tree 2 (helicase)
 ```
 
-When a family has several trees, pick one with `--tree N`; the query defaults to
-whichever tree contains the match. Other options:
+### Names the VMR doesn't know
 
-| Option | Effect |
+Every command falls back to NCBI taxonomy for strains, synonyms and very recent taxa,
+and says so on stderr:
+
+```bash
+viralfetch tree "Dengue virus 2"
+# 'Dengue virus 2' is not in the local VMR; NCBI places it in family Flaviviridae —
+# its subgenus 'Euflavivirus' is highlighted instead (closest relatives on the tree).
+```
+
+## Keeping data up to date
+
+```bash
+viralfetch update                  # install a newer ICTV VMR, if one was published
+viralfetch update --trees          # rebuild trees/alignments from the ICTV Report (~15 min)
+viralfetch update --viralzone      # rebuild the ViralZone factsheets (~20 min)
+viralfetch update --reset          # back to the bundled VMR (--trees / --viralzone too)
+```
+
+Updates go to your user data directory and only replace the current data once they
+complete successfully.
+
+## Options, output and cache
+
+| | |
 |---|---|
-| `--tree N` | Choose a tree when a family has several (1-based). |
-| `--newick` | Emit the raw Newick string to stdout (for piping to other tools). |
-| `--chapter` | Show the family's bundled ICTV Report chapter text instead. |
+| `--json` | clean JSON on stdout, for `jq` and scripts (goes **before** the name/command) |
+| `--no-cache` | refetch instead of using the cache |
+| `--email`, `--api-key` | NCBI credentials for this run only |
+| exit codes | `1` not found · `2` bad usage · `3` no NCBI email · `4` remote request failed |
+| cache | sequences and figures kept permanently; ICTV chapters 30 days; NCBI counts 7 days — `viralfetch cache info` / `cache clear` |
 
-`--newick` and `--json` keep stdout clean (the redirect note goes to stderr).
-With `--json`, the command emits `{family, source, note, matched_rank,
-matched_value, tree: {…, matched, newick}, other_trees}` — `source` is
-`vmr`, `member` or `ncbi`, and `matched_rank`/`matched_value` say what the
-highlight fell back to. An unknown name gets "did you mean" suggestions and exit
-code `1`; a family with no bundled tree exits `1` with a note.
+Run `viralfetch COMMAND --help` for every option.
 
----
+## Credits
 
-## `msa` — multiple sequence alignment (local, NCBI only as a fallback)
+- **ICTV** — taxonomy (VMR), Report chapters, trees and alignments. Chapter content is
+  licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); `text` shows each
+  chapter's citation.
+- **NCBI** — E-utilities and Datasets APIs, used per the NCBI usage policies.
+- **ViralZone**, SIB Swiss Institute of Bioinformatics — factsheet content (images
+  CC BY 4.0; data for research and education, not for medical use). Please cite:
 
-Show the alignment behind a family's tree — the aligned FASTA that sits beside
-each Newick — coloured by residue and wrapped into blocks with a column ruler
-(via [`alv`](https://github.com/arvestad/alv)). The name is resolved to its
-family exactly as `tree` does, and the query's own records are marked `▶`.
+  > De Castro E, Hulo C, Masson P, Auchincloss A, Bridge A, Le Mercier P. ViralZone 2024
+  > provides higher-resolution images and advanced virus-specific resources.
+  > *Nucleic Acids Res.* 2024;52(D1):D817–D821.
+  > doi:[10.1093/nar/gkad946](https://doi.org/10.1093/nar/gkad946)
 
-The alignments run to **thousands of columns**, so the view defaults to a
-leading column window that fits your terminal; move or widen it with `--range`.
-`--fasta` is the exception: it exports the **whole** alignment unless `--range`
-is given.
+## License
 
-```bash
-viralfetch msa Coronaviridae --fasta > coronaviridae_msa.fasta          # all columns
-viralfetch msa Coronaviridae --fasta --range 100:180 > window.fasta     # a slice
-```
-
-```bash
-viralfetch msa "Betacoronavirus pandemicum" --consensus
-```
-
-```
-Coronaviridae · tree1 · AA · cols 1–60 of 316 · 55 seqs · 2 matches
-consensus              KHFFFAQDGDAAITDYDYYRYNRPTMLDICQALFVYEVVDKYFDIYEGGCITAKEVVVTN
-▶ severe acute respir  KHFFFAQDGNAAISDYDYYRYNLPTMCDIRQLLFVVEVVDKYFDCYDGGCINANQVIVNN
-Alphapironavirus bona  EHFFYLQPRDCAVTDFDYYRFNRPTVLDPLQFRFVYNVVKHYFKSYSAGCLKSEFVIINN
-…                      0^                 20^                 40^
-```
-
-| Option | Effect |
-|---|---|
-| `--tree N` | Choose a tree when a family has several (1-based). |
-| `--range A:B` | Column window, 1-based inclusive (`100:180`; either bound may be omitted). |
-| `--consensus` | Prepend a per-column majority-residue row. |
-| `--fasta` | Emit the alignment as FASTA to stdout — **all columns** by default, or only the `--range` window. |
-
-With `--json`, the command emits `{family, tree_id, molecule, total_cols, start,
-n_cols, matched, consensus, rows: [{name, seq, matched}]}`. A family whose tree
-has no bundled alignment exits `1` with a note.
-
----
-
-## Utilities
-
-Small helper commands, all local except `update`.
-
-```bash
-viralfetch diagnose                 # VMR parser quality (zero-accession rows)
-viralfetch update                   # newer VMR on ictv.global? offers to install it
-viralfetch update --yes             # install a newer VMR without asking
-viralfetch update --reset           # drop the installed VMR, back to the bundled one
-viralfetch update --trees           # rebuild the trees/alignments from the ICTV Report
-viralfetch update --trees -f Geminiviridae   # rebuild only some families
-viralfetch update --trees --reset   # drop the rebuilt trees, back to the bundled ones
-viralfetch update --viralzone       # rebuild the ViralZone factsheets data set
-viralfetch update --viralzone --reset   # back to the bundled ViralZone data
-viralfetch config                   # show email, masked API key, cache paths
-                                    # (warns if no NCBI email is persisted yet)
-viralfetch config --store-ncbi-email you@example.com    # persist email
-viralfetch config --store-ncbi-apikey KEY               # persist API key
-viralfetch cache info               # per-namespace entry counts and size
-viralfetch cache clear --texts      # drop cached ICTV chapters and NCBI counts (or --seqs, --images, or all)
-```
-
-`diagnose` reports the parser's quality indicator — how many VMR rows yielded
-zero accessions:
-
-```
-╭─ VMR accession-parser diagnostics ─╮
-│ isolates              19271        │
-│ accessions            23249        │
-│ empty-accession rows  141          │
-│ unparsed rows         0            │
-╰────────────────────────────────────╯
-```
-
-### Updating the VMR
-
-The VMR ships inside the package. `update` checks whether ICTV has published a
-newer release and, if so, asks whether to download and install it:
-
-```
-$ viralfetch update
-A newer VMR is available.
-  current: VMR_MSL41.v1.20260320.tsv
-  latest:  VMR_MSL41.v1.20260729.xlsx
-  download: https://ictv.global/sites/default/files/VMR/VMR_MSL41.v1.20260729.xlsx
-Download and install it? [y/N]: y
-✓ Installed VMR_MSL41.v1.20260729.tsv (19285 isolates, 17554 species).
-```
-
-The workbook is converted to TSV, validated, and stored in your user data
-directory (not inside the package, so it survives reinstalls); every command
-uses it from then on. If anything fails, the current VMR is left untouched.
-`--yes` skips the question (needed in scripts and with `--json`, which never
-prompts); `--reset` removes the installed copy and goes back to the bundled VMR.
-A later viralfetch release that bundles an even newer VMR takes precedence over
-an older install automatically.
-
-### Updating the trees and alignments
-
-The trees and alignments behind `tree` and `msa` also ship inside the package,
-with their members joined to the bundled VMR. `update --trees` rebuilds them
-from the ICTV Report: for every VMR family with a published chapter it reads
-the chapter's *Resources* page, downloads the official alignment and tree of
-each figure (kept verbatim), parses their members, molecule, method and
-region, and joins the members to the VMR in use — so update the VMR first.
-
-```
-$ viralfetch update --trees
-[1/186] Adamaviridae: no trees (no_resources)
-[2/186] Adenoviridae: 1 tree(s)
-[3/186] Ahmunviridae: no trees (no_resources)
-…
-[6/186] Alphaflexiviridae: 2 tree(s)
-…
-✓ Rebuilt the ICTV trees (75 families with trees, 111 without).
-```
-
-ICTV is queried at most once per second, so a full rebuild (~186 families)
-takes 10–15 minutes; `--family`/`-f` (repeatable) rebuilds only the named families and
-merges them into the current data set. The result is stored in your user data
-directory and only replaces the current trees once complete; a family that
-fails keeps its previous trees. `--trees --reset` goes back to the bundled
-trees, and a later viralfetch release that bundles newer trees takes
-precedence over an older rebuild.
-
-### Updating the ViralZone data
-
-A snapshot of the [ViralZone](https://viralzone.expasy.org) factsheets ships in
-`viralfetch/data/viralzone.json`. `update --viralzone` rebuilds it: starting
-from the taxonomy diagram on the ViralZone home page it reads every realm/phylum
-page (the hierarchy down to genus, with each genus's host groups) and every
-factsheet they link (families, subfamilies, genera and a few notable viruses).
-Each factsheet keeps its NCBI taxid — the join key with NCBI and the VMR, since
-ViralZone may follow an older ICTV release — and its descriptive content:
-virion, genome, gene expression, replication (and its cellular site), host,
-tropism, receptors, geography, associated diseases, transmission, vaccines,
-antiviral drugs, host-virus interactions, reference strains (RefSeq / assembly
-accessions) and cross-references (NCBI, ICTV, UniProt, BV-BRC). The per-protein
-UniProt listings are left out (UniProt is their source).
-
-ViralZone is queried at most once per second, so a rebuild (~1000 pages) takes
-about 20 minutes. The result is stored in your user data directory and only
-replaces the current data once complete and loadable; `--viralzone --reset`
-goes back to the bundled copy. Maintainers refresh the bundled copy with
-`python -m viralfetch.viralzone_install`.
-
-ViralZone content is © SIB Swiss Institute of Bioinformatics; its images are
-licensed CC BY 4.0 and its data are provided for research, educational and
-informational purposes (not for medical use). Please cite:
-
-> De Castro E, Hulo C, Masson P, Auchincloss A, Bridge A, Le Mercier P.
-> ViralZone 2024 provides higher-resolution images and advanced virus-specific
-> resources. *Nucleic Acids Res.* 2024;52(D1):D817–D821.
-> doi:[10.1093/nar/gkad946](https://doi.org/10.1093/nar/gkad946)
-
----
-
-## Output & exit codes
-
-- **Rich** tables/panels/trees by default; **`--json`** for clean, `jq`-ready
-  output. Colour is disabled automatically when stdout is not a TTY.
-- Errors go to stderr with a non-zero exit code: `1` not found, `2` bad usage,
-  `3` missing NCBI email, `4` NCBI request failed.
-- Partial failures are reported, never swallowed: if you request 200 accessions
-  and 197 come back, the 3 missing ones are listed.
-
-## Caching
-
-Immutable data (sequences, accession metadata, chapter figures, and ICTV
-alignment/tree files) is cached permanently; ICTV chapter HTML uses a 30-day TTL. The cache lives in the
-platform cache directory. Use `--no-cache` to bypass it for a single run.
-
-
+MIT

@@ -10,6 +10,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
+from .filters import InvalidFilter, filter_rows  # noqa: F401  (re-exported)
 from .models import RANKS, Isolate, Taxon
 from .vmr import VMR
 
@@ -63,6 +64,7 @@ class MembersView:
     count_only: bool
     members: list[MemberEntry] = field(default_factory=list)
     breakdown: dict[str, int] = field(default_factory=dict)  # rank -> distinct count
+    filters: dict[str, str] = field(default_factory=dict)  # e.g. {"host": "human"}
 
 
 @dataclass
@@ -76,6 +78,7 @@ class TaxonTreeNode:
 class TreeView:
     root: TaxonTreeNode
     total: int  # number of descendant taxa (excludes the root)
+    filters: dict[str, str] = field(default_factory=dict)
 
 
 def _resolve(vmr: VMR, name: str) -> Taxon:
@@ -186,17 +189,38 @@ def _isolate_summary(vmr: VMR, species: str) -> IsolateSummary:
     )
 
 
+def _filtered_rows(
+    vmr: VMR, target: Taxon, host: str | None, genome: str | None, viralzone,
+) -> tuple[list[Isolate], dict[str, str]]:
+    """Isolate rows under ``target``, restricted by host / genome (see
+    :mod:`viralfetch.filters`), and the filters applied (for display)."""
+    rows = _rows_under(vmr, target)
+    filters = {k: v for k, v in (("host", host), ("genome", genome)) if v}
+    if filters:
+        rows = filter_rows(
+            rows, lambda iso: _lineage_of(vmr, iso), host=host, genome=genome,
+            known_genomes={i.genome_composition for i in vmr.isolates},
+            viralzone=viralzone,
+        )
+    return rows, filters
+
+
 def members(
     vmr: VMR,
     name: str,
     rank: str | None = None,
     count: bool = False,
+    *,
+    host: str | None = None,
+    genome: str | None = None,
+    viralzone=None,
 ) -> MembersView:
     """Child taxa of ``name`` at (or aggregated below) a given rank.
 
     - ``rank`` set: distinct taxa at that rank descending from the target.
     - ``rank`` unset: a per-rank breakdown of distinct descendant counts.
     - ``count`` with a rank: return only the tally for that rank.
+    - ``host`` / ``genome``: keep only matching species (counts follow).
     """
     target = _resolve(vmr, name)
     target_idx = RANKS.index(target.rank)
@@ -207,7 +231,7 @@ def members(
         if rank not in ranks_below:
             raise InvalidRank(rank, target, ranks_below)
 
-    rows = _rows_under(vmr, target)
+    rows, filters = _filtered_rows(vmr, target, host, genome, viralzone)
 
     if rank is not None:
         entries = _members_at_rank(vmr, rows, rank)
@@ -217,8 +241,10 @@ def members(
                 rank=rank,
                 count_only=True,
                 breakdown={rank: len(entries)},
+                filters=filters,
             )
-        return MembersView(parent=target, rank=rank, count_only=False, members=entries)
+        return MembersView(parent=target, rank=rank, count_only=False, members=entries,
+                           filters=filters)
 
     # No specific rank: per-rank breakdown of distinct descendant counts.
     breakdown: dict[str, int] = {}
@@ -228,10 +254,18 @@ def members(
         }
         if distinct:
             breakdown[r] = len(distinct)
-    return MembersView(parent=target, rank=None, count_only=count, breakdown=breakdown)
+    return MembersView(parent=target, rank=None, count_only=count, breakdown=breakdown,
+                       filters=filters)
 
 
-def members_tree(vmr: VMR, name: str) -> TreeView:
+def members_tree(
+    vmr: VMR,
+    name: str,
+    *,
+    host: str | None = None,
+    genome: str | None = None,
+    viralzone=None,
+) -> TreeView:
     """Full descendant subtree of ``name``, nested by populated ranks below it.
 
     Optional ranks that are empty for a given lineage are skipped, so a genus
@@ -241,7 +275,7 @@ def members_tree(vmr: VMR, name: str) -> TreeView:
     target = _resolve(vmr, name)
     target_idx = RANKS.index(target.rank)
     ranks_below = RANKS[target_idx + 1:]
-    rows = _rows_under(vmr, target)
+    rows, filters = _filtered_rows(vmr, target, host, genome, viralzone)
 
     # Nested mutable tree: {(rank, name): {"rank", "name", "children": {...}}}
     root_children: dict[tuple[str, str], dict] = {}
@@ -279,7 +313,7 @@ def members_tree(vmr: VMR, name: str) -> TreeView:
     root = TaxonTreeNode(
         name=target.name, rank=target.rank, children=build(root_children)
     )
-    return TreeView(root=root, total=count)
+    return TreeView(root=root, total=count, filters=filters)
 
 
 def _members_at_rank(vmr: VMR, rows: list[Isolate], rank: str) -> list[MemberEntry]:

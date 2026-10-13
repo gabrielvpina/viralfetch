@@ -15,6 +15,7 @@ import typer
 from typer.core import TyperGroup
 
 from . import __version__
+from . import annotate as annotate_mod
 from . import compare
 from . import config as config_mod
 from . import profile as profile_mod
@@ -66,7 +67,7 @@ HELP = """Query viral taxonomy (ICTV VMR), sequences (NCBI), the ICTV Report and
 
 [bold]viralfetch NAME[/] profiles any taxon or virus name: ICTV vs NCBI taxonomy,
 NCBI genome counts and the ViralZone factsheet ([cyan]viralfetch Flaviviridae[/]).
-Global options go [bold]before[/] the name or command: [cyan]viralfetch --json tax Coronaviridae[/].
+Global options go [bold]before[/] the name or command: [cyan]viralfetch --csv tax Coronaviridae[/].
 Run [bold]viralfetch COMMAND --help[/] for command options.
 """
 
@@ -113,16 +114,22 @@ def main(
         help="Show the version and exit.",
     ),
     json_out: bool = typer.Option(False, "--json", help="JSON output."),
+    csv_out: bool = typer.Option(False, "--csv", help="CSV table output."),
+    tsv_out: bool = typer.Option(False, "--tsv", help="TSV table output."),
     no_cache: bool = typer.Option(False, "--no-cache", help="Ignore the cache."),
     verbose: bool = typer.Option(False, "--verbose", help="Verbose output."),
     email: str = typer.Option(None, "--email", help="NCBI email (overrides $NCBI_EMAIL)."),
     api_key: str = typer.Option(None, "--api-key", help="NCBI API key (overrides $NCBI_API_KEY)."),
 ) -> None:
     """Resolve global configuration and stash it on the context."""
+    chosen = [f for f, on in (("json", json_out), ("csv", csv_out), ("tsv", tsv_out)) if on]
+    if len(chosen) > 1:
+        render.get("rich").error("Choose only one of --json, --csv and --tsv.")
+        raise typer.Exit(2)
     ctx.obj = config_mod.resolve(
         email=email,
         api_key=api_key,
-        fmt="json" if json_out else "rich",
+        fmt=chosen[0] if chosen else "rich",
         verbose=verbose,
         no_cache=no_cache,
     )
@@ -180,6 +187,59 @@ def info(
     if skipped:
         result.warnings.insert(0, skipped)
     out.profile(result, full=full)
+
+
+@app.command(rich_help_panel=_PANEL_QUERY)
+def annotate(
+    ctx: typer.Context,
+    file: str = typer.Argument(..., help="Text file with one taxon name per line ('-' reads stdin)."),
+    output: str = typer.Option(
+        None, "--output", "-o",
+        help="Write the table here; the format follows --csv/--tsv/--json, else the extension "
+             "(.csv, .tsv, .json; CSV by default).",
+    ),
+    local: bool = typer.Option(False, "--local", help="Skip NCBI: no taxids, no NCBI fallback."),
+) -> None:
+    """Annotate a list of names (species or higher taxa) with their full taxonomy.
+
+    One row per input line: the ICTV lineage (one column per rank), genome and host,
+    the NCBI taxid and the exemplar accession(s) with links. Names the VMR doesn't
+    know are placed through NCBI taxonomy.
+    """
+    cfg: config_mod.Config = ctx.obj
+    out = render.get(cfg.format)
+    try:
+        if file == "-":
+            names = annotate_mod.read_names(sys.stdin)
+        else:
+            with open(file, encoding="utf-8") as fh:
+                names = annotate_mod.read_names(fh)
+    except OSError as exc:
+        out.error(f"Cannot read {file}: {exc.strerror or exc}")
+        raise typer.Exit(2)
+    if not names:
+        out.error(f"No names in {file} (one per line; blank lines and # comments are skipped).")
+        raise typer.Exit(2)
+
+    client = None
+    if not local:
+        try:
+            client = NCBIClient(cfg, cache=Cache(config_mod.CACHE_DIR, enabled=not cfg.no_cache))
+        except config_mod.ConfigError:
+            out.warn("No NCBI email configured: annotating from the local VMR only "
+                     "(no taxids, no NCBI fallback).")
+
+    annotations = annotate_mod.annotate(load(), names, ncbi=client, progress=out.annotate_progress)
+
+    if cfg.machine_readable:
+        writer = out
+    else:  # the table is the product: CSV, or the format the -o extension names
+        ext = (output or "").lower().rsplit(".", 1)[-1] if output and "." in output else ""
+        writer = render.get({"tsv": "tsv", "tab": "tsv", "json": "json"}.get(ext, "csv"))
+    writer.annotate(annotations, output)
+    out.annotate_summary(annotations, output)
+    if all(a.status == "not_found" for a in annotations):
+        raise typer.Exit(1)
 
 
 @app.command(rich_help_panel=_PANEL_QUERY)
@@ -277,8 +337,18 @@ def members(
     rank: str = typer.Option(None, "--rank", help="Only this rank (e.g. genus)."),
     count: bool = typer.Option(False, "--count", help="Counts only."),
     tree: bool = typer.Option(False, "--tree", help="Show the full descendant hierarchy."),
+    host: str = typer.Option(
+        None, "--host",
+        help="Only species with this host: bacteria, archaea, vertebrates, invertebrates, plants, "
+             "fungi, protists, algae, soil, marine, ... (VMR); human (ViralZone, per genus).",
+    ),
+    genome: str = typer.Option(
+        None, "--genome",
+        help="Only species with this genome: dsDNA, ssDNA, dsRNA, ssRNA (any polarity), "
+             "ssRNA(+), ssRNA(-), ssRNA-RT, dsDNA-RT, or RNA / DNA / RT.",
+    ),
 ) -> None:
-    """List the taxa below a taxon.
+    """List the taxa below a taxon, optionally filtered by host and genome.
 
     Names missing from the VMR are mapped via NCBI taxonomy.
     """
@@ -286,14 +356,19 @@ def members(
     out = render.get(cfg.format)
     vmr = load()
     taxon = _redirect_via_ncbi(cfg, out, vmr, taxon)
+    filters = {"host": host, "genome": genome,
+               "viralzone": viralzone_mod.load() if host else None}
     try:
         if tree:
-            out.members_tree(queries.members_tree(vmr, taxon))
+            out.members_tree(queries.members_tree(vmr, taxon, **filters))
             return
-        view = queries.members(vmr, taxon, rank=rank, count=count)
+        view = queries.members(vmr, taxon, rank=rank, count=count, **filters)
     except queries.TaxonNotFound as exc:
         out.not_found(exc.name, exc.suggestions)
         raise typer.Exit(1)
+    except queries.InvalidFilter as exc:
+        out.error(f"Unknown --{exc.option} {exc.value!r}. Valid: {', '.join(exc.valid)}.")
+        raise typer.Exit(2)
     except queries.InvalidRank as exc:
         out.error(
             f"Rank {exc.rank!r} is not below {exc.taxon.rank} {exc.taxon.name!r}. "
@@ -495,7 +570,7 @@ def _ncbi_lineage_lookup(cfg: config_mod.Config):
 
 def _want_figures(images: bool, raw: bool, cfg: config_mod.Config) -> bool:
     """Draw figures only for the interactive Rich view — not JSON, raw, or pipes."""
-    return images and not raw and cfg.format != "json" and sys.stdout.isatty()
+    return images and not raw and not cfg.machine_readable and sys.stdout.isatty()
 
 
 def _fetch_figures(client: ICTVClient, chapter) -> dict[str, bytes]:
@@ -627,8 +702,8 @@ def _confirm_or_exit(items: list[str], yes: bool, cfg: config_mod.Config, out) -
     n = len(items)
     if n <= LARGE_DOWNLOAD or yes:
         return
-    # Never block on a prompt in JSON mode or a non-interactive stdin.
-    if cfg.format == "json" or not sys.stdin.isatty():
+    # Never block on a prompt in JSON / CSV / TSV mode or a non-interactive stdin.
+    if cfg.machine_readable or not sys.stdin.isatty():
         out.error(f"{n} records to download (> {LARGE_DOWNLOAD}). Re-run with --yes to proceed.")
         raise typer.Exit(2)
     if not typer.confirm(f"About to download {n} records. Continue?"):
@@ -698,8 +773,8 @@ def update(
         out.error(f"ICTV request failed: {exc}")
         raise typer.Exit(4)
 
-    # JSON: a single object on stdout, so never prompt; install only on --yes.
-    if cfg.format == "json" or status.up_to_date:
+    # JSON / CSV / TSV: data on stdout, so never prompt; install only on --yes.
+    if cfg.machine_readable or status.up_to_date:
         installed = _install_vmr(client, status, out) if yes and not status.up_to_date else None
         out.update_status(status, installed)
         return

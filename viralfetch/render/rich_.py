@@ -95,21 +95,32 @@ def tax_ncbi(lineage: NcbiLineage) -> None:
     _out.print(f"[dim]NCBI taxonomy — taxid {lineage.taxid}[/]")
 
 
+def _filters_label(filters: dict[str, str]) -> str:
+    return "".join(f" · {k}: {v}" for k, v in filters.items())
+
+
 def members(view: MembersView) -> None:
     parent = view.parent
+    where = _filters_label(view.filters)
     if view.rank is not None and not view.count_only:
-        table = Table(title=f"{plural(view.rank)} in {parent.rank} {parent.name}")
+        table = Table(title=f"{plural(view.rank)} in {parent.rank} {parent.name}{where}")
         table.add_column(view.rank, style="cyan")
         table.add_column("species", justify="right", style="green")
         for m in view.members:
             table.add_row(m.name, str(m.species_count))
         table.caption = f"{len(view.members)} {plural(view.rank)}"
+        if not view.members:
+            _out.print(f"[yellow]No {plural(view.rank)} in {parent.rank} {parent.name} match{where}.[/]")
+            return
         _out.print(table)
     elif view.rank is not None and view.count_only:
         n = view.breakdown.get(view.rank, 0)
-        _out.print(f"[green]{n}[/] {plural(view.rank)} in {parent.rank} [bold]{parent.name}[/]")
+        _out.print(f"[green]{n}[/] {plural(view.rank)} in {parent.rank} [bold]{parent.name}[/]{where}")
     else:
-        table = Table(title=f"members of {parent.rank} {parent.name} by rank")
+        if not view.breakdown:
+            _out.print(f"[yellow]No members of {parent.rank} {parent.name} match{where}.[/]")
+            return
+        table = Table(title=f"members of {parent.rank} {parent.name} by rank{where}")
         table.add_column("rank", style="cyan")
         table.add_column("count", justify="right", style="green")
         for rank, n in view.breakdown.items():
@@ -134,6 +145,8 @@ def members_tree(view: TreeView) -> None:
     root_label = Text()
     root_label.append(view.root.name, style="bold")
     root_label.append(f"  ({view.root.rank})", style="dim")
+    if view.filters:
+        root_label.append(_filters_label(view.filters), style="yellow")
     tree = Tree(root_label)
     for child in view.root.children:
         _add_tree_node(tree, child)
@@ -1205,3 +1218,51 @@ def profile(p: Profile, full: bool = False) -> None:
     footer.add_row(Text("More: " + " · ".join(hints), style="dim") if hints else Text(""),
                    Text("" if full else "--full: lineage table, RefSeq list, biology", style="dim"))
     _out.print(footer, width=width)
+
+
+# -- annotate -------------------------------------------------------------------
+
+_annotate_bar = None
+
+
+def annotate(annotations, output: str | None = None) -> None:
+    """Rich mode still writes the table (CSV): it is the command's product."""
+    from .table_ import TableRenderer
+    delimiter = "\t" if output and output.lower().endswith((".tsv", ".tab")) else ","
+    TableRenderer(delimiter).annotate(annotations, output)
+
+
+def annotate_progress(i: int, n: int, ann) -> None:
+    """A transient progress bar on stderr (interactive terminals only)."""
+    global _annotate_bar
+    if not _err.is_terminal:
+        return
+    from rich.progress import BarColumn, MofNCompleteColumn, Progress, TextColumn
+    if _annotate_bar is None:
+        _annotate_bar = Progress(TextColumn("annotating"), BarColumn(), MofNCompleteColumn(),
+                                 TextColumn("[dim]{task.description}"), console=_err,
+                                 transient=True)
+        _annotate_bar.start()
+        _annotate_bar.add_task(ann.query, total=n)
+    _annotate_bar.update(0, completed=i, description=ann.query[:40])
+    if i >= n:
+        _annotate_bar.stop()
+        _annotate_bar = None
+
+
+def annotate_summary(annotations, output: str | None) -> None:
+    from collections import Counter
+    counts = Counter(a.status for a in annotations)
+    msg = Text()
+    msg.append("✓ ", style="bold green")
+    msg.append(f"{len(annotations)} names annotated", style="bold")
+    if output:
+        msg.append(f" → {output}")
+    parts = [f"{counts[s]} {label}" for s, label in (
+        ("ictv", "in the ICTV VMR"), ("ncbi", "placed via NCBI"),
+        ("ncbi_only", "NCBI only"), ("not_found", "not found")) if counts[s]]
+    msg.append(f"  ({', '.join(parts)})", style="dim")
+    _err.print(msg)
+    missing = [a.query for a in annotations if a.status == "not_found"]
+    if missing:
+        _err.print(Text("not found: " + ", ".join(dict.fromkeys(missing)), style="yellow"))

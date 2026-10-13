@@ -53,6 +53,8 @@ def members(view: MembersView) -> None:
     payload: dict = {
         "parent": {"name": view.parent.name, "rank": view.parent.rank},
     }
+    if view.filters:
+        payload["filters"] = view.filters
     if view.rank is not None and not view.count_only:
         payload["rank"] = view.rank
         payload["members"] = [
@@ -74,6 +76,8 @@ def _node_to_dict(node: TaxonTreeNode) -> dict:
 
 def members_tree(view: TreeView) -> None:
     payload = {"total": view.total, "tree": _node_to_dict(view.root)}
+    if view.filters:
+        payload["filters"] = view.filters
     _emit(payload)
 
 
@@ -337,3 +341,21 @@ def profile(p: Profile, full: bool = False) -> None:  # JSON always carries ever
         "has_trees": p.has_trees,
     }
     _emit(payload)
+
+
+def annotate(annotations, output: str | None = None) -> None:
+    rows = [a.row() for a in annotations]
+    if output:
+        with open(output, "w", encoding="utf-8") as fh:
+            json.dump(rows, fh, ensure_ascii=False, indent=2)
+            fh.write("\n")
+    else:
+        _emit(rows)
+
+
+def annotate_progress(i: int, n: int, ann) -> None:
+    pass  # stdout carries only the final payload
+
+
+def annotate_summary(annotations, output: str | None) -> None:
+    pass

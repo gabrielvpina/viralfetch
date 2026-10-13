@@ -39,7 +39,7 @@ class ConfigError(Exception):
 class Config:
     email: str | None = None
     api_key: str | None = None
-    format: str = "rich"  # "rich" | "json"
+    format: str = "rich"  # "rich" | "json" | "csv" | "tsv"
     verbose: bool = False
     no_cache: bool = False
 
@@ -48,6 +48,11 @@ class Config:
         if not self.email:
             raise ConfigError(f"No NCBI email configured. {EMAIL_HOWTO}")
         return self.email
+
+    @property
+    def machine_readable(self) -> bool:
+        """JSON / CSV / TSV: stdout carries only data, and nothing prompts."""
+        return self.format in {"json", "csv", "tsv"}
 
     @property
     def rate_limit(self) -> int:

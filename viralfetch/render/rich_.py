@@ -6,9 +6,11 @@ Rich auto-detects TTYs and disables colour when stdout is piped, satisfying the
 
 from __future__ import annotations
 
+from rich import box
 from rich.console import Console, Group
 from rich.markdown import Markdown
 from rich.panel import Panel
+from rich.style import Style
 from rich.table import Table
 from rich.text import Text
 from rich.tree import Tree
@@ -27,6 +29,7 @@ from ..profile import Profile
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
 from ..sequences import TaxonAggregate
 from ..trees_install import InstalledTrees
+from .. import viralzone as vz_mod
 from ..viralzone import CREDIT as VIRALZONE_CREDIT
 from ..viralzone_install import InstalledViralZone
 from ..vmr_install import InstalledVMR
@@ -868,169 +871,337 @@ def diagnose(d: Diagnostics) -> None:
 
 
 # -- profile (the default command) ------------------------------------------
+#
+# Compact by default: a header card (name, molecule, ICTV status, lineage as a
+# breadcrumb), ICTV and NCBI numbers side by side, and the ViralZone ecology &
+# disease fields. ``full`` adds the rank-by-rank comparison table, the RefSeq
+# list and ViralZone's biology (virion, genome, interactions, strains).
 
+_PROFILE_MAX_WIDTH = 100
+_PROFILE_SIDE_BY_SIDE = 90     # below this width the ICTV / NCBI cards stack
 _PROFILE_REFSEQ_ROWS = 10
-_VZ_FIELDS = (
-    ("host", "host"), ("tropism", "tropism"), ("receptors", "receptors"),
-    ("geography", "geography"), ("diseases", "diseases"),
-    ("transmission", "transmission"), ("vaccine", "vaccine"),
-    ("antiviral_drugs", "antivirals"),
+_PROFILE_FIELD_CHARS = 220     # compact mode: longer ViralZone fields are cut
+_PROFILE_FIELD_LINES = 4
+_BAR_WIDTH = 12
+_VZ_COMPACT = (
+    ("host", "host"), ("tropism", "tropism"), ("geography", "geography"),
+    ("diseases", "diseases"), ("transmission", "transmission"),
+    ("vaccine", "vaccine"), ("antiviral_drugs", "antivirals"),
 )
+_VZ_FULL_EXTRA = (("receptors", "receptors"), ("etymology", "etymology"))
+_HOST_COLORS = {
+    "human": "bold red", "vertebrate": "dark_orange", "invertebrate": "green",
+    "plant": "chartreuse3", "fungi": "magenta", "bacteria": "cyan",
+    "archaea": "blue", "micro": "medium_purple", "unknown": "dim",
+}
+# "DENV: ..." / "(YFV): ..." at the start of a line: a per-virus qualifier.
+_QUALIFIER_RE = re.compile(r"^(\(?[A-Z][A-Za-z0-9-]{1,11}\)?(?:\s*(?:and|,)\s*[A-Z][A-Za-z0-9-]{1,11})*:)\s*")
 
 
-def _kv_table() -> Table:
-    table = Table(show_header=False, box=None, pad_edge=False, padding=(0, 2, 0, 0))
-    table.add_column(style="dim", no_wrap=True)
+def _profile_width() -> int:
+    return min(_out.width, _PROFILE_MAX_WIDTH)
+
+
+def _link(label: str, url: str | None, style: str = "", *, piped_url: bool = False) -> Text:
+    """A clickable label in a terminal. Piped output has no hyperlinks: the
+    URL is then spelt out only where it matters (``piped_url``); --json has
+    them all."""
+    if not url:
+        return Text(label, style=style)
+    if _out.is_terminal:
+        return Text(label, style=Style.parse(style or "none") + Style(link=url))
+    return Text(f"{label} {url}" if piped_url else label, style=style)
+
+
+def _count(n: int | None) -> str:
+    return f"{n:,}" if n is not None else "n/a"
+
+
+def _bar(part: int | None, whole: int | None) -> Text:
+    if not part or not whole:
+        return Text("")
+    ratio = min(part / whole, 1.0)
+    filled = round(ratio * _BAR_WIDTH)
+    bar = Text("█" * filled, style="green")
+    bar.append("░" * (_BAR_WIDTH - filled), style="dim")
+    bar.append(f" {ratio:.0%}", style="dim")
+    return bar
+
+
+def _numbers_table() -> Table:
+    table = Table(show_header=False, box=None, pad_edge=False, padding=(0, 1, 0, 0))
+    table.add_column(justify="right", style="bold", no_wrap=True)
     table.add_column()
     return table
 
 
-def _count(n: int | None) -> str:
-    return f"{n:,}" if n is not None else "unavailable"
+def _field_text(value: str, full: bool) -> Text:
+    """A ViralZone field: per-virus qualifiers in bold, cut short unless full."""
+    lines = [ln for ln in value.split("\n") if ln.strip()]
+    cut = False
+    if not full:
+        if len(lines) > _PROFILE_FIELD_LINES:
+            lines, cut = lines[:_PROFILE_FIELD_LINES], True
+        kept, used = [], 0
+        for ln in lines:
+            if used + len(ln) > _PROFILE_FIELD_CHARS:
+                room = _PROFILE_FIELD_CHARS - used
+                if room > 40:
+                    kept.append(ln[:room].rsplit(" ", 1)[0])
+                cut = True
+                break
+            kept.append(ln)
+            used += len(ln)
+        lines = kept
+    text = Text()
+    for i, ln in enumerate(lines):
+        if i:
+            text.append("\n")
+        m = _QUALIFIER_RE.match(ln)
+        if m:
+            text.append(m.group(1), style="bold")
+            text.append(" " + ln[m.end():])
+        else:
+            text.append(ln)
+    if cut:
+        text.append(" …", style="dim")
+    return text
 
 
-def _profile_taxonomy(p: Profile) -> Panel:
-    if p.ncbi is None:  # local only: the plain ICTV lineage
-        rows = [(r.rank, r.ictv) for r in p.comparison if r.ictv]
-        table = _lineage_table(rows, p.ictv.name, p.ictv.rank, "bold cyan") if p.ictv else Text("")
-        return Panel(table, title="taxonomy — ICTV", title_align="left", expand=False)
+def _lineage_rows(p: Profile) -> list[tuple[str, str]]:
+    if p.ictv is not None:
+        return [(r, p.ictv.lineage[r]) for r in RANKS if p.ictv.lineage.get(r)]
+    if p.ncbi is not None:
+        return [(r, n) for r, n in p.ncbi.lineage if r in RANKS]
+    return []
+
+
+def _molecule(p: Profile) -> str | None:
+    if p.ncbi_report is not None and p.ncbi_report.genomic_moltype:
+        return p.ncbi_report.genomic_moltype
+    if p.vmr is not None and p.vmr.genome_compositions:
+        return " / ".join(p.vmr.genome_compositions)
+    return None
+
+
+def _baltimore(p: Profile) -> str | None:
+    fs = p.viralzone.factsheet if p.viralzone else None
+    group = (fs or {}).get("baltimore") or ""
+    m = re.match(r"(Group\s+[IVX]+)", group)
+    return m.group(1) if m else None
+
+
+def _profile_header(p: Profile, width: int) -> Panel:
+    title = Text()
+    title.append(p.name, style="bold")
+    title.append(f"   {p.rank}", style="cyan")
+    if p.family and p.rank not in {"family", "order", "class", "phylum", "kingdom", "realm"}:
+        title.append(f" · {p.family}", style="cyan")
+    if p.name.casefold() != p.query.casefold():
+        title.append(f"   ← {p.query}", style="dim")
+
+    facts: list[Text] = []
+    if (mol := _molecule(p)):
+        facts.append(Text(mol))
+    if (group := _baltimore(p)):
+        facts.append(Text(group))
+    if p.ncbi is not None:
+        facts.append(_link(f"NCBI taxid {p.ncbi.taxid}",
+                           f"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={p.ncbi.taxid}"))
+    status = p.ncbi_report.ictv_status if p.ncbi_report else None
+    if status:
+        accepted = "currently accepted" in status.casefold()
+        facts.append(Text("✓ ICTV-accepted name", style="green") if accepted
+                     else Text(status.rstrip("."), style="yellow"))
+    line2 = Text(" · ", style="dim").join(facts) if facts else Text("")
+
+    crumbs = Text()
+    rows = _lineage_rows(p)
+    for i, (_rank, name) in enumerate(rows):
+        if i:
+            crumbs.append(" › ", style="dim")
+        crumbs.append(name, style="bold cyan" if i == len(rows) - 1 else "")
+
+    if p.ncbi is None:
+        agreement = Text("NCBI not consulted", style="dim")
+    else:
+        differ = [r.rank for r in p.comparison if r.agree is False]
+        agreement = (Text(f"≠ ICTV and NCBI differ at {', '.join(differ)}", style="bold yellow")
+                     if differ else Text("✓ ICTV and NCBI agree", style="green"))
+    facts_row = Table.grid(expand=True, padding=(0, 2))
+    facts_row.add_column()
+    facts_row.add_column(justify="right", no_wrap=True)
+    facts_row.add_row(line2, agreement)
+    return Panel(Group(title, facts_row, crumbs), width=width, padding=(0, 1))
+
+
+def _profile_comparison(p: Profile, width: int) -> Panel:
     table = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0))
     table.add_column("rank", style="dim", no_wrap=True)
     table.add_column("ICTV (VMR)", style="cyan")
     table.add_column("NCBI", style="magenta")
     table.add_column("", no_wrap=True)
     for row in p.comparison:
-        mark = Text("✓", style="green") if row.agree else (
-            Text("≠", style="bold yellow") if row.agree is False else Text("·", style="dim"))
-        ictv = Text(row.ictv or "—", style="" if row.ictv else "dim")
-        ncbi = Text(row.ncbi or "—", style="" if row.ncbi else "dim")
-        table.add_row(row.rank, ictv, ncbi, mark)
+        mark = (Text("✓", style="green") if row.agree else
+                Text("≠", style="bold yellow") if row.agree is False else Text("·", style="dim"))
+        table.add_row(row.rank, Text(row.ictv or "—", style="" if row.ictv else "dim"),
+                      Text(row.ncbi or "—", style="" if row.ncbi else "dim"), mark)
     if p.ncbi is not None and p.ncbi.rank not in RANKS:
-        table.add_row(p.ncbi.rank or "no rank", Text("—", style="dim"), Text(p.ncbi.name), Text("·", style="dim"))
-
-    bits = []
-    if p.ncbi is not None:
-        bits.append(f"NCBI taxid {p.ncbi.taxid}")
-    if p.ncbi_report is not None and p.ncbi_report.ictv_status:
-        bits.append(p.ncbi_report.ictv_status.rstrip("."))
-    caption = Text(" · ".join(bits), style="dim")
-    body = Group(table, caption) if bits else table
-    return Panel(body, title="taxonomy — ICTV vs NCBI", title_align="left", expand=False)
+        table.add_row(p.ncbi.rank or "no rank", Text("—", style="dim"), Text(p.ncbi.name),
+                      Text("·", style="dim"))
+    return Panel(table, title="lineage — ICTV vs NCBI", title_align="left", width=width)
 
 
-def _profile_ictv(p: Profile) -> Panel | None:
+def _profile_ictv(p: Profile) -> Group | None:
     s = p.vmr
     if s is None or p.ictv is None:
         return None
-    table = _kv_table()
+    table = _numbers_table()
     if p.ictv.rank != "species":
-        table.add_row("species", f"{s.species:,}")
-    table.add_row("isolates", f"{s.isolates:,} ({s.exemplars:,} exemplar)")
+        table.add_row(f"{s.species:,}", "species")
+    table.add_row(f"{s.isolates:,}", Text.assemble("isolates ", (f"({s.exemplars:,} exemplar)", "dim")))
+    body: list = [table]
     if s.genome_compositions:
-        table.add_row("genome", ", ".join(f"{k} ×{v}" for k, v in s.genome_compositions.items()))
+        body.append(Text(" · ".join(f"{k} ×{v}" if len(s.genome_compositions) > 1 else k
+                                    for k, v in s.genome_compositions.items())))
     if s.host_sources:
-        table.add_row("host source", ", ".join(f"{k} ×{v}" for k, v in s.host_sources.items()))
+        # Keys are combinations ("invertebrates, vertebrates"): list each term once.
+        terms = dict.fromkeys(t.strip() for k in s.host_sources for t in k.split(",") if t.strip())
+        hosts = Text("hosts: ", style="dim")
+        hosts.append(", ".join(terms))
+        body.append(hosts)
     if s.exemplar_accessions:
-        table.add_row("exemplar", ", ".join(s.exemplar_accessions))
-    return Panel(table, title=f"ICTV (VMR) — {p.ictv.name} ({p.ictv.rank})", title_align="left", expand=False)
+        acc = Text("exemplar: ", style="dim")
+        acc.append(", ".join(s.exemplar_accessions))
+        body.append(acc)
+    return Group(*body)
 
 
-def _profile_ncbi(p: Profile) -> Panel | None:
+def _profile_ncbi(p: Profile, full: bool) -> Group | None:
     s, r = p.sequences, p.ncbi_report
     if s is None and r is None:
         return None
-    table = _kv_table()
+    table = _numbers_table()
+    table.add_column(no_wrap=True)
     if s is not None:
-        table.add_row("nucleotide records", _count(s.total))
-        table.add_row("complete genomes", _count(s.complete) + (" (titled \"complete genome\")" if s.complete is not None else ""))
-        table.add_row("RefSeq sequences", _count(s.refseq))
-    if r is not None:
-        if r.assemblies is not None:
-            table.add_row("genome assemblies", f"{r.assemblies:,}")
-        if r.genomic_moltype:
-            table.add_row("molecule", r.genomic_moltype)
+        table.add_row(_count(s.total), "nucleotide records", "")
+        table.add_row(_count(s.complete), Text.assemble("complete genomes", (" (by title)", "dim")),
+                      _bar(s.complete, s.total))
+        table.add_row(_count(s.refseq), "RefSeq sequence" if s.refseq == 1 else "RefSeq sequences", "")
+    if r is not None and r.assemblies is not None:
+        table.add_row(f"{r.assemblies:,}", "genome assemblies", "")
     parts: list = [table]
-    if s is not None and s.refseq_genomes:
-        genomes = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0), title_justify="left")
+    if s is not None and s.portal_url:
+        if _out.is_terminal:
+            parts.append(_link("NCBI Virus ↗", s.portal_url, "blue"))
+    if full and s is not None and s.refseq_genomes:
+        genomes = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0))
         for col, justify in (("RefSeq", "left"), ("organism", "left"), ("segment", "left"),
                              ("length", "right"), ("updated", "left")):
-            genomes.add_column(col, justify=justify, style="cyan" if col == "RefSeq" else None,
-                               header_style="dim")
+            genomes.add_column(col, justify=justify, header_style="dim",
+                               style="cyan" if col == "RefSeq" else None)
         for g in s.refseq_genomes[:_PROFILE_REFSEQ_ROWS]:
-            genomes.add_row(g.accession, g.organism, g.segment or "", f"{g.length:,}" if g.length else "-",
-                            g.update_date)
+            genomes.add_row(g.accession, g.organism, g.segment or "",
+                            f"{g.length:,}" if g.length else "-", g.update_date)
         parts += [Text(""), genomes]
         shown = min(len(s.refseq_genomes), _PROFILE_REFSEQ_ROWS)
         if s.refseq and s.refseq > shown:
             parts.append(Text(f"… {s.refseq - shown:,} more RefSeq sequence(s)", style="dim"))
-    if s is not None and s.portal_url:
-        parts.append(Text(s.portal_url, style="dim"))
-    title = f"NCBI — taxid {s.taxid if s else r.taxid}"
-    return Panel(Group(*parts), title=title, title_align="left", expand=False)
+    return Group(*parts)
 
 
-def _profile_viralzone(p: Profile) -> Panel | None:
+def _profile_viralzone(p: Profile, width: int, full: bool) -> Panel | None:
     z = p.viralzone
     if z is None:
         return None
     fs = z.factsheet
-    table = _kv_table()
-    if z.host_groups:
-        table.add_row("host groups", ", ".join(z.host_groups))
-    for key, label in _VZ_FIELDS:
+    top = Table.grid(expand=True)
+    top.add_column()
+    top.add_column(justify="right", no_wrap=True)
+    badges = Text()
+    for group in z.host_groups:
+        if badges:
+            badges.append("  ")
+        badges.append(f"● {group}", style=_HOST_COLORS.get(group, ""))
+    top.add_row(badges, _link("factsheet ↗", fs.get("url"), "blue", piped_url=True))
+
+    table = Table(show_header=False, box=None, pad_edge=False, padding=(0, 2, 0, 0))
+    table.add_column(style="dim", no_wrap=True)
+    table.add_column()
+    fields = _VZ_COMPACT + (_VZ_FULL_EXTRA if full else ())
+    for key, label in fields:
         if fs.get(key):
-            table.add_row(label, fs[key])
+            table.add_row(label, _field_text(fs[key], full))
     if fs.get("replication_site"):
         table.add_row("replication", fs["replication_site"].lower())
-    summary = fs.get("summary", {})
-    for key in ("virion", "genome"):
-        if summary.get(key):
-            table.add_row(key, summary[key])
-    if fs.get("host_virus_interactions"):
-        table.add_row("host-virus", "; ".join(i["title"] for i in fs["host_virus_interactions"] if i["title"]))
-    if fs.get("reference_strains"):
-        strains = []
-        for st in fs["reference_strains"][:3]:
-            accs = ", ".join(x["accession"] for x in st["sequences"][:3])
-            strains.append(f"{st['name']} ({accs})" if accs else st["name"])
-        table.add_row("ref. strains", "\n".join(strains))
+    if full:
+        summary = fs.get("summary", {})
+        for key in ("virion", "genome"):
+            if summary.get(key):
+                table.add_row(key, _field_text(summary[key], True))
+        if fs.get("host_virus_interactions"):
+            table.add_row("host-virus", "; ".join(i["title"] for i in fs["host_virus_interactions"]
+                                                  if i["title"]))
+        if fs.get("reference_strains"):
+            strains = []
+            for st in fs["reference_strains"][:3]:
+                accs = ", ".join(x["accession"] for x in st["sequences"][:3])
+                strains.append(f"{st['name']} ({accs})" if accs else st["name"])
+            table.add_row("ref. strains", "\n".join(strains))
 
     parts: list = []
     if z.note:
-        parts += [Text(z.note, style="yellow"), Text("")]
-    parts.append(table)
-    links = Text(fs["url"], style="dim")
-    for other in z.related:
-        links.append(f"\nalso: {other['name']} ({other['rank']}) {other['url']}", style="dim")
-    parts += [Text(""), links,
-              Text(f"Source: {z.credit['source']}. Cite: {z.credit['citation']}", style="dim italic")]
-    title = f"ViralZone — {fs['name']} ({fs['rank']})"
-    return Panel(Group(*parts), title=title, title_align="left", expand=False)
+        parts.append(Text(z.note, style="yellow"))
+    parts += [top, table]
+    if full:
+        for other in z.related:
+            parts.append(Text.assemble(("also: ", "dim"),
+                                       _link(f"{other['name']} ({other['rank']}) ↗", other["url"], "blue")))
+    title = Text.assemble("ViralZone · ", (fs["name"], "bold"), f" ({fs['rank']})")
+    return Panel(Group(*parts), title=title, title_align="left", width=width,
+                 subtitle=Text(vz_mod.CREDIT_SHORT, style="dim"), subtitle_align="right")
 
 
-def profile(p: Profile) -> None:
-    header = Text()
-    header.append(p.name, style="bold")
-    header.append(f"  ({p.rank})", style="dim")
-    if p.name.casefold() != p.query.casefold():
-        header.append(f"  ← {p.query}", style="dim")
-    _out.print(header)
+def profile(p: Profile, full: bool = False) -> None:
+    width = _profile_width()
+    _out.print(_profile_header(p, width))
     for note in p.notes:
         _err.print(Text(note, style="yellow"))
-    for panel in (_profile_taxonomy(p), _profile_ictv(p), _profile_ncbi(p), _profile_viralzone(p)):
-        if panel is not None:
-            _out.print(panel)
+
+    if full or any(r.agree is False for r in p.comparison):
+        if p.ncbi is not None:
+            _out.print(_profile_comparison(p, width))
+
+    cards = [(t, c) for t, c in (("ICTV (VMR)", _profile_ictv(p)), ("NCBI", _profile_ncbi(p, full)))
+             if c is not None]
+    if len(cards) == 2 and width >= _PROFILE_SIDE_BY_SIDE and not full:
+        pair = Table(box=box.ROUNDED, width=width, header_style="bold", padding=(0, 1))
+        pair.add_column(cards[0][0], ratio=2)
+        pair.add_column(cards[1][0], ratio=3)
+        pair.add_row(cards[0][1], cards[1][1])
+        _out.print(pair)
+    else:
+        for title, body in cards:
+            _out.print(Panel(body, title=title, title_align="left", width=width))
+
+    vz_panel = _profile_viralzone(p, width, full)
+    if vz_panel is not None:
+        _out.print(vz_panel)
     for message in p.warnings:
         warn(message)
 
     hints = []
     if p.family:
-        hints.append(f"viralfetch text {p.family}")
+        hints.append(f"text {p.family}")
         if p.has_trees:
-            hints.append(f"viralfetch tree {p.ictv.name if p.ictv else p.family}")
+            hints.append("tree")
     if p.ictv is not None:
-        hints.append(f"viralfetch seq {p.ictv.name}")
+        hints.append("seq")
         if p.ictv.rank != "species":
-            hints.append(f"viralfetch members {p.ictv.name}")
-    if hints:
-        _out.print(Text("More: " + " · ".join(hints), style="dim"))
+            hints.append("members")
+    footer = Table.grid(expand=True)
+    footer.add_column()
+    footer.add_column(justify="right")
+    footer.add_row(Text("More: " + " · ".join(hints), style="dim") if hints else Text(""),
+                   Text("" if full else "--full: lineage table, RefSeq list, biology", style="dim"))
+    _out.print(footer, width=width)

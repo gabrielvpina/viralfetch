@@ -46,6 +46,9 @@ CREDIT = {
     ),
 }
 
+# One-line credit for space-constrained displays (the full citation is in CREDIT).
+CREDIT_SHORT = "ViralZone (SIB) · CC BY 4.0 · doi:10.1093/nar/gkad946"
+
 # Most specific first: the factsheet closest to a query wins.
 _RANK_ORDER = ("species", "virus", "genus", "subfamily", "family")
 

@@ -307,7 +307,7 @@ def warn(message: str) -> None:
     print(json.dumps({"warning": message}, ensure_ascii=False), file=sys.stderr)
 
 
-def profile(p: Profile) -> None:
+def profile(p: Profile, full: bool = False) -> None:  # JSON always carries everything
     payload = {
         "query": p.query,
         "name": p.name,

@@ -141,6 +141,9 @@ def info(
     ctx: typer.Context,
     name: list[str] = typer.Argument(..., help="Taxon or virus name (quotes optional)."),
     local: bool = typer.Option(False, "--local", help="Skip NCBI: VMR and ViralZone only."),
+    full: bool = typer.Option(
+        False, "--full", help="Also the rank-by-rank lineage table, RefSeq list and ViralZone biology.",
+    ),
 ) -> None:
     """Profile a taxon: ICTV vs NCBI taxonomy, NCBI genomes, ViralZone factsheet.
 
@@ -176,7 +179,7 @@ def info(
         raise typer.Exit(1)
     if skipped:
         result.warnings.insert(0, skipped)
-    out.profile(result)
+    out.profile(result, full=full)
 
 
 @app.command(rich_help_panel=_PANEL_QUERY)

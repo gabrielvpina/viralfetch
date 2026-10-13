@@ -77,6 +77,7 @@ the closest ViralZone factsheet. Useful variants:
 viralfetch Orthoflavivirus --full                 # + lineage table, RefSeq list, virion/genome biology
 viralfetch Coronaviridae --local                  # offline: VMR + ViralZone only
 viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
+viralfetch --csv Coronaviridae > profile.csv     # one wide row
 ```
 
 ## Commands
@@ -91,7 +92,38 @@ viralfetch tax SARS-CoV-2 --ncbi                      # NCBI taxonomy directly
 viralfetch members Coronaviridae --rank genus         # genera, with species counts
 viralfetch members Coronaviridae --tree               # full descendant hierarchy
 viralfetch members Riboviria --rank family --count    # "158 families in realm Riboviria"
+
+viralfetch members Flaviviridae --rank genus --host human        # human-infecting genera
+viralfetch members Riboviria --rank family --genome dsRNA        # dsRNA families
+viralfetch members Riboviria --rank genus --host plants --genome ssRNA
 ```
+
+`--host` uses the VMR host source per species (`bacteria`, `vertebrates`, `plants`,
+`fungi`, `soil`, `marine`, …); `human` comes from ViralZone and is recorded per genus.
+`--genome` takes `dsDNA`, `ssDNA`, `dsRNA`, `ssRNA` (any polarity), `ssRNA(+)`,
+`ssRNA(-)`, `ssRNA-RT`, `dsDNA-RT`, or the broad `RNA` / `DNA` / `RT`.
+
+### Annotate a list of names — `annotate`
+
+Turn a list of virus names (one per line: species, genera, families, old names or
+common names) into a table with the full taxonomy:
+
+```bash
+viralfetch annotate names.txt -o names_taxonomy.csv     # .tsv / .json by extension
+cat hits.txt | viralfetch annotate - > table.csv
+```
+
+| Columns | Content |
+|---|---|
+| `query`, `status`, `name`, `rank` | the input and what it resolved to (`ictv`, `ncbi` = placed via NCBI, `ncbi_only`, `not_found`) |
+| `realm` … `species` | one column per ICTV rank |
+| `genome`, `host_source`, `species_count` | from the VMR |
+| `ncbi_taxid`, `ncbi_taxonomy_url` | the NCBI taxonomy record |
+| `accession`, `accession_url` | exemplar GenBank/RefSeq accession(s) of a species, all segments in one link |
+| `note` | how a name was placed, or "did you mean" suggestions |
+
+Old and NCBI-only names are placed through NCBI (`Zaire ebolavirus` → *Orthoebolavirus
+zairense*); `--local` skips NCBI.
 
 ### Sequences — `seq`
 
@@ -169,7 +201,7 @@ complete successfully.
 
 | | |
 |---|---|
-| `--json` | clean JSON on stdout, for `jq` and scripts (goes **before** the name/command) |
+| `--json`, `--csv`, `--tsv` | data on stdout instead of the Rich view — every command has a table form (goes **before** the name/command) |
 | `--no-cache` | refetch instead of using the cache |
 | `--email`, `--api-key` | NCBI credentials for this run only |
 | exit codes | `1` not found · `2` bad usage · `3` no NCBI email · `4` remote request failed |

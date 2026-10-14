@@ -12,7 +12,7 @@ from viralfetch import viralzone as vz_mod
 from viralfetch.cache import Cache
 from viralfetch.cli import app
 from viralfetch.datasets import DatasetsClient, GenomeRecord, TaxonReport
-from viralfetch.ncbi import NcbiLineage, NCBIError
+from viralfetch.ncbi import MetaResult, NcbiLineage, NCBIError, SeqMeta
 from viralfetch.queries import TaxonNotFound
 
 runner = CliRunner()
@@ -44,6 +44,14 @@ class FakeNCBI:
 
     def taxid_for_accession(self, accession):
         return None
+
+    def esummary_nuccore(self, accessions):
+        self.summarised = list(accessions)
+        return MetaResult(records=[
+            SeqMeta(a, "org", 1, "rna", "genomic", "circular" if a == "NC_000003.1" else "linear",
+                    "complete", "refseq", "2020", geneticcode="1")
+            for a in accessions
+        ])
 
     def efetch_taxonomy(self, taxid):
         raise AssertionError("not expected")

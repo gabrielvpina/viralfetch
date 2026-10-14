@@ -134,6 +134,64 @@ def test_mature_peptides_in_genome_order():
     assert s.polyprotein_genomes == 3
 
 
+# -- topology and genetic code ----------------------------------------------------------
+
+def _meta(acc, topology, code):
+    from viralfetch.ncbi import SeqMeta
+    return SeqMeta(acc, "org", 1, "dna", "genomic", topology, "complete", "refseq", "2020",
+                   geneticcode=code)
+
+
+def test_apply_metadata_counts_genomes():
+    records = [_record("NC_1", 1, 2700, "DNA-A"), _record("NC_2", 1, 2600, "DNA-B"),
+               _record("NC_3", 2, 2800), _record("NC_4", 3, 2750), _record("NC_5", 4, 2900)]
+    s = genomics.summarize(1, records, [])
+    assert sorted(genomics.metadata_accessions(s)) == ["NC_1", "NC_2", "NC_3", "NC_4", "NC_5"]
+    genomics.apply_metadata(s, [
+        _meta("NC_1.1", "circular", "11"), _meta("NC_2.1", "linear", "11"),   # one genome, mixed
+        _meta("NC_3.1", "circular", "11"), _meta("NC_4.2", "not-set", "1"),
+        # NC_5: no summary -> not counted
+    ])
+    assert s.metadata_genomes == 3
+    assert s.topology == {"mixed": 1, "circular": 1, "not recorded": 1}
+    assert s.genetic_codes == {"11": 2, "1": 1}
+    assert genomics.genetic_code_label("11") == "11 (bacterial, archaeal, plastid)"
+    assert genomics.genetic_code_label("99") == "99"
+
+
+def test_profile_genomes_topology_and_code(vmr, ncbi_knows):
+    ncbi = FakeNCBI()
+    p = profile.build(vmr, "Alphavirus", ncbi=ncbi, datasets=FakeDatasets(), viralzone=_viralzone())
+    assert ncbi.summarised == ["NC_000001.1", "NC_000002.1", "NC_000003.1"]  # full-length only
+    assert p.genomes.topology == {"linear": 2, "circular": 1}
+    assert p.genomes.genetic_codes == {"1": 3}
+    out = _render(p)
+    assert "linear 67% · circular 33%" in out
+    assert "1 (standard) in every genome" in out
+    row = profile_row(p)
+    assert (row["topology"], row["genetic_codes"]) == ("linear:2; circular:1", "1:3")
+
+
+def test_metadata_failure_is_a_warning(vmr, ncbi_knows):
+    from viralfetch.ncbi import NCBIError
+
+    class NCBI(FakeNCBI):
+        def esummary_nuccore(self, accessions):
+            raise NCBIError("boom")
+
+    p = profile.build(vmr, "Alphavirus", ncbi=NCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    assert p.genomes.size_median == 9500 and p.genomes.topology == {}
+    assert any("genetic code" in w for w in p.warnings)
+
+
+def test_json_profile_omits_genome_accessions(vmr, ncbi_knows, capsys):
+    from viralfetch.render import json_
+    p = profile.build(vmr, "Alphavirus", ncbi=FakeNCBI(), datasets=FakeDatasets(), viralzone=_viralzone())
+    json_.profile(p)
+    out = capsys.readouterr().out
+    assert '"genetic_codes"' in out and "genome_accessions" not in out
+
+
 # -- Datasets paging -------------------------------------------------------------------
 
 class PagedSession:

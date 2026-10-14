@@ -71,10 +71,39 @@ viralfetch SARS-CoV-2                  # names only NCBI knows work too
 ```
 
 The profile compares the ICTV and NCBI lineages, counts what NCBI holds and shows
-the closest ViralZone factsheet. Useful variants:
+the closest ViralZone factsheet. Above species (genus, family, order, …) it adds the
+genome features of the taxon's RefSeq genomes:
+
+```
+╭─ Genomes · 74 RefSeq genomes ─────────────────────────────────────────────────────╮
+│ size      28.3 kb median · 27.5 kb–29.9 kb  IQR · 25.4 kb–36.7 kb  range          │
+│           ▁▁▅▂▂▂▂▇▄█▄▄▂▃▁▃▄▁▂▁▃▄▁                ▁                                │
+│           25.4 kb                          36.7 kb                                │
+│ segments  1 in every genome                                                       │
+│ proteins  9 per genome (5–16) · 97% coding · polyprotein in 100%                  │
+│ hosts     Homo sapiens ×5, Chiroptera ×4, Sus scrofa ×3, …                        │
+│                                                                                   │
+│ protein               genomes             median                                  │
+│ nucleocapsid protein  ████████████ 96%    411 aa                                  │
+│ spike glycoprotein    ███████████░ 91%  1,345 aa                                  │
+│ membrane protein      ███████████░ 89%    227 aa                                  │
+│ ORF1ab polyprotein    ██████████░░ 84%  6,758 aa                                  │
+│ …                                                                                 │
+│ mature peptides  nsp2 · nsp4 · nsp6 · nsp7 · nsp8 · nsp9 · nsp10 · …              │
+╰────────────────────────────────────────────────────────── NCBI RefSeq (Datasets) ─╯
+```
+
+A genome is one RefSeq record, or the segments of a segmented virus summed. Partial
+genomes, and single-gene records shorter than a third of the median, are set aside.
+Protein names are normalised ("spike protein" = "spike glycoprotein") but come from
+each record's annotation, so families annotated with gene codes (herpesvirus `ORF25`,
+`UL19`) are undercounted. Taxa with more than 3,000 RefSeq records are summarised
+from the first 3,000.
+
+Useful variants:
 
 ```bash
-viralfetch Orthoflavivirus --full                 # + lineage table, RefSeq list, virion/genome biology
+viralfetch Orthoflavivirus --full                 # + lineage table, RefSeq list, all proteins, biology
 viralfetch Coronaviridae --local                  # offline: VMR + ViralZone only
 viralfetch --json Coronaviridae | jq .viralzone.factsheet.diseases
 viralfetch --csv Coronaviridae > profile.csv     # one wide row

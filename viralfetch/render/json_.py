@@ -327,6 +327,7 @@ def profile(p: Profile, full: bool = False) -> None:  # JSON always carries ever
             "lineage": [{"rank": r, "name": n} for r, n in p.ncbi.lineage],
             "report": asdict(p.ncbi_report) if p.ncbi_report else None,
             "sequences": asdict(p.sequences) if p.sequences else None,
+            "genomes": asdict(p.genomes) if p.genomes else None,
         },
         "comparison": [asdict(r) for r in p.comparison],
         "viralzone": None if p.viralzone is None else {

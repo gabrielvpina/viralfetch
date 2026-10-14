@@ -7,6 +7,8 @@ It gathers what each source is best at, side by side:
 - **NCBI** — the taxid, NCBI's lineage compared rank by rank with ICTV's, the
   ICTV status NCBI records for the name, and how many nucleotide records,
   complete genomes, RefSeq genomes and assemblies it holds (NCBI Datasets);
+  above species, the genome sizes and proteins of its RefSeq genomes
+  (:mod:`viralfetch.genomics`);
 - **ViralZone** — the curated factsheet closest to the taxon (host, geography,
   diseases, transmission, vaccines, antivirals, ...), credited to ViralZone.
 
@@ -22,16 +24,18 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 
-from . import compare
+from . import compare, genomics
 from . import trees as trees_mod
 from . import viralzone as vz_mod
-from .datasets import VIRUS_PORTAL, DatasetsClient, SequenceStats, TaxonReport
+from .datasets import VIRUS_PORTAL, DatasetsClient, SequenceStats, TaxonReport, sorted_genomes
+from .genomics import GenomeSummary
 from .models import RANKS, Taxon
 from .ncbi import NcbiLineage, NCBIClient, NCBIError
 from .queries import TaxonNotFound, descendant_isolates
 from .vmr import VMR
 
 TOP_HOSTS = 5
+REFSEQ_LISTED = 25
 
 
 @dataclass
@@ -75,6 +79,7 @@ class Profile:
     comparison: list[RankRow] = field(default_factory=list)
     vmr: VmrSummary | None = None
     sequences: SequenceStats | None = None
+    genomes: GenomeSummary | None = None   # above species: RefSeq genome features
     viralzone: ViralZoneSection | None = None
     family: str | None = None
     has_trees: bool = False
@@ -190,9 +195,12 @@ def ncbi_stats(
     datasets: DatasetsClient | None,
     taxid: str,
     warnings: list[str],
-) -> tuple[TaxonReport | None, SequenceStats | None]:
-    """Record counts (E-utilities) and the RefSeq listing / taxonomy report
-    (Datasets) for ``taxid``, the two APIs queried concurrently.
+    *,
+    genomes: bool = False,
+) -> tuple[TaxonReport | None, SequenceStats | None, GenomeSummary | None]:
+    """Record counts (E-utilities), the RefSeq listing / taxonomy report
+    (Datasets) and, with ``genomes``, the genome summary of the RefSeq
+    sequences for ``taxid`` — the queries run concurrently.
 
     Each API keeps its own queue, so its rate limit holds. A failed query
     leaves its field empty and adds a warning; nothing here raises.
@@ -206,31 +214,50 @@ def ncbi_stats(
             warnings.append(f"NCBI record count failed: {exc}")
         return total, complete
 
+    # With the genome summary, the full RefSeq dataset report replaces the
+    # short listing (the listing is its first records).
     def datasets_part():
-        report = refseq = None
+        report = refseq = records = None
         if datasets is None:
-            return report, refseq
+            return report, refseq, records
         try:
             report = datasets.taxonomy_report(taxid)
-            refseq = datasets.refseq_genomes(taxid)
+            if genomes:
+                records = datasets.refseq_reports(taxid)
+                refseq = records[0], sorted_genomes(records[1])[:REFSEQ_LISTED]
+            else:
+                refseq = datasets.refseq_genomes(taxid)
         except NCBIError as exc:
             warnings.append(f"NCBI Datasets request failed: {exc}")
-        return report, refseq
+        return report, refseq, records
 
-    with ThreadPoolExecutor(max_workers=2) as pool:
+    def annotations():
+        try:
+            return datasets.refseq_reports(taxid, "annotation_report")[1]
+        except NCBIError as exc:
+            warnings.append(f"NCBI Datasets annotation request failed: {exc}")
+            return None
+
+    with ThreadPoolExecutor(max_workers=3) as pool:
         counts_future = pool.submit(counts)
         datasets_future = pool.submit(datasets_part)
+        annotation_future = pool.submit(annotations) if genomes and datasets else None
         total, complete = counts_future.result()
-        report, refseq = datasets_future.result()
+        report, refseq, records = datasets_future.result()
+        annotated = annotation_future.result() if annotation_future else None
+
+    summary = None
+    if records is not None:
+        summary = genomics.summarize(taxid, records[1], annotated or [], total=records[0])
 
     if total is None and complete is None and refseq is None:
-        return report, None
-    refseq_total, genomes = refseq if refseq is not None else (None, [])
+        return report, None, summary
+    refseq_total, listed = refseq if refseq is not None else (None, [])
     stats = SequenceStats(
         taxid=int(taxid), total=total, complete=complete, refseq=refseq_total,
-        refseq_genomes=genomes, portal_url=VIRUS_PORTAL.format(taxid=taxid),
+        refseq_genomes=listed, portal_url=VIRUS_PORTAL.format(taxid=taxid),
     )
-    return report, stats
+    return report, stats, summary
 
 
 def _ncbi_rank(ncbi: NcbiLineage | None, rank: str) -> str | None:
@@ -312,8 +339,9 @@ def build(
     profile.has_trees = _has_trees(profile.family)
 
     if ncbi is not None and ncbi_lineage is not None:
-        profile.ncbi_report, profile.sequences = ncbi_stats(
+        profile.ncbi_report, profile.sequences, profile.genomes = ncbi_stats(
             ncbi, datasets, ncbi_lineage.taxid, warnings,
+            genomes=profile.rank in RANKS and profile.rank != "species",
         )
 
     if viralzone is not None:

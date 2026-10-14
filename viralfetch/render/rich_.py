@@ -24,6 +24,7 @@ from ..cache import NamespaceInfo
 from ..compare import LineageComparison
 from ..ictv import VMRUpdate
 from ..models import RANKS, Chapter, plural
+from ..genomics import GenomeSummary
 from ..ncbi import MetaResult, NcbiLineage, RecordsResult
 from ..profile import Profile
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
@@ -887,8 +888,9 @@ def diagnose(d: Diagnostics) -> None:
 #
 # Compact by default: a header card (name, molecule, ICTV status, lineage as a
 # breadcrumb), ICTV and NCBI numbers side by side, and the ViralZone ecology &
-# disease fields. ``full`` adds the rank-by-rank comparison table, the RefSeq
-# list and ViralZone's biology (virion, genome, interactions, strains).
+# disease fields; above species, the genome sizes and proteins of the RefSeq
+# genomes. ``full`` adds the rank-by-rank comparison table, the RefSeq list,
+# every protein and ViralZone's biology (virion, genome, interactions, strains).
 
 _PROFILE_MAX_WIDTH = 100
 _PROFILE_SIDE_BY_SIDE = 90     # below this width the ICTV / NCBI cards stack
@@ -896,6 +898,9 @@ _PROFILE_REFSEQ_ROWS = 10
 _PROFILE_FIELD_CHARS = 220     # compact mode: longer ViralZone fields are cut
 _PROFILE_FIELD_LINES = 4
 _BAR_WIDTH = 12
+_SPARK = " ▁▂▃▄▅▆▇█"
+_GENOME_PROTEIN_SHARE = 0.25  # compact mode: proteins in at least this share
+_GENOME_PROTEIN_ROWS = 10
 _VZ_COMPACT = (
     ("host", "host"), ("tropism", "tropism"), ("geography", "geography"),
     ("diseases", "diseases"), ("transmission", "transmission"),
@@ -1123,6 +1128,104 @@ def _profile_ncbi(p: Profile, full: bool) -> Group | None:
     return Group(*parts)
 
 
+def _size(n: int) -> str:
+    if n < 1000:
+        return f"{n} nt"
+    if n < 10_000:
+        return f"{n / 1000:.2f} kb"
+    if n < 1_000_000:
+        return f"{n / 1000:.1f} kb"
+    return f"{n / 1_000_000:.2f} Mb"
+
+
+def _histogram_text(g: GenomeSummary) -> Text:
+    peak = max(b.count for b in g.histogram) or 1
+    bars = Text()
+    for b in g.histogram:
+        level = 0 if not b.count else max(1, round(b.count / peak * (len(_SPARK) - 1)))
+        bars.append(_SPARK[level], style="green")
+    left, right = _size(g.size_min), _size(g.size_max)
+    scale = "log scale" if g.log_scale else ""
+    gap = max(len(g.histogram) - len(left) - len(right), 1)
+    axis = Text(f"\n{left}{' ' * gap}{right}", style="dim")
+    if scale:
+        axis.append(f"  ({scale})", style="dim")
+    return bars + axis
+
+
+def _profile_genomes(p: Profile, width: int, full: bool) -> Panel | None:
+    g = p.genomes
+    if g is None:
+        return None
+    facts = Table(show_header=False, box=None, pad_edge=False, padding=(0, 2, 0, 0))
+    facts.add_column(style="dim", no_wrap=True)
+    facts.add_column()
+    facts.add_row("size", Text.assemble(
+        (_size(g.size_median), "bold"), " median · ",
+        f"{_size(g.size_q1)}–{_size(g.size_q3)}", ("  IQR", "dim"), " · ",
+        f"{_size(g.size_min)}–{_size(g.size_max)}", ("  range", "dim")))
+    if len(g.histogram) > 1:
+        facts.add_row("", _histogram_text(g))
+    if full:
+        for label, e in (("smallest", g.smallest), ("largest", g.largest)):
+            if e is not None:
+                facts.add_row(label, Text.assemble(f"{_size(e.size)} ", (e.organism, "italic"),
+                                                   (f"  {', '.join(e.accessions)}", "cyan")))
+    if g.segments:
+        segments = " · ".join(f"{k} ×{v}" for k, v in g.segments.items())
+        facts.add_row("segments", segments if len(g.segments) > 1
+                      else f"{next(iter(g.segments))} in every genome")
+    bits = []
+    if g.proteins_per_genome:
+        lo, med, hi = g.proteins_per_genome
+        bits.append(f"{med} per genome" + (f" ({lo}–{hi})" if lo != hi else ""))
+    if g.coding_density is not None:
+        bits.append(f"{g.coding_density:.0%} coding")
+    if g.polyprotein_genomes / g.genomes >= 0.05:
+        bits.append(f"polyprotein in {g.polyprotein_genomes / g.genomes:.0%}")
+    if bits:
+        facts.add_row("proteins", " · ".join(bits))
+    if g.hosts:
+        facts.add_row("hosts", Text.assemble(
+            ", ".join(f"{h} ×{n}" if n > 1 else h for h, n in g.hosts.items()),
+            (f"  ({g.hosts_recorded} of {g.genomes} with a host)", "dim")))
+
+    parts: list = [facts]
+    shown = [x for x in g.proteins if full or x.share >= _GENOME_PROTEIN_SHARE][
+        : None if full else _GENOME_PROTEIN_ROWS]
+    if shown:
+        table = Table(box=None, pad_edge=False, padding=(0, 2, 0, 0))
+        table.add_column("protein", header_style="dim")
+        table.add_column("genomes", header_style="dim", no_wrap=True)
+        table.add_column("median", header_style="dim", justify="right", no_wrap=True)
+        for x in shown:
+            table.add_row(x.name, _bar(x.genomes, g.genomes),
+                          f"{x.median_aa:,} aa" if x.median_aa else "")
+        hidden = len(g.proteins) - len(shown)
+        parts += [Text(""), table]
+        if hidden > 0:
+            parts.append(Text(f"… {hidden} less frequent protein(s) (--full)", style="dim"))
+    peptides = [x for x in g.mature_peptides if full or x.share >= 0.5][: None if full else 12]
+    if peptides:
+        line = Text("mature peptides  ", style="dim")
+        line.append(" · ".join(f"{x.name} {x.share:.0%}" if full else x.name for x in peptides))
+        line.append(f"  (annotated in {g.mature_peptide_genomes} genomes)", style="dim")
+        parts += [Text(""), line]
+
+    aside = [f"{n} {label}" for n, label in ((g.partial, "partial"),
+                                             (g.short, "shorter than ⅓ of the median")) if n]
+    notes = []
+    if aside:
+        notes.append("set aside: " + ", ".join(aside))
+    if g.sampled:
+        notes.append(f"sample: first {g.records_used:,} of {g.refseq_records:,} RefSeq records")
+    if notes:
+        parts.append(Text("; ".join(notes), style="dim"))
+    title = Text.assemble("Genomes · ", (f"{g.genomes:,}", "bold"), " RefSeq genomes")
+    return Panel(Group(*parts), title=title, title_align="left", width=width,
+                 subtitle=Text("NCBI RefSeq (Datasets)", style="dim"), subtitle_align="right")
+
+
 def _profile_viralzone(p: Profile, width: int, full: bool) -> Panel | None:
     z = p.viralzone
     if z is None:
@@ -1197,6 +1300,9 @@ def profile(p: Profile, full: bool = False) -> None:
         for title, body in cards:
             _out.print(Panel(body, title=title, title_align="left", width=width))
 
+    genomes_panel = _profile_genomes(p, width, full)
+    if genomes_panel is not None:
+        _out.print(genomes_panel)
     vz_panel = _profile_viralzone(p, width, full)
     if vz_panel is not None:
         _out.print(vz_panel)
@@ -1216,7 +1322,7 @@ def profile(p: Profile, full: bool = False) -> None:
     footer.add_column()
     footer.add_column(justify="right")
     footer.add_row(Text("More: " + " · ".join(hints), style="dim") if hints else Text(""),
-                   Text("" if full else "--full: lineage table, RefSeq list, biology", style="dim"))
+                   Text("" if full else "--full: lineage, RefSeq, all proteins, biology", style="dim"))
     _out.print(footer, width=width)
 
 

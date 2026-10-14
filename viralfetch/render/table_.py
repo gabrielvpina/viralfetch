@@ -303,6 +303,21 @@ def profile_row(p) -> dict:
         "refseq_sequences": seqs.refseq if seqs else None,
         "assemblies": rep.assemblies if rep else None,
     })
+    g = p.genomes
+    row.update({
+        "refseq_genomes": g.genomes if g else None,
+        "genome_size_median": g.size_median if g else None,
+        "genome_size_q1": g.size_q1 if g else None,
+        "genome_size_q3": g.size_q3 if g else None,
+        "genome_size_min": g.size_min if g else None,
+        "genome_size_max": g.size_max if g else None,
+        "segments": "; ".join(f"{k}:{v}" for k, v in g.segments.items()) if g else None,
+        "proteins_per_genome": g.proteins_per_genome[1] if g and g.proteins_per_genome else None,
+        "coding_density": g.coding_density if g else None,
+        "polyprotein_share": round(g.polyprotein_genomes / g.genomes, 4) if g else None,
+        "common_proteins": "; ".join(f"{x.name} ({x.share:.0%})" for x in g.proteins
+                                     if x.share >= 0.25) if g else None,
+    })
     z = p.viralzone
     fs = z.factsheet if z else {}
     row.update({

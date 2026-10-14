@@ -2,7 +2,8 @@
 
 E-utilities (:mod:`viralfetch.ncbi`) resolve names and lineages and count
 records (``esearch`` stays fast even for millions of them). Datasets adds the
-RefSeq sequences of a taxon with their metadata, and the taxonomy report's ICTV
+RefSeq sequences of a taxon with their metadata and annotation (the genome
+summary of :mod:`viralfetch.genomics`), and the taxonomy report's ICTV
 name status, genomic molecule type and assembly count. Its own record counts
 are not used: on large taxa they take tens of seconds or fail outright.
 
@@ -30,6 +31,8 @@ from .ncbi import NCBIError, RateLimiter
 BASE_URL = "https://api.ncbi.nlm.nih.gov/datasets/v2"
 VIRUS_PORTAL = "https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=taxid:{taxid}"
 _RETRY_STATUS = {429, 500, 502, 503, 504}
+REPORT_PAGE = 1000
+MAX_REPORT_RECORDS = 3000  # big taxa (an order, a class) are summarised from a sample
 
 
 @dataclass
@@ -138,9 +141,28 @@ class DatasetsClient:
         """``(total, first records)`` of the RefSeq sequences under ``taxid``,
         sorted by organism (Datasets' own order is arbitrary)."""
         data = self._virus_report(taxid, limit, refseq_only=True)
-        records = [_genome_record(r) for r in data.get("reports", [])]
-        records.sort(key=lambda g: (g.organism.casefold(), g.segment or "", g.accession))
-        return int(data.get("total_count") or 0), records
+        return int(data.get("total_count") or 0), sorted_genomes(data.get("reports", []))
+
+    def refseq_reports(
+        self, taxid: int | str, kind: str = "dataset_report", max_records: int = MAX_REPORT_RECORDS,
+    ) -> tuple[int, list[dict]]:
+        """``(total, raw reports)`` of every RefSeq sequence under ``taxid``, up
+        to ``max_records``; ``kind`` is ``dataset_report`` (length, completeness,
+        host, ...) or ``annotation_report`` (genes, CDS, mature peptides)."""
+        reports: list[dict] = []
+        total, token = 0, None
+        while len(reports) < max_records:
+            params: dict = {"page_size": min(REPORT_PAGE, max_records - len(reports)),
+                            "filter.refseq_only": "true"}
+            if token:
+                params["page_token"] = token
+            data = self._get(f"virus/taxon/{taxid}/{kind}", params, retries=2)
+            reports += data.get("reports") or []
+            total = max(total, int(data.get("total_count") or 0))
+            token = data.get("next_page_token")
+            if not token or not data.get("reports"):
+                break
+        return max(total, len(reports)), reports
 
     # -- taxonomy -------------------------------------------------------------
 
@@ -157,6 +179,13 @@ def _int(value) -> int | None:
         return int(value) if value not in (None, "") else None
     except (TypeError, ValueError):
         return None
+
+
+def sorted_genomes(reports: list[dict]) -> list[GenomeRecord]:
+    """Dataset-report entries as :class:`GenomeRecord`, sorted by organism."""
+    records = [_genome_record(r) for r in reports]
+    records.sort(key=lambda g: (g.organism.casefold(), g.segment or "", g.accession))
+    return records
 
 
 def _genome_record(r: dict) -> GenomeRecord:

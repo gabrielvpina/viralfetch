@@ -149,10 +149,13 @@ def info(
     name: list[str] = typer.Argument(..., help="Taxon or virus name (quotes optional)."),
     local: bool = typer.Option(False, "--local", help="Skip NCBI: VMR and ViralZone only."),
     full: bool = typer.Option(
-        False, "--full", help="Also the rank-by-rank lineage table, RefSeq list and ViralZone biology.",
+        False, "--full",
+        help="Also the rank-by-rank lineage table, RefSeq list, every protein and ViralZone biology.",
     ),
 ) -> None:
     """Profile a taxon: ICTV vs NCBI taxonomy, NCBI genomes, ViralZone factsheet.
+
+    Above species, also the genome sizes and proteins of its RefSeq genomes.
 
     The default command: [cyan]viralfetch Flaviviridae[/] is [cyan]viralfetch info Flaviviridae[/].
     ViralZone content is credited to the SIB Swiss Institute of Bioinformatics.

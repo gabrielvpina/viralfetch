@@ -66,6 +66,35 @@ class FakeDatasets:
         return 1, [GenomeRecord("NC_000001.1", "alphavirus one", 111, 9000, "complete", None,
                                 "RefSeq", "2001-01-01", "2020-01-01")]
 
+    def refseq_reports(self, taxid, kind="dataset_report"):
+        if kind == "annotation_report":
+            return len(GENOME_ANNOTATIONS), GENOME_ANNOTATIONS
+        return len(GENOME_RECORDS), GENOME_RECORDS
+
+
+def _genome(acc, taxid, length, *proteins, completeness="COMPLETE"):
+    record = {"accession": acc, "virus": {"tax_id": taxid, "organism_name": f"virus {taxid}"},
+              "length": length, "completeness": completeness, "source_database": "RefSeq",
+              "host": {"organism_name": "Homo sapiens"}}
+    cds, start = [], 1
+    for name, aa in proteins:
+        end = start + aa * 3 + 2
+        cds.append({"name": name, "nucleotide": {"range": [{"begin": str(start), "end": str(end)}]},
+                    "protein": {"range": [{"begin": "1", "end": str(aa)}]}})
+        start = end + 1
+    return record, {"accession": acc, "genes": [{"cds": [c]} for c in cds]}
+
+
+_GENOMES = [
+    _genome("NC_000001.1", 1, 9000, ("nonstructural polyprotein", 2500), ("capsid protein", 260)),
+    _genome("NC_000002.1", 2, 9500, ("polyprotein", 2500), ("coat protein", 250)),
+    _genome("NC_000003.1", 3, 10000, ("putative capsid protein", 270), ("hypothetical protein", 90)),
+    _genome("NC_000004.1", 4, 1200, ("NS5 protein", 345)),                  # a single-gene record
+    _genome("NC_000005.1", 5, 9800, ("capsid protein", 250), completeness="PARTIAL"),
+]
+GENOME_RECORDS = [g[0] for g in _GENOMES]
+GENOME_ANNOTATIONS = [g[1] for g in _GENOMES]
+
 
 def _viralzone() -> vz_mod.ViralZone:
     fam = {"id": 1, "name": "Alphaviridae", "rank": "family", "taxid": 1000, "url": "u1",
@@ -114,9 +143,17 @@ def test_profile_of_a_vmr_genus(vmr, ncbi_knows):
     assert datasets.asked == ["111"]
     assert ncbi.terms == ["txid111[Organism:exp]",
                           'txid111[Organism:exp] AND "complete genome"[Title]']
-    assert (p.sequences.total, p.sequences.complete, p.sequences.refseq) == (120, 30, 1)
+    assert (p.sequences.total, p.sequences.complete, p.sequences.refseq) == (120, 30, 5)
+    assert p.sequences.refseq_genomes[0].accession == "NC_000001.1"
     assert p.sequences.portal_url.endswith("taxid:111")
     assert p.ncbi_report.assemblies == 7
+    # Genome summary: one partial and one single-gene record set aside.
+    g = p.genomes
+    assert (g.genomes, g.partial, g.short) == (3, 1, 1)
+    assert (g.size_min, g.size_median, g.size_max) == (9000, 9500, 10000)
+    assert g.proteins[0].name == "capsid protein" and g.proteins[0].share == 1.0
+    assert g.proteins[0].median_aa == 260
+    assert g.polyprotein_genomes == 2 and g.hosts == {"Homo sapiens": 3}
     # The genus factsheet wins (despite its own lineage's typo); the family is related.
     assert p.viralzone.factsheet["name"] == "Alphavirus"
     assert [r["name"] for r in p.viralzone.related] == ["Alphaviridae"]

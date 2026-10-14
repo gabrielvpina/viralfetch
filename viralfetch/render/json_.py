@@ -311,6 +311,14 @@ def warn(message: str) -> None:
     print(json.dumps({"warning": message}, ensure_ascii=False), file=sys.stderr)
 
 
+def _genomes(g) -> dict | None:
+    if g is None:
+        return None
+    out = asdict(g)
+    out.pop("genome_accessions", None)  # an input of the summary, not a result
+    return out
+
+
 def profile(p: Profile, full: bool = False) -> None:  # JSON always carries everything
     payload = {
         "query": p.query,
@@ -327,7 +335,7 @@ def profile(p: Profile, full: bool = False) -> None:  # JSON always carries ever
             "lineage": [{"rank": r, "name": n} for r, n in p.ncbi.lineage],
             "report": asdict(p.ncbi_report) if p.ncbi_report else None,
             "sequences": asdict(p.sequences) if p.sequences else None,
-            "genomes": asdict(p.genomes) if p.genomes else None,
+            "genomes": _genomes(p.genomes),
         },
         "comparison": [asdict(r) for r in p.comparison],
         "viralzone": None if p.viralzone is None else {

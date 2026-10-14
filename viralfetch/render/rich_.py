@@ -24,7 +24,7 @@ from ..cache import NamespaceInfo
 from ..compare import LineageComparison
 from ..ictv import VMRUpdate
 from ..models import RANKS, Chapter, plural
-from ..genomics import GenomeSummary
+from ..genomics import GenomeSummary, genetic_code_label
 from ..ncbi import MetaResult, NcbiLineage, RecordsResult
 from ..profile import Profile
 from ..queries import Diagnostics, MembersView, TaxonTreeNode, TaxonView, TreeView
@@ -1153,6 +1153,14 @@ def _histogram_text(g: GenomeSummary) -> Text:
     return bars + axis
 
 
+def _shares(counts: dict[str, int], whole: int) -> str:
+    """"linear in every genome" / "circular 96% · linear 4%"."""
+    if len(counts) == 1 and next(iter(counts.values())) == whole:
+        return f"{next(iter(counts))} in every genome"
+    return " · ".join(f"{k} {v / whole:.0%}" if v * 100 >= whole else f"{k} <1%"
+                      for k, v in counts.items())
+
+
 def _profile_genomes(p: Profile, width: int, full: bool) -> Panel | None:
     g = p.genomes
     if g is None:
@@ -1185,6 +1193,11 @@ def _profile_genomes(p: Profile, width: int, full: bool) -> Panel | None:
         bits.append(f"polyprotein in {g.polyprotein_genomes / g.genomes:.0%}")
     if bits:
         facts.add_row("proteins", " · ".join(bits))
+    if g.topology:
+        facts.add_row("topology", _shares(g.topology, g.metadata_genomes))
+    if g.genetic_codes:
+        facts.add_row("genetic code", _shares(
+            {genetic_code_label(k): v for k, v in g.genetic_codes.items()}, g.metadata_genomes))
     if g.hosts:
         facts.add_row("hosts", Text.assemble(
             ", ".join(f"{h} ×{n}" if n > 1 else h for h, n in g.hosts.items()),

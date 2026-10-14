@@ -315,6 +315,8 @@ def profile_row(p) -> dict:
         "proteins_per_genome": g.proteins_per_genome[1] if g and g.proteins_per_genome else None,
         "coding_density": g.coding_density if g else None,
         "polyprotein_share": round(g.polyprotein_genomes / g.genomes, 4) if g else None,
+        "topology": "; ".join(f"{k}:{v}" for k, v in g.topology.items()) if g else None,
+        "genetic_codes": "; ".join(f"{k}:{v}" for k, v in g.genetic_codes.items()) if g else None,
         "common_proteins": "; ".join(f"{x.name} ({x.share:.0%})" for x in g.proteins
                                      if x.share >= 0.25) if g else None,
     })

@@ -49,6 +49,7 @@ class SeqMeta:
     completeness: str
     sourcedb: str
     updatedate: str
+    geneticcode: str = ""   # NCBI translation table, e.g. "1" (standard), "11" (bacterial)
 
 
 @dataclass
@@ -500,6 +501,7 @@ def _meta_from_json(record: dict) -> SeqMeta:
         completeness=record.get("completeness", ""),
         sourcedb=record.get("sourcedb", ""),
         updatedate=record.get("updatedate", ""),
+        geneticcode=str(record.get("geneticcode") or ""),
     )
 
 

@@ -20,7 +20,9 @@ From the full-length genomes:
 - the proteins most genomes encode, their names normalised so that
   "spike protein" and "spike glycoprotein" count together, with median length;
 - the mature peptides (cleavage products of polyproteins), when annotated;
-- the hosts recorded on the RefSeq entries.
+- the hosts recorded on the RefSeq entries;
+- topology (circular / linear) and genetic code (NCBI translation table),
+  added by :func:`apply_metadata` from the records' nucleotide summaries.
 
 Design note (SPEC section 4): nothing in this module prints. It returns data.
 """
@@ -42,6 +44,20 @@ HISTOGRAM_BINS = 40
 POLYPROTEIN_SPAN = 0.6     # a CDS covering this share of its segment...
 POLYPROTEIN_AA = 1000      # ...and this long, counts as a polyprotein
 TOP_HOSTS = 5
+METADATA_GENOMES = 1000    # topology / genetic code: from at most this many genomes
+
+# NCBI translation tables (https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi).
+GENETIC_CODES = {
+    "1": "standard", "2": "vertebrate mitochondrial", "3": "yeast mitochondrial",
+    "4": "mold/protozoan mitochondrial, Mycoplasma", "5": "invertebrate mitochondrial",
+    "6": "ciliate nuclear", "9": "echinoderm mitochondrial", "10": "euplotid nuclear",
+    "11": "bacterial, archaeal, plastid", "12": "alternative yeast nuclear",
+    "13": "ascidian mitochondrial", "14": "alternative flatworm mitochondrial",
+    "15": "Blepharisma nuclear", "16": "chlorophycean mitochondrial",
+    "25": "SR1 and Gracilibacteria", "26": "Pachysolen nuclear", "27": "karyorelict nuclear",
+    "28": "Condylostoma nuclear", "29": "Mesodinium nuclear", "30": "peritrich nuclear",
+    "31": "Blastocrithidia nuclear", "33": "Cephalodiscidae mitochondrial",
+}
 
 
 @dataclass
@@ -95,6 +111,11 @@ class GenomeSummary:
     mature_peptide_genomes: int = 0
     hosts: dict[str, int] = field(default_factory=dict)              # top TOP_HOSTS
     hosts_recorded: int = 0                                          # genomes with a host
+    topology: dict[str, int] = field(default_factory=dict)           # circular/linear/mixed/not recorded
+    genetic_codes: dict[str, int] = field(default_factory=dict)      # table number -> genomes
+    metadata_genomes: int = 0                                         # genomes the two above cover
+    # Accessions of each full-length genome (input to apply_metadata; not output).
+    genome_accessions: list[list[str]] = field(default_factory=list, repr=False)
 
     @property
     def sampled(self) -> bool:
@@ -347,6 +368,7 @@ def summarize(
             organism=(rs[0].get("virus") or {}).get("organism_name", ""),
             size=full[key], accessions=[r.get("accession", "") for r in rs]))
     summary.segments = dict(sorted(Counter(len(organisms[k]) for k in full).items()))
+    summary.genome_accessions = [[r.get("accession", "") for r in organisms[k]] for k in full]
 
     proteins: dict[str, list[tuple]] = defaultdict(list)
     peptides: dict[str, list[tuple]] = defaultdict(list)
@@ -411,3 +433,47 @@ def summarize(
     summary.hosts = dict(hosts.most_common(TOP_HOSTS))
     summary.hosts_recorded = sum(hosts.values())
     return summary
+
+
+def _base(accession: str) -> str:
+    return accession.split(".")[0]
+
+
+def apply_metadata(summary: GenomeSummary, metadata) -> None:
+    """Fill topology and genetic code from nucleotide summaries.
+
+    ``metadata`` is an iterable of records with ``accession``, ``topology``
+    and ``geneticcode`` (:class:`viralfetch.ncbi.SeqMeta`). A genome is
+    counted once its records are all there; a segmented genome mixing
+    circular and linear segments is "mixed", and takes its segments' most
+    frequent genetic code.
+    """
+    by_accession = {_base(m.accession): m for m in metadata}
+    topology: Counter[str] = Counter()
+    codes: Counter[str] = Counter()
+    covered = 0
+    for accessions in summary.genome_accessions[:METADATA_GENOMES]:
+        metas = [by_accession.get(_base(a)) for a in accessions]
+        if not metas or any(m is None for m in metas):
+            continue
+        covered += 1
+        shapes = {(m.topology or "").lower() for m in metas} - {""}
+        shapes = {"not recorded" if t == "not-set" else t for t in shapes}
+        if shapes:
+            topology[shapes.pop() if len(shapes) == 1 else "mixed"] += 1
+        genome_codes = Counter(m.geneticcode for m in metas if m.geneticcode)
+        if genome_codes:
+            codes[genome_codes.most_common(1)[0][0]] += 1
+    summary.topology = dict(topology.most_common())
+    summary.genetic_codes = dict(codes.most_common())
+    summary.metadata_genomes = covered
+
+
+def metadata_accessions(summary: GenomeSummary) -> list[str]:
+    """The accessions :func:`apply_metadata` needs, in genome order."""
+    return [a for g in summary.genome_accessions[:METADATA_GENOMES] for a in g]
+
+
+def genetic_code_label(code: str) -> str:
+    name = GENETIC_CODES.get(code)
+    return f"{code} ({name})" if name else code

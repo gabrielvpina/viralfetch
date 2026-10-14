@@ -249,6 +249,12 @@ def ncbi_stats(
     summary = None
     if records is not None:
         summary = genomics.summarize(taxid, records[1], annotated or [], total=records[0])
+    if summary is not None:  # topology and genetic code: the records' nucleotide summaries
+        try:
+            meta = ncbi.esummary_nuccore(genomics.metadata_accessions(summary))
+            genomics.apply_metadata(summary, meta.records)
+        except NCBIError as exc:
+            warnings.append(f"NCBI topology / genetic code lookup failed: {exc}")
 
     if total is None and complete is None and refseq is None:
         return report, None, summary

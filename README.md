@@ -4,7 +4,7 @@
 
 <br>
 
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.1-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CLI](https://img.shields.io/badge/CLI-Typer-0b7261)
@@ -76,12 +76,14 @@ genome features of the taxon's RefSeq genomes:
 
 ```
 ╭─ Genomes · 74 RefSeq genomes ─────────────────────────────────────────────────────╮
-│ size      28.3 kb median · 27.5 kb–29.9 kb  IQR · 25.4 kb–36.7 kb  range          │
-│           ▁▁▅▂▂▂▂▇▄█▄▄▂▃▁▃▄▁▂▁▃▄▁                ▁                                │
-│           25.4 kb                          36.7 kb                                │
-│ segments  1 in every genome                                                       │
-│ proteins  9 per genome (5–16) · 97% coding · polyprotein in 100%                  │
-│ hosts     Homo sapiens ×5, Chiroptera ×4, Sus scrofa ×3, …                        │
+│ size          28.3 kb median · 27.5 kb–29.9 kb  IQR · 25.4 kb–36.7 kb  range      │
+│               ▁▁▅▂▂▂▂▇▄█▄▄▂▃▁▃▄▁▂▁▃▄▁                ▁                            │
+│               25.4 kb                          36.7 kb                            │
+│ segments      1 in every genome                                                   │
+│ topology      linear 93% · not recorded 7%                                        │
+│ genetic code  1 (standard) in every genome                                        │
+│ proteins      9 per genome (5–16) · 97% coding · polyprotein in 100%              │
+│ hosts         Homo sapiens ×5, Chiroptera ×4, Sus scrofa ×3, …                    │
 │                                                                                   │
 │ protein               genomes             median                                  │
 │ nucleocapsid protein  ████████████ 96%    411 aa                                  │
@@ -93,7 +95,8 @@ genome features of the taxon's RefSeq genomes:
 ╰────────────────────────────────────────────────────────── NCBI RefSeq (Datasets) ─╯
 ```
 
-A genome is one RefSeq record, or the segments of a segmented virus summed. Partial
+A genome is one RefSeq record, or the segments of a segmented virus summed. Topology
+and genetic code (NCBI translation table) come from the records' nucleotide summaries. Partial
 genomes, and single-gene records shorter than a third of the median, are set aside.
 Protein names are normalised ("spike protein" = "spike glycoprotein") but come from
 each record's annotation, so families annotated with gene codes (herpesvirus `ORF25`,
